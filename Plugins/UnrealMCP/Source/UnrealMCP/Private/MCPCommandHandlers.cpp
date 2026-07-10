@@ -434,30 +434,6 @@ TSharedPtr<FJsonObject> FMCPExecutePythonHandler::Execute(const TSharedPtr<FJson
         return CreateErrorResponse("Missing 'code' or 'file' field. You must provide either Python code or a file path.");
     }
 
-    if (hasCode)
-    {
-        MCP_LOG_WARNING("Rejected inline Python execution");
-        return CreateErrorResponse("Inline Python execution is disabled. Use an approved project script file.");
-    }
-
-    if (!bAllowFileExecution)
-    {
-        return CreateErrorResponse("Python file execution is disabled by MCP security settings.");
-    }
-
-    FString CanonicalPythonFile = FPaths::ConvertRelativePathToFull(PythonFile);
-    FString CanonicalAllowedRoot = FPaths::ConvertRelativePathToFull(AllowedPythonRoot);
-    FPaths::NormalizeFilename(CanonicalPythonFile);
-    FPaths::NormalizeDirectoryName(CanonicalAllowedRoot);
-    if (!CanonicalPythonFile.EndsWith(TEXT(".py"), ESearchCase::IgnoreCase)
-        || !FPaths::FileExists(CanonicalPythonFile)
-        || !FPaths::IsUnderDirectory(CanonicalPythonFile, CanonicalAllowedRoot))
-    {
-        MCP_LOG_WARNING("Rejected Python file outside approved project Scripts directory");
-        return CreateErrorResponse("Python file must be an existing .py file under the approved project Scripts directory.");
-    }
-    PythonFile = CanonicalPythonFile;
-
     FString Result;
     bool bSuccess = false;
     FString ErrorMessage;

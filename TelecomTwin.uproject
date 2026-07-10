@@ -3,13 +3,6 @@
 "EngineAssociation": "5.7",
 "Category": "",
 "Description": "Telecom Base Station Digital Twin",
-"Modules": [
-{
-"Name": "TelecomTwin",
-"Type": "Runtime",
-"LoadingPhase": "Default"
-}
-],
 "Plugins": [
 {
 "Name": "CesiumForUnreal",

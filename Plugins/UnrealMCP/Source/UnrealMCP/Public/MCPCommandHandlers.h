@@ -170,10 +170,8 @@ public:
 class FMCPExecutePythonHandler : public FMCPCommandHandlerBase
 {
 public:
-    FMCPExecutePythonHandler(bool bInAllowFileExecution, const FString& InAllowedPythonRoot)
+    FMCPExecutePythonHandler()
         : FMCPCommandHandlerBase("execute_python")
-        , bAllowFileExecution(bInAllowFileExecution)
-        , AllowedPythonRoot(InAllowedPythonRoot)
     {
     }
 
@@ -184,8 +182,4 @@ public:
      * @return JSON response object
      */
     virtual TSharedPtr<FJsonObject> Execute(const TSharedPtr<FJsonObject>& Params, FSocket* ClientSocket) override;
-
-private:
-    bool bAllowFileExecution;
-    FString AllowedPythonRoot;
-};
+}; 
