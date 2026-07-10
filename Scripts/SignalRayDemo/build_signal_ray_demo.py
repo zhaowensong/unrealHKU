@@ -15,6 +15,7 @@ MAX_REFLECTIONS = 3
 ATTENUATION = 0.7
 TRACE_DISTANCE = 250000.0
 RANDOM_SEED = 7158
+SOURCE_FACADE_IDS = [0, 1, 3, 4, 6, 8, 10, 11]
 
 CONTENT_ROOT = "/Game/SignalRayDemo"
 MAT_DIR = CONTENT_ROOT + "/Materials"
@@ -120,6 +121,7 @@ def make_material_asset():
     tools = unreal.AssetToolsHelpers.get_asset_tools()
     material_path = MAT_DIR + "/M_SignalRay"
     material = unreal.EditorAssetLibrary.load_asset(material_path)
+    material_is_new = material is None
     if not material:
         material = tools.create_asset("M_SignalRay", MAT_DIR, unreal.Material, unreal.MaterialFactoryNew())
 
@@ -129,31 +131,33 @@ def make_material_asset():
     material.set_editor_property("use_emissive_for_dynamic_area_lighting", True)
 
     mel = unreal.MaterialEditingLibrary
-    mel.delete_all_material_expressions(material)
-    color = mel.create_material_expression(material, unreal.MaterialExpressionVectorParameter, -600, -100)
-    color.set_editor_property("parameter_name", "Color")
-    color.set_editor_property("default_value", unreal.LinearColor(0.0, 1.0, 0.1, 1.0))
+    # The checked-in material already contains this graph. Rebuilding the graph
+    # on every run can invalidate a loaded UE 5.7 material, so only author it for
+    # a newly created asset; normal reruns only update instance parameters below.
+    if material_is_new:
+        color = mel.create_material_expression(material, unreal.MaterialExpressionVectorParameter, -600, -100)
+        color.set_editor_property("parameter_name", "Color")
+        color.set_editor_property("default_value", unreal.LinearColor(0.0, 1.0, 0.1, 1.0))
 
-    glow = mel.create_material_expression(material, unreal.MaterialExpressionScalarParameter, -600, 120)
-    glow.set_editor_property("parameter_name", "GlowIntensity")
-    glow.set_editor_property("default_value", 50.0)
+        glow = mel.create_material_expression(material, unreal.MaterialExpressionScalarParameter, -600, 120)
+        glow.set_editor_property("parameter_name", "GlowIntensity")
+        glow.set_editor_property("default_value", 8.0)
 
-    multiply = mel.create_material_expression(material, unreal.MaterialExpressionMultiply, -260, 0)
-    mel.connect_material_expressions(color, "", multiply, "A")
-    mel.connect_material_expressions(glow, "", multiply, "B")
-    mel.connect_material_property(multiply, "", unreal.MaterialProperty.MP_EMISSIVE_COLOR)
+        multiply = mel.create_material_expression(material, unreal.MaterialExpressionMultiply, -260, 0)
+        mel.connect_material_expressions(color, "", multiply, "A")
+        mel.connect_material_expressions(glow, "", multiply, "B")
+        mel.connect_material_property(multiply, "", unreal.MaterialProperty.MP_EMISSIVE_COLOR)
 
-    opacity = mel.create_material_expression(material, unreal.MaterialExpressionScalarParameter, -260, 220)
-    opacity.set_editor_property("parameter_name", "Opacity")
-    opacity.set_editor_property("default_value", 0.92)
-    mel.connect_material_property(opacity, "", unreal.MaterialProperty.MP_OPACITY)
-
-    mel.layout_material_expressions(material)
+        opacity = mel.create_material_expression(material, unreal.MaterialExpressionScalarParameter, -260, 220)
+        opacity.set_editor_property("parameter_name", "Opacity")
+        opacity.set_editor_property("default_value", 0.78)
+        mel.connect_material_property(opacity, "", unreal.MaterialProperty.MP_OPACITY)
+        mel.layout_material_expressions(material)
     unreal.EditorAssetLibrary.save_asset(material_path)
 
     instances = {}
     specs = {
-        "Green": (unreal.LinearColor(0.0, 1.0, 0.1, 1.0), 28.0),
+        "Green": (unreal.LinearColor(0.0, 0.72, 0.08, 1.0), 8.0),
         "Yellow": (unreal.LinearColor(1.0, 0.82, 0.0, 1.0), 24.0),
         "Red": (unreal.LinearColor(1.0, 0.05, 0.0, 1.0), 22.0),
         "Source": (unreal.LinearColor(1.0, 0.15, 0.04, 1.0), 42.0),
@@ -162,6 +166,7 @@ def make_material_asset():
         asset_name = "MI_SignalRay_" + name
         path = MAT_DIR + "/" + asset_name
         instance = unreal.EditorAssetLibrary.load_asset(path)
+        instance_is_new = instance is None
         if not instance:
             instance = tools.create_asset(
                 asset_name,
@@ -169,10 +174,13 @@ def make_material_asset():
                 unreal.MaterialInstanceConstant,
                 unreal.MaterialInstanceConstantFactoryNew(),
             )
+        if not instance_is_new and name != "Green":
+            instances[name] = instance
+            continue
         mel.set_material_instance_parent(instance, material)
         mel.set_material_instance_vector_parameter_value(instance, "Color", color_value)
         mel.set_material_instance_scalar_parameter_value(instance, "GlowIntensity", glow_value)
-        mel.set_material_instance_scalar_parameter_value(instance, "Opacity", 0.92)
+        mel.set_material_instance_scalar_parameter_value(instance, "Opacity", 0.78 if name == "Green" else 0.92)
         mel.update_material_instance(instance)
         unreal.EditorAssetLibrary.save_asset(path)
         instances[name] = instance
@@ -180,22 +188,20 @@ def make_material_asset():
     return material, instances
 
 
-def spawn_source(source_world, materials):
+def spawn_sources(source_anchors, materials):
     sphere = unreal.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Sphere")
-    source = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.StaticMeshActor, source_world)
-    source.set_actor_label("SIG_Source_Main")
-    comp = source.static_mesh_component
-    comp.set_static_mesh(sphere)
-    comp.set_material(0, materials["Source"])
-    comp.set_collision_enabled(unreal.CollisionEnabled.NO_COLLISION)
-    source.set_actor_scale3d(unreal.Vector(2.6, 2.6, 2.6))
-
-    light = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.PointLight, source_world)
-    light.set_actor_label("SIG_Node_Source")
-    light.point_light_component.set_light_color(unreal.LinearColor(1.0, 0.1, 0.04, 1.0))
-    light.point_light_component.set_editor_property("intensity", 320000.0)
-    light.point_light_component.set_editor_property("attenuation_radius", 26000.0)
-    return source
+    actors = []
+    for source_index, anchor in enumerate(source_anchors):
+        location = anchor["location"]
+        source = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.StaticMeshActor, location)
+        source.set_actor_label("SIG_Source_Building_{:02d}".format(source_index))
+        comp = source.static_mesh_component
+        comp.set_static_mesh(sphere)
+        comp.set_material(0, materials["Green"])
+        comp.set_collision_enabled(unreal.CollisionEnabled.NO_COLLISION)
+        source.set_actor_scale3d(unreal.Vector(0.55, 0.55, 0.55))
+        actors.append(source)
+    return actors
 
 
 def line_trace(world, start, end):
@@ -264,8 +270,41 @@ def facade_point(facade, ray_index, bounce_index):
     # collapsing every ray to a single bright point.
     u = ((ray_index * 37 + bounce_index * 11) % 101) / 100.0 - 0.5
     v = ((ray_index * 17 + bounce_index * 29) % 83) / 82.0 - 0.5
-    micro = math.sin(ray_index * 1.73 + bounce_index * 2.19) * 0.18
-    return facade["center"] + horizontal * (u * facade["width"]) + vertical * ((v + micro) * facade["height"]), normal
+    # Keep every fallback point inside the declared facade bounds. The previous
+    # unbounded vertical jitter was the visible cause of floating nodes.
+    vertical_fraction = max(-0.35, min(0.35, v * 0.7))
+    return facade["center"] + horizontal * (u * facade["width"]) + vertical * (vertical_fraction * facade["height"]), normal
+
+
+def snap_to_facade_surface(world, point, normal):
+    """Prefer a real collision surface; otherwise remain on the facade plane."""
+    trace_half_length = 6000.0
+    hit = line_trace(world, point + normal * trace_half_length, point - normal * trace_half_length)
+    if hit:
+        impact = hit_prop(hit, "impact_point", None) or hit_prop(hit, "location", None)
+        impact_normal = hit_prop(hit, "impact_normal", None) or hit_prop(hit, "normal", None)
+        if impact and impact_normal:
+            return impact, v_norm(impact_normal), "line_trace"
+    return point, normal, "facade_plane"
+
+
+def build_source_anchors(world, facades):
+    anchors = []
+    for source_index, facade_id in enumerate(SOURCE_FACADE_IDS):
+        facade = facades[facade_id]
+        location, normal, surface_source = snap_to_facade_surface(
+            world, facade["center"], facade["normal"]
+        )
+        anchors.append(
+            {
+                "id": "source_{:02d}".format(source_index),
+                "facade_id": facade_id,
+                "location": location,
+                "normal": normal,
+                "surface_source": surface_source,
+            }
+        )
+    return anchors
 
 
 def route_for_ray(ray_index):
@@ -286,22 +325,37 @@ def route_for_ray(ray_index):
     return routes[ray_index % len(routes)]
 
 
-def generate_rays(world, source_world):
+def generate_rays(world, facades, source_anchors):
     rays = []
     real_hit_count = 0
     fallback_segment_count = 0
     random.seed(RANDOM_SEED)
-    facades = build_mock_facades(source_world)
 
     for ray_index in range(RAY_COUNT):
-        current = unreal.Vector(source_world.x, source_world.y, source_world.z)
-        route = route_for_ray(ray_index)
+        source_index = ray_index % len(source_anchors)
+        source_anchor = source_anchors[source_index]
+        current = source_anchor["location"]
+        route = [
+            facade_id
+            for facade_id in route_for_ray(ray_index)
+            if facade_id != source_anchor["facade_id"]
+        ]
+        # Retain four reflections even when a route originally contained its
+        # own source facade.
+        for candidate in range(len(facades)):
+            if candidate != source_anchor["facade_id"] and candidate not in route:
+                route.append(candidate)
+            if len(route) >= MAX_REFLECTIONS + 1:
+                break
         strength = 1.0
         segments = []
         used_real_hit = False
 
         for bounce, facade_index in enumerate(route[: MAX_REFLECTIONS + 1]):
             target, mock_normal = facade_point(facades[facade_index], ray_index, bounce)
+            target, mock_normal, target_surface = snap_to_facade_surface(
+                world, target, mock_normal
+            )
             direction = v_norm(target - current)
             end = current + direction * min(TRACE_DISTANCE, v_len(target - current))
             hit = line_trace(world, current, end)
@@ -319,12 +373,12 @@ def generate_rays(world, source_world):
                             "hit_actor": actor.get_actor_label() if actor else None,
                             "hit_normal": vec_to_list(v_norm(normal)),
                             "source": "line_trace",
+                            "surface": "building",
                         }
                     )
                     real_hit_count += 1
                     used_real_hit = True
-                    reflected = v_reflect(direction, normal)
-                    current = impact + reflected * 80.0
+                    current = impact
                     strength *= ATTENUATION
                     continue
 
@@ -338,25 +392,35 @@ def generate_rays(world, source_world):
                     "hit_normal": vec_to_list(mock_normal),
                     "source": "mock_facade_reflection",
                     "mock_facade_id": facade_index,
+                    "surface": "building",
+                    "surface_source": target_surface,
                 }
             )
             fallback_segment_count += 1
-            reflected = v_reflect(direction, mock_normal)
-            current = target + reflected * 100.0
+            current = target
             strength *= ATTENUATION
 
-        rays.append({"id": "ray_{:03d}".format(ray_index), "segments": segments, "used_real_hit": used_real_hit})
+        rays.append(
+            {
+                "id": "ray_{:03d}".format(ray_index),
+                "source_id": source_anchor["id"],
+                "source_facade_id": source_anchor["facade_id"],
+                "segments": segments,
+                "used_real_hit": used_real_hit,
+            }
+        )
 
     return rays, real_hit_count, fallback_segment_count
 
 
-def save_ray_json(world, source_world, rays, real_hit_count, fallback_segment_count):
+def save_ray_json(world, source_world, source_anchors, rays, real_hit_count, fallback_segment_count):
     data = {
         "metadata": {
             "project": PROJECT,
             "level": world.get_name(),
             "area": AREA_NAME,
-            "source_actor": "SIG_Source_Main",
+            "source_actor_pattern": "SIG_Source_Building_*",
+            "source_count": len(source_anchors),
             "ray_count": RAY_COUNT,
             "max_reflections": MAX_REFLECTIONS,
             "attenuation": ATTENUATION,
@@ -366,9 +430,19 @@ def save_ray_json(world, source_world, rays, real_hit_count, fallback_segment_co
             "note": "Each segment attempts Unreal line trace first; mock_reflection segments are used when Cesium tile collision is unavailable.",
         },
         "source": {
-            "world": vec_to_list(source_world),
+            "reference_world": vec_to_list(source_world),
             "lat_lon_height": [SOURCE_LLH[1], SOURCE_LLH[0], SOURCE_LLH[2]],
         },
+        "sources": [
+            {
+                "id": anchor["id"],
+                "facade_id": anchor["facade_id"],
+                "world": vec_to_list(anchor["location"]),
+                "surface": "building",
+                "surface_source": anchor["surface_source"],
+            }
+            for anchor in source_anchors
+        ],
         "rays": rays,
     }
     with open(JSON_PATH, "w", encoding="utf-8") as f:
@@ -513,7 +587,7 @@ def add_post_process_and_camera(source_world):
     settings = pp.get_editor_property("settings")
     for prop, value in [
         ("override_bloom_intensity", True),
-        ("bloom_intensity", 0.9),
+        ("bloom_intensity", 0.45),
         ("override_bloom_threshold", True),
         ("bloom_threshold", 1.2),
         ("override_auto_exposure_bias", True),
@@ -554,10 +628,12 @@ def main():
 
     material, materials = make_material_asset()
     source_world = llh_to_unreal(geo, SOURCE_LLH[0], SOURCE_LLH[1], SOURCE_LLH[2])
-    spawn_source(source_world, materials)
+    facades = build_mock_facades(source_world)
+    source_anchors = build_source_anchors(world, facades)
+    spawn_sources(source_anchors, materials)
 
-    rays, real_hit_count, fallback_segment_count = generate_rays(world, source_world)
-    data = save_ray_json(world, source_world, rays, real_hit_count, fallback_segment_count)
+    rays, real_hit_count, fallback_segment_count = generate_rays(world, facades, source_anchors)
+    data = save_ray_json(world, source_world, source_anchors, rays, real_hit_count, fallback_segment_count)
     counts, node_count, segment_actor_count = build_visuals(data, materials)
     add_post_process_and_camera(source_world)
     save_current_level()
@@ -566,6 +642,7 @@ def main():
         "json_path": JSON_PATH,
         "level": world.get_name(),
         "source_world": vec_to_list(source_world),
+        "source_count": len(source_anchors),
         "ray_count": len(rays),
         "segment_count": sum(len(ray["segments"]) for ray in rays),
         "real_trace_hit_count": real_hit_count,
