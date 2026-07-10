@@ -1,0 +1,46 @@
+# Unreal generated output
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Generated plugin output
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+Plugins/*/Logs/
+
+# Local Python environments and caches
+.venv/
+.uv-cache/
+__pycache__/
+*.py[cod]
+
+# IDE and platform files
+.vs/
+.vscode/
+.idea/
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+*.xcodeproj/
+*.xcworkspace/
+.DS_Store
+Thumbs.db
+
+# Per-user Unreal content
+Content/Developers/
+
+# Cesium local streaming cache
+cesium-request-cache.sqlite
+cesium-request-cache.sqlite-*
+
+# Local Google Photorealistic 3D Tiles actor. This binary asset contains a
+# machine-specific API key and must be recreated from local credentials.
+Content/__ExternalActors__/Maps/shanghai/2/BU/RVO8NFNMFS84NV3UHA60M9.uasset
+
+# Local logs and crash output
+*.log
+CrashReportClient/

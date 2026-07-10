@@ -1,0 +1,10 @@
+[project]
+name = "telecomtwin-tools"
+version = "0.1.0"
+description = "Local helper tools for the TelecomTwin Unreal project."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+run-signal-ray-demo = "run_signal_ray_demo:main"
+run-signal-ray-demo-direct = "run_signal_ray_demo_direct:main"

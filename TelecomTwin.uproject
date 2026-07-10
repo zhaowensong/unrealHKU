@@ -1,0 +1,24 @@
+{
+"FileVersion": 3,
+"EngineAssociation": "5.7",
+"Category": "",
+"Description": "Telecom Base Station Digital Twin",
+"Plugins": [
+{
+"Name": "CesiumForUnreal",
+"Enabled": true
+},
+{
+"Name": "VaRest",
+"Enabled": true
+},
+{
+"Name": "PythonScriptPlugin",
+"Enabled": true
+},
+{
+"Name": "UnrealMCP",
+"Enabled": true
+}
+]
+}
