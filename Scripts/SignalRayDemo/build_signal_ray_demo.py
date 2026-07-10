@@ -34,6 +34,13 @@ def warn(message):
     unreal.log_warning("[SignalRayDemo] " + str(message))
 
 
+def keep_loaded(actor):
+    """Keep generated demo actors visible when a World Partition map reopens."""
+    if actor:
+        actor.set_editor_property("is_spatially_loaded", False)
+    return actor
+
+
 def ensure_dirs():
     os.makedirs(DATA_DIR, exist_ok=True)
     for path in [CONTENT_ROOT, MAT_DIR, MESH_DIR, BP_DIR]:
@@ -194,6 +201,7 @@ def spawn_sources(source_anchors, materials):
     for source_index, anchor in enumerate(source_anchors):
         location = anchor["location"]
         source = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.StaticMeshActor, location)
+        keep_loaded(source)
         source.set_actor_label("SIG_Source_Building_{:02d}".format(source_index))
         comp = source.static_mesh_component
         comp.set_static_mesh(sphere)
@@ -472,6 +480,7 @@ def transform_for_segment(start, end, strength):
 
 def create_hism_actor(label, material):
     actor = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.Actor, unreal.Vector(0.0, 0.0, 0.0))
+    keep_loaded(actor)
     actor.set_actor_label(label)
     comp = unreal.HierarchicalInstancedStaticMeshComponent(actor, label + "_Component")
     comp.set_static_mesh(unreal.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Cylinder"))
@@ -494,6 +503,7 @@ def create_hism_actor(label, material):
 def spawn_reflection_node(location, material, label, scale, color=None, create_light=True):
     sphere = unreal.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Sphere")
     actor = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.StaticMeshActor, location)
+    keep_loaded(actor)
     actor.set_actor_label(label)
     actor.static_mesh_component.set_static_mesh(sphere)
     actor.static_mesh_component.set_material(0, material)
@@ -519,6 +529,7 @@ def spawn_ray_segment(start, end, material, label, strength, segment_index):
     rotation = unreal.MathLibrary.make_rot_from_z(direction)
 
     actor = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.StaticMeshActor, midpoint, rotation)
+    keep_loaded(actor)
     actor.set_actor_label(label)
     actor.static_mesh_component.set_static_mesh(cylinder)
     actor.static_mesh_component.set_material(0, material)
@@ -582,6 +593,7 @@ def build_visuals(data, materials):
 
 def add_post_process_and_camera(source_world):
     pp = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.PostProcessVolume, source_world)
+    keep_loaded(pp)
     pp.set_actor_label("SIG_PostProcess")
     pp.set_editor_property("unbound", True)
     settings = pp.get_editor_property("settings")
@@ -601,6 +613,7 @@ def add_post_process_and_camera(source_world):
 
     camera_loc = source_world + unreal.Vector(26000.0, -112000.0, 52000.0)
     camera = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.CineCameraActor, camera_loc)
+    keep_loaded(camera)
     camera.set_actor_label("SIG_Camera_Overview")
     look_rot = unreal.MathLibrary.find_look_at_rotation(camera_loc, source_world + unreal.Vector(78000.0, 6000.0, 4500.0))
     camera.set_actor_rotation(look_rot, False)
