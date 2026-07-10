@@ -24,6 +24,22 @@
 #include "Misc/Guid.h"
 #include "MCPConstants.h"
 
+namespace
+{
+bool ConstantTimeTokenEquals(const FString& Left, const FString& Right)
+{
+    const int32 MaximumLength = FMath::Max(Left.Len(), Right.Len());
+    uint32 Difference = static_cast<uint32>(Left.Len() ^ Right.Len());
+    for (int32 Index = 0; Index < MaximumLength; ++Index)
+    {
+        const TCHAR LeftChar = Index < Left.Len() ? Left[Index] : 0;
+        const TCHAR RightChar = Index < Right.Len() ? Right[Index] : 0;
+        Difference |= static_cast<uint32>(LeftChar ^ RightChar);
+    }
+    return Difference == 0;
+}
+}
+
 
 FMCPTCPServer::FMCPTCPServer(const FMCPTCPServerConfig& InConfig) 
     : Config(InConfig)
@@ -35,7 +51,9 @@ FMCPTCPServer::FMCPTCPServer(const FMCPTCPServerConfig& InConfig)
     RegisterCommandHandler(MakeShared<FMCPCreateObjectHandler>());
     RegisterCommandHandler(MakeShared<FMCPModifyObjectHandler>());
     RegisterCommandHandler(MakeShared<FMCPDeleteObjectHandler>());
-    RegisterCommandHandler(MakeShared<FMCPExecutePythonHandler>());
+    RegisterCommandHandler(MakeShared<FMCPExecutePythonHandler>(
+        Config.bAllowPythonFileExecution,
+        Config.AllowedPythonRoot));
 
     // Material command handlers
     RegisterCommandHandler(MakeShared<FMCPCreateMaterialHandler>());
@@ -145,7 +163,7 @@ bool FMCPTCPServer::Start()
     MCP_LOG_WARNING("Starting MCP server on port %d", Config.Port);
     
     // Use a simple ASCII string for the socket description to avoid encoding issues
-    Listener = new FTcpListener(FIPv4Endpoint(FIPv4Address::Any, Config.Port));
+    Listener = new FTcpListener(FIPv4Endpoint(FIPv4Address(127, 0, 0, 1), Config.Port));
     if (!Listener || !Listener->IsActive())
     {
         MCP_LOG_ERROR("Failed to start MCP server on port %d", Config.Port);
@@ -158,7 +176,7 @@ bool FMCPTCPServer::Start()
 
     TickerHandle = FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateRaw(this, &FMCPTCPServer::Tick), Config.TickIntervalSeconds);
     bRunning = true;
-    MCP_LOG_INFO("MCP Server started on port %d", Config.Port);
+    MCP_LOG_INFO("MCP Server started on 127.0.0.1:%d with authentication enabled", Config.Port);
     return true;
 }
 
@@ -215,7 +233,13 @@ bool FMCPTCPServer::HandleConnectionAccepted(FSocket* InSocket, const FIPv4Endpo
 
     MCP_LOG_VERBOSE("Connection attempt from %s", *Endpoint.ToString());
     
-    // Accept all connections
+    if (Endpoint.Address != FIPv4Address(127, 0, 0, 1))
+    {
+        MCP_LOG_WARNING("Rejected non-loopback MCP connection");
+        InSocket->Close();
+        return false;
+    }
+
     InSocket->SetNonBlocking(true);
     
     // Add to our list of client connections
@@ -430,6 +454,19 @@ void FMCPTCPServer::ProcessCommand(const FString& CommandJson, FSocket* ClientSo
     TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(CommandJson);
     if (FJsonSerializer::Deserialize(Reader, Command) && Command.IsValid())
     {
+        FString SuppliedToken;
+        if (!Command->TryGetStringField(FStringView(TEXT("auth_token")), SuppliedToken)
+            || Config.AuthenticationToken.IsEmpty()
+            || !ConstantTimeTokenEquals(SuppliedToken, Config.AuthenticationToken))
+        {
+            MCP_LOG_WARNING("Rejected unauthenticated MCP command");
+            TSharedPtr<FJsonObject> Response = MakeShared<FJsonObject>();
+            Response->SetStringField("status", "error");
+            Response->SetStringField("message", "Authentication required");
+            SendResponse(ClientSocket, Response);
+            return;
+        }
+
         FString Type;
         if (Command->TryGetStringField(FStringView(TEXT("type")), Type))
         {
@@ -574,4 +611,4 @@ FString FMCPTCPServer::GetSafeSocketDescription(FSocket* Socket)
         // If there's any exception, return a safe description
         return TEXT("Socket_") + FString::FromInt(reinterpret_cast<uint64>(Socket));
     }
-} 
+}

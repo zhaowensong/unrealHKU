@@ -24,6 +24,11 @@
 #include "Widgets/Layout/SUniformGridPanel.h"
 #include "Framework/Application/SlateApplication.h"
 #include "EditorStyleSet.h"
+#include "HAL/FileManager.h"
+#include "HAL/PlatformMisc.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Guid.h"
+#include "Misc/Paths.h"
 
 // Define the log category
 DEFINE_LOG_CATEGORY(LogMCP);
@@ -174,6 +179,11 @@ void FUnrealMCPModule::ExtendLevelEditorToolbar()
     }
     
     MCP_LOG_INFO("ExtendLevelEditorToolbar called - first time");
+
+    if (GetDefault<UMCPSettings>()->bStartServerAutomatically)
+    {
+        StartServer();
+    }
     
     UToolMenus::Get()->RegisterMenu("LevelEditor.MainMenu", "MainFrame.MainMenu");
     
@@ -484,6 +494,27 @@ void FUnrealMCPModule::StartServer()
 	// Create a config object and set the port from settings
 	FMCPTCPServerConfig Config;
 	Config.Port = Settings->Port;
+	Config.bAllowPythonFileExecution = Settings->bAllowPythonFileExecution;
+	Config.AllowedPythonRoot = FPaths::ConvertRelativePathToFull(
+		FPaths::ProjectDir() / Settings->AllowedPythonSubdirectory);
+	Config.AuthenticationToken = Settings->AuthenticationToken;
+	if (Config.AuthenticationToken.IsEmpty())
+	{
+		Config.AuthenticationToken = FPlatformMisc::GetEnvironmentVariable(TEXT("TELECOMTWIN_MCP_TOKEN"));
+	}
+	if (Config.AuthenticationToken.IsEmpty())
+	{
+		const FString TokenDirectory = FPaths::ProjectSavedDir() / TEXT("MCP");
+		const FString TokenPath = TokenDirectory / TEXT("auth-token.txt");
+		IFileManager::Get().MakeDirectory(*TokenDirectory, true);
+		FFileHelper::LoadFileToString(Config.AuthenticationToken, *TokenPath);
+		Config.AuthenticationToken.TrimStartAndEndInline();
+		if (Config.AuthenticationToken.IsEmpty())
+		{
+			Config.AuthenticationToken = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+			FFileHelper::SaveStringToFile(Config.AuthenticationToken, *TokenPath);
+		}
+	}
 	
 	// Create the server with the config
 	Server = MakeUnique<FMCPTCPServer>(Config);

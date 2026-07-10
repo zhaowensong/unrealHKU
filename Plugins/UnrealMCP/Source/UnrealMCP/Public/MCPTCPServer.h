@@ -28,6 +28,15 @@ struct FMCPTCPServerConfig
     
     /** Whether to log verbose messages */
     bool bEnableVerboseLogging = MCPConstants::DEFAULT_VERBOSE_LOGGING;
+
+    /** Required bearer token for every command. */
+    FString AuthenticationToken;
+
+    /** Whether execute_python may run approved project files. Inline code is never allowed. */
+    bool bAllowPythonFileExecution = false;
+
+    /** Canonical directory containing the only Python files that may be executed. */
+    FString AllowedPythonRoot;
 };
 
 /**
@@ -246,4 +255,4 @@ private:
     // Disable copy and assignment
     FMCPTCPServer(const FMCPTCPServer&) = delete;
     FMCPTCPServer& operator=(const FMCPTCPServer&) = delete;
-}; 
+};

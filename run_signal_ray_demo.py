@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 import socket
 import sys
 from pathlib import Path
@@ -14,7 +15,12 @@ def project_root() -> Path:
 
 
 def send_mcp_command(command_type: str, params: dict, host: str, port: int, timeout: float) -> dict:
-    payload = json.dumps({"type": command_type, "params": params}).encode("utf-8")
+    token = os.environ.get("TELECOMTWIN_MCP_TOKEN", "").strip()
+    if not token:
+        token_path = project_root() / "Saved" / "MCP" / "auth-token.txt"
+        if token_path.exists():
+            token = token_path.read_text(encoding="utf-8").strip()
+    payload = json.dumps({"type": command_type, "params": params, "auth_token": token}).encode("utf-8")
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.settimeout(timeout)
         sock.connect((host, port))
@@ -42,7 +48,7 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=300.0, help="Socket timeout in seconds. Default: 300")
     parser.add_argument(
         "--script",
-        default=str(project_root() / "Scripts" / "SignalRayDemo" / "build_signal_ray_demo.py"),
+        default=str(project_root() / "Scripts" / "SignalRayDemo" / "build_signal_simulation.py"),
         help="Path to the Unreal Python script to execute.",
     )
     args = parser.parse_args()
