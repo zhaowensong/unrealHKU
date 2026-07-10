@@ -89,6 +89,10 @@ def rebuild_collision_proxies(manager, proxies):
 
 def rebuild_visualization(manager, segments):
     manager.clear_visualization()
+    manager.set_editor_property("minimum_ray_radius", 0.60)
+    manager.set_editor_property("maximum_ray_radius", 1.20)
+    manager.set_editor_property("minimum_node_scale", 0.12)
+    manager.set_editor_property("maximum_node_scale", 0.28)
     continuous_material = unreal.EditorAssetLibrary.load_asset(
         "/Game/SignalRayDemo/Materials/M_SignalRayContinuous"
     )
@@ -133,7 +137,7 @@ def verify_unreal_proxy_collision(world, manager, proxies):
 
 
 def position_overview_camera():
-    camera_location = unreal.Vector(0.0, -165000.0, 95000.0)
+    camera_location = unreal.Vector(0.0, -70000.0, 45000.0)
     target = unreal.Vector(0.0, 0.0, 7000.0)
     rotation = unreal.MathLibrary.find_look_at_rotation(camera_location, target)
     unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).set_level_viewport_camera_info(

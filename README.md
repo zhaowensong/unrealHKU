@@ -39,7 +39,10 @@ Useful verification commands:
 ```powershell
 python .\run_signal_ray_demo.py --script .\Scripts\SignalRayDemo\verify_signal_ray_environment.py
 python .\run_signal_ray_demo.py --script .\Scripts\SignalRayDemo\verify_signal_simulation_interface.py
+python .\run_signal_ray_demo.py --script .\Scripts\SignalRayDemo\demonstrate_pdf_requirements.py
 ```
+
+The PDF requirement report distinguishes deterministic proxy-layer validation from visual alignment to streamed Cesium tile surfaces. The proxy layer is deterministic and penetration-free; exact Cesium surface alignment still depends on collision data being available from the streamed tiles.
 
 The generated formal frame is written to `Saved/SignalSimulation/latest-frame.json` and is intentionally excluded from Git.
 
