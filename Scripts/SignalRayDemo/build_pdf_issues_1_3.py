@@ -20,12 +20,16 @@ import unreal
 
 SOURCE_COUNT = 8
 RAY_COUNT = 64
-SOURCE_CLEARANCE = 3000.0
-REFLECTED_LENGTH = 8500.0
+SEGMENTS_PER_PATH = 4
+PATHS_PER_SOURCE = RAY_COUNT // SOURCE_COUNT
+# Trace only: lift the ray origin enough to avoid immediately re-hitting the
+# same photogrammetry roof triangle. Visual source/segment endpoints stay at
+# the exact collision point, so this never creates an antenna or visible gap.
+TRACE_SURFACE_EPSILON = 600.0
 ROOF_NORMAL_Z_MIN = 0.82
 MIN_ROOF_Z = 6500.0
 MIN_SOURCE_SEPARATION = 9000.0
-MIN_RAY_LENGTH = 7000.0
+MIN_RAY_LENGTH = 4500.0
 MAX_RAY_LENGTH = 175000.0
 ROOF_CLUSTER_DISTANCE = 1200.0
 
@@ -194,88 +198,111 @@ def choose_distributed_sources(rooftops):
 
 
 def choose_paths(components, source_roofs, rooftops):
-    candidates_by_source = {index: [] for index in range(len(source_roofs))}
-    used_pairs = set()
-    for source_index, source_roof in enumerate(source_roofs):
-        source = source_roof["point"] + source_roof["normal"] * SOURCE_CLEARANCE
-        ordered = sorted(
-            rooftops,
-            key=lambda item: distance(source_roof["point"], item["point"]),
-            reverse=True,
-        )
-        for target in ordered:
-            target_distance = distance(source, target["point"])
-            if target_distance < MIN_RAY_LENGTH or target_distance > MAX_RAY_LENGTH:
-                continue
-            aim = normalized(target["point"] - source)
-            hit = trace_components(components, source, target["point"] + aim * 2500.0)
-            if not is_rooftop(hit):
-                continue
-            if distance(hit["point"], target["point"]) > 3500.0:
-                continue
-            key = (
-                source_index,
-                round(hit["point"].x / 1000.0),
-                round(hit["point"].y / 1000.0),
+    """Find 64 complete four-hop rooftop paths with no fabricated point."""
+    roof_index = {id(roof): index for index, roof in enumerate(rooftops)}
+    source_indices = [roof_index[id(roof)] for roof in source_roofs]
+    edge_cache = {}
+    neighbor_cache = {}
+
+    def trace_edge(start_hit, target_hit):
+        start = start_hit["point"] + start_hit["normal"] * TRACE_SURFACE_EPSILON
+        target = target_hit["point"]
+        edge_length = distance(start, target)
+        if edge_length < MIN_RAY_LENGTH or edge_length > MAX_RAY_LENGTH:
+            return None
+        direction = normalized(target - start)
+        hit = trace_components(components, start, target + direction * 1800.0)
+        if not is_rooftop(hit) or distance(hit["point"], target) > 2500.0:
+            return None
+        return hit
+
+    def canonical_edge(start_index, target_index):
+        key = (start_index, target_index)
+        if key not in edge_cache:
+            edge_cache[key] = trace_edge(rooftops[start_index], rooftops[target_index])
+        return edge_cache[key]
+
+    def neighbors(start_index):
+        if start_index in neighbor_cache:
+            return neighbor_cache[start_index]
+        candidates = [index for index in range(len(rooftops)) if index != start_index]
+        # A stable permutation spreads paths around the city instead of always
+        # selecting the same nearest roofs.
+        candidates.sort(
+            key=lambda index: (
+                (index * 37 + start_index * 17) % max(len(rooftops), 1),
+                distance(rooftops[start_index]["point"], rooftops[index]["point"]),
             )
-            if key in used_pairs:
+        )
+        valid = []
+        for target_index in candidates:
+            if canonical_edge(start_index, target_index):
+                valid.append(target_index)
+                if len(valid) >= 20:
+                    break
+        neighbor_cache[start_index] = valid
+        return valid
+
+    def candidate_sequences(source_roof_index):
+        sequences = []
+
+        def visit(current_index, sequence, visited):
+            if len(sequence) == SEGMENTS_PER_PATH + 1:
+                sequences.append(list(sequence))
+                return len(sequences) >= PATHS_PER_SOURCE * 3
+            for target_index in neighbors(current_index):
+                if target_index in visited:
+                    continue
+                sequence.append(target_index)
+                visited.add(target_index)
+                should_stop = visit(target_index, sequence, visited)
+                visited.remove(target_index)
+                sequence.pop()
+                if should_stop:
+                    return True
+            return False
+
+        visit(source_roof_index, [source_roof_index], {source_roof_index})
+        return sequences
+
+    paths = []
+    per_source = {}
+    for source_index, source_roof_index in enumerate(source_indices):
+        completed = []
+        for sequence in candidate_sequences(source_roof_index):
+            current_hit = rooftops[sequence[0]]
+            points = [current_hit]
+            valid = True
+            for target_index in sequence[1:]:
+                hit = trace_edge(current_hit, rooftops[target_index])
+                if not hit:
+                    valid = False
+                    break
+                points.append(hit)
+                current_hit = hit
+            if not valid or len(points) != SEGMENTS_PER_PATH + 1:
                 continue
-            incoming = normalized(hit["point"] - source)
-            outgoing = reflected(incoming, hit["normal"])
-            if outgoing.z <= 0.03:
-                continue
-            used_pairs.add(key)
-            candidates_by_source[source_index].append(
+            completed.append(
                 {
                     "source_index": source_index,
-                    "source": source,
-                    "source_roof": source_roof,
-                    "hit": hit,
-                    "incoming": incoming,
-                    "outgoing": outgoing,
+                    "source_roof": source_roofs[source_index],
+                    "points": points,
+                    "roof_sequence": sequence,
                 }
             )
-
-    empty_sources = [
-        source_index
-        for source_index, source_paths in candidates_by_source.items()
-        if not source_paths
-    ]
-    if empty_sources:
-        raise RuntimeError(
-            "Sources {} have no real rooftop path ({} rooftop probes)".format(
-                empty_sources, len(rooftops)
-            )
-        )
-
-    # Round-robin selection keeps the visual network distributed even when
-    # central sources have more line-of-sight rooftops than edge sources.
-    paths = []
-    per_source = {index: 0 for index in range(len(source_roofs))}
-    next_index = {index: 0 for index in range(len(source_roofs))}
-    while len(paths) < RAY_COUNT:
-        added = False
-        for source_index in range(len(source_roofs)):
-            source_paths = candidates_by_source[source_index]
-            index = next_index[source_index]
-            if index >= len(source_paths):
-                continue
-            paths.append(source_paths[index])
-            next_index[source_index] += 1
-            per_source[source_index] += 1
-            added = True
-            if len(paths) >= RAY_COUNT:
+            if len(completed) >= PATHS_PER_SOURCE:
                 break
-        if not added:
-            break
-
-    total_candidates = sum(len(value) for value in candidates_by_source.values())
-    if len(paths) != RAY_COUNT:
-        raise RuntimeError(
-            "Found {} unique real rooftop candidates; {} selected but {} are required. Per source: {} ({} rooftop probes)".format(
-                total_candidates, len(paths), RAY_COUNT, per_source, len(rooftops)
+        if len(completed) != PATHS_PER_SOURCE:
+            raise RuntimeError(
+                "Source {} produced only {}/{} complete four-color real-rooftop paths".format(
+                    source_index, len(completed), PATHS_PER_SOURCE
+                )
             )
-        )
+        paths.extend(completed)
+        per_source[source_index] = len(completed)
+
+    if len(paths) != RAY_COUNT:
+        raise RuntimeError("Expected {} complete paths, got {}".format(RAY_COUNT, len(paths)))
     return paths, per_source
 
 
@@ -295,15 +322,35 @@ def configure_issue_1_materials():
     unreal.EditorAssetLibrary.save_asset(
         "/Game/SignalRayDemo/Materials/MI_SignalRay_Green"
     )
-    return {
-        "Green": material,
-        "Yellow": unreal.EditorAssetLibrary.load_asset(
-            "/Game/SignalRayDemo/Materials/MI_SignalRay_Yellow"
-        ) or material,
-        "Source": unreal.EditorAssetLibrary.load_asset(
-            "/Game/SignalRayDemo/Materials/MI_SignalRay_Source"
-        ) or material,
+    parent = unreal.EditorAssetLibrary.load_asset("/Game/SignalRayDemo/Materials/M_SignalRay")
+    tools = unreal.AssetToolsHelpers.get_asset_tools()
+    specs = {
+        "Yellow": (unreal.LinearColor(1.0, 0.78, 0.0, 1.0), 12.0, 0.84),
+        "Orange": (unreal.LinearColor(1.0, 0.24, 0.0, 1.0), 14.0, 0.86),
+        "Red": (unreal.LinearColor(1.0, 0.02, 0.0, 1.0), 12.0, 0.84),
     }
+    materials = {"Green": material}
+    for name, (color, glow, opacity) in specs.items():
+        path = "/Game/SignalRayDemo/Materials/MI_SignalRay_" + name
+        instance = unreal.EditorAssetLibrary.load_asset(path)
+        if not instance:
+            instance = tools.create_asset(
+                "MI_SignalRay_" + name,
+                "/Game/SignalRayDemo/Materials",
+                unreal.MaterialInstanceConstant,
+                unreal.MaterialInstanceConstantFactoryNew(),
+            )
+        editing.set_material_instance_parent(instance, parent)
+        editing.set_material_instance_vector_parameter_value(instance, "Color", color)
+        editing.set_material_instance_scalar_parameter_value(instance, "GlowIntensity", glow)
+        editing.set_material_instance_scalar_parameter_value(instance, "Opacity", opacity)
+        editing.update_material_instance(instance)
+        unreal.EditorAssetLibrary.save_asset(path)
+        materials[name] = instance
+    materials["Source"] = unreal.EditorAssetLibrary.load_asset(
+        "/Game/SignalRayDemo/Materials/MI_SignalRay_Source"
+    ) or materials["Orange"]
+    return materials
 
 
 def cleanup_generated_actors():
@@ -380,7 +427,7 @@ def set_overview_camera(source_roofs):
         sum(item["point"].y for item in source_roofs) / len(source_roofs),
         sum(item["point"].z for item in source_roofs) / len(source_roofs),
     )
-    camera = center + unreal.Vector(-65000.0, -90000.0, 52000.0)
+    camera = center + unreal.Vector(-30000.0, -45000.0, 25000.0)
     rotation = unreal.MathLibrary.find_look_at_rotation(camera, center)
     unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).set_level_viewport_camera_info(
         camera, rotation
@@ -389,51 +436,60 @@ def set_overview_camera(source_roofs):
 
 def build_visuals(materials, source_roofs, paths):
     for index, roof in enumerate(source_roofs):
-        source = roof["point"] + roof["normal"] * SOURCE_CLEARANCE
-        spawn_segment(
-            roof["point"], source, materials["Source"],
-            "SIG_Source_{:02d}_Roof_Mast".format(index), 0.20,
-        )
+        # The source sits directly on the returned roof point. There is no mast,
+        # antenna, clearance actor, or visual offset.
         spawn_sphere(
-            source, materials["Source"], "SIG_Source_{:02d}_Real_Roof".format(index), 0.42
+            roof["point"], materials["Source"],
+            "SIG_Source_{:02d}_Direct_Roof".format(index), 0.62
         )
 
+    colors = ["Green", "Yellow", "Orange", "Red"]
     for index, path in enumerate(paths):
-        point = path["hit"]["point"]
-        outgoing_end = point + path["outgoing"] * REFLECTED_LENGTH
-        spawn_segment(
-            path["source"], point, materials["Green"],
-            "SIG_Ray_{:03d}_Incoming_Green".format(index), 0.48,
-        )
-        spawn_segment(
-            point, outgoing_end, materials["Yellow"],
-            "SIG_Ray_{:03d}_Reflected_Yellow".format(index), 0.34,
-        )
-        # The node center is exactly the returned Cesium impact point.
-        spawn_sphere(
-            point, materials["Yellow"], "SIG_Ray_{:03d}_Real_Roof_Hit".format(index), 0.12
-        )
+        for segment_index, color in enumerate(colors):
+            start = path["points"][segment_index]["point"]
+            end = path["points"][segment_index + 1]["point"]
+            spawn_segment(
+                start, end, materials[color],
+                "SIG_Ray_{:03d}_Segment_{:02d}_{}".format(index, segment_index, color),
+                0.46 - segment_index * 0.045,
+            )
+            spawn_sphere(
+                end, materials[color],
+                "SIG_Ray_{:03d}_RoofHit_{:02d}_{}".format(index, segment_index, color),
+                0.15,
+            )
     add_post_process()
 
 
 def save_evidence(components, rooftops, source_roofs, paths, per_source):
+    colors = ["Green", "Yellow", "Orange", "Red"]
+    strengths = [1.0, 0.7, 0.49, 0.343]
     records = []
     for index, path in enumerate(paths):
-        hit = path["hit"]
+        segments = []
+        for segment_index, color in enumerate(colors):
+            start_hit = path["points"][segment_index]
+            end_hit = path["points"][segment_index + 1]
+            segments.append(
+                {
+                    "segment_index": segment_index,
+                    "color": color,
+                    "strength": strengths[segment_index],
+                    "start": vec(start_hit["point"]),
+                    "end": vec(end_hit["point"]),
+                    "end_normal": vec(end_hit["normal"]),
+                    "normal_z": round(float(end_hit["normal"].z), 6),
+                    "component_class": end_hit["component"].get_class().get_name(),
+                    "surface": "real_cesium_rooftop_collision",
+                }
+            )
         records.append(
             {
                 "ray_id": "ray_{:03d}".format(index),
                 "source_id": "source_{:02d}".format(path["source_index"]),
-                "source_world": vec(path["source"]),
-                "reflection_point": vec(hit["point"]),
-                "impact_normal": vec(hit["normal"]),
-                "normal_z": round(float(hit["normal"].z), 6),
-                "component_class": hit["component"].get_class().get_name(),
-                "incoming_color": "Green",
-                "incoming_strength": 1.0,
-                "reflected_color": "Yellow",
-                "reflected_strength": 0.7,
-                "surface": "real_cesium_rooftop_collision",
+                "source_world": vec(path["points"][0]["point"]),
+                "color_sequence": colors,
+                "segments": segments,
             }
         )
     result = {
@@ -451,16 +507,21 @@ def save_evidence(components, rooftops, source_roofs, paths, per_source):
                 {
                     "source_id": "source_{:02d}".format(index),
                     "roof_point": vec(roof["point"]),
-                    "source_world": vec(roof["point"] + roof["normal"] * SOURCE_CLEARANCE),
+                    "source_world": vec(roof["point"]),
                     "component_class": roof["component"].get_class().get_name(),
+                    "has_mast_or_antenna": False,
                 }
                 for index, roof in enumerate(source_roofs)
             ],
         },
         "issue_3": {
             "ray_count": len(paths),
-            "real_reflection_count": len(paths),
+            "segments_per_path": SEGMENTS_PER_PATH,
+            "required_color_sequence": colors,
+            "real_rooftop_hit_count": len(paths) * SEGMENTS_PER_PATH,
             "fallback_reflection_count": 0,
+            "mast_actor_count": 0,
+            "antenna_actor_count": 0,
             "rays_per_source": per_source,
             "reflection_surface": "rooftop_only",
             "rays": records,
