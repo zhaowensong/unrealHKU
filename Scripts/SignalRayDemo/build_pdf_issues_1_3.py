@@ -18,8 +18,8 @@ import traceback
 import unreal
 
 
-SOURCE_COUNT = 12
-RAY_COUNT = 96
+SOURCE_COUNT = 24
+RAY_COUNT = 192
 SEGMENTS_PER_PATH = 4
 PATHS_PER_SOURCE = RAY_COUNT // SOURCE_COUNT
 SOURCE_RESERVE_COUNT = 8
@@ -29,7 +29,7 @@ SOURCE_RESERVE_COUNT = 8
 TRACE_SURFACE_EPSILON = 600.0
 ROOF_NORMAL_Z_MIN = 0.82
 MIN_ROOF_Z = 6500.0
-MIN_SOURCE_SEPARATION = 9000.0
+MIN_SOURCE_SEPARATION = 6000.0
 MIN_RAY_LENGTH = 4500.0
 MAX_RAY_LENGTH = 175000.0
 ROOF_CLUSTER_DISTANCE = 1200.0
@@ -200,7 +200,7 @@ def choose_distributed_sources(rooftops):
 
 
 def choose_paths(components, source_roofs, rooftops):
-    """Find 96 complete four-hop rooftop paths with no fabricated point."""
+    """Find 192 complete four-hop rooftop paths with no fabricated point."""
     roof_index = {id(roof): index for index, roof in enumerate(rooftops)}
     source_indices = [roof_index[id(roof)] for roof in source_roofs]
     edge_cache = {}
@@ -555,7 +555,7 @@ def main():
     source_candidates = choose_distributed_sources(rooftops)
     source_roofs, paths, per_source = choose_paths(components, source_candidates, rooftops)
 
-    # Do not remove the stable scene until all 96 real paths have passed.
+    # Do not remove the stable scene until all 192 real paths have passed.
     materials = configure_issue_1_materials()
     cleanup_generated_actors()
     build_visuals(materials, source_roofs, paths)
