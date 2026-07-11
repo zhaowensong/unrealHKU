@@ -18,10 +18,11 @@ import traceback
 import unreal
 
 
-SOURCE_COUNT = 8
-RAY_COUNT = 64
+SOURCE_COUNT = 12
+RAY_COUNT = 96
 SEGMENTS_PER_PATH = 4
 PATHS_PER_SOURCE = RAY_COUNT // SOURCE_COUNT
+SOURCE_RESERVE_COUNT = 8
 # Trace only: lift the ray origin enough to avoid immediately re-hitting the
 # same photogrammetry roof triangle. Visual source/segment endpoints stay at
 # the exact collision point, so this never creates an antenna or visible gap.
@@ -164,11 +165,12 @@ def probe_rooftops(components):
 
 
 def choose_distributed_sources(rooftops):
-    """Farthest-point selection prevents the eight sources clustering together."""
+    """Return distributed source candidates, including collision-valid reserves."""
     first = max(rooftops, key=lambda item: item["point"].z)
     selected = [first]
     remaining = [item for item in rooftops if item is not first]
-    while remaining and len(selected) < SOURCE_COUNT:
+    candidate_count = min(len(rooftops), SOURCE_COUNT + SOURCE_RESERVE_COUNT)
+    while remaining and len(selected) < candidate_count:
         candidate = max(
             remaining,
             key=lambda item: min(
@@ -190,7 +192,7 @@ def choose_distributed_sources(rooftops):
             break
         selected.append(candidate)
         remaining.remove(candidate)
-    if len(selected) != SOURCE_COUNT:
+    if len(selected) < SOURCE_COUNT:
         raise RuntimeError(
             "Could not select {} rooftop sources with real spatial separation".format(SOURCE_COUNT)
         )
@@ -198,7 +200,7 @@ def choose_distributed_sources(rooftops):
 
 
 def choose_paths(components, source_roofs, rooftops):
-    """Find 64 complete four-hop rooftop paths with no fabricated point."""
+    """Find 96 complete four-hop rooftop paths with no fabricated point."""
     roof_index = {id(roof): index for index, roof in enumerate(rooftops)}
     source_indices = [roof_index[id(roof)] for roof in source_roofs]
     edge_cache = {}
@@ -265,9 +267,11 @@ def choose_paths(components, source_roofs, rooftops):
         visit(source_roof_index, [source_roof_index], {source_roof_index})
         return sequences
 
+    accepted_source_roofs = []
     paths = []
     per_source = {}
-    for source_index, source_roof_index in enumerate(source_indices):
+    for candidate_index, source_roof_index in enumerate(source_indices):
+        source_index = len(accepted_source_roofs)
         completed = []
         for sequence in candidate_sequences(source_roof_index):
             current_hit = rooftops[sequence[0]]
@@ -285,7 +289,7 @@ def choose_paths(components, source_roofs, rooftops):
             completed.append(
                 {
                     "source_index": source_index,
-                    "source_roof": source_roofs[source_index],
+                    "source_roof": source_roofs[candidate_index],
                     "points": points,
                     "roof_sequence": sequence,
                 }
@@ -293,17 +297,25 @@ def choose_paths(components, source_roofs, rooftops):
             if len(completed) >= PATHS_PER_SOURCE:
                 break
         if len(completed) != PATHS_PER_SOURCE:
-            raise RuntimeError(
-                "Source {} produced only {}/{} complete four-color real-rooftop paths".format(
-                    source_index, len(completed), PATHS_PER_SOURCE
+            unreal.log_warning(
+                "Skipping source candidate {}: only {}/{} complete real-rooftop paths".format(
+                    candidate_index, len(completed), PATHS_PER_SOURCE
                 )
             )
+            continue
+        accepted_source_roofs.append(source_roofs[candidate_index])
         paths.extend(completed)
         per_source[source_index] = len(completed)
+        if len(accepted_source_roofs) >= SOURCE_COUNT:
+            break
 
-    if len(paths) != RAY_COUNT:
-        raise RuntimeError("Expected {} complete paths, got {}".format(RAY_COUNT, len(paths)))
-    return paths, per_source
+    if len(accepted_source_roofs) != SOURCE_COUNT or len(paths) != RAY_COUNT:
+        raise RuntimeError(
+            "Only {} collision-valid sources and {} complete paths were found; expected {} and {}".format(
+                len(accepted_source_roofs), len(paths), SOURCE_COUNT, RAY_COUNT
+            )
+        )
+    return accepted_source_roofs, paths, per_source
 
 
 def configure_issue_1_materials():
@@ -540,10 +552,10 @@ def save_evidence(components, rooftops, source_roofs, paths, per_source):
 def main():
     components = collect_cesium_components()
     rooftops = probe_rooftops(components)
-    source_roofs = choose_distributed_sources(rooftops)
-    paths, per_source = choose_paths(components, source_roofs, rooftops)
+    source_candidates = choose_distributed_sources(rooftops)
+    source_roofs, paths, per_source = choose_paths(components, source_candidates, rooftops)
 
-    # Do not remove the stable scene until all 64 real paths have passed.
+    # Do not remove the stable scene until all 96 real paths have passed.
     materials = configure_issue_1_materials()
     cleanup_generated_actors()
     build_visuals(materials, source_roofs, paths)
