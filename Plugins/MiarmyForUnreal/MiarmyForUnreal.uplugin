@@ -1,0 +1,49 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "2.1",
+	"FriendlyName": "Miarmy",
+	"Description": "Miarmy Crowd For Unreal Engine",
+	"Category": "Crowd",
+	"CreatedBy": "Basefount",
+	"CreatedByURL": "https://ue.miarmy.com/",
+	"DocsURL": "https://www.bilibili.com/video/BV1qw411q72w/?spm_id_from=333.999.0.0&vd_source=bf30db9104b377e642f748d04d680c2d",
+	"MarketplaceURL": "",
+	"SupportURL": "https://ue.miarmy.com/zh-Hans/community",
+	"EngineVersion": "5.2.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "MiarmyForUnreal",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "AnimToTexture",
+			"Enabled": true
+		},
+		{
+			"Name": "MassAI",
+			"Enabled": true
+		},
+		{
+			"Name": "MassCrowd",
+			"Enabled": true
+		},
+		{
+			"Name": "MassGameplay",
+			"Enabled": true
+		},
+		{
+			"Name": "MassEntity",
+			"Enabled": true
+		},
+		{
+			"Name": "AnimationLocomotionLibrary",
+			"Enabled": true
+		}
+	]
+}
