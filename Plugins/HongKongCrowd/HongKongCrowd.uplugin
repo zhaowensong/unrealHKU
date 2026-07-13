@@ -1,0 +1,19 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0.0",
+  "FriendlyName": "Hong Kong Crowd Demo",
+  "Description": "A small UE 5.7-native grounded pedestrian crowd prototype for TelecomTwin.",
+  "Category": "AI",
+  "CreatedBy": "TelecomTwin",
+  "CanContainContent": true,
+  "IsBetaVersion": true,
+  "EnabledByDefault": false,
+  "Modules": [
+    {
+      "Name": "HongKongCrowd",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ]
+}
