@@ -11,6 +11,7 @@ class UAnimSequence;
 class UAnimToTextureDataAsset;
 class UMaterialInterface;
 class UStaticMesh;
+class AActor;
 
 /**
  * All asset references for one crowd appearance live here so the temporary
@@ -37,6 +38,30 @@ struct OPENMASSCROWD_API FOpenMassCrowdVisualConfig
     /** Sequence is resolved through the data asset; no baked animation index is assumed. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Visual")
     TSoftObjectPtr<UAnimSequence> AnimationSequence;
+
+    /**
+     * Enables Mass spawned-actor representation for this variant. Actor class
+     * references are deliberately ignored while this is false, preserving the
+     * default VAT-only mannequin path.
+     */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Visual")
+    bool bUseActorRepresentation = false;
+
+    /** Actor used by the High representation LOD. Falls back to LowResTemplateActor when unset. */
+    UPROPERTY(
+        EditAnywhere,
+        BlueprintReadWrite,
+        Category = "Open Mass Crowd|Visual",
+        meta = (EditCondition = "bUseActorRepresentation"))
+    TSoftClassPtr<AActor> HighResTemplateActor;
+
+    /** Actor used by the Medium/Low representation LODs. Falls back to HighResTemplateActor when unset. */
+    UPROPERTY(
+        EditAnywhere,
+        BlueprintReadWrite,
+        Category = "Open Mass Crowd|Visual",
+        meta = (EditCondition = "bUseActorRepresentation"))
+    TSoftClassPtr<AActor> LowResTemplateActor;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Visual")
     FTransform LocalTransform = FTransform::Identity;

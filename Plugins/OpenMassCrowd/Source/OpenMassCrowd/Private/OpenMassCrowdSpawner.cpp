@@ -466,6 +466,10 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         TArray<TObjectPtr<UMaterialInterface>> MaterialOverrides;
         FTransform LocalTransform = FTransform::Identity;
         FAnimToTextureAutoPlayData AutoPlayData;
+        TSubclassOf<AActor> HighResTemplateActor;
+        TSubclassOf<AActor> LowResTemplateActor;
+        bool bUseActorRepresentation = false;
+        bool bHasVAT = false;
         bool bCastShadows = true;
     };
 
@@ -473,38 +477,83 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
     ResolvedVariants.Reserve(VisualVariants.Num());
     for (const FOpenMassCrowdVisualConfig& VisualConfig : VisualVariants)
     {
-        UStaticMesh* StaticMesh = VisualConfig.StaticMesh.LoadSynchronous();
-        UAnimToTextureDataAsset* AnimationData = VisualConfig.AnimationData.LoadSynchronous();
-        UAnimSequence* AnimationSequence = VisualConfig.AnimationSequence.LoadSynchronous();
-        if (!StaticMesh || !AnimationData || !AnimationSequence)
+        UStaticMesh* StaticMesh = nullptr;
+        FAnimToTextureAutoPlayData AutoPlayData;
+        bool bHasVAT = false;
+        const bool bHasAnyVATReference =
+            !VisualConfig.StaticMesh.IsNull() ||
+            !VisualConfig.AnimationData.IsNull() ||
+            !VisualConfig.AnimationSequence.IsNull();
+
+        // A VAT-only variant retains the original strict validation. Actor
+        // variants may intentionally omit all three VAT references.
+        if (bHasAnyVATReference || !VisualConfig.bUseActorRepresentation)
         {
-            UE_LOG(
-                LogTemp,
-                Error,
-                TEXT("OPEN_MASS_CROWD_VISUAL_ASSET_INVALID variant=%s mesh=%s data=%s sequence=%s"),
-                *VisualConfig.VariantName.ToString(),
-                *GetNameSafe(StaticMesh),
-                *GetNameSafe(AnimationData),
-                *GetNameSafe(AnimationSequence));
-            continue;
+            StaticMesh = VisualConfig.StaticMesh.LoadSynchronous();
+            UAnimToTextureDataAsset* AnimationData = VisualConfig.AnimationData.LoadSynchronous();
+            UAnimSequence* AnimationSequence = VisualConfig.AnimationSequence.LoadSynchronous();
+            if (!StaticMesh || !AnimationData || !AnimationSequence)
+            {
+                UE_LOG(
+                    LogTemp,
+                    Error,
+                    TEXT("OPEN_MASS_CROWD_VISUAL_ASSET_INVALID variant=%s mesh=%s data=%s sequence=%s"),
+                    *VisualConfig.VariantName.ToString(),
+                    *GetNameSafe(StaticMesh),
+                    *GetNameSafe(AnimationData),
+                    *GetNameSafe(AnimationSequence));
+            }
+            else
+            {
+                const int32 AnimationIndex = AnimationData->GetIndexFromAnimSequence(AnimationSequence);
+                if (AnimationIndex == INDEX_NONE ||
+                    !UAnimToTextureInstancePlaybackLibrary::GetAutoPlayDataFromDataAsset(
+                        AnimationData,
+                        AnimationIndex,
+                        AutoPlayData) ||
+                    AutoPlayData.EndFrame <= AutoPlayData.StartFrame)
+                {
+                    UE_LOG(
+                        LogTemp,
+                        Error,
+                        TEXT("OPEN_MASS_CROWD_VAT_ANIMATION_INVALID variant=%s sequence=%s index=%d"),
+                        *VisualConfig.VariantName.ToString(),
+                        *GetNameSafe(AnimationSequence),
+                        AnimationIndex);
+                }
+                else
+                {
+                    bHasVAT = true;
+                }
+            }
         }
 
-        const int32 AnimationIndex = AnimationData->GetIndexFromAnimSequence(AnimationSequence);
-        FAnimToTextureAutoPlayData AutoPlayData;
-        if (AnimationIndex == INDEX_NONE ||
-            !UAnimToTextureInstancePlaybackLibrary::GetAutoPlayDataFromDataAsset(
-                AnimationData,
-                AnimationIndex,
-                AutoPlayData) ||
-            AutoPlayData.EndFrame <= AutoPlayData.StartFrame)
+        TSubclassOf<AActor> HighResTemplateActor;
+        TSubclassOf<AActor> LowResTemplateActor;
+        if (VisualConfig.bUseActorRepresentation)
         {
-            UE_LOG(
-                LogTemp,
-                Error,
-                TEXT("OPEN_MASS_CROWD_VAT_ANIMATION_INVALID variant=%s sequence=%s index=%d"),
-                *VisualConfig.VariantName.ToString(),
-                *GetNameSafe(AnimationSequence),
-                AnimationIndex);
+            UClass* LoadedHighResClass = VisualConfig.HighResTemplateActor.LoadSynchronous();
+            UClass* LoadedLowResClass = VisualConfig.LowResTemplateActor.LoadSynchronous();
+            if (!LoadedHighResClass && !LoadedLowResClass)
+            {
+                UE_LOG(
+                    LogTemp,
+                    Error,
+                    TEXT("OPEN_MASS_CROWD_ACTOR_ASSET_INVALID variant=%s high=%s low=%s"),
+                    *VisualConfig.VariantName.ToString(),
+                    *VisualConfig.HighResTemplateActor.ToSoftObjectPath().ToString(),
+                    *VisualConfig.LowResTemplateActor.ToSoftObjectPath().ToString());
+                continue;
+            }
+
+            // Either class is optional. Mirroring the available class into the
+            // other slot keeps every requested Actor LOD spawnable.
+            HighResTemplateActor = LoadedHighResClass ? LoadedHighResClass : LoadedLowResClass;
+            LowResTemplateActor = LoadedLowResClass ? LoadedLowResClass : LoadedHighResClass;
+        }
+
+        if (!bHasVAT && !VisualConfig.bUseActorRepresentation)
+        {
             continue;
         }
 
@@ -513,17 +562,24 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         Resolved.Mesh = StaticMesh;
         Resolved.LocalTransform = VisualConfig.LocalTransform;
         Resolved.AutoPlayData = AutoPlayData;
+        Resolved.HighResTemplateActor = HighResTemplateActor;
+        Resolved.LowResTemplateActor = LowResTemplateActor;
+        Resolved.bUseActorRepresentation = VisualConfig.bUseActorRepresentation;
+        Resolved.bHasVAT = bHasVAT;
         Resolved.bCastShadows = VisualConfig.bCastShadows;
-        Resolved.MaterialOverrides.Reserve(VisualConfig.MaterialOverrides.Num());
-        for (const TSoftObjectPtr<UMaterialInterface>& MaterialReference : VisualConfig.MaterialOverrides)
+        if (bHasVAT)
         {
-            Resolved.MaterialOverrides.Add(MaterialReference.LoadSynchronous());
+            Resolved.MaterialOverrides.Reserve(VisualConfig.MaterialOverrides.Num());
+            for (const TSoftObjectPtr<UMaterialInterface>& MaterialReference : VisualConfig.MaterialOverrides)
+            {
+                Resolved.MaterialOverrides.Add(MaterialReference.LoadSynchronous());
+            }
         }
     }
 
     if (ResolvedVariants.IsEmpty())
     {
-        UE_LOG(LogTemp, Error, TEXT("OPEN_MASS_CROWD_NO_VALID_VAT_VARIANTS"));
+        UE_LOG(LogTemp, Error, TEXT("OPEN_MASS_CROWD_NO_VALID_VISUAL_VARIANTS"));
         return false;
     }
 
@@ -563,14 +619,28 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
                 *this,
                 EntityConfig,
                 RuntimeTraits);
-        VisualizationTrait->HighResTemplateActor = nullptr;
-        VisualizationTrait->LowResTemplateActor = nullptr;
-        VisualizationTrait->Params.LODRepresentation[EMassLOD::High] =
-            EMassRepresentationType::StaticMeshInstance;
-        VisualizationTrait->Params.LODRepresentation[EMassLOD::Medium] =
-            EMassRepresentationType::StaticMeshInstance;
-        VisualizationTrait->Params.LODRepresentation[EMassLOD::Low] =
-            EMassRepresentationType::StaticMeshInstance;
+        VisualizationTrait->HighResTemplateActor = Resolved.HighResTemplateActor;
+        VisualizationTrait->LowResTemplateActor = Resolved.LowResTemplateActor;
+        if (Resolved.bUseActorRepresentation)
+        {
+            VisualizationTrait->Params.LODRepresentation[EMassLOD::High] =
+                EMassRepresentationType::HighResSpawnedActor;
+            VisualizationTrait->Params.LODRepresentation[EMassLOD::Medium] =
+                EMassRepresentationType::LowResSpawnedActor;
+            VisualizationTrait->Params.LODRepresentation[EMassLOD::Low] =
+                Resolved.bHasVAT
+                    ? EMassRepresentationType::StaticMeshInstance
+                    : EMassRepresentationType::LowResSpawnedActor;
+        }
+        else
+        {
+            VisualizationTrait->Params.LODRepresentation[EMassLOD::High] =
+                EMassRepresentationType::StaticMeshInstance;
+            VisualizationTrait->Params.LODRepresentation[EMassLOD::Medium] =
+                EMassRepresentationType::StaticMeshInstance;
+            VisualizationTrait->Params.LODRepresentation[EMassLOD::Low] =
+                EMassRepresentationType::StaticMeshInstance;
+        }
         VisualizationTrait->Params.LODRepresentation[EMassLOD::Off] =
             EMassRepresentationType::None;
         VisualizationTrait->Params.bKeepLowResActors = false;
@@ -580,22 +650,25 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         VisualizationTrait->LODParams.LODMaxCount[EMassLOD::Off] =
             TNumericLimits<int32>::Max();
 
-        FMassStaticMeshInstanceVisualizationMeshDesc MeshDesc;
-        MeshDesc.Mesh = Resolved.Mesh;
-        MeshDesc.MaterialOverrides = Resolved.MaterialOverrides;
-        MeshDesc.LocalTransform = Resolved.LocalTransform;
-        MeshDesc.bCastShadows = Resolved.bCastShadows;
-        MeshDesc.Mobility = EComponentMobility::Movable;
-        MeshDesc.SetSignificanceRange(EMassLOD::High, EMassLOD::Max);
-        VisualizationTrait->StaticMeshInstanceDesc.Meshes.Add(MoveTemp(MeshDesc));
+        if (Resolved.bHasVAT)
+        {
+            FMassStaticMeshInstanceVisualizationMeshDesc MeshDesc;
+            MeshDesc.Mesh = Resolved.Mesh;
+            MeshDesc.MaterialOverrides = Resolved.MaterialOverrides;
+            MeshDesc.LocalTransform = Resolved.LocalTransform;
+            MeshDesc.bCastShadows = Resolved.bCastShadows;
+            MeshDesc.Mobility = EComponentMobility::Movable;
+            MeshDesc.SetSignificanceRange(EMassLOD::High, EMassLOD::Max);
+            VisualizationTrait->StaticMeshInstanceDesc.Meshes.Add(MoveTemp(MeshDesc));
 
-        UOpenMassCrowdVATPlaybackTrait* PlaybackTrait =
-            AddRuntimeTrait<UOpenMassCrowdVATPlaybackTrait>(
-                *this,
-                EntityConfig,
-                RuntimeTraits);
-        PlaybackTrait->StartFrame = Resolved.AutoPlayData.StartFrame;
-        PlaybackTrait->EndFrame = Resolved.AutoPlayData.EndFrame;
+            UOpenMassCrowdVATPlaybackTrait* PlaybackTrait =
+                AddRuntimeTrait<UOpenMassCrowdVATPlaybackTrait>(
+                    *this,
+                    EntityConfig,
+                    RuntimeTraits);
+            PlaybackTrait->StartFrame = Resolved.AutoPlayData.StartFrame;
+            PlaybackTrait->EndFrame = Resolved.AutoPlayData.EndFrame;
+        }
 
         if (!EntityConfig.ValidateEntityTemplate(*GetWorld()))
         {
@@ -624,14 +697,29 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         // Finish Mass observers before assigning our generated lane handles.
         CreationContext.Reset();
 
-        UE_LOG(
-            LogTemp,
-            Log,
-            TEXT("OPEN_MASS_CROWD_VAT_VARIANT name=%s count=%d frames=%.0f..%.0f"),
-            *Resolved.Name.ToString(),
-            VariantPopulation,
-            Resolved.AutoPlayData.StartFrame,
-            Resolved.AutoPlayData.EndFrame);
+        if (Resolved.bHasVAT)
+        {
+            UE_LOG(
+                LogTemp,
+                Log,
+                TEXT("OPEN_MASS_CROWD_VAT_VARIANT name=%s count=%d frames=%.0f..%.0f"),
+                *Resolved.Name.ToString(),
+                VariantPopulation,
+                Resolved.AutoPlayData.StartFrame,
+                Resolved.AutoPlayData.EndFrame);
+        }
+        if (Resolved.bUseActorRepresentation)
+        {
+            UE_LOG(
+                LogTemp,
+                Log,
+                TEXT("OPEN_MASS_CROWD_ACTOR_VARIANT name=%s count=%d high=%s low=%s vat_low_lod=%s"),
+                *Resolved.Name.ToString(),
+                VariantPopulation,
+                *GetNameSafe(Resolved.HighResTemplateActor.Get()),
+                *GetNameSafe(Resolved.LowResTemplateActor.Get()),
+                Resolved.bHasVAT ? TEXT("true") : TEXT("false"));
+        }
     }
 
     if (SpawnedEntities.Num() != PopulationCount)
@@ -669,11 +757,13 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         EntityManager.GetFragmentDataChecked<FTransformFragment>(Entity).SetTransform(InitialTransform);
         EntityManager.GetFragmentDataChecked<FAgentRadiusFragment>(Entity).Radius = 30.0f;
 
-        FOpenMassCrowdVATPlaybackFragment& Playback =
-            EntityManager.GetFragmentDataChecked<FOpenMassCrowdVATPlaybackFragment>(Entity);
-        const float Phase = FMath::Frac((static_cast<float>(EntityIndex) + 1.0f) * 0.61803398875f);
-        Playback.TimeOffset = Phase * VATTimeOffsetSpread;
-        Playback.PlayRate = 0.9f + 0.01f * static_cast<float>((EntityIndex * 7) % 21);
+        if (FOpenMassCrowdVATPlaybackFragment* Playback =
+            EntityManager.GetFragmentDataPtr<FOpenMassCrowdVATPlaybackFragment>(Entity))
+        {
+            const float Phase = FMath::Frac((static_cast<float>(EntityIndex) + 1.0f) * 0.61803398875f);
+            Playback->TimeOffset = Phase * VATTimeOffsetSpread;
+            Playback->PlayRate = 0.9f + 0.01f * static_cast<float>((EntityIndex * 7) % 21);
+        }
 
         FMassMoveTargetFragment& MoveTarget =
             EntityManager.GetFragmentDataChecked<FMassMoveTargetFragment>(Entity);
