@@ -11,6 +11,7 @@ public class OpenMassCrowd : ModuleRules
             "Core",
             "CoreUObject",
             "Engine",
+            "AnimToTexture",
             "MassEntity",
             "MassCommon",
             "MassSpawner",

@@ -3,19 +3,18 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MassEntityHandle.h"
+#include "OpenMassCrowdVisualization.h"
 #include "ZoneGraphTypes.h"
 
 #include "OpenMassCrowdSpawner.generated.h"
 
-class AOpenMassCrowdVisualActor;
 class AZoneGraphData;
 class UMassEntityTraitBase;
 class USceneComponent;
 
 /**
- * Builds a two-way runtime ZoneGraph loop from Cesium-grounded route points,
- * spawns genuine Mass crowd entities, and keeps a lightweight visual actor in
- * sync with each entity for this 30-person demo.
+ * Builds a two-way runtime ZoneGraph loop from Cesium-grounded route points
+ * and renders the moving entities through MassCrowd ISMs with VAT animation.
  */
 UCLASS(BlueprintType)
 class OPENMASSCROWD_API AOpenMassCrowdSpawner final : public AActor
@@ -54,6 +53,16 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd")
     bool bSpawnOnBeginPlay = true;
 
+    /**
+     * Temporary engine mannequin by default. Replace these soft references with
+     * migrated City Sample VAT variants without touching movement code.
+     */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Visual")
+    TArray<FOpenMassCrowdVisualConfig> VisualVariants;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Visual", meta = (ClampMin = "0.0"))
+    float VATTimeOffsetSpread = 3.0f;
+
     UFUNCTION(BlueprintCallable, Category = "Open Mass Crowd")
     void SpawnMassPopulation();
 
@@ -72,15 +81,11 @@ private:
     bool RequestNextPath(int32 EntityIndex);
     void RefreshCompletedPaths();
     void CorrectMassGrounding();
-    void SynchronizeVisualActors();
     void RetrySpawn();
     void DestroyRuntimePopulation();
 
     UPROPERTY(Transient)
     TObjectPtr<AZoneGraphData> RuntimeZoneGraphData;
-
-    UPROPERTY(Transient)
-    TArray<TObjectPtr<AOpenMassCrowdVisualActor>> VisualActors;
 
     UPROPERTY(Transient)
     TArray<TObjectPtr<UMassEntityTraitBase>> RuntimeTraits;

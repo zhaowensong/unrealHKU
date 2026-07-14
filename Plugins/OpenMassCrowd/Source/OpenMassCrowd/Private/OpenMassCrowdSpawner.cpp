@@ -1,27 +1,35 @@
 #include "OpenMassCrowdSpawner.h"
 
 #include "OpenMassCrowdTrait.h"
-#include "OpenMassCrowdVisualActor.h"
+#include "OpenMassCrowdVisualization.h"
 
+#include "Animation/AnimSequence.h"
+#include "AnimToTextureDataAsset.h"
+#include "AnimToTextureInstancePlaybackHelpers.h"
 #include "Avoidance/MassAvoidanceTrait.h"
 #include "Avoidance/MassNavigationObstacleTrait.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/SceneComponent.h"
 #include "Engine/World.h"
+#include "Engine/StaticMesh.h"
 #include "MassCommonFragments.h"
 #include "MassCrowdFragments.h"
 #include "MassCrowdMemberTrait.h"
 #include "MassCrowdSubsystem.h"
+#include "MassCrowdVisualizationTrait.h"
 #include "MassEntityConfigAsset.h"
 #include "MassEntityManager.h"
+#include "MassLODTrait.h"
 #include "MassMovementFragments.h"
 #include "MassNavigationFragments.h"
+#include "MassRepresentationTypes.h"
 #include "MassSpawnerSubsystem.h"
 #include "MassZoneGraphNavigationFragments.h"
 #include "MassZoneGraphNavigationTrait.h"
 #include "MassZoneGraphNavigationTypes.h"
 #include "MassZoneGraphNavigationUtils.h"
 #include "Movement/MassMovementTrait.h"
+#include "Materials/MaterialInterface.h"
 #include "SmoothOrientation/MassSmoothOrientationTrait.h"
 #include "Steering/MassSteeringTrait.h"
 #include "TimerManager.h"
@@ -32,7 +40,6 @@
 
 namespace
 {
-constexpr float VisualRootHeight = 90.0f;
 constexpr int32 MaxGroundRetries = 60;
 
 template <typename TTrait>
@@ -99,6 +106,23 @@ AOpenMassCrowdSpawner::AOpenMassCrowdSpawner()
     SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
     SetRootComponent(SceneRoot);
 
+    FOpenMassCrowdVisualConfig MannequinVisual;
+    MannequinVisual.VariantName = TEXT("UE57_AnimToTexture_Mannequin_Temporary");
+    MannequinVisual.StaticMesh = TSoftObjectPtr<UStaticMesh>(FSoftObjectPath(
+        TEXT("/AnimToTexture/Characters/Mannequin/SM_Mannequin_BoneAnimation.SM_Mannequin_BoneAnimation")));
+    MannequinVisual.MaterialOverrides = {
+        TSoftObjectPtr<UMaterialInterface>(FSoftObjectPath(
+            TEXT("/AnimToTexture/Characters/Mannequin/Materials/BoneAnimation/MI_Body_BoneAnimation.MI_Body_BoneAnimation"))),
+        TSoftObjectPtr<UMaterialInterface>(FSoftObjectPath(
+            TEXT("/AnimToTexture/Characters/Mannequin/Materials/BoneAnimation/MI_ChestLog_BoneAnimation.MI_ChestLog_BoneAnimation")))
+    };
+    MannequinVisual.AnimationData = TSoftObjectPtr<UAnimToTextureDataAsset>(FSoftObjectPath(
+        TEXT("/AnimToTexture/Characters/Mannequin/Data/DA_BoneAnimation.DA_BoneAnimation")));
+    MannequinVisual.AnimationSequence = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(
+        TEXT("/AnimToTexture/Characters/Mannequin/Animations/Walk_Fwd.Walk_Fwd")));
+    MannequinVisual.LocalTransform = FTransform(FRotator(0.0, -90.0, 0.0));
+    VisualVariants.Add(MoveTemp(MannequinVisual));
+
     Tags.Add(TEXT("HK_OpenMass_Crowd_Demo"));
 }
 
@@ -132,8 +156,6 @@ void AOpenMassCrowdSpawner::Tick(const float DeltaSeconds)
     {
         return;
     }
-
-    SynchronizeVisualActors();
 
     PathRefreshAccumulator += DeltaSeconds;
     if (PathRefreshAccumulator >= 0.15f)
@@ -437,39 +459,187 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         return false;
     }
 
+    struct FResolvedVisualVariant
+    {
+        FName Name;
+        TObjectPtr<UStaticMesh> Mesh;
+        TArray<TObjectPtr<UMaterialInterface>> MaterialOverrides;
+        FTransform LocalTransform = FTransform::Identity;
+        FAnimToTextureAutoPlayData AutoPlayData;
+        bool bCastShadows = true;
+    };
+
+    TArray<FResolvedVisualVariant> ResolvedVariants;
+    ResolvedVariants.Reserve(VisualVariants.Num());
+    for (const FOpenMassCrowdVisualConfig& VisualConfig : VisualVariants)
+    {
+        UStaticMesh* StaticMesh = VisualConfig.StaticMesh.LoadSynchronous();
+        UAnimToTextureDataAsset* AnimationData = VisualConfig.AnimationData.LoadSynchronous();
+        UAnimSequence* AnimationSequence = VisualConfig.AnimationSequence.LoadSynchronous();
+        if (!StaticMesh || !AnimationData || !AnimationSequence)
+        {
+            UE_LOG(
+                LogTemp,
+                Error,
+                TEXT("OPEN_MASS_CROWD_VISUAL_ASSET_INVALID variant=%s mesh=%s data=%s sequence=%s"),
+                *VisualConfig.VariantName.ToString(),
+                *GetNameSafe(StaticMesh),
+                *GetNameSafe(AnimationData),
+                *GetNameSafe(AnimationSequence));
+            continue;
+        }
+
+        const int32 AnimationIndex = AnimationData->GetIndexFromAnimSequence(AnimationSequence);
+        FAnimToTextureAutoPlayData AutoPlayData;
+        if (AnimationIndex == INDEX_NONE ||
+            !UAnimToTextureInstancePlaybackLibrary::GetAutoPlayDataFromDataAsset(
+                AnimationData,
+                AnimationIndex,
+                AutoPlayData) ||
+            AutoPlayData.EndFrame <= AutoPlayData.StartFrame)
+        {
+            UE_LOG(
+                LogTemp,
+                Error,
+                TEXT("OPEN_MASS_CROWD_VAT_ANIMATION_INVALID variant=%s sequence=%s index=%d"),
+                *VisualConfig.VariantName.ToString(),
+                *GetNameSafe(AnimationSequence),
+                AnimationIndex);
+            continue;
+        }
+
+        FResolvedVisualVariant& Resolved = ResolvedVariants.AddDefaulted_GetRef();
+        Resolved.Name = VisualConfig.VariantName;
+        Resolved.Mesh = StaticMesh;
+        Resolved.LocalTransform = VisualConfig.LocalTransform;
+        Resolved.AutoPlayData = AutoPlayData;
+        Resolved.bCastShadows = VisualConfig.bCastShadows;
+        Resolved.MaterialOverrides.Reserve(VisualConfig.MaterialOverrides.Num());
+        for (const TSoftObjectPtr<UMaterialInterface>& MaterialReference : VisualConfig.MaterialOverrides)
+        {
+            Resolved.MaterialOverrides.Add(MaterialReference.LoadSynchronous());
+        }
+    }
+
+    if (ResolvedVariants.IsEmpty())
+    {
+        UE_LOG(LogTemp, Error, TEXT("OPEN_MASS_CROWD_NO_VALID_VAT_VARIANTS"));
+        return false;
+    }
+
     RuntimeTraits.Reset();
-    FMassEntityConfig EntityConfig(*this);
-    AddRuntimeTrait<UOpenMassCrowdTrait>(*this, EntityConfig, RuntimeTraits);
-    AddRuntimeTrait<UMassMovementTrait>(*this, EntityConfig, RuntimeTraits);
-    AddRuntimeTrait<UMassSteeringTrait>(*this, EntityConfig, RuntimeTraits);
-    AddRuntimeTrait<UMassSmoothOrientationTrait>(*this, EntityConfig, RuntimeTraits);
-    AddRuntimeTrait<UMassNavigationObstacleTrait>(*this, EntityConfig, RuntimeTraits);
-    AddRuntimeTrait<UMassObstacleAvoidanceTrait>(*this, EntityConfig, RuntimeTraits);
-    AddRuntimeTrait<UMassZoneGraphNavigationTrait>(*this, EntityConfig, RuntimeTraits);
-    AddRuntimeTrait<UMassCrowdMemberTrait>(*this, EntityConfig, RuntimeTraits);
+    SpawnedEntities.Reset();
+    SpawnedEntities.Reserve(PopulationCount);
 
-    if (!EntityConfig.ValidateEntityTemplate(*GetWorld()))
+    for (int32 VariantIndex = 0; VariantIndex < ResolvedVariants.Num(); ++VariantIndex)
     {
-        UE_LOG(LogTemp, Error, TEXT("OPEN_MASS_CROWD_TEMPLATE_INVALID"));
-        return false;
+        const int32 VariantPopulation =
+            PopulationCount / ResolvedVariants.Num() +
+            (VariantIndex < PopulationCount % ResolvedVariants.Num() ? 1 : 0);
+        if (VariantPopulation == 0)
+        {
+            continue;
+        }
+
+        const FResolvedVisualVariant& Resolved = ResolvedVariants[VariantIndex];
+
+        // The default constructor intentionally gives each visual variant a
+        // distinct template GUID. Using the spawner as deterministic config
+        // owner for every variant would incorrectly reuse the first template.
+        FMassEntityConfig EntityConfig;
+        EntityConfig.SetOwner(*this);
+        AddRuntimeTrait<UOpenMassCrowdTrait>(*this, EntityConfig, RuntimeTraits);
+        AddRuntimeTrait<UMassMovementTrait>(*this, EntityConfig, RuntimeTraits);
+        AddRuntimeTrait<UMassSteeringTrait>(*this, EntityConfig, RuntimeTraits);
+        AddRuntimeTrait<UMassSmoothOrientationTrait>(*this, EntityConfig, RuntimeTraits);
+        AddRuntimeTrait<UMassNavigationObstacleTrait>(*this, EntityConfig, RuntimeTraits);
+        AddRuntimeTrait<UMassObstacleAvoidanceTrait>(*this, EntityConfig, RuntimeTraits);
+        AddRuntimeTrait<UMassZoneGraphNavigationTrait>(*this, EntityConfig, RuntimeTraits);
+        AddRuntimeTrait<UMassCrowdMemberTrait>(*this, EntityConfig, RuntimeTraits);
+        AddRuntimeTrait<UMassLODCollectorTrait>(*this, EntityConfig, RuntimeTraits);
+
+        UMassCrowdVisualizationTrait* VisualizationTrait =
+            AddRuntimeTrait<UMassCrowdVisualizationTrait>(
+                *this,
+                EntityConfig,
+                RuntimeTraits);
+        VisualizationTrait->HighResTemplateActor = nullptr;
+        VisualizationTrait->LowResTemplateActor = nullptr;
+        VisualizationTrait->Params.LODRepresentation[EMassLOD::High] =
+            EMassRepresentationType::StaticMeshInstance;
+        VisualizationTrait->Params.LODRepresentation[EMassLOD::Medium] =
+            EMassRepresentationType::StaticMeshInstance;
+        VisualizationTrait->Params.LODRepresentation[EMassLOD::Low] =
+            EMassRepresentationType::StaticMeshInstance;
+        VisualizationTrait->Params.LODRepresentation[EMassLOD::Off] =
+            EMassRepresentationType::None;
+        VisualizationTrait->Params.bKeepLowResActors = false;
+        VisualizationTrait->LODParams.LODMaxCount[EMassLOD::High] = 500;
+        VisualizationTrait->LODParams.LODMaxCount[EMassLOD::Medium] = 500;
+        VisualizationTrait->LODParams.LODMaxCount[EMassLOD::Low] = 500;
+        VisualizationTrait->LODParams.LODMaxCount[EMassLOD::Off] =
+            TNumericLimits<int32>::Max();
+
+        FMassStaticMeshInstanceVisualizationMeshDesc MeshDesc;
+        MeshDesc.Mesh = Resolved.Mesh;
+        MeshDesc.MaterialOverrides = Resolved.MaterialOverrides;
+        MeshDesc.LocalTransform = Resolved.LocalTransform;
+        MeshDesc.bCastShadows = Resolved.bCastShadows;
+        MeshDesc.Mobility = EComponentMobility::Movable;
+        MeshDesc.SetSignificanceRange(EMassLOD::High, EMassLOD::Max);
+        VisualizationTrait->StaticMeshInstanceDesc.Meshes.Add(MoveTemp(MeshDesc));
+
+        UOpenMassCrowdVATPlaybackTrait* PlaybackTrait =
+            AddRuntimeTrait<UOpenMassCrowdVATPlaybackTrait>(
+                *this,
+                EntityConfig,
+                RuntimeTraits);
+        PlaybackTrait->StartFrame = Resolved.AutoPlayData.StartFrame;
+        PlaybackTrait->EndFrame = Resolved.AutoPlayData.EndFrame;
+
+        if (!EntityConfig.ValidateEntityTemplate(*GetWorld()))
+        {
+            UE_LOG(
+                LogTemp,
+                Error,
+                TEXT("OPEN_MASS_CROWD_TEMPLATE_INVALID variant=%s"),
+                *Resolved.Name.ToString());
+            return false;
+        }
+
+        const FMassEntityTemplate& EntityTemplate =
+            EntityConfig.GetOrCreateEntityTemplate(*GetWorld());
+        const int32 EntityCountBeforeSpawn = SpawnedEntities.Num();
+        TSharedPtr<FMassEntityManager::FEntityCreationContext> CreationContext =
+            SpawnerSubsystem->SpawnEntities(
+                EntityTemplate,
+                VariantPopulation,
+                SpawnedEntities);
+        if (!CreationContext.IsValid() ||
+            SpawnedEntities.Num() - EntityCountBeforeSpawn != VariantPopulation)
+        {
+            return false;
+        }
+
+        // Finish Mass observers before assigning our generated lane handles.
+        CreationContext.Reset();
+
+        UE_LOG(
+            LogTemp,
+            Log,
+            TEXT("OPEN_MASS_CROWD_VAT_VARIANT name=%s count=%d frames=%.0f..%.0f"),
+            *Resolved.Name.ToString(),
+            VariantPopulation,
+            Resolved.AutoPlayData.StartFrame,
+            Resolved.AutoPlayData.EndFrame);
     }
 
-    const FMassEntityTemplate& EntityTemplate =
-        EntityConfig.GetOrCreateEntityTemplate(*GetWorld());
-    TSharedPtr<FMassEntityManager::FEntityCreationContext> CreationContext =
-        SpawnerSubsystem->SpawnEntities(EntityTemplate, PopulationCount, SpawnedEntities);
-    if (!CreationContext.IsValid() || SpawnedEntities.Num() != PopulationCount)
+    if (SpawnedEntities.Num() != PopulationCount)
     {
         return false;
     }
-
-    // Finish Mass observers before assigning our runtime lane. The default
-    // ZoneGraph location initializer uses spatial lookup, while this demo owns
-    // exact lane handles and distances for its generated route.
-    CreationContext.Reset();
 
     FMassEntityManager& EntityManager = SpawnerSubsystem->GetEntityManagerChecked();
-    VisualActors.Reset(PopulationCount);
 
     for (int32 EntityIndex = 0; EntityIndex < SpawnedEntities.Num(); ++EntityIndex)
     {
@@ -499,6 +669,12 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         EntityManager.GetFragmentDataChecked<FTransformFragment>(Entity).SetTransform(InitialTransform);
         EntityManager.GetFragmentDataChecked<FAgentRadiusFragment>(Entity).Radius = 30.0f;
 
+        FOpenMassCrowdVATPlaybackFragment& Playback =
+            EntityManager.GetFragmentDataChecked<FOpenMassCrowdVATPlaybackFragment>(Entity);
+        const float Phase = FMath::Frac((static_cast<float>(EntityIndex) + 1.0f) * 0.61803398875f);
+        Playback.TimeOffset = Phase * VATTimeOffsetSpread;
+        Playback.PlayRate = 0.9f + 0.01f * static_cast<float>((EntityIndex * 7) % 21);
+
         FMassMoveTargetFragment& MoveTarget =
             EntityManager.GetFragmentDataChecked<FMassMoveTargetFragment>(Entity);
         MoveTarget.Center = SpawnLocation.Position;
@@ -517,18 +693,6 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
             EntityManager.GetFragmentDataChecked<FMassCrowdLaneTrackingFragment>(Entity);
         CrowdSubsystem->OnEntityLaneChanged(Entity, FZoneGraphLaneHandle(), LaneHandle);
         LaneTracking.TrackedLaneHandle = LaneHandle;
-
-        FActorSpawnParameters SpawnParameters;
-        SpawnParameters.Owner = this;
-        SpawnParameters.SpawnCollisionHandlingOverride =
-            ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-        AOpenMassCrowdVisualActor* VisualActor =
-            GetWorld()->SpawnActor<AOpenMassCrowdVisualActor>(
-                AOpenMassCrowdVisualActor::StaticClass(),
-                InitialTransform.GetLocation() + FVector(0.0, 0.0, VisualRootHeight),
-                InitialTransform.Rotator(),
-                SpawnParameters);
-        VisualActors.Add(VisualActor);
     }
 
     for (int32 EntityIndex = 0; EntityIndex < SpawnedEntities.Num(); ++EntityIndex)
@@ -669,39 +833,6 @@ void AOpenMassCrowdSpawner::CorrectMassGrounding()
     }
 }
 
-void AOpenMassCrowdSpawner::SynchronizeVisualActors()
-{
-    UMassSpawnerSubsystem* SpawnerSubsystem =
-        UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
-    if (!SpawnerSubsystem)
-    {
-        return;
-    }
-
-    FMassEntityManager& EntityManager = SpawnerSubsystem->GetEntityManagerChecked();
-    const int32 Count = FMath::Min(SpawnedEntities.Num(), VisualActors.Num());
-    for (int32 EntityIndex = 0; EntityIndex < Count; ++EntityIndex)
-    {
-        const FMassEntityHandle Entity = SpawnedEntities[EntityIndex];
-        AOpenMassCrowdVisualActor* VisualActor = VisualActors[EntityIndex];
-        if (!EntityManager.IsEntityValid(Entity) || !IsValid(VisualActor))
-        {
-            continue;
-        }
-
-        const FTransform& MassTransform =
-            EntityManager.GetFragmentDataChecked<FTransformFragment>(Entity).GetTransform();
-        const FVector VisualLocation =
-            MassTransform.GetLocation() + FVector(0.0, 0.0, VisualRootHeight);
-        VisualActor->SetActorLocationAndRotation(
-            VisualLocation,
-            MassTransform.GetRotation(),
-            false,
-            nullptr,
-            ETeleportType::TeleportPhysics);
-    }
-}
-
 void AOpenMassCrowdSpawner::DestroyRuntimePopulation()
 {
     if (UMassSpawnerSubsystem* SpawnerSubsystem =
@@ -713,15 +844,6 @@ void AOpenMassCrowdSpawner::DestroyRuntimePopulation()
         }
     }
     SpawnedEntities.Reset();
-
-    for (AOpenMassCrowdVisualActor* VisualActor : VisualActors)
-    {
-        if (IsValid(VisualActor))
-        {
-            VisualActor->Destroy();
-        }
-    }
-    VisualActors.Reset();
 
     if (IsValid(RuntimeZoneGraphData))
     {

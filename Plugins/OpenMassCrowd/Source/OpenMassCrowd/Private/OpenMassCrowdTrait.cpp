@@ -1,5 +1,6 @@
 #include "OpenMassCrowdTrait.h"
 
+#include "MassActorSubsystem.h"
 #include "MassCommonFragments.h"
 #include "MassEntityTemplateRegistry.h"
 
@@ -10,4 +11,5 @@ void UOpenMassCrowdTrait::BuildTemplate(
     BuildContext.AddTag<FOpenMassCrowdTag>();
     BuildContext.AddFragment<FTransformFragment>();
     BuildContext.AddFragment<FAgentRadiusFragment>();
+    BuildContext.AddFragment<FMassActorFragment>();
 }
