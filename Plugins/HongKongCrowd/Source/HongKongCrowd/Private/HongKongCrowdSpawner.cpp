@@ -144,9 +144,27 @@ void AHongKongCrowdSpawner::SpawnPopulation()
     FVector CenterGround;
     if (!ValidateCesiumGround(GetActorLocation(), CenterGround))
     {
-        UE_LOG(LogTemp, Error, TEXT("HK_CROWD_ABORT center has no valid Cesium ground"));
+        ++GroundRetryCount;
+        if (GroundRetryCount <= 60)
+        {
+            if (GroundRetryCount == 1 || GroundRetryCount % 5 == 0)
+            {
+                UE_LOG(
+                    LogTemp,
+                    Warning,
+                    TEXT("HK_CROWD_WAIT_GROUND retry=%d/60 Cesium collision is still streaming"),
+                    GroundRetryCount);
+            }
+            GetWorldTimerManager().SetTimer(
+                SpawnTimerHandle, this, &AHongKongCrowdSpawner::SpawnPopulation, 1.0f, false);
+            return;
+        }
+
+        UE_LOG(LogTemp, Error, TEXT("HK_CROWD_ABORT Cesium ground unavailable after 60 retries"));
         return;
     }
+
+    GroundRetryCount = 0;
 
     const float CapsuleHalfHeight = 90.0f;
     for (int32 Index = 0; Index < PopulationCount; ++Index)

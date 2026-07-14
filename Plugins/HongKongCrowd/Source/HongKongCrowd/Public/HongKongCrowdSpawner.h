@@ -64,4 +64,5 @@ private:
     FTimerHandle SpawnTimerHandle;
     FTimerHandle UpdateTimerHandle;
     int32 DestinationSequence = 0;
+    int32 GroundRetryCount = 0;
 };
