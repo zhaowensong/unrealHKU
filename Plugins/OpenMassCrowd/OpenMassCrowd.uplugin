@@ -1,0 +1,45 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.1.0",
+  "FriendlyName": "Open Mass Crowd",
+  "Description": "Isolated UE 5.7 MassCrowd and ZoneGraph pedestrian demo for TelecomTwin.",
+  "Category": "AI",
+  "CreatedBy": "TelecomTwin",
+  "CanContainContent": true,
+  "IsBetaVersion": true,
+  "EnabledByDefault": false,
+  "Modules": [
+    {
+      "Name": "OpenMassCrowd",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "MassEntity",
+      "Enabled": true
+    },
+    {
+      "Name": "MassGameplay",
+      "Enabled": true
+    },
+    {
+      "Name": "MassAI",
+      "Enabled": true
+    },
+    {
+      "Name": "MassCrowd",
+      "Enabled": true
+    },
+    {
+      "Name": "ZoneGraph",
+      "Enabled": true
+    },
+    {
+      "Name": "StateTree",
+      "Enabled": true
+    }
+  ]
+}
