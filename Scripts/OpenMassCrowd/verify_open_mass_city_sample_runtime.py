@@ -43,17 +43,9 @@ MAX_FOOT_OFFSET_CM = 45.0
 MIN_WALKABLE_NORMAL_Z = 0.72
 TRACE_HEIGHT_CM = 1600.0
 TRACE_DEPTH_CM = 2600.0
-CESIUM_GROUND_PROBE_OFFSETS_CM = (
-    (0.0, 0.0),
-    (18.0, 0.0),
-    (-18.0, 0.0),
-    (0.0, 18.0),
-    (0.0, -18.0),
-    (18.0, 18.0),
-    (18.0, -18.0),
-    (-18.0, 18.0),
-    (-18.0, -18.0),
-)
+# Exact XY only: a neighbouring triangle's Z cannot certify the actor's real
+# support point.
+CESIUM_GROUND_PROBE_OFFSETS_CM = ((0.0, 0.0),)
 
 EXPECTED_SIGNAL_SOURCES = 30
 EXPECTED_SIGNAL_RAY_GEOMETRIES = 1920
@@ -109,6 +101,24 @@ def actor_label(actor):
 
 def vector_list(value):
     return [round(float(value.x), 3), round(float(value.y), 3), round(float(value.z), 3)]
+
+
+def hit_property(hit, property_name, default=None):
+    try:
+        return getattr(hit, property_name)
+    except Exception:
+        try:
+            return hit.get_editor_property(property_name)
+        except Exception:
+            return default
+
+
+def distance_squared(first, second):
+    return (
+        (float(second.x) - float(first.x)) ** 2
+        + (float(second.y) - float(first.y)) ** 2
+        + (float(second.z) - float(first.z)) ** 2
+    )
 
 
 def append_error(state, stage, error):
@@ -330,11 +340,17 @@ def collect_runtime_snapshot(world, state):
             visible_city_sample_count += 1
 
         location = proxy.get_actor_location()
+        try:
+            mass_identity = int(proxy.get_mass_appearance_seed())
+        except Exception as error:
+            append_error(state, "proxy.get_mass_appearance_seed", error)
+            mass_identity = -1
         proxy_records.append(
             {
                 "proxy": proxy,
                 "proxy_name": actor_name(proxy),
                 "proxy_path": object_path(proxy),
+                "mass_identity": mass_identity,
                 "location": vector_list(location),
                 "proxy_hidden_in_game": proxy_hidden,
                 "child_hidden_in_game": child_hidden,
@@ -364,7 +380,9 @@ def collect_runtime_snapshot(world, state):
         and not record["child_hidden_in_game"]
     ]
     positions = {
-        record["proxy_name"]: record["location"] for record in active_records
+        str(record["mass_identity"]): record["location"]
+        for record in active_records
+        if record["mass_identity"] >= 0
     }
 
     return {
@@ -421,6 +439,8 @@ def movement_report(start_positions, end_positions, sample_seconds):
     moved_count = sum(distance >= MIN_MOVEMENT_CM for distance in values)
     return {
         "sample_seconds": round(sample_seconds, 3),
+        "identity_source": "stable_mass_appearance_seed",
+        "common_entity_count": len(common_names),
         "common_actor_count": len(common_names),
         "moved_over_60cm_count": moved_count,
         "minimum_cm": round(min(values), 3) if values else None,
@@ -452,7 +472,35 @@ def collect_cesium_components(world):
     return components
 
 
-def trace_cesium_ground(components, location):
+def trace_world_first_blocker(world, start, end):
+    hit = unreal.SystemLibrary.line_trace_single(
+        world,
+        start,
+        end,
+        unreal.TraceTypeQuery.TRACE_TYPE_QUERY1,
+        True,
+        [],
+        unreal.DrawDebugTrace.NONE,
+        True,
+    )
+    if not hit_property(hit, "blocking_hit", False):
+        return None
+
+    point = hit_property(hit, "impact_point")
+    if point is None:
+        point = hit_property(hit, "location")
+    normal = hit_property(hit, "impact_normal")
+    if normal is None:
+        normal = hit_property(hit, "normal")
+    component = hit_property(hit, "component")
+    if component is None:
+        component = hit_property(hit, "hit_component")
+    if point is None or normal is None:
+        return None
+    return point, normal, component
+
+
+def trace_cesium_ground(world, components, location):
     for offset_x, offset_y in CESIUM_GROUND_PROBE_OFFSETS_CM:
         start = unreal.Vector(
             location[0] + offset_x,
@@ -466,19 +514,43 @@ def trace_cesium_ground(components, location):
         )
         nearest = None
         nearest_distance = None
+
+        # The response-channel trace contributes its raw first blocker even
+        # when that component is not Cesium. It must be allowed to occlude any
+        # direct Cesium hit behind it.
+        world_hit = trace_world_first_blocker(world, start, end)
+        if world_hit is not None:
+            point, normal, component = world_hit
+            nearest = (point, normal, component, [offset_x, offset_y])
+            nearest_distance = distance_squared(start, point)
+
+        # Direct component traces cover streamed Cesium primitives that are
+        # absent from the response channel. Select globally before qualifying.
         for component in components:
             hit = component.line_trace_component(start, end, True, False, False)
             if not hit:
                 continue
             point, normal, _bone_name, _hit_result = hit
-            if normal.z < MIN_WALKABLE_NORMAL_Z:
-                continue
-            distance = start.z - point.z
+            distance = distance_squared(start, point)
             if nearest is None or distance < nearest_distance:
                 nearest = (point, normal, component, [offset_x, offset_y])
                 nearest_distance = distance
-        if nearest is not None:
+
+        # Evaluate only the global raw first blocker. A non-Cesium blocker or a
+        # steep Cesium surface rejects the probe instead of looking through it.
+        nearest_component = nearest[2] if nearest is not None else None
+        nearest_is_cesium = (
+            nearest_component is not None
+            and class_name(nearest_component) == "CesiumGltfPrimitiveComponent"
+        )
+        if (
+            nearest is not None
+            and nearest_is_cesium
+            and nearest[1].z >= MIN_WALKABLE_NORMAL_Z
+        ):
             return nearest
+        if nearest is not None:
+            return None
     return None
 
 
@@ -504,7 +576,7 @@ def grounding_report(world, snapshot, state):
         if len(measurements) >= TARGET_POPULATION:
             break
         try:
-            hit = trace_cesium_ground(components, record["location"])
+            hit = trace_cesium_ground(world, components, record["location"])
         except Exception as error:
             append_error(state, "cesium_ground_trace", error)
             hit = None
@@ -566,6 +638,7 @@ def grounding_report(world, snapshot, state):
     root_errors = [abs(item["root_ground_error_cm"]) for item in traced]
     foot_offsets = [item["visual_foot_ground_offset_cm"] for item in foot_measured]
     return {
+        "probe_mode": "exact_xy_only",
         "cesium_component_count": len(components),
         "requested_actor_count": min(
             TARGET_POPULATION,
@@ -736,6 +809,15 @@ def write_report(report):
     payload = json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + chr(10)
     timestamped_path.write_text(payload, encoding="utf-8")
     latest_path.write_text(payload, encoding="utf-8")
+    evidence_path = (
+        Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir()))
+        / "Docs"
+        / "Evidence"
+        / "OpenMassCrowd"
+        / (REPORT_BASENAME + "_latest.json")
+    )
+    evidence_path.parent.mkdir(parents=True, exist_ok=True)
+    evidence_path.write_text(payload, encoding="utf-8")
     return timestamped_path, latest_path
 
 

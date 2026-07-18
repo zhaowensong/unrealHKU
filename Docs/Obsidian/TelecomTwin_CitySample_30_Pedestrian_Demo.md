@@ -1,200 +1,281 @@
 ---
-title: TelecomTwin City Sample 30 人群集 Demo 实施记录
+title: TelecomTwin City Sample 30 人寻路 Demo 实施记录
 date: 2026-07-18
 tags:
   - TelecomTwin
   - UnrealEngine
   - MassEntity
+  - ZoneGraph
   - CitySampleCrowds
   - Cesium
 status: verified
 ---
 
-# TelecomTwin City Sample 30 人群集 Demo 实施记录
+# TelecomTwin City Sample 30 人寻路 Demo 实施记录
 
 ## 目标与边界
 
-目标是在原有香港数字孪生场景里加入 30 个真正移动的城市行人：使用 UE 5.7
-Mass 负责群集移动和避让，使用 Epic 官方 City Sample Crowds 负责人物外观；人物
-必须落在真实 Cesium 道路上，项目重启后仍可直接运行，并且不能破坏既有通信射线。
+目标是在原有香港数字孪生场景中做出 30 个能够真正行走、选择路线并在局部会车时
+进行避让的城市行人：
 
-本轮只做一个可演示、可回滚的局部街道人群，不扩展为全香港人行路网，也不继续
-修改已经完成的电信射线四项问题。
+- UE 5.7 Mass Entity 负责导航、移动、steering 和 avoidance；
+- Epic City Sample Crowds 负责成熟人物外观与走路动画；
+- 路线和每一帧可见位置必须受到真实 Cesium 碰撞约束；
+- 人物可根据相机距离切换 High/Low 表示，但切换后仍是同一个人；
+- 工程冷重启后能再次运行，并保持既有通信信源与四色射线。
 
-## 最终状态
+本轮交付是香港场景内的 **bounded 30 人 Demo**，不是全香港 NavMesh，不做全城
+人行道路自动提取，也不重新修改已经完成的电信射线四项问题。
 
-最终重启运行报告：`overall_passed = true`，诊断错误数为 0。
+## 最终结果
 
-| 要求 | 证据结果 |
+三份最终报告均为 `overall_passed = true`：
+
+- [[../Evidence/OpenMassCrowd/open_mass_city_sample_runtime_latest.json]]
+- [[../Evidence/OpenMassCrowd/open_mass_city_navigation_runtime_latest.json]]
+- [[../Evidence/OpenMassCrowd/open_mass_lod_transition_runtime_latest.json]]
+
+### 人物与原项目保留
+
+| 指标 | 最终值 |
 |---|---:|
-| 真实 Mass 人口 | 30 |
-| City Sample 可见人物 | 30 |
-| 官方 Blueprint 子人物 | 30 |
-| 外观组合 | 30 种 |
-| 走路动画播放 | 30 / 30 |
-| 6.022 秒内移动超过 60 cm | 30 / 30 |
-| 移动距离中位数 | 627.887 cm |
-| Cesium 命中 | 30 / 30 |
-| Mass 根节点最大贴地误差 | 2.135 cm |
-| 脚部贴地检查 | 30 / 30 |
-| 信源保留 | 30 / 30 |
-| 射线保留 | 1920 / 1920 |
-| 射线 Mesh 已赋值且可见 | 1920 / 1920 |
-| 四色射线 | 每色 480 |
+| Mass Entity / 活跃可视代理 | 30 / 30 |
+| 可见 City Sample 人物 | 30 / 30 |
+| 官方 `BP_CrowdCharacter` 子人物 | 30 / 30 |
+| 播放走路动画 | 30 / 30 |
+| 6.075 秒内移动超过 60 cm | 30 / 30 |
+| 移动距离中位数 | 489.485 cm |
+| 可见外观组合 | 30 |
+| Cesium exact-XY 命中 | 30 / 30 |
+| Mass 根节点相对目标的最大误差 | 0.001 cm |
+| 原有信源 | 30 / 30 |
+| 原有可见射线 | 1920 / 1920 |
+| Green / Yellow / Orange / Red | 每色 480 |
 
-完整报告：[[../Evidence/OpenMassCrowd/open_mass_city_sample_runtime_latest.json]]
+### 寻路、避让与贴地
 
-## 截图
+| 指标 | 最终值 |
+|---|---:|
+| 运行时网络 | 3×3、9 节点、22 条有向 lane |
+| 移动人物 | 30 / 30 |
+| 可能卡住 | 0 |
+| 报告结束累计完成 A→B 行程 | 443 |
+| 路线重规划 | 0 |
+| 有意义转向人物 | 29 |
+| 覆盖方向桶 | 8 / 8 |
+| 地面验证 | 30 个身份 × 3 次，90/90 命中 Cesium |
+| 地面投影失败 | 71 |
+| 回到 lane 中线恢复 | 71 |
+| last-valid 回滚 | 0 |
+| 不可恢复 | 0 |
+| 当前不受支撑的可视人物 | 0 |
+| severe overlap（中心距离 <20 cm） | 0 个样本 |
+| body overlap（中心距离 <60 cm） | 1 个样本 |
+| 最小中心距离 | 37.928 cm |
 
-### 30 人整体
+1 个 body-overlap 样本必须诚实保留：当前结果说明 Mass avoidance 正常参与局部运动，
+并且验证期内没有 severe overlap；它不是硬物理人物碰撞，也不能宣称绝对不会穿插。
 
-![[../Evidence/OpenMassCrowd/04_city_sample_30_wide.png]]
+### LOD 往返
 
-### 外观随机化近景
+自动化验证实际执行并通过：
 
-![[../Evidence/OpenMassCrowd/05_city_sample_29_variants_close.png]]
+```text
+Low 30 → High 30 → Low 30
+```
 
-### Cesium 脚部贴地
+三个阶段都保留完全相同的 30 个 Mass seed。High 和 Low 是不同表示类，不是“同一
+Actor 类换参数”：
 
-![[../Evidence/OpenMassCrowd/06_city_sample_cesium_foot_grounding.png]]
+- High：`AOpenMassCrowdCitySampleActor`；
+- Low：`AOpenMassCrowdCitySampleLowResActor`，使用 skeletal low-res 策略；
+- Low 不是 VAT/ISM。官方包中没有可直接接入的 VAT/AnimToTexture 资产。
 
-### 重启后继续移动
+## 最终截图
 
-![[../Evidence/OpenMassCrowd/07_city_sample_restart_after_6s.png]]
+### 远相机：Low 30
 
-广角图与重启后 6 秒图中的队形和位置不同；运行报告进一步以相同 30 个代理的
-变换差值证明每个人都移动，不依赖肉眼判断。
+![[../Evidence/OpenMassCrowd/08_lod_low_30.png]]
 
-## 问题一：为什么以前只是“放了一些人”
+### 近相机：High 30
 
-早期临时实现的视觉 Actor 与 Mass Entity 没有持续同步，可能出现后台 Mass 在走、
-画面里人物停着；人物外观还是 BattleWizard，占位效果无法代表成熟城市人群。
+![[../Evidence/OpenMassCrowd/09_lod_high_30.png]]
 
-解决方法：
+### 再次拉远：返回 Low 30
 
-1. 删除关卡里旧的 BattleWizard External Actor，只保留一个
-   `HK_OpenMass_Crowd_Spawner`。
-2. 新增 `AOpenMassCrowdCitySampleActor`，内部通过 `ChildActorComponent` 创建官方
-   `BP_CrowdCharacter`。
-3. Mass 仍是唯一移动所有者；每帧在 `TG_PostUpdateWork` 读取
-   `FTransformFragment`，把最终变换同步到一对一的 City Sample 代理。
+![[../Evidence/OpenMassCrowd/10_lod_low_30_return.png]]
 
-结果：运行报告同时看到 30 个 Mass Entity、30 个活跃代理和 30 个官方 Blueprint
-子人物，而且 30 人都实际移动。
+三张截图对应 LOD JSON 的三次观测。最终数量和身份连续性由 JSON 中的
+`observed_sequence` 与 `mass_seeds` 验证，不只依赖肉眼判断。
 
-## 问题二：为什么 30 个人会长得一样
+## 实现一：独立 A→B 寻路
 
-直接设置 `ChildActorClass` 时，官方 Construction Script 会先用默认选项构造，
-事后再调用随机函数已经来不及，结果看起来像复制同一个人。
+当前实现不让所有人沿预先布置的单一闭环运动。生成器在运行时建立 3×3、9 节点的
+局部 ZoneGraph：
 
-解决方法：销毁默认子 Actor，再使用带自定义回调的 `CreateChildActor` 延迟创建；
-在 Construction Script 之前调用官方零参数 `SetRandomOptions`，让身体、衣服、头发
-和配饰按官方兼容规则组合。走路动画的起始时间和播放速率也做小范围随机化。
+1. 逻辑网格最多有 12 条无向边、24 条有向 lane；
+2. 每条边先经过 Cesium 地面与身体空间认证；
+3. 障碍边会尝试保持端点和端点切线的平滑 dogleg；
+4. 所有候选都失败才成对裁掉该无向边；
+5. 只有 9 节点仍连通、且有向 lane 为 16–24 的偶数时才接受安全子图；
+6. 本次最终网络为 22 条有向 lane；
+7. 30 个 Mass Entity 分别选择起点/目的节点，调用官方 `FZoneGraphAStar` 求 A→B
+   路线，到达后再选择下一目的地。
 
-结果：最终严格复验的 30 人得到 30 种可见外观组合；近景截图所在运行批次为
-29 种。
+因此现在不是 30 人绕同一条圈。本轮报告结束时累计记录 443 次完成行程、8 个方向桶全部覆盖、
+29 人出现有意义转向，且 30 人都沿 X/Y 两个轴产生位移。
 
-## 问题三：怎么证明不是悬浮或假地面
+## 实现二：只使用真实 exact-XY Cesium 支撑
 
-运行时只接受类名为 `CesiumGltfPrimitiveComponent` 的可见、可查询碰撞组件，
-同时检查坡度与高度范围。精确 XY 如果落在摄影测量三角面或瓦片小缝隙，会在
-18 cm 脚掌范围内尝试九点探测；命中的 Z 仍必须来自真实 Cesium 三角面，并写回
-原实体 XY，不使用隐藏平面或手工固定高度。
+当前地面查询不做邻域高度补点。规则是：
 
-可视人物碰撞全部关闭，因此人物本身不会被下一次地面射线误认为道路。最终验证
-为 Cesium 命中 30/30、最大 Mass 根节点误差 2.135 cm、脚部检查 30/30。
+1. 每一个采样位置只接受 **同一 XY** 的碰撞高度，不复用其他 XY 的 Z；
+2. 先比较全局 raw hit，取最近的第一阻挡物，再做可行走性判断；
+3. 如果第一阻挡物是建筑立面、陡面或其他不合格表面，就拒绝该点，不能穿过它去
+   接受后面的道路；
+4. 有效地面必须是可见、可查询、坡度合格的
+   `CesiumGltfPrimitiveComponent`；
+5. 不使用隐藏代理平面或固定高度。
 
-## 问题四：怎么保证原通信 Demo 没被破坏
+这套 global raw first-blocker policy 解决了“射线穿过建筑后仍把后方路面当落点”的
+假贴地问题。
 
-人群代码与脚本隔离在 `Plugins/OpenMassCrowd` 和 `Scripts/OpenMassCrowd`。布置
-脚本只按明确的人群类/标签处理旧生成器，不匹配 `SIG_*` 通信 Actor。最终验证器
-使用严格标签正则重新计数：
+## 实现三：不是只检查一条中线
 
-- `SIG_Source_00...29_Direct_Roof`：30 个；
-- `SIG_Ray_*_(Segment|RoofHit)_*_(Green|Yellow|Orange|Red)`：1920 个，且
-  1920 个都实际挂有可见 Static Mesh；
-- Green、Yellow、Orange、Red：各 480 个。
+仅在 lane 中线打点不能证明一个有宽度的人可以通过。现在每条候选边包含：
 
-## 资源如何接入
+- 中线、左边界、右边界三条纵向轨迹；
+- 每条纵向轨迹按不超过 10 cm 的步距做 exact-XY 地面连续性检查；
+- 中线到左右两侧再按不超过 10 cm 做横向采样；
+- 约 30 cm 半径、约 164 cm 高度的行人胶囊；
+- 普通 World capsule sweep 与 direct Cesium component capsule sweep 两层身体空间
+  检查。
 
-本机官方资源位置：
-`D:\CitySampleCrowds_Staging\Content\CitySampleCrowd`。
+候选 lane 必须全部通过这些离散检测才可进入 ZoneGraph。这里的“通过”表示在既定
+采样分辨率和胶囊尺寸下通过，不应写成每一毫米数学连续或对所有未来瓦片状态的证明。
+
+## 实现四：运行时回中线与 last-valid 保护
+
+建网时通过检测，不代表 steering 在路口一定严格贴着 lane 几何中心。人物转弯、避让
+和会车时可能横向偏移，因此每次把 Mass 位置交给可视代理前还会执行运行时 exact
+Cesium guard：
+
+1. 先检查当前候选位置的 exact-XY 地面；
+2. 失败时尝试投影回当前 lane 中线；
+3. 中线仍失败时回滚到该 Entity 保存的 last-valid 变换；
+4. 只有得到真实支撑的位置才显示人物。
+
+最终报告中的 71 次失败全部在第 2 步恢复，所以中线恢复 71、last-valid 回滚 0、
+不可恢复 0、悬空可视人物 0。last-valid 不是装饰字段；它是更差地形情况下的最后
+保护，只是本轮没有触发。
+
+## 实现五：Mass avoidance 的角色
+
+Mass Entity 是唯一运动所有者，`MassMovement`、steering 与 avoidance 生成速度和
+局部让行。City Sample 可视人物的 Primitive Collision 全部关闭，避免角色胶囊、
+衣服或头发反过来污染 Cesium trace。
+
+因此系统不是 Character-to-Character 的硬碰撞仿真。最终 37 个采样帧出现 1 个
+body-overlap 样本、最小中心距离 37.928 cm，但没有小于 20 cm 的 severe overlap。
+这与 Demo 的“群集寻路和局部避让”目标相符，同时也清楚界定了能力边界。
+
+## 实现六：稳定外观与真实 High/Low 切换
+
+每个 Mass 身份有一个稳定 seed。第一次构建官方 `BP_CrowdCharacter` 时，seed 决定
+身体、衣服、头发、配饰、动画起点和播放速率；结果被缓存。High/Low 表示回收或
+重建后重放同一份配置，不再次用全局随机数抽人。
+
+最终 City 报告验证 30 种可见外观；LOD 报告又验证 Low→High→Low 三阶段的 seed
+集合完全相同。这同时解决了“30 人长得一样”和“LOD 切换后突然换脸”两个问题。
+
+## 为什么不使用全城 NavMesh
+
+香港 Cesium 摄影测量模型由流式瓦片和复杂三角面组成。直接把整个城市当常规静态
+NavMesh 构建对象，不适合作为这个 30 人 Demo 的最低风险实现。本轮选择局部
+ZoneGraph + exact Cesium collision certification：它能在用户可见区域演示真实 A→B
+寻路，并且每条边、每个运行时位置都有明确的碰撞依据。
+
+这不代表已经获得全城步道语义。若下一阶段需要跨街区、红绿灯、人行道语义或动态
+封路，应另行接入道路数据并扩展图网络和重规划，而不是把这个 9 节点 Demo 外推为
+全香港导航系统。
+
+## 资源接入
+
+本机官方资源：`D:\CitySampleCrowds_Staging\Content\CitySampleCrowd`。
 
 审计结果为 1434 文件、6,505,136,712 bytes（6.058 GiB）、135 个 Skeletal Mesh、
 4 个 Animation Blueprint；`BP_CrowdCharacter` 已在 UE 5.7.4 编译并实例化通过。
 
-官方随机人物依赖大量软引用。硬依赖只有 79 个包，但硬+软依赖闭包为 1316 个包、
-5.572 GiB，所以本 Demo 挂载完整官方目录，避免随机人物缺身体、衣服或材质：
+首次挂载：
 
 ```powershell
 pwsh -ExecutionPolicy Bypass -File .\Scripts\OpenMassCrowd\link_city_sample_crowds.ps1 `
   -Source "D:\CitySampleCrowds_Staging\Content\CitySampleCrowd"
 ```
 
-挂载点 `Content\CitySampleCrowd` 已进入 `.gitignore`。City Sample Crowds 是
-UE-Only Content；协作者必须通过自己的 Epic/Fab 权限取得，不从公开 Git 分发。
+挂载点 `Content\CitySampleCrowd` 已进入 `.gitignore`。Fab City Sample Crowds 属于
+UE-Only Content；每位协作者必须通过自己的 Epic/Fab 授权取得，Git 不分发这
+6.058 GiB 官方素材。
 
-## 稳定启动
+## 启动与重启
 
-早期 City Sample 首次编译曾遇到内存/分页文件压力，以及系统盘 Zen 缓存写满导致
-HTTP 507。稳定启动脚本把 UserDir、DDC 和 Zen 放到 D 盘，并把纹理/资产编译并发
-限制为 1：
+从 TelecomTwin 工程根目录运行：
 
 ```powershell
 pwsh -ExecutionPolicy Bypass -File .\Scripts\OpenMassCrowd\launch_telecomtwin_citysample.ps1
 ```
 
-最终验证从干净重启到工程可用约 20 秒；停播日志为 `BeginTearingDown`，当前运行
-没有 Fatal、assert、OOM 或 HTTP 507。正常演示不需要 MCP 或 Python，打开后直接
-点击“运行”。
+启动器把 UserDir、DDC 和 Zen 缓存放到 D 盘，并限制资产编译并发。最终冷启动通常
+本轮严格 first-blocker 冷启动约 44 秒，建议预留 40–50 秒。香港画面出现后按
+`Alt+P`，再等待日志：
 
-## 为什么打开工程后看不到人
+```text
+OPEN_MASS_CROWD_READY requested=30 spawned=30
+```
 
-人物是 `BeginPlay` 时动态创建的 Mass 表示，不是编辑器关卡里常驻的 30 个
-Character。绿色“运行”按钮表示 PIE 尚未运行，此时道路为空是正常的；停止 PIE
-后人物也会被正常销毁。
+人物在 `BeginPlay` 时动态创建；编辑器未运行或停止 PIE 后看不到 30 个 Character
+是正常生命周期，不要重新执行布置脚本。
 
-正确操作：
+## 验证命令
 
-1. 用安全启动脚本打开工程；
-2. 等待香港/Cesium 画面出现；
-3. 按 `Alt+P`；
-4. 首次加载等待 8–15 秒；
-5. 在输出日志确认 `OPEN_MASS_CROWD_READY requested=30 spawned=30`。
-
-日志已显示 `spawned=30` 但仍看不到时，应检查相机：路线中心约为
-`(-97000, 222400, 395)`，范围约 `X ±720 / Y ±250`。不要重新运行布置脚本，
-关卡中唯一生成器已经保存。
-
-## 验证脚本
-
-运行时自动验证：
+在 PIE 已运行、MCP Server 已启动时执行：
 
 ```powershell
 python .\Scripts\OpenMassCrowd\run_unreal_python_via_mcp.py `
   --file .\Scripts\OpenMassCrowd\verify_open_mass_city_sample_runtime.py
+
+python .\Scripts\OpenMassCrowd\run_unreal_python_via_mcp.py `
+  --file .\Scripts\OpenMassCrowd\verify_open_mass_city_navigation_runtime.py
 ```
 
-验证器等待 30 个官方人物全部建立，再记录 6 秒前后位置、Cesium 命中、脚部偏移、
-碰撞开关、动画状态、外观签名、唯一生成器和完整射线计数。它不会创建或重建关卡。
+验证脚本只读运行时对象并写证据 JSON，不重建关卡。LOD 报告来自专门的相机距离
+往返验证，并对应 `08`、`09`、`10` 三张截图。
 
 ## 已知限制（必须保留）
 
-1. 当前是局部有界路线，不是全城自动道路网络。
-2. 30 人使用 Actor 可视表示。官方包审计没有 VAT/AnimToTexture 资产，当前高、
-   低清模板还是同一个类，尚未实现数百/数千人需要的 ISM/VAT 远景 LOD。
-3. 避让 Trait 已启用，但没有输出“最小人际距离”统计，不能把它表述为定量避碰
-   基准。
-4. 本轮确认稳定启动和 30 人运行，没有宣称固定 FPS、显存上限或大规模性能。
-5. Git 不包含官方 6.058 GiB 素材；换电脑后必须先取得并挂载官方包。
+1. 当前是 9 节点局部 bounded demo，不是全香港 NavMesh 或全城人行道路网络。
+2. 10 cm 级采样和胶囊 sweep 是离散认证，不是数学连续证明。
+3. 路口 steering 转角依赖运行时 exact guard、中线恢复和 last-valid 回滚。
+4. `route_replans = 0` 是本次稳定结果；还没有实现动态障碍或道路封闭后的全局重规划。
+5. Mass avoidance 不是硬物理碰撞；报告有 1 个 body-overlap 样本，不能声称绝对
+   无碰撞。
+6. Low 是 skeletal low-res，不是 VAT/ISM；30 人结果不能直接外推到千人规模。
+7. 编辑器帧率只是验证器的性能代理，不是发布版硬件基准。
+8. 协作者必须自行取得 Fab UE-Only 素材授权。
 
-## 回滚
+## 纯 Git 回滚
 
-接入 City Sample 官方素材前的回滚点：
+本轮导航与碰撞改造开始前已经创建并推送 tag：
 
 ```text
-checkpoint/citysample-pre-assets-2026-07-15
-0ad264252223654da99ac5400548d2524df3f4f7
+checkpoint/pre-city-navigation-2026-07-18
 ```
 
-当前关卡和代码位于 `experiment/citysample-crowds-ue57` 分支。
+需要比较或恢复时，不覆盖当前工作区，创建独立回滚分支：
+
+```powershell
+git fetch origin --tags
+git switch -c rollback/pre-city-navigation checkpoint/pre-city-navigation-2026-07-18
+```
+
+该 tag 不包含 City Sample 官方资源、目录联接、DDC、Zen 或本机 UserDir。

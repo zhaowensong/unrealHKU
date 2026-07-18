@@ -55,7 +55,7 @@
     },
     "mass_root_ground_offset_2cm": {
       "actual": {
-        "max_abs_error_cm": 2.135,
+        "max_abs_error_cm": 0.001,
         "within_tolerance_count": 30
       },
       "expected": {
@@ -68,9 +68,9 @@
     "movement_over_6_seconds": {
       "actual": {
         "common_actor_count": 30,
-        "median_cm": 627.887,
+        "median_cm": 489.485,
         "moved_over_60cm_count": 30,
-        "sample_seconds": 6.022
+        "sample_seconds": 6.189
       },
       "expected": {
         "median_movement_cm_minimum": 100.0,
@@ -160,7 +160,7 @@
     "visible_foot_grounding_27": {
       "actual": {
         "measured_count": 30,
-        "offset_median_cm": -1.405,
+        "offset_median_cm": -0.117,
         "within_range_count": 30
       },
       "expected": {
@@ -188,805 +188,808 @@
     "status_updates": [
       {
         "active_proxies": 30,
-        "elapsed_seconds": 0.031,
+        "elapsed_seconds": 0.047,
         "mass_entities": 30,
         "official_children": 30,
         "proxies": 30,
         "spawners": 1,
         "status": "sampling_six_seconds_of_movement",
-        "utc": "2026-07-18T00:46:38.858016+00:00",
+        "utc": "2026-07-18T04:48:06.815789+00:00",
         "visible_characters": 30
       },
       {
         "active_proxies": 30,
-        "elapsed_seconds": 6.047,
+        "elapsed_seconds": 6.203,
         "mass_entities": 30,
         "official_children": 30,
         "proxies": 30,
         "spawners": 1,
         "status": "finalizing_runtime_evidence",
-        "utc": "2026-07-18T00:46:44.880470+00:00",
+        "utc": "2026-07-18T04:48:12.979149+00:00",
         "visible_characters": 30
       }
     ]
   },
-  "elapsed_seconds": 6.047,
+  "elapsed_seconds": 6.203,
   "engine_version": "5.7.4-51494982+++UE5+Release-5.7",
   "failed_checks": [],
-  "generated_utc": "2026-07-18T00:46:44.954521+00:00",
+  "generated_utc": "2026-07-18T04:48:13.057024+00:00",
   "grounding": {
-    "cesium_component_count": 113,
+    "cesium_component_count": 89,
     "measurements": [
       {
         "component_class": "CesiumGltfPrimitiveComponent",
         "ground_location": [
-          -97674.396,
-          222294.649,
-          385.985
+          -96531.052,
+          222180.57,
+          404.383
         ],
         "ground_probe_offset_xy_cm": [
           0.0,
           0.0
         ],
-        "normal_z": 0.99987,
-        "proxy_name": "OpenMassCrowdCitySampleActor_0",
-        "root_ground_error_cm": 0.109,
-        "root_ground_offset_cm": 2.109,
+        "normal_z": 0.9983,
+        "proxy_name": "OpenMassCrowdCitySampleActor_103",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
         "root_location": [
-          -97674.396,
-          222294.649,
-          388.094
+          -96531.052,
+          222180.57,
+          406.383
         ],
         "trace_hit": true,
-        "visual_bottom_z": 384.332,
-        "visual_foot_ground_offset_cm": -1.653
+        "visual_bottom_z": 404.568,
+        "visual_foot_ground_offset_cm": 0.185
       },
       {
         "component_class": "CesiumGltfPrimitiveComponent",
         "ground_location": [
-          -96635.329,
-          222608.618,
-          400.401
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99994,
-        "proxy_name": "OpenMassCrowdCitySampleActor_1",
-        "root_ground_error_cm": 0.282,
-        "root_ground_offset_cm": 2.282,
-        "root_location": [
-          -96635.329,
-          222608.618,
-          402.683
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 399.27,
-        "visual_foot_ground_offset_cm": -1.131
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96284.438,
-          222373.084,
-          400.45
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99857,
-        "proxy_name": "OpenMassCrowdCitySampleActor_10",
-        "root_ground_error_cm": -0.202,
-        "root_ground_offset_cm": 1.798,
-        "root_location": [
-          -96284.438,
-          222373.084,
-          402.248
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 399.028,
-        "visual_foot_ground_offset_cm": -1.422
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97610.469,
-          222381.566,
-          384.698
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99987,
-        "proxy_name": "OpenMassCrowdCitySampleActor_11",
-        "root_ground_error_cm": 0.617,
-        "root_ground_offset_cm": 2.617,
-        "root_location": [
-          -97610.469,
-          222381.566,
-          387.315
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 383.707,
-        "visual_foot_ground_offset_cm": -0.991
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96747.486,
-          222648.692,
-          406.269
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.98483,
-        "proxy_name": "OpenMassCrowdCitySampleActor_12",
-        "root_ground_error_cm": -0.315,
-        "root_ground_offset_cm": 1.685,
-        "root_location": [
-          -96747.486,
-          222648.692,
-          407.954
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 404.336,
-        "visual_foot_ground_offset_cm": -1.933
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97710.236,
-          222239.582,
-          386.727
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99987,
-        "proxy_name": "OpenMassCrowdCitySampleActor_13",
-        "root_ground_error_cm": -0.308,
-        "root_ground_offset_cm": 1.692,
-        "root_location": [
-          -97710.236,
-          222239.582,
-          388.419
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 384.731,
-        "visual_foot_ground_offset_cm": -1.996
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97576.446,
-          222096.84,
-          383.146
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99962,
-        "proxy_name": "OpenMassCrowdCitySampleActor_14",
-        "root_ground_error_cm": 1.774,
-        "root_ground_offset_cm": 3.774,
-        "root_location": [
-          -97576.446,
-          222096.84,
-          386.92
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 383.869,
-        "visual_foot_ground_offset_cm": 0.722
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96547.814,
-          222608.453,
-          399.81
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99994,
-        "proxy_name": "OpenMassCrowdCitySampleActor_15",
-        "root_ground_error_cm": 0.845,
-        "root_ground_offset_cm": 2.845,
-        "root_location": [
-          -96547.814,
-          222608.453,
-          402.655
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 398.729,
-        "visual_foot_ground_offset_cm": -1.081
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96476.911,
-          222558.108,
-          402.221
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.9996,
-        "proxy_name": "OpenMassCrowdCitySampleActor_16",
-        "root_ground_error_cm": 0.217,
-        "root_ground_offset_cm": 2.217,
-        "root_location": [
-          -96476.911,
-          222558.108,
-          404.438
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 400.991,
-        "visual_foot_ground_offset_cm": -1.23
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97634.138,
-          222183.308,
-          385.688
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99987,
-        "proxy_name": "OpenMassCrowdCitySampleActor_17",
-        "root_ground_error_cm": -0.088,
-        "root_ground_offset_cm": 1.912,
-        "root_location": [
-          -97634.138,
-          222183.308,
-          387.6
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 384.021,
-        "visual_foot_ground_offset_cm": -1.667
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97644.612,
-          222524.124,
-          384.2
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99976,
-        "proxy_name": "OpenMassCrowdCitySampleActor_18",
-        "root_ground_error_cm": 0.56,
-        "root_ground_offset_cm": 2.56,
-        "root_location": [
-          -97644.612,
-          222524.124,
-          386.76
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 383.434,
-        "visual_foot_ground_offset_cm": -0.766
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97509.893,
-          222210.814,
-          383.624
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99987,
-        "proxy_name": "OpenMassCrowdCitySampleActor_19",
-        "root_ground_error_cm": 1.193,
-        "root_ground_offset_cm": 3.193,
-        "root_location": [
-          -97509.893,
-          222210.814,
-          386.817
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 383.112,
-        "visual_foot_ground_offset_cm": -0.512
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97067.422,
-          222605.491,
-          401.859
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99847,
-        "proxy_name": "OpenMassCrowdCitySampleActor_2",
-        "root_ground_error_cm": 0.284,
-        "root_ground_offset_cm": 2.284,
-        "root_location": [
-          -97067.422,
-          222605.491,
-          404.143
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 399.674,
-        "visual_foot_ground_offset_cm": -2.186
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96748.119,
-          222528.304,
-          400.043
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99962,
-        "proxy_name": "OpenMassCrowdCitySampleActor_20",
-        "root_ground_error_cm": 0.949,
-        "root_ground_offset_cm": 2.949,
-        "root_location": [
-          -96748.119,
-          222528.304,
-          402.992
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 399.025,
-        "visual_foot_ground_offset_cm": -1.018
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96225.979,
-          222652.108,
-          405.256
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.9996,
-        "proxy_name": "OpenMassCrowdCitySampleActor_21",
-        "root_ground_error_cm": -0.624,
-        "root_ground_offset_cm": 1.376,
-        "root_location": [
-          -96225.979,
-          222652.108,
-          406.632
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 402.853,
-        "visual_foot_ground_offset_cm": -2.403
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96935.724,
-          222267.753,
-          395.323
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99967,
-        "proxy_name": "OpenMassCrowdCitySampleActor_22",
-        "root_ground_error_cm": -0.283,
-        "root_ground_offset_cm": 1.717,
-        "root_location": [
-          -96935.724,
-          222267.753,
-          397.04
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 393.03,
-        "visual_foot_ground_offset_cm": -2.293
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97501.395,
-          222521.934,
-          382.525
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99987,
-        "proxy_name": "OpenMassCrowdCitySampleActor_23",
-        "root_ground_error_cm": 1.503,
-        "root_ground_offset_cm": 3.503,
-        "root_location": [
-          -97501.395,
-          222521.934,
-          386.028
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 382.694,
-        "visual_foot_ground_offset_cm": 0.169
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97391.677,
-          222537.304,
-          383.679
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99972,
-        "proxy_name": "OpenMassCrowdCitySampleActor_24",
-        "root_ground_error_cm": 0.857,
-        "root_ground_offset_cm": 2.857,
-        "root_location": [
-          -97391.677,
-          222537.304,
-          386.536
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 382.777,
-        "visual_foot_ground_offset_cm": -0.903
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97166.983,
-          222527.39,
-          395.748
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99861,
-        "proxy_name": "OpenMassCrowdCitySampleActor_25",
-        "root_ground_error_cm": 0.48,
-        "root_ground_offset_cm": 2.48,
-        "root_location": [
-          -97166.983,
-          222527.39,
-          398.228
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 394.509,
-        "visual_foot_ground_offset_cm": -1.239
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97277.758,
-          222539.827,
-          390.846
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.9944,
-        "proxy_name": "OpenMassCrowdCitySampleActor_26",
-        "root_ground_error_cm": 1.252,
-        "root_ground_offset_cm": 3.252,
-        "root_location": [
-          -97277.758,
-          222539.827,
-          394.098
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 390.014,
-        "visual_foot_ground_offset_cm": -0.832
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96450.832,
-          222105.837,
-          399.351
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99857,
-        "proxy_name": "OpenMassCrowdCitySampleActor_27",
-        "root_ground_error_cm": -1.134,
-        "root_ground_offset_cm": 0.866,
-        "root_location": [
-          -96450.832,
-          222105.837,
-          400.217
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 396.505,
-        "visual_foot_ground_offset_cm": -2.846
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96405.281,
-          222213.191,
-          400.768
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99857,
-        "proxy_name": "OpenMassCrowdCitySampleActor_28",
-        "root_ground_error_cm": -1.342,
-        "root_ground_offset_cm": 0.658,
-        "root_location": [
-          -96405.281,
-          222213.191,
-          401.426
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 397.736,
-        "visual_foot_ground_offset_cm": -3.032
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96521.25,
-          222681.605,
-          400.22
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99994,
-        "proxy_name": "OpenMassCrowdCitySampleActor_29",
-        "root_ground_error_cm": 0.182,
-        "root_ground_offset_cm": 2.182,
-        "root_location": [
-          -96521.25,
-          222681.605,
-          402.402
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 398.858,
-        "visual_foot_ground_offset_cm": -1.362
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97332.026,
-          222156.216,
-          390.986
+          -97293.992,
+          222307.249,
+          386.73
         ],
         "ground_probe_offset_xy_cm": [
           0.0,
           0.0
         ],
         "normal_z": 0.99635,
-        "proxy_name": "OpenMassCrowdCitySampleActor_3",
-        "root_ground_error_cm": -0.235,
-        "root_ground_offset_cm": 1.765,
+        "proxy_name": "OpenMassCrowdCitySampleActor_104",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
         "root_location": [
-          -97332.026,
-          222156.216,
-          392.751
+          -97293.992,
+          222307.249,
+          388.73
         ],
         "trace_hit": true,
-        "visual_bottom_z": 389.119,
-        "visual_foot_ground_offset_cm": -1.867
+        "visual_bottom_z": 386.654,
+        "visual_foot_ground_offset_cm": -0.075
       },
       {
         "component_class": "CesiumGltfPrimitiveComponent",
         "ground_location": [
-          -97252.021,
-          222644.652,
-          398.519
+          -96925.061,
+          222482.096,
+          399.48
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99861,
+        "proxy_name": "OpenMassCrowdCitySampleActor_105",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96925.061,
+          222482.096,
+          401.48
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 399.331,
+        "visual_foot_ground_offset_cm": -0.149
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97275.958,
+          222507.954,
+          389.416
         ],
         "ground_probe_offset_xy_cm": [
           0.0,
           0.0
         ],
         "normal_z": 0.9944,
-        "proxy_name": "OpenMassCrowdCitySampleActor_4",
-        "root_ground_error_cm": -1.327,
-        "root_ground_offset_cm": 0.673,
+        "proxy_name": "OpenMassCrowdCitySampleActor_107",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
         "root_location": [
-          -97252.021,
-          222644.652,
-          399.192
+          -97275.958,
+          222507.954,
+          391.416
         ],
         "trace_hit": true,
-        "visual_bottom_z": 395.472,
-        "visual_foot_ground_offset_cm": -3.047
+        "visual_bottom_z": 389.41,
+        "visual_foot_ground_offset_cm": -0.006
       },
       {
         "component_class": "CesiumGltfPrimitiveComponent",
         "ground_location": [
-          -96433.983,
-          222291.721,
-          404.46
+          -97470.709,
+          222273.747,
+          382.805
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99987,
+        "proxy_name": "OpenMassCrowdCitySampleActor_109",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97470.709,
+          222273.747,
+          384.805
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 382.62,
+        "visual_foot_ground_offset_cm": -0.184
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96782.131,
+          222263.858,
+          391.933
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99483,
+        "proxy_name": "OpenMassCrowdCitySampleActor_116",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96782.131,
+          222263.858,
+          393.933
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 391.729,
+        "visual_foot_ground_offset_cm": -0.204
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97139.966,
+          222580.194,
+          398.877
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99861,
+        "proxy_name": "OpenMassCrowdCitySampleActor_117",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97139.966,
+          222580.194,
+          400.877
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 399.014,
+        "visual_foot_ground_offset_cm": 0.137
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97679.324,
+          222219.595,
+          386.296
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99987,
+        "proxy_name": "OpenMassCrowdCitySampleActor_120",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97679.324,
+          222219.595,
+          388.296
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 386.147,
+        "visual_foot_ground_offset_cm": -0.149
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96417.954,
+          222256.281,
+          402.663
         ],
         "ground_probe_offset_xy_cm": [
           0.0,
           0.0
         ],
         "normal_z": 0.99857,
-        "proxy_name": "OpenMassCrowdCitySampleActor_5",
-        "root_ground_error_cm": -1.546,
-        "root_ground_offset_cm": 0.454,
+        "proxy_name": "OpenMassCrowdCitySampleActor_121",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
         "root_location": [
-          -96433.983,
-          222291.721,
-          404.914
+          -96417.954,
+          222256.281,
+          404.663
         ],
         "trace_hit": true,
-        "visual_bottom_z": 401.749,
-        "visual_foot_ground_offset_cm": -2.711
+        "visual_bottom_z": 402.62,
+        "visual_foot_ground_offset_cm": -0.043
       },
       {
         "component_class": "CesiumGltfPrimitiveComponent",
         "ground_location": [
-          -97449.303,
-          222128.643,
-          382.701
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.99978,
-        "proxy_name": "OpenMassCrowdCitySampleActor_6",
-        "root_ground_error_cm": 2.135,
-        "root_ground_offset_cm": 4.135,
-        "root_location": [
-          -97449.303,
-          222128.643,
-          386.836
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 382.95,
-        "visual_foot_ground_offset_cm": 0.25
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -97367.111,
-          222640.865,
-          387.545
-        ],
-        "ground_probe_offset_xy_cm": [
-          0.0,
-          0.0
-        ],
-        "normal_z": 0.9944,
-        "proxy_name": "OpenMassCrowdCitySampleActor_7",
-        "root_ground_error_cm": -0.55,
-        "root_ground_offset_cm": 1.45,
-        "root_location": [
-          -97367.111,
-          222640.865,
-          388.995
-        ],
-        "trace_hit": true,
-        "visual_bottom_z": 385.27,
-        "visual_foot_ground_offset_cm": -2.275
-      },
-      {
-        "component_class": "CesiumGltfPrimitiveComponent",
-        "ground_location": [
-          -96364.246,
-          222524.052,
-          405.126
+          -96538.186,
+          222480.088,
+          402.593
         ],
         "ground_probe_offset_xy_cm": [
           0.0,
           0.0
         ],
         "normal_z": 0.9996,
-        "proxy_name": "OpenMassCrowdCitySampleActor_8",
-        "root_ground_error_cm": -0.12,
-        "root_ground_offset_cm": 1.88,
+        "proxy_name": "OpenMassCrowdCitySampleActor_122",
+        "root_ground_error_cm": 0.001,
+        "root_ground_offset_cm": 2.001,
         "root_location": [
-          -96364.246,
-          222524.052,
-          407.006
+          -96538.186,
+          222480.088,
+          404.594
         ],
         "trace_hit": true,
-        "visual_bottom_z": 403.414,
-        "visual_foot_ground_offset_cm": -1.713
+        "visual_bottom_z": 402.445,
+        "visual_foot_ground_offset_cm": -0.149
       },
       {
         "component_class": "CesiumGltfPrimitiveComponent",
         "ground_location": [
-          -97746.429,
-          222480.459,
-          384.91
+          -97109.026,
+          222338.248,
+          390.802
         ],
         "ground_probe_offset_xy_cm": [
           0.0,
           0.0
         ],
-        "normal_z": 0.99938,
-        "proxy_name": "OpenMassCrowdCitySampleActor_9",
-        "root_ground_error_cm": 0.646,
-        "root_ground_offset_cm": 2.646,
+        "normal_z": 0.99967,
+        "proxy_name": "OpenMassCrowdCitySampleActor_123",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
         "root_location": [
-          -97746.429,
-          222480.459,
-          387.556
+          -97109.026,
+          222338.248,
+          392.802
         ],
         "trace_hit": true,
-        "visual_bottom_z": 383.522,
-        "visual_foot_ground_offset_cm": -1.388
+        "visual_bottom_z": 390.853,
+        "visual_foot_ground_offset_cm": 0.051
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97030.599,
+          222277.435,
+          392.862
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99967,
+        "proxy_name": "OpenMassCrowdCitySampleActor_124",
+        "root_ground_error_cm": 0.001,
+        "root_ground_offset_cm": 2.001,
+        "root_location": [
+          -97030.599,
+          222277.435,
+          394.863
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 392.922,
+        "visual_foot_ground_offset_cm": 0.059
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97384.81,
+          222165.056,
+          386.769
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99635,
+        "proxy_name": "OpenMassCrowdCitySampleActor_127",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97384.81,
+          222165.056,
+          388.769
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 386.705,
+        "visual_foot_ground_offset_cm": -0.064
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97462.424,
+          222607.331,
+          381.94
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99972,
+        "proxy_name": "OpenMassCrowdCitySampleActor_128",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97462.424,
+          222607.331,
+          383.94
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 381.648,
+        "visual_foot_ground_offset_cm": -0.292
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97162.283,
+          222480.892,
+          393.683
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99861,
+        "proxy_name": "OpenMassCrowdCitySampleActor_129",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97162.283,
+          222480.892,
+          395.683
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 393.553,
+        "visual_foot_ground_offset_cm": -0.13
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97197.808,
+          222378.73,
+          388.483
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99967,
+        "proxy_name": "OpenMassCrowdCitySampleActor_130",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97197.808,
+          222378.73,
+          390.483
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 388.407,
+        "visual_foot_ground_offset_cm": -0.076
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97508.03,
+          222190.74,
+          383.656
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99987,
+        "proxy_name": "OpenMassCrowdCitySampleActor_131",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97508.03,
+          222190.74,
+          385.656
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 383.562,
+        "visual_foot_ground_offset_cm": -0.094
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97528.962,
+          222535.978,
+          382.922
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99987,
+        "proxy_name": "OpenMassCrowdCitySampleActor_132",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97528.962,
+          222535.978,
+          384.922
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 382.916,
+        "visual_foot_ground_offset_cm": -0.006
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97497.043,
+          222443.702,
+          382.698
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99987,
+        "proxy_name": "OpenMassCrowdCitySampleActor_133",
+        "root_ground_error_cm": 0.001,
+        "root_ground_offset_cm": 2.001,
+        "root_location": [
+          -97497.043,
+          222443.702,
+          384.699
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 382.46,
+        "visual_foot_ground_offset_cm": -0.238
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97377.769,
+          222425.254,
+          384.114
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99972,
+        "proxy_name": "OpenMassCrowdCitySampleActor_134",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97377.769,
+          222425.254,
+          386.114
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 384.127,
+        "visual_foot_ground_offset_cm": 0.013
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96713.018,
+          222418.792,
+          400.394
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.9996,
+        "proxy_name": "OpenMassCrowdCitySampleActor_135",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96713.018,
+          222418.792,
+          402.394
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 400.277,
+        "visual_foot_ground_offset_cm": -0.117
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97249.53,
+          222638.981,
+          398.467
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.9944,
+        "proxy_name": "OpenMassCrowdCitySampleActor_136",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97249.53,
+          222638.981,
+          400.467
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 398.42,
+        "visual_foot_ground_offset_cm": -0.047
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96983.184,
+          222387.336,
+          394.034
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99967,
+        "proxy_name": "OpenMassCrowdCitySampleActor_137",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96983.184,
+          222387.336,
+          396.034
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 393.786,
+        "visual_foot_ground_offset_cm": -0.248
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96871.719,
+          222266.914,
+          396.992
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99962,
+        "proxy_name": "OpenMassCrowdCitySampleActor_138",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96871.719,
+          222266.914,
+          398.992
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 396.754,
+        "visual_foot_ground_offset_cm": -0.239
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -97071.436,
+          222459.199,
+          394.865
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99861,
+        "proxy_name": "OpenMassCrowdCitySampleActor_139",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -97071.436,
+          222459.199,
+          396.865
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 394.617,
+        "visual_foot_ground_offset_cm": -0.248
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96929.996,
+          222341.75,
+          395.434
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99967,
+        "proxy_name": "OpenMassCrowdCitySampleActor_140",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96929.996,
+          222341.75,
+          397.434
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 395.249,
+        "visual_foot_ground_offset_cm": -0.185
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96370.174,
+          222182.55,
+          398.279
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99857,
+        "proxy_name": "OpenMassCrowdCitySampleActor_141",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96370.174,
+          222182.55,
+          400.279
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 398.162,
+        "visual_foot_ground_offset_cm": -0.117
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96540.924,
+          222359.373,
+          404.982
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.9996,
+        "proxy_name": "OpenMassCrowdCitySampleActor_142",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96540.924,
+          222359.373,
+          406.982
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 404.833,
+        "visual_foot_ground_offset_cm": -0.149
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96378.89,
+          222425.854,
+          406.209
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99857,
+        "proxy_name": "OpenMassCrowdCitySampleLowResActor_116",
+        "root_ground_error_cm": 0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96378.89,
+          222425.854,
+          408.209
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 406.222,
+        "visual_foot_ground_offset_cm": 0.013
+      },
+      {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "ground_location": [
+          -96333.293,
+          222335.336,
+          401.414
+        ],
+        "ground_probe_offset_xy_cm": [
+          0.0,
+          0.0
+        ],
+        "normal_z": 0.99857,
+        "proxy_name": "OpenMassCrowdCitySampleLowResActor_117",
+        "root_ground_error_cm": -0.0,
+        "root_ground_offset_cm": 2.0,
+        "root_location": [
+          -96333.293,
+          222335.336,
+          403.414
+        ],
+        "trace_hit": true,
+        "visual_bottom_z": 401.23,
+        "visual_foot_ground_offset_cm": -0.184
       }
     ],
+    "probe_mode": "exact_xy_only",
     "requested_actor_count": 30,
-    "root_max_abs_error_cm": 2.135,
+    "root_max_abs_error_cm": 0.001,
     "root_within_tolerance_count": 30,
     "trace_hit_count": 30,
     "visual_foot_measured_count": 30,
-    "visual_foot_offset_max_cm": 0.722,
-    "visual_foot_offset_median_cm": -1.405,
-    "visual_foot_offset_min_cm": -3.047,
+    "visual_foot_offset_max_cm": 0.185,
+    "visual_foot_offset_median_cm": -0.117,
+    "visual_foot_offset_min_cm": -0.292,
     "visual_foot_within_range_count": 30
   },
   "movement": {
     "common_actor_count": 30,
-    "maximum_cm": 814.132,
-    "median_cm": 627.887,
-    "minimum_cm": 362.826,
+    "common_entity_count": 30,
+    "identity_source": "stable_mass_appearance_seed",
+    "maximum_cm": 733.347,
+    "median_cm": 489.485,
+    "minimum_cm": 170.172,
     "moved_over_60cm_count": 30,
     "per_actor_xy_cm": {
-      "OpenMassCrowdCitySampleActor_0": 416.09,
-      "OpenMassCrowdCitySampleActor_1": 764.299,
-      "OpenMassCrowdCitySampleActor_10": 683.517,
-      "OpenMassCrowdCitySampleActor_11": 472.15,
-      "OpenMassCrowdCitySampleActor_12": 743.932,
-      "OpenMassCrowdCitySampleActor_13": 687.777,
-      "OpenMassCrowdCitySampleActor_14": 431.081,
-      "OpenMassCrowdCitySampleActor_15": 698.474,
-      "OpenMassCrowdCitySampleActor_16": 661.562,
-      "OpenMassCrowdCitySampleActor_17": 721.447,
-      "OpenMassCrowdCitySampleActor_18": 603.2,
-      "OpenMassCrowdCitySampleActor_19": 773.118,
-      "OpenMassCrowdCitySampleActor_2": 574.73,
-      "OpenMassCrowdCitySampleActor_20": 381.772,
-      "OpenMassCrowdCitySampleActor_21": 734.967,
-      "OpenMassCrowdCitySampleActor_22": 552.955,
-      "OpenMassCrowdCitySampleActor_23": 814.132,
-      "OpenMassCrowdCitySampleActor_24": 800.172,
-      "OpenMassCrowdCitySampleActor_25": 810.773,
-      "OpenMassCrowdCitySampleActor_26": 804.21,
-      "OpenMassCrowdCitySampleActor_27": 409.981,
-      "OpenMassCrowdCitySampleActor_28": 362.826,
-      "OpenMassCrowdCitySampleActor_29": 478.17,
-      "OpenMassCrowdCitySampleActor_3": 451.352,
-      "OpenMassCrowdCitySampleActor_4": 652.573,
-      "OpenMassCrowdCitySampleActor_5": 717.839,
-      "OpenMassCrowdCitySampleActor_6": 433.644,
-      "OpenMassCrowdCitySampleActor_7": 539.908,
-      "OpenMassCrowdCitySampleActor_8": 544.946,
-      "OpenMassCrowdCitySampleActor_9": 517.51
+      "1100611": 432.365,
+      "1297224": 603.178,
+      "1493837": 170.684,
+      "1690450": 170.172,
+      "1887063": 630.534,
+      "2083676": 711.797,
+      "2280289": 627.219,
+      "2476902": 495.309,
+      "2673515": 352.328,
+      "2870128": 461.961,
+      "3066741": 643.876,
+      "3263354": 458.313,
+      "3459967": 292.655,
+      "3656580": 700.413,
+      "3853193": 598.725,
+      "4049806": 544.164,
+      "4246419": 399.289,
+      "4443032": 733.347,
+      "4639645": 573.772,
+      "4836258": 704.754,
+      "5032871": 377.057,
+      "510772": 547.872,
+      "5229484": 224.717,
+      "5426097": 483.66,
+      "5622710": 190.768,
+      "5819323": 368.711,
+      "6015936": 366.946,
+      "6212549": 403.734,
+      "707385": 619.951,
+      "903998": 500.915
     },
-    "sample_seconds": 6.022
+    "sample_seconds": 6.189
   },
   "overall_passed": true,
   "project_dir": "C:/Users/15958/OneDrive/xwechat_files/wxid_0sjqfnxov0rv22_2017/msg/file/2026-07/TelecomTwin/",
@@ -994,261 +997,261 @@
     "active_proxy_actor_count": 30,
     "animation_playing_count": 30,
     "appearance_counts": {
-      "1130264574a1": 1,
-      "11b781664d00": 1,
-      "14e2d9b8d297": 1,
-      "17160f665aec": 1,
-      "176009cf4bf7": 1,
-      "28eac3bb3b2a": 1,
-      "497dcbefdfb2": 1,
-      "5c784f228b87": 1,
-      "64461f6467cf": 1,
-      "67780fbcd45e": 1,
-      "6d5bf375e13e": 1,
-      "6fb1f31393dc": 1,
-      "89a838898ff7": 1,
-      "8eee6d637d41": 1,
-      "9107688bf07c": 1,
-      "91c4bf73aa77": 1,
-      "a51d4dca5b2f": 1,
-      "a5acf27f98a9": 1,
-      "a601a33d3a94": 1,
-      "b0065753876d": 1,
-      "b36f058a4ba9": 1,
-      "b8b21c9f21c4": 1,
-      "bb3e0151a7de": 1,
-      "bea7f6d2fb2f": 1,
-      "c6ffead54827": 1,
-      "ca2b2fd30c30": 1,
-      "d658e2a2eb9c": 1,
-      "de65650b5f2e": 1,
+      "068eccfef15b": 1,
+      "0747d7e2f682": 1,
+      "1327a4dcb494": 1,
+      "235d76af52dc": 1,
+      "2c622a277771": 1,
+      "2eb2c1f93fa1": 1,
+      "364fdecbea59": 1,
+      "3ad7cee6229d": 1,
+      "53b14084ea5a": 1,
+      "5b1860a479c1": 1,
+      "64c2b780901d": 1,
+      "671d2dfa5166": 1,
+      "87d5e4c0d43a": 1,
+      "88258fce5f6b": 1,
+      "a0e4e89be743": 1,
+      "b653377d3afc": 1,
+      "c07154cb1241": 1,
+      "c35eb61b2a86": 1,
+      "c43d2e08c4c6": 1,
+      "cda720187027": 1,
+      "d29a6cc96111": 1,
+      "d550a8725fc6": 1,
+      "d7042faa48f8": 1,
+      "df6e33aa4eb3": 1,
+      "e45f94863c8b": 1,
+      "e706a4960a36": 1,
+      "e99b42eee19a": 1,
+      "eacffd4b7462": 1,
       "ee1f0b5d9bce": 1,
-      "fc7c37af1071": 1
+      "f4b983adb069": 1
     },
     "appearance_meshes": {
-      "1130264574a1": [
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_base.f_tal_unw_base",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_body.f_tal_unw_body",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_jeans_belt.f_tal_unw_jeans_belt",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_oxfords.f_tal_unw_oxfords",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_turtleneck.f_tal_unw_turtleneck",
-        "/Game/CitySampleCrowd/Character/Female/f_001/Face/f_001_nrw_FaceMesh.f_001_nrw_FaceMesh"
+      "068eccfef15b": [
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_buttonOpen_blazer.f_tal_nrw_buttonOpen_blazer",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_dressFlats.f_tal_nrw_dressFlats",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_jeans.f_tal_nrw_jeans",
+        "/Game/CitySampleCrowd/Character/Female/f_006/Face/f_006_nrw_FaceMesh.f_006_nrw_FaceMesh"
       ],
-      "11b781664d00": [
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_buttonDown.f_tal_ovw_buttonDown",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_dressFlats.f_tal_ovw_dressFlats",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_slacks_belt.f_tal_ovw_slacks_belt",
+      "0747d7e2f682": [
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_buttonDown.f_tal_nrw_buttonDown",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_dressFlats.f_tal_nrw_dressFlats",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_slacks_belt.f_tal_nrw_slacks_belt",
+        "/Game/CitySampleCrowd/Character/Female/f_002/Face/f_002_nrw_FaceMesh.f_002_nrw_FaceMesh"
+      ],
+      "1327a4dcb494": [
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_loafers.f_tal_nrw_loafers",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_skirt.f_tal_nrw_skirt",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_turtleneck_blazer.f_tal_nrw_turtleneck_blazer",
+        "/Game/CitySampleCrowd/Character/Female/f_004/Face/f_004_nrw_FaceMesh.f_004_nrw_FaceMesh"
+      ],
+      "235d76af52dc": [
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_loafers.f_tal_nrw_loafers",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_scoopneck.f_tal_nrw_scoopneck",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_slacks_belt.f_tal_nrw_slacks_belt",
         "/Game/CitySampleCrowd/Character/Female/f_003/Face/f_003_nrw_FaceMesh.f_003_nrw_FaceMesh"
       ],
-      "14e2d9b8d297": [
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_oxfords.f_tal_ovw_oxfords",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_scoopneck_croppedJacket.f_tal_ovw_scoopneck_croppedJacket",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_slacks.f_tal_ovw_slacks",
-        "/Game/CitySampleCrowd/Character/Female/f_003/Face/f_003_nrw_FaceMesh.f_003_nrw_FaceMesh"
-      ],
-      "17160f665aec": [
+      "2c622a277771": [
         "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_loafers.m_tal_ovw_loafers",
         "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
         "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
         "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_buttonOpen.m_tal_unw_buttonOpen",
         "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_slacks.m_tal_unw_slacks",
-        "/Game/CitySampleCrowd/Character/Male/m_003/Face/m_003_nrw_FaceMesh.m_003_nrw_FaceMesh"
-      ],
-      "176009cf4bf7": [
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_crewneck_blazer.m_tal_unw_crewneck_blazer",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_jeans.m_tal_unw_jeans",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
-        "/Game/CitySampleCrowd/Character/Male/m_001/Face/m_001_nrw_FaceMesh.m_001_nrw_FaceMesh"
-      ],
-      "28eac3bb3b2a": [
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_base.f_tal_unw_base",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_body.f_tal_unw_body",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_buttonOpen_blazer.f_tal_unw_buttonOpen_blazer",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_dressFlats.f_tal_unw_dressFlats",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_jeans.f_tal_unw_jeans",
-        "/Game/CitySampleCrowd/Character/Female/f_005/Face/f_005_nrw_FaceMesh.f_005_nrw_FaceMesh"
-      ],
-      "497dcbefdfb2": [
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_dressFlats.f_tal_nrw_dressFlats",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_scoopneck_blazer.f_tal_nrw_scoopneck_blazer",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_slacks.f_tal_nrw_slacks",
-        "/Game/CitySampleCrowd/Character/Female/f_005/Face/f_005_nrw_FaceMesh.f_005_nrw_FaceMesh"
-      ],
-      "5c784f228b87": [
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_loafers.f_tal_ovw_loafers",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_scoopneck.f_tal_ovw_scoopneck",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_slacks_belt.f_tal_ovw_slacks_belt",
-        "/Game/CitySampleCrowd/Character/Female/f_006/Face/f_006_nrw_FaceMesh.f_006_nrw_FaceMesh"
-      ],
-      "64461f6467cf": [
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_loafers.f_tal_ovw_loafers",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_skirt.f_tal_ovw_skirt",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_turtleneck_blazer.f_tal_ovw_turtleneck_blazer",
-        "/Game/CitySampleCrowd/Character/Female/f_006/Face/f_006_nrw_FaceMesh.f_006_nrw_FaceMesh"
-      ],
-      "67780fbcd45e": [
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_base.m_tal_nrw_base",
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_body.m_tal_nrw_body",
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_buttonDown_tie.m_tal_nrw_buttonDown_tie",
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_loafers.m_tal_nrw_loafers",
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_slacks_belt.m_tal_nrw_slacks_belt",
-        "/Game/CitySampleCrowd/Character/Male/m_004/Face/m_004_nrw_FaceMesh.m_004_nrw_FaceMesh"
-      ],
-      "6d5bf375e13e": [
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_loafers.f_tal_ovw_loafers",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_scoopneck.f_tal_ovw_scoopneck",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_slacks_belt.f_tal_ovw_slacks_belt",
-        "/Game/CitySampleCrowd/Character/Female/f_001/Face/f_001_nrw_FaceMesh.f_001_nrw_FaceMesh"
-      ],
-      "6fb1f31393dc": [
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_base.f_tal_unw_base",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_body.f_tal_unw_body",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_oxfords.f_tal_unw_oxfords",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_skirt.f_tal_unw_skirt",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_turtleneck.f_tal_unw_turtleneck",
-        "/Game/CitySampleCrowd/Character/Female/f_006/Face/f_006_nrw_FaceMesh.f_006_nrw_FaceMesh"
-      ],
-      "89a838898ff7": [
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_base.m_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_body.m_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_buttonDown_tie_blazer.m_tal_ovw_buttonDown_tie_blazer",
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_oxfords.m_tal_ovw_oxfords",
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_slacks.m_tal_ovw_slacks",
         "/Game/CitySampleCrowd/Character/Male/m_002/Face/m_002_nrw_FaceMesh.m_002_nrw_FaceMesh"
       ],
-      "8eee6d637d41": [
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_crewneck.m_tal_unw_crewneck",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_jeans.m_tal_unw_jeans",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
-        "/Game/CitySampleCrowd/Character/Male/m_001/Face/m_001_nrw_FaceMesh.m_001_nrw_FaceMesh"
-      ],
-      "9107688bf07c": [
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_oxfords.m_tal_ovw_oxfords",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_buttonOpen_blazer.m_tal_unw_buttonOpen_blazer",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_jeansLong.m_tal_unw_jeansLong",
-        "/Game/CitySampleCrowd/Character/Male/m_002/Face/m_002_nrw_FaceMesh.m_002_nrw_FaceMesh"
-      ],
-      "91c4bf73aa77": [
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_base.m_tal_nrw_base",
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_body.m_tal_nrw_body",
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_buttonDown_blazer.m_tal_nrw_buttonDown_blazer",
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_loafers.m_tal_nrw_loafers",
-        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_slacks.m_tal_nrw_slacks",
-        "/Game/CitySampleCrowd/Character/Male/m_002/Face/m_002_nrw_FaceMesh.m_002_nrw_FaceMesh"
-      ],
-      "a51d4dca5b2f": [
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_buttonOpen_blazer.f_tal_ovw_buttonOpen_blazer",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_dressFlats.f_tal_ovw_dressFlats",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_jeans.f_tal_ovw_jeans",
-        "/Game/CitySampleCrowd/Character/Female/f_004/Face/f_004_nrw_FaceMesh.f_004_nrw_FaceMesh"
-      ],
-      "a5acf27f98a9": [
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_base.f_tal_unw_base",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_body.f_tal_unw_body",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_dressFlats.f_tal_unw_dressFlats",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_scoopneck_blazer.f_tal_unw_scoopneck_blazer",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_slacks.f_tal_unw_slacks",
-        "/Game/CitySampleCrowd/Character/Female/f_004/Face/f_004_nrw_FaceMesh.f_004_nrw_FaceMesh"
-      ],
-      "a601a33d3a94": [
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_base.m_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_body.m_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_buttonDown_tie.m_tal_ovw_buttonDown_tie",
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_loafers.m_tal_ovw_loafers",
-        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_slacks_belt.m_tal_ovw_slacks_belt",
-        "/Game/CitySampleCrowd/Character/Male/m_004/Face/m_004_nrw_FaceMesh.m_004_nrw_FaceMesh"
-      ],
-      "b0065753876d": [
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_loafers.f_tal_ovw_loafers",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_slacks.f_tal_ovw_slacks",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_turtleneck_blazer.f_tal_ovw_turtleneck_blazer",
-        "/Game/CitySampleCrowd/Character/Female/f_003/Face/f_003_nrw_FaceMesh.f_003_nrw_FaceMesh"
-      ],
-      "b36f058a4ba9": [
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_oxfords.f_tal_nrw_oxfords",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_skirt.f_tal_nrw_skirt",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_turtleneck.f_tal_nrw_turtleneck",
-        "/Game/CitySampleCrowd/Character/Female/f_001/Face/f_001_nrw_FaceMesh.f_001_nrw_FaceMesh"
-      ],
-      "b8b21c9f21c4": [
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_loafers.f_tal_nrw_loafers",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_slacks.f_tal_nrw_slacks",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_turtleneck_blazer.f_tal_nrw_turtleneck_blazer",
-        "/Game/CitySampleCrowd/Character/Female/f_004/Face/f_004_nrw_FaceMesh.f_004_nrw_FaceMesh"
-      ],
-      "bb3e0151a7de": [
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_buttonDown_tie_vest.m_tal_unw_buttonDown_tie_vest",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
-        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_slacks.m_tal_unw_slacks",
-        "/Game/CitySampleCrowd/Character/Male/m_003/Face/m_003_nrw_FaceMesh.m_003_nrw_FaceMesh"
-      ],
-      "bea7f6d2fb2f": [
+      "2eb2c1f93fa1": [
         "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_base.f_tal_unw_base",
         "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_body.f_tal_unw_body",
         "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_buttonDown_blazer.f_tal_unw_buttonDown_blazer",
         "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_oxfords.f_tal_unw_oxfords",
         "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_slacks.f_tal_unw_slacks",
-        "/Game/CitySampleCrowd/Character/Female/f_004/Face/f_004_nrw_FaceMesh.f_004_nrw_FaceMesh"
-      ],
-      "c6ffead54827": [
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_base.f_tal_unw_base",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_body.f_tal_unw_body",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_oxfords.f_tal_unw_oxfords",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_scoopneck_croppedJacket.f_tal_unw_scoopneck_croppedJacket",
-        "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_slacks.f_tal_unw_slacks",
-        "/Game/CitySampleCrowd/Character/Female/f_006/Face/f_006_nrw_FaceMesh.f_006_nrw_FaceMesh"
-      ],
-      "ca2b2fd30c30": [
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_oxfords.f_tal_ovw_oxfords",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_skirt.f_tal_ovw_skirt",
-        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_turtleneck.f_tal_ovw_turtleneck",
         "/Game/CitySampleCrowd/Character/Female/f_003/Face/f_003_nrw_FaceMesh.f_003_nrw_FaceMesh"
       ],
-      "d658e2a2eb9c": [
+      "364fdecbea59": [
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_jeans.m_tal_unw_jeans",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_turtleneck.m_tal_unw_turtleneck",
+        "/Game/CitySampleCrowd/Character/Male/m_004/Face/m_004_nrw_FaceMesh.m_004_nrw_FaceMesh"
+      ],
+      "3ad7cee6229d": [
         "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
         "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_jeans_belt.f_tal_nrw_jeans_belt",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_oxfords.f_tal_nrw_oxfords",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_turtleneck.f_tal_nrw_turtleneck",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_loafers.f_tal_nrw_loafers",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_scoopneck.f_tal_nrw_scoopneck",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_slacks_belt.f_tal_nrw_slacks_belt",
         "/Game/CitySampleCrowd/Character/Female/f_002/Face/f_002_nrw_FaceMesh.f_002_nrw_FaceMesh"
       ],
-      "de65650b5f2e": [
+      "53b14084ea5a": [
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_base.m_tal_ovw_base",
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_body.m_tal_ovw_body",
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_buttonDown_tie.m_tal_ovw_buttonDown_tie",
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_loafers.m_tal_ovw_loafers",
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_slacks_belt.m_tal_ovw_slacks_belt",
+        "/Game/CitySampleCrowd/Character/Male/m_003/Face/m_003_nrw_FaceMesh.m_003_nrw_FaceMesh"
+      ],
+      "5b1860a479c1": [
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_base.m_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_body.m_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_buttonDown_tie_blazer.m_tal_nrw_buttonDown_tie_blazer",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_oxfords.m_tal_nrw_oxfords",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_slacks.m_tal_nrw_slacks",
+        "/Game/CitySampleCrowd/Character/Male/m_006/Face/m_006_nrw_FaceMesh.m_006_nrw_FaceMesh"
+      ],
+      "64c2b780901d": [
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_base.m_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_body.m_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_buttonDown_tie_vest_blazer.m_tal_nrw_buttonDown_tie_vest_blazer",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_oxfords.m_tal_nrw_oxfords",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_slacks.m_tal_nrw_slacks",
+        "/Game/CitySampleCrowd/Character/Male/m_003/Face/m_003_nrw_FaceMesh.m_003_nrw_FaceMesh"
+      ],
+      "671d2dfa5166": [
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_loafers.f_tal_nrw_loafers",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_scoopneck.f_tal_nrw_scoopneck",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_slacks_belt.f_tal_nrw_slacks_belt",
+        "/Game/CitySampleCrowd/Character/Female/f_005/Face/f_005_nrw_FaceMesh.f_005_nrw_FaceMesh"
+      ],
+      "87d5e4c0d43a": [
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_buttonDown_tie_vest.m_tal_unw_buttonDown_tie_vest",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_slacks.m_tal_unw_slacks",
+        "/Game/CitySampleCrowd/Character/Male/m_001/Face/m_001_nrw_FaceMesh.m_001_nrw_FaceMesh"
+      ],
+      "88258fce5f6b": [
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_base.m_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_body.m_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_jeans.m_tal_nrw_jeans",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_oxfords.m_tal_nrw_oxfords",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_turtleneck.m_tal_nrw_turtleneck",
+        "/Game/CitySampleCrowd/Character/Male/m_004/Face/m_004_nrw_FaceMesh.m_004_nrw_FaceMesh"
+      ],
+      "a0e4e89be743": [
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_base.m_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_body.m_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_crewneck_blazer.m_tal_nrw_crewneck_blazer",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_jeans.m_tal_nrw_jeans",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_oxfords.m_tal_nrw_oxfords",
+        "/Game/CitySampleCrowd/Character/Male/m_005/Face/m_005_nrw_FaceMesh.m_005_nrw_FaceMesh"
+      ],
+      "b653377d3afc": [
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_loafers.m_tal_ovw_loafers",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_slacks.m_tal_unw_slacks",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_turtleneck_blazer.m_tal_unw_turtleneck_blazer",
+        "/Game/CitySampleCrowd/Character/Male/m_004/Face/m_004_nrw_FaceMesh.m_004_nrw_FaceMesh"
+      ],
+      "c07154cb1241": [
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_base.m_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_body.m_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_loafers.m_tal_nrw_loafers",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_slacks.m_tal_nrw_slacks",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_turtleneck_blazer.m_tal_nrw_turtleneck_blazer",
+        "/Game/CitySampleCrowd/Character/Male/m_001/Face/m_001_nrw_FaceMesh.m_001_nrw_FaceMesh"
+      ],
+      "c35eb61b2a86": [
         "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
         "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
         "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_crewneck.m_tal_unw_crewneck",
         "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_jeans.m_tal_unw_jeans",
         "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
+        "/Game/CitySampleCrowd/Character/Male/m_002/Face/m_002_nrw_FaceMesh.m_002_nrw_FaceMesh"
+      ],
+      "c43d2e08c4c6": [
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_oxfords.f_tal_nrw_oxfords",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_scoopneck_croppedJacket.f_tal_nrw_scoopneck_croppedJacket",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_slacks.f_tal_nrw_slacks",
+        "/Game/CitySampleCrowd/Character/Female/f_002/Face/f_002_nrw_FaceMesh.f_002_nrw_FaceMesh"
+      ],
+      "cda720187027": [
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_loafers.f_tal_ovw_loafers",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_scoopneck.f_tal_ovw_scoopneck",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_slacks_belt.f_tal_ovw_slacks_belt",
+        "/Game/CitySampleCrowd/Character/Female/f_002/Face/f_002_nrw_FaceMesh.f_002_nrw_FaceMesh"
+      ],
+      "d29a6cc96111": [
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_dressFlats.f_tal_ovw_dressFlats",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_scoopneck.f_tal_ovw_scoopneck",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_skirt.f_tal_ovw_skirt",
+        "/Game/CitySampleCrowd/Character/Female/f_004/Face/f_004_nrw_FaceMesh.f_004_nrw_FaceMesh"
+      ],
+      "d550a8725fc6": [
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_dressFlats.f_tal_nrw_dressFlats",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_scoopneck.f_tal_nrw_scoopneck",
+        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_skirt.f_tal_nrw_skirt",
+        "/Game/CitySampleCrowd/Character/Female/f_004/Face/f_004_nrw_FaceMesh.f_004_nrw_FaceMesh"
+      ],
+      "d7042faa48f8": [
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_crewneck_blazer.m_tal_unw_crewneck_blazer",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_jeans.m_tal_unw_jeans",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
+        "/Game/CitySampleCrowd/Character/Male/m_002/Face/m_002_nrw_FaceMesh.m_002_nrw_FaceMesh"
+      ],
+      "df6e33aa4eb3": [
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_base.m_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_body.m_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_buttonDown_tie.m_tal_nrw_buttonDown_tie",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_loafers.m_tal_nrw_loafers",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_slacks_belt.m_tal_nrw_slacks_belt",
+        "/Game/CitySampleCrowd/Character/Male/m_002/Face/m_002_nrw_FaceMesh.m_002_nrw_FaceMesh"
+      ],
+      "e45f94863c8b": [
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_base.m_tal_nrw_base",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_body.m_tal_nrw_body",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_buttonDown.m_tal_nrw_buttonDown",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_jeans_belt.m_tal_nrw_jeans_belt",
+        "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_loafers.m_tal_nrw_loafers",
+        "/Game/CitySampleCrowd/Character/Male/m_003/Face/m_003_nrw_FaceMesh.m_003_nrw_FaceMesh"
+      ],
+      "e706a4960a36": [
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_buttonDown_tie_vest_blazer.m_tal_unw_buttonDown_tie_vest_blazer",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_slacks.m_tal_unw_slacks",
         "/Game/CitySampleCrowd/Character/Male/m_004/Face/m_004_nrw_FaceMesh.m_004_nrw_FaceMesh"
+      ],
+      "e99b42eee19a": [
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_base.m_tal_ovw_base",
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_body.m_tal_ovw_body",
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_buttonOpen.m_tal_ovw_buttonOpen",
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_jeansLong_belt.m_tal_ovw_jeansLong_belt",
+        "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_loafers.m_tal_ovw_loafers",
+        "/Game/CitySampleCrowd/Character/Male/m_001/Face/m_001_nrw_FaceMesh.m_001_nrw_FaceMesh"
+      ],
+      "eacffd4b7462": [
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_body.f_tal_ovw_body",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_dressFlats.f_tal_ovw_dressFlats",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_scoopneck_blazer.f_tal_ovw_scoopneck_blazer",
+        "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_skirt.f_tal_ovw_skirt",
+        "/Game/CitySampleCrowd/Character/Female/f_002/Face/f_002_nrw_FaceMesh.f_002_nrw_FaceMesh"
       ],
       "ee1f0b5d9bce": [
         "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_base.f_tal_ovw_base",
@@ -1258,13 +1261,13 @@
         "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_slacks.f_tal_ovw_slacks",
         "/Game/CitySampleCrowd/Character/Female/f_004/Face/f_004_nrw_FaceMesh.f_004_nrw_FaceMesh"
       ],
-      "fc7c37af1071": [
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_base.f_tal_nrw_base",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_body.f_tal_nrw_body",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_dressFlats.f_tal_nrw_dressFlats",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_scoopneck.f_tal_nrw_scoopneck",
-        "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_skirt.f_tal_nrw_skirt",
-        "/Game/CitySampleCrowd/Character/Female/f_005/Face/f_005_nrw_FaceMesh.f_005_nrw_FaceMesh"
+      "f4b983adb069": [
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_base.m_tal_unw_base",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_body.m_tal_unw_body",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_buttonOpen.m_tal_unw_buttonOpen",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_jeansLong_belt.m_tal_unw_jeansLong_belt",
+        "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_loafers.m_tal_unw_loafers",
+        "/Game/CitySampleCrowd/Character/Male/m_002/Face/m_002_nrw_FaceMesh.m_002_nrw_FaceMesh"
       ]
     },
     "collision_disabled_child_count": 30,
@@ -1273,155 +1276,155 @@
     "driving_mesh_count": 30,
     "paired_official_child_count": 30,
     "positions": {
-      "OpenMassCrowdCitySampleActor_0": [
-        -97674.396,
-        222294.649,
-        388.094
+      "1100611": [
+        -96333.293,
+        222335.336,
+        403.414
       ],
-      "OpenMassCrowdCitySampleActor_1": [
-        -96635.329,
-        222608.618,
-        402.683
+      "1297224": [
+        -96929.996,
+        222341.75,
+        397.434
       ],
-      "OpenMassCrowdCitySampleActor_10": [
-        -96284.438,
-        222373.084,
-        402.248
+      "1493837": [
+        -97462.424,
+        222607.331,
+        383.94
       ],
-      "OpenMassCrowdCitySampleActor_11": [
-        -97610.469,
-        222381.566,
-        387.315
+      "1690450": [
+        -97470.709,
+        222273.747,
+        384.805
       ],
-      "OpenMassCrowdCitySampleActor_12": [
-        -96747.486,
-        222648.692,
-        407.954
+      "1887063": [
+        -97030.599,
+        222277.435,
+        394.863
       ],
-      "OpenMassCrowdCitySampleActor_13": [
-        -97710.236,
-        222239.582,
-        388.419
+      "2083676": [
+        -97071.436,
+        222459.199,
+        396.865
       ],
-      "OpenMassCrowdCitySampleActor_14": [
-        -97576.446,
-        222096.84,
-        386.92
+      "2280289": [
+        -97249.53,
+        222638.981,
+        400.467
       ],
-      "OpenMassCrowdCitySampleActor_15": [
-        -96547.814,
-        222608.453,
-        402.655
+      "2476902": [
+        -96871.719,
+        222266.914,
+        398.992
       ],
-      "OpenMassCrowdCitySampleActor_16": [
-        -96476.911,
-        222558.108,
-        404.438
+      "2673515": [
+        -97109.026,
+        222338.248,
+        392.802
       ],
-      "OpenMassCrowdCitySampleActor_17": [
-        -97634.138,
-        222183.308,
-        387.6
+      "2870128": [
+        -97139.966,
+        222580.194,
+        400.877
       ],
-      "OpenMassCrowdCitySampleActor_18": [
-        -97644.612,
-        222524.124,
-        386.76
+      "3066741": [
+        -97497.043,
+        222443.702,
+        384.699
       ],
-      "OpenMassCrowdCitySampleActor_19": [
-        -97509.893,
-        222210.814,
-        386.817
+      "3263354": [
+        -97679.324,
+        222219.595,
+        388.296
       ],
-      "OpenMassCrowdCitySampleActor_2": [
-        -97067.422,
-        222605.491,
-        404.143
+      "3459967": [
+        -97293.992,
+        222307.249,
+        388.73
       ],
-      "OpenMassCrowdCitySampleActor_20": [
-        -96748.119,
-        222528.304,
-        402.992
+      "3656580": [
+        -96531.052,
+        222180.57,
+        406.383
       ],
-      "OpenMassCrowdCitySampleActor_21": [
-        -96225.979,
-        222652.108,
-        406.632
+      "3853193": [
+        -96417.954,
+        222256.281,
+        404.663
       ],
-      "OpenMassCrowdCitySampleActor_22": [
-        -96935.724,
-        222267.753,
-        397.04
+      "4049806": [
+        -96370.174,
+        222182.55,
+        400.279
       ],
-      "OpenMassCrowdCitySampleActor_23": [
-        -97501.395,
-        222521.934,
-        386.028
+      "4246419": [
+        -97197.808,
+        222378.73,
+        390.483
       ],
-      "OpenMassCrowdCitySampleActor_24": [
-        -97391.677,
-        222537.304,
-        386.536
+      "4443032": [
+        -96925.061,
+        222482.096,
+        401.48
       ],
-      "OpenMassCrowdCitySampleActor_25": [
-        -97166.983,
-        222527.39,
-        398.228
+      "4639645": [
+        -97162.283,
+        222480.892,
+        395.683
       ],
-      "OpenMassCrowdCitySampleActor_26": [
-        -97277.758,
-        222539.827,
-        394.098
+      "4836258": [
+        -96538.186,
+        222480.088,
+        404.594
       ],
-      "OpenMassCrowdCitySampleActor_27": [
-        -96450.832,
-        222105.837,
-        400.217
+      "5032871": [
+        -97508.03,
+        222190.74,
+        385.656
       ],
-      "OpenMassCrowdCitySampleActor_28": [
-        -96405.281,
-        222213.191,
-        401.426
+      "510772": [
+        -96983.184,
+        222387.336,
+        396.034
       ],
-      "OpenMassCrowdCitySampleActor_29": [
-        -96521.25,
-        222681.605,
-        402.402
+      "5229484": [
+        -96540.924,
+        222359.373,
+        406.982
       ],
-      "OpenMassCrowdCitySampleActor_3": [
-        -97332.026,
-        222156.216,
-        392.751
+      "5426097": [
+        -97528.962,
+        222535.978,
+        384.922
       ],
-      "OpenMassCrowdCitySampleActor_4": [
-        -97252.021,
-        222644.652,
-        399.192
+      "5622710": [
+        -96713.018,
+        222418.792,
+        402.394
       ],
-      "OpenMassCrowdCitySampleActor_5": [
-        -96433.983,
-        222291.721,
-        404.914
+      "5819323": [
+        -97275.958,
+        222507.954,
+        391.416
       ],
-      "OpenMassCrowdCitySampleActor_6": [
-        -97449.303,
-        222128.643,
-        386.836
+      "6015936": [
+        -96782.131,
+        222263.858,
+        393.933
       ],
-      "OpenMassCrowdCitySampleActor_7": [
-        -97367.111,
-        222640.865,
-        388.995
+      "6212549": [
+        -97384.81,
+        222165.056,
+        388.769
       ],
-      "OpenMassCrowdCitySampleActor_8": [
-        -96364.246,
-        222524.052,
-        407.006
+      "707385": [
+        -97377.769,
+        222425.254,
+        386.114
       ],
-      "OpenMassCrowdCitySampleActor_9": [
-        -97746.429,
-        222480.459,
-        387.556
+      "903998": [
+        -96378.89,
+        222425.854,
+        408.209
       ]
     },
     "primitive_component_count": 300,
@@ -1429,572 +1432,602 @@
     "proxy_records": [
       {
         "animation_playing": true,
-        "animation_position": 1.0145,
-        "appearance_signature": "b8b21c9f21c4",
+        "animation_position": 3.2652,
+        "appearance_signature": "cda720187027",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -97674.396,
-          222294.649,
-          388.094
+          -96531.052,
+          222180.57,
+          406.383
         ],
+        "mass_identity": 3656580,
         "official_child": true,
-        "play_rate": 0.9443,
+        "play_rate": 0.9066,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_0",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_0",
+        "proxy_name": "OpenMassCrowdCitySampleActor_103",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_103",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 0.6183,
-        "appearance_signature": "6fb1f31393dc",
+        "animation_position": 0.7243,
+        "appearance_signature": "e45f94863c8b",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -96635.329,
-          222608.618,
-          402.683
+          -97293.992,
+          222307.249,
+          388.73
         ],
+        "mass_identity": 3459967,
         "official_child": true,
-        "play_rate": 1.0745,
+        "play_rate": 0.3835,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_1",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_1",
+        "proxy_name": "OpenMassCrowdCitySampleActor_104",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_104",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 0.8176,
-        "appearance_signature": "8eee6d637d41",
+        "animation_position": 0.3623,
+        "appearance_signature": "e706a4960a36",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -96284.438,
-          222373.084,
-          402.248
+          -96925.061,
+          222482.096,
+          401.48
         ],
+        "mass_identity": 4443032,
         "official_child": true,
-        "play_rate": 0.9639,
+        "play_rate": 0.7707,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_10",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_10",
+        "proxy_name": "OpenMassCrowdCitySampleActor_105",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_105",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 0.514,
-        "appearance_signature": "d658e2a2eb9c",
+        "animation_position": 1.8156,
+        "appearance_signature": "2eb2c1f93fa1",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -97610.469,
-          222381.566,
-          387.315
+          -97275.958,
+          222507.954,
+          391.416
         ],
+        "mass_identity": 5819323,
         "official_child": true,
-        "play_rate": 1.0145,
+        "play_rate": 1.1399,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_11",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_11",
+        "proxy_name": "OpenMassCrowdCitySampleActor_107",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_107",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 2.1866,
-        "appearance_signature": "67780fbcd45e",
+        "animation_position": 0.7224,
+        "appearance_signature": "2c622a277771",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -96747.486,
-          222648.692,
-          407.954
+          -97470.709,
+          222273.747,
+          384.805
         ],
+        "mass_identity": 1690450,
         "official_child": true,
-        "play_rate": 0.9383,
+        "play_rate": 0.7979,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_12",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_12",
+        "proxy_name": "OpenMassCrowdCitySampleActor_109",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_109",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 1.5813,
-        "appearance_signature": "17160f665aec",
+        "animation_position": 1.0899,
+        "appearance_signature": "c35eb61b2a86",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -97710.236,
-          222239.582,
-          388.419
+          -96782.131,
+          222263.858,
+          393.933
         ],
+        "mass_identity": 6015936,
         "official_child": true,
-        "play_rate": 0.9201,
+        "play_rate": 0.1031,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_13",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_13",
+        "proxy_name": "OpenMassCrowdCitySampleActor_116",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_116",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 0.4107,
-        "appearance_signature": "14e2d9b8d297",
+        "animation_position": 2.9014,
+        "appearance_signature": "3ad7cee6229d",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -97576.446,
-          222096.84,
-          386.92
+          -97139.966,
+          222580.194,
+          400.877
         ],
+        "mass_identity": 2870128,
         "official_child": true,
-        "play_rate": 0.9674,
+        "play_rate": 0.8357,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_14",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_14",
+        "proxy_name": "OpenMassCrowdCitySampleActor_117",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_117",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 2.1571,
+        "animation_position": 1.45,
+        "appearance_signature": "88258fce5f6b",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97679.324,
+          222219.595,
+          388.296
+        ],
+        "mass_identity": 3263354,
+        "official_child": true,
+        "play_rate": 0.6405,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_120",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_120",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 2.5395,
+        "appearance_signature": "d29a6cc96111",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -96417.954,
+          222256.281,
+          404.663
+        ],
+        "mass_identity": 3853193,
+        "official_child": true,
+        "play_rate": 0.6615,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_121",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_121",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 2.1775,
+        "appearance_signature": "a0e4e89be743",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -96538.186,
+          222480.088,
+          404.594
+        ],
+        "mass_identity": 4836258,
+        "official_child": true,
+        "play_rate": 0.6504,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_122",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_122",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 0.3605,
+        "appearance_signature": "235d76af52dc",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97109.026,
+          222338.248,
+          392.802
+        ],
+        "mass_identity": 2673515,
+        "official_child": true,
+        "play_rate": 0.805,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_123",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_123",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 3.2633,
+        "appearance_signature": "eacffd4b7462",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97030.599,
+          222277.435,
+          394.863
+        ],
+        "mass_identity": 1887063,
+        "official_child": true,
+        "play_rate": 0.7428,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_124",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_124",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 0.3642,
+        "appearance_signature": "0747d7e2f682",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97384.81,
+          222165.056,
+          388.769
+        ],
+        "mass_identity": 6212549,
+        "official_child": true,
+        "play_rate": 1.0939,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_127",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_127",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 1.4481,
+        "appearance_signature": "d7042faa48f8",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97462.424,
+          222607.331,
+          383.94
+        ],
+        "mass_identity": 1493837,
+        "official_child": true,
+        "play_rate": 1.0194,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_128",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_128",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 2.9033,
+        "appearance_signature": "df6e33aa4eb3",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97162.283,
+          222480.892,
+          395.683
+        ],
+        "mass_identity": 4639645,
+        "official_child": true,
+        "play_rate": 0.9462,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_129",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_129",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 1.088,
+        "appearance_signature": "c07154cb1241",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97197.808,
+          222378.73,
+          390.483
+        ],
+        "mass_identity": 4246419,
+        "official_child": true,
+        "play_rate": 0.5562,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_130",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_130",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 1.4518,
+        "appearance_signature": "5b1860a479c1",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97508.03,
+          222190.74,
+          385.656
+        ],
+        "mass_identity": 5032871,
+        "official_child": true,
+        "play_rate": 0.9915,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_131",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_131",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 0.0004,
+        "appearance_signature": "c43d2e08c4c6",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97528.962,
+          222535.978,
+          384.922
+        ],
+        "mass_identity": 5426097,
+        "official_child": true,
+        "play_rate": 0.6748,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_132",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_132",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 2.1757,
+        "appearance_signature": "e99b42eee19a",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97497.043,
+          222443.702,
+          384.699
+        ],
+        "mass_identity": 3066741,
+        "official_child": true,
+        "play_rate": 0.3847,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_133",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_133",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 1.0843,
+        "appearance_signature": "671d2dfa5166",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -97377.769,
+          222425.254,
+          386.114
+        ],
+        "mass_identity": 707385,
+        "official_child": true,
+        "play_rate": 0.5603,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_134",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_134",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 2.5413,
+        "appearance_signature": "d550a8725fc6",
+        "child_class": "BP_CrowdCharacter_C",
+        "child_hidden_in_game": false,
+        "collision_disabled": true,
+        "location": [
+          -96713.018,
+          222418.792,
+          402.394
+        ],
+        "mass_identity": 5622710,
+        "official_child": true,
+        "play_rate": 0.8412,
+        "proxy_hidden_in_game": false,
+        "proxy_name": "OpenMassCrowdCitySampleActor_135",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_135",
+        "visible_skeletal_component_count": 6
+      },
+      {
+        "animation_playing": true,
+        "animation_position": 1.8119,
         "appearance_signature": "ee1f0b5d9bce",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -96547.814,
-          222608.453,
-          402.655
+          -97249.53,
+          222638.981,
+          400.467
         ],
+        "mass_identity": 2280289,
         "official_child": true,
-        "play_rate": 0.999,
+        "play_rate": 0.9157,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_15",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_15",
+        "proxy_name": "OpenMassCrowdCitySampleActor_136",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_136",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 0.5156,
-        "appearance_signature": "a51d4dca5b2f",
+        "animation_position": 1.81,
+        "appearance_signature": "364fdecbea59",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -96476.911,
-          222558.108,
-          404.438
+          -96983.184,
+          222387.336,
+          396.034
         ],
+        "mass_identity": 510772,
         "official_child": true,
-        "play_rate": 0.9369,
+        "play_rate": 0.4322,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_16",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_16",
+        "proxy_name": "OpenMassCrowdCitySampleActor_137",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_137",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 2.8441,
-        "appearance_signature": "a601a33d3a94",
+        "animation_position": 1.0862,
+        "appearance_signature": "53b14084ea5a",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -97634.138,
-          222183.308,
-          387.6
+          -96871.719,
+          222266.914,
+          398.992
         ],
+        "mass_identity": 2476902,
         "official_child": true,
-        "play_rate": 0.9568,
+        "play_rate": 0.3882,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_17",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_17",
+        "proxy_name": "OpenMassCrowdCitySampleActor_138",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_138",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 0.6777,
-        "appearance_signature": "de65650b5f2e",
+        "animation_position": 2.5376,
+        "appearance_signature": "64c2b780901d",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -97644.612,
-          222524.124,
-          386.76
+          -97071.436,
+          222459.199,
+          396.865
         ],
+        "mass_identity": 2083676,
         "official_child": true,
-        "play_rate": 1.0547,
+        "play_rate": 0.3948,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_18",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_18",
+        "proxy_name": "OpenMassCrowdCitySampleActor_139",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_139",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 1.1652,
-        "appearance_signature": "fc7c37af1071",
+        "animation_position": 2.1738,
+        "appearance_signature": "f4b983adb069",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -97509.893,
-          222210.814,
-          386.817
+          -96929.996,
+          222341.75,
+          397.434
         ],
+        "mass_identity": 1297224,
         "official_child": true,
-        "play_rate": 1.0568,
+        "play_rate": 0.579,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_19",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_19",
+        "proxy_name": "OpenMassCrowdCitySampleActor_140",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_140",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 2.462,
-        "appearance_signature": "a5acf27f98a9",
+        "animation_position": 1.8138,
+        "appearance_signature": "068eccfef15b",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -97067.422,
-          222605.491,
-          404.143
+          -96370.174,
+          222182.55,
+          400.279
         ],
+        "mass_identity": 4049806,
         "official_child": true,
-        "play_rate": 0.9726,
+        "play_rate": 0.5783,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_2",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_2",
+        "proxy_name": "OpenMassCrowdCitySampleActor_141",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_141",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 3.081,
-        "appearance_signature": "497dcbefdfb2",
+        "animation_position": 0.7261,
+        "appearance_signature": "87d5e4c0d43a",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -96748.119,
-          222528.304,
-          402.992
+          -96540.924,
+          222359.373,
+          406.982
         ],
+        "mass_identity": 5229484,
         "official_child": true,
-        "play_rate": 0.94,
+        "play_rate": 1.0804,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_20",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_20",
+        "proxy_name": "OpenMassCrowdCitySampleActor_142",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_142",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 1.1673,
-        "appearance_signature": "bea7f6d2fb2f",
+        "animation_position": 0.3586,
+        "appearance_signature": "1327a4dcb494",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -96225.979,
-          222652.108,
-          406.632
+          -96378.89,
+          222425.854,
+          408.209
         ],
+        "mass_identity": 903998,
         "official_child": true,
-        "play_rate": 0.9434,
+        "play_rate": 0.8842,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_21",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_21",
+        "proxy_name": "OpenMassCrowdCitySampleLowResActor_116",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleLowResActor_116",
         "visible_skeletal_component_count": 6
       },
       {
         "animation_playing": true,
-        "animation_position": 1.3745,
-        "appearance_signature": "64461f6467cf",
+        "animation_position": 2.8996,
+        "appearance_signature": "b653377d3afc",
         "child_class": "BP_CrowdCharacter_C",
         "child_hidden_in_game": false,
         "collision_disabled": true,
         "location": [
-          -96935.724,
-          222267.753,
-          397.04
+          -96333.293,
+          222335.336,
+          403.414
         ],
+        "mass_identity": 1100611,
         "official_child": true,
-        "play_rate": 0.9434,
+        "play_rate": 0.4874,
         "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_22",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_22",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 1.6327,
-        "appearance_signature": "bb3e0151a7de",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -97501.395,
-          222521.934,
-          386.028
-        ],
-        "official_child": true,
-        "play_rate": 0.9286,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_23",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_23",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 2.2559,
-        "appearance_signature": "89a838898ff7",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -97391.677,
-          222537.304,
-          386.536
-        ],
-        "official_child": true,
-        "play_rate": 1.0754,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_24",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_24",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 3.1038,
-        "appearance_signature": "b0065753876d",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -97166.983,
-          222527.39,
-          398.228
-        ],
-        "official_child": true,
-        "play_rate": 0.9951,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_25",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_25",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 0.2869,
-        "appearance_signature": "c6ffead54827",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -97277.758,
-          222539.827,
-          394.098
-        ],
-        "official_child": true,
-        "play_rate": 0.9951,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_26",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_26",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 2.2566,
-        "appearance_signature": "11b781664d00",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -96450.832,
-          222105.837,
-          400.217
-        ],
-        "official_child": true,
-        "play_rate": 1.0541,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_27",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_27",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 1.1431,
-        "appearance_signature": "28eac3bb3b2a",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -96405.281,
-          222213.191,
-          401.426
-        ],
-        "official_child": true,
-        "play_rate": 1.0608,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_28",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_28",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 1.1676,
-        "appearance_signature": "b36f058a4ba9",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -96521.25,
-          222681.605,
-          402.402
-        ],
-        "official_child": true,
-        "play_rate": 0.9763,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_29",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_29",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 1.1653,
-        "appearance_signature": "5c784f228b87",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -97332.026,
-          222156.216,
-          392.751
-        ],
-        "official_child": true,
-        "play_rate": 0.9652,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_3",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_3",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 1.0714,
-        "appearance_signature": "9107688bf07c",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -97252.021,
-          222644.652,
-          399.192
-        ],
-        "official_child": true,
-        "play_rate": 0.9354,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_4",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_4",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 0.3884,
-        "appearance_signature": "1130264574a1",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -96433.983,
-          222291.721,
-          404.914
-        ],
-        "official_child": true,
-        "play_rate": 1.0117,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_5",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_5",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 2.3743,
-        "appearance_signature": "176009cf4bf7",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -97449.303,
-          222128.643,
-          386.836
-        ],
-        "official_child": true,
-        "play_rate": 1.0043,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_6",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_6",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 2.9133,
-        "appearance_signature": "ca2b2fd30c30",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -97367.111,
-          222640.865,
-          388.995
-        ],
-        "official_child": true,
-        "play_rate": 1.0582,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_7",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_7",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 1.3404,
-        "appearance_signature": "91c4bf73aa77",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -96364.246,
-          222524.052,
-          407.006
-        ],
-        "official_child": true,
-        "play_rate": 0.9563,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_8",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_8",
-        "visible_skeletal_component_count": 6
-      },
-      {
-        "animation_playing": true,
-        "animation_position": 2.4097,
-        "appearance_signature": "6d5bf375e13e",
-        "child_class": "BP_CrowdCharacter_C",
-        "child_hidden_in_game": false,
-        "collision_disabled": true,
-        "location": [
-          -97746.429,
-          222480.459,
-          387.556
-        ],
-        "official_child": true,
-        "play_rate": 1.0401,
-        "proxy_hidden_in_game": false,
-        "proxy_name": "OpenMassCrowdCitySampleActor_9",
-        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_9",
+        "proxy_name": "OpenMassCrowdCitySampleLowResActor_117",
+        "proxy_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleLowResActor_117",
         "visible_skeletal_component_count": 6
       }
     ],

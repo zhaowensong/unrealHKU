@@ -1,0 +1,5523 @@
+{
+  "advisory_failed_checks": [],
+  "cesium_grounding": {
+    "cesium_component_count": 89,
+    "first_blocker_policy": "global_nearest_raw_hit_then_walkability",
+    "instantaneous_root_error_max_cm": 0.001,
+    "maximum_instantaneous_root_error_allowed_cm": 35.0,
+    "per_actor": [
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_149"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_149",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96481.349,
+            222163.911,
+            402.508
+          ],
+          "mass_identity": 510772,
+          "normal_z": 0.99857,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96481.349,
+            222163.911,
+            404.508
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 510772,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_158"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_158",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97081.478,
+            222287.872,
+            391.54
+          ],
+          "mass_identity": 707385,
+          "normal_z": 0.99967,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97081.478,
+            222287.872,
+            393.54
+          ],
+          "sample_index": 1,
+          "trace_hit": true
+        },
+        "mass_identity": 707385,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_175"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_175",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96529.931,
+            222409.887,
+            404.176
+          ],
+          "mass_identity": 903998,
+          "normal_z": 0.9996,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96529.931,
+            222409.887,
+            406.176
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 903998,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleLowResActor_152"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleLowResActor_152",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96365.033,
+            222591.635,
+            403.744
+          ],
+          "mass_identity": 1100611,
+          "normal_z": 0.9996,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96365.033,
+            222591.635,
+            405.744
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 1100611,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleLowResActor_153"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleLowResActor_153",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96385.066,
+            222582.406,
+            403.536
+          ],
+          "mass_identity": 1297224,
+          "normal_z": 0.9996,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96385.066,
+            222582.406,
+            405.536
+          ],
+          "sample_index": 2,
+          "trace_hit": true
+        },
+        "mass_identity": 1297224,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_152"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_152",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97595.917,
+            222230.613,
+            384.933
+          ],
+          "mass_identity": 1493837,
+          "normal_z": 0.99987,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97595.917,
+            222230.613,
+            386.933
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 1493837,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_174"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_174",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97178.069,
+            222163.478,
+            401.408
+          ],
+          "mass_identity": 1690450,
+          "normal_z": 0.99286,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97178.069,
+            222163.478,
+            403.408
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 1690450,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_172"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_172",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96826.902,
+            222438.217,
+            399.837
+          ],
+          "mass_identity": 1887063,
+          "normal_z": 0.99847,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96826.902,
+            222438.217,
+            401.837
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 1887063,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_139"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_139",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97088.876,
+            222419.736,
+            392.594
+          ],
+          "mass_identity": 2083676,
+          "normal_z": 0.99861,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97088.876,
+            222419.736,
+            394.594
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 2083676,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_136"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_136",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97408.908,
+            222292.734,
+            383.503
+          ],
+          "mass_identity": 2280289,
+          "normal_z": 0.99972,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97408.908,
+            222292.734,
+            385.503
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 2280289,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_156",
+          "OpenMassCrowdCitySampleLowResActor_155"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_156",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96452.288,
+            222277.101,
+            404.807
+          ],
+          "mass_identity": 2476902,
+          "normal_z": 0.99857,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96452.288,
+            222277.101,
+            406.807
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 2476902,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleLowResActor_150",
+          "OpenMassCrowdCitySampleActor_177"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleLowResActor_150",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96427.638,
+            222462.805,
+            405.118
+          ],
+          "mass_identity": 2673515,
+          "normal_z": 0.9996,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96427.638,
+            222462.805,
+            407.118
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 2673515,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_170"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_170",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97525.744,
+            222525.02,
+            382.904
+          ],
+          "mass_identity": 2870128,
+          "normal_z": 0.99987,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97525.744,
+            222525.02,
+            384.904
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 2870128,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_173"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_173",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97186.615,
+            222441.12,
+            391.231
+          ],
+          "mass_identity": 3066741,
+          "normal_z": 0.99861,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97186.615,
+            222441.12,
+            393.231
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 3066741,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_153"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_153",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97311.067,
+            222330.811,
+            385.781
+          ],
+          "mass_identity": 3263354,
+          "normal_z": 0.99972,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97311.067,
+            222330.811,
+            387.781
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 3263354,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_161"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_161",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97451.411,
+            222178.437,
+            382.792
+          ],
+          "mass_identity": 3459967,
+          "normal_z": 0.99987,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97451.411,
+            222178.437,
+            384.792
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 3459967,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_165"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_165",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96604.825,
+            222451.845,
+            401.854
+          ],
+          "mass_identity": 3656580,
+          "normal_z": 0.9996,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96604.825,
+            222451.845,
+            403.854
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 3656580,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_162"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_162",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97430.188,
+            222577.875,
+            382.731
+          ],
+          "mass_identity": 3853193,
+          "normal_z": 0.99972,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97430.188,
+            222577.875,
+            384.731
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 3853193,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_141"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_141",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97365.029,
+            222132.926,
+            395.459
+          ],
+          "mass_identity": 4049806,
+          "normal_z": 0.8618,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97365.029,
+            222132.926,
+            397.459
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 4049806,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_168"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_168",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97426.9,
+            222646.475,
+            382.744
+          ],
+          "mass_identity": 4246419,
+          "normal_z": 0.99972,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97426.9,
+            222646.475,
+            384.744
+          ],
+          "sample_index": 1,
+          "trace_hit": true
+        },
+        "mass_identity": 4246419,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_176"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_176",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96700.988,
+            222337.325,
+            399.392
+          ],
+          "mass_identity": 4443032,
+          "normal_z": 0.99603,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96700.988,
+            222337.325,
+            401.392
+          ],
+          "sample_index": 1,
+          "trace_hit": true
+        },
+        "mass_identity": 4443032,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_129"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_129",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97443.405,
+            222496.221,
+            382.495
+          ],
+          "mass_identity": 4639645,
+          "normal_z": 0.99972,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97443.405,
+            222496.221,
+            384.495
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 4639645,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_167"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_167",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97504.058,
+            222721.697,
+            382.275
+          ],
+          "mass_identity": 4836258,
+          "normal_z": 0.99938,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97504.058,
+            222721.697,
+            384.275
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 4836258,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_159"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_159",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97244.808,
+            222507.742,
+            392.324
+          ],
+          "mass_identity": 5032871,
+          "normal_z": 0.9944,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97244.808,
+            222507.742,
+            394.324
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 5032871,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_171"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_171",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97276.006,
+            222244.854,
+            390.919
+          ],
+          "mass_identity": 5229484,
+          "normal_z": 0.99635,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97276.006,
+            222244.854,
+            392.919
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 5229484,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_169"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_169",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97332.86,
+            222528.775,
+            385.129
+          ],
+          "mass_identity": 5426097,
+          "normal_z": 0.9944,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97332.86,
+            222528.775,
+            387.129
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 5426097,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_166"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_166",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97614.731,
+            222485.738,
+            384.443
+          ],
+          "mass_identity": 5622710,
+          "normal_z": 0.99987,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": -0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97614.731,
+            222485.738,
+            386.443
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 5622710,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_107"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_107",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97221.407,
+            222379.052,
+            387.872
+          ],
+          "mass_identity": 5819323,
+          "normal_z": 0.99967,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97221.407,
+            222379.052,
+            389.872
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 5819323,
+        "maximum_abs_root_error_cm": 0.0,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_116",
+          "OpenMassCrowdCitySampleLowResActor_154"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_116",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -96537.122,
+            222539.77,
+            401.407
+          ],
+          "mass_identity": 6015936,
+          "normal_z": 0.9996,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -96537.122,
+            222539.77,
+            403.407
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 6015936,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      },
+      {
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_164"
+        ],
+        "best_measurement": {
+          "actor_name": "OpenMassCrowdCitySampleActor_164",
+          "component_class": "CesiumGltfPrimitiveComponent",
+          "ground_location": [
+            -97529.011,
+            222401.64,
+            383.338
+          ],
+          "mass_identity": 6212549,
+          "normal_z": 0.99987,
+          "probe_offset_xy_cm": [
+            0.0,
+            0.0
+          ],
+          "root_ground_error_cm": 0.0,
+          "root_ground_offset_cm": 2.0,
+          "root_location": [
+            -97529.011,
+            222401.64,
+            385.338
+          ],
+          "sample_index": 0,
+          "trace_hit": true
+        },
+        "mass_identity": 6212549,
+        "maximum_abs_root_error_cm": 0.001,
+        "minimum_abs_root_error_cm": 0.0,
+        "sample_count": 3,
+        "trace_hit_count": 3
+      }
+    ],
+    "probe_mode": "exact_xy_only",
+    "requested_actor_count": 30,
+    "root_correction_observed_actor_count": 30,
+    "root_correction_tolerance_cm": 8.0,
+    "root_within_instantaneous_envelope_actor_count": 30,
+    "samples": [
+      {
+        "cesium_component_count": 89,
+        "measurements": [
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_107",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97221.407,
+              222379.052,
+              387.872
+            ],
+            "mass_identity": 5819323,
+            "normal_z": 0.99967,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97221.407,
+              222379.052,
+              389.872
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_116",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96537.122,
+              222539.77,
+              401.407
+            ],
+            "mass_identity": 6015936,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96537.122,
+              222539.77,
+              403.407
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_129",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97443.405,
+              222496.221,
+              382.495
+            ],
+            "mass_identity": 4639645,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97443.405,
+              222496.221,
+              384.495
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_136",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97408.908,
+              222292.734,
+              383.503
+            ],
+            "mass_identity": 2280289,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97408.908,
+              222292.734,
+              385.503
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_139",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97088.876,
+              222419.736,
+              392.594
+            ],
+            "mass_identity": 2083676,
+            "normal_z": 0.99861,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97088.876,
+              222419.736,
+              394.594
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_141",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97365.029,
+              222132.926,
+              395.459
+            ],
+            "mass_identity": 4049806,
+            "normal_z": 0.8618,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97365.029,
+              222132.926,
+              397.459
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_149",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96481.349,
+              222163.911,
+              402.508
+            ],
+            "mass_identity": 510772,
+            "normal_z": 0.99857,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96481.349,
+              222163.911,
+              404.508
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_152",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97595.917,
+              222230.613,
+              384.933
+            ],
+            "mass_identity": 1493837,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97595.917,
+              222230.613,
+              386.933
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_153",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97311.067,
+              222330.811,
+              385.781
+            ],
+            "mass_identity": 3263354,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97311.067,
+              222330.811,
+              387.781
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_156",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96452.288,
+              222277.101,
+              404.807
+            ],
+            "mass_identity": 2476902,
+            "normal_z": 0.99857,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96452.288,
+              222277.101,
+              406.807
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_158",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97138.148,
+              222318.966,
+              390.057
+            ],
+            "mass_identity": 707385,
+            "normal_z": 0.99967,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -97138.148,
+              222318.966,
+              392.058
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_159",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97244.808,
+              222507.742,
+              392.324
+            ],
+            "mass_identity": 5032871,
+            "normal_z": 0.9944,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97244.808,
+              222507.742,
+              394.324
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_161",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97451.411,
+              222178.437,
+              382.792
+            ],
+            "mass_identity": 3459967,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97451.411,
+              222178.437,
+              384.792
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_162",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97430.188,
+              222577.875,
+              382.731
+            ],
+            "mass_identity": 3853193,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97430.188,
+              222577.875,
+              384.731
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_164",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97529.011,
+              222401.64,
+              383.338
+            ],
+            "mass_identity": 6212549,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97529.011,
+              222401.64,
+              385.338
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_165",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96604.825,
+              222451.845,
+              401.854
+            ],
+            "mass_identity": 3656580,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96604.825,
+              222451.845,
+              403.854
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_166",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97614.731,
+              222485.738,
+              384.443
+            ],
+            "mass_identity": 5622710,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97614.731,
+              222485.738,
+              386.443
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_167",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97504.058,
+              222721.697,
+              382.275
+            ],
+            "mass_identity": 4836258,
+            "normal_z": 0.99938,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97504.058,
+              222721.697,
+              384.275
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_168",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97489.752,
+              222626.538,
+              382.016
+            ],
+            "mass_identity": 4246419,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -97489.752,
+              222626.538,
+              384.017
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_169",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97332.86,
+              222528.775,
+              385.129
+            ],
+            "mass_identity": 5426097,
+            "normal_z": 0.9944,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97332.86,
+              222528.775,
+              387.129
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_170",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97525.744,
+              222525.02,
+              382.904
+            ],
+            "mass_identity": 2870128,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97525.744,
+              222525.02,
+              384.904
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_171",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97276.006,
+              222244.854,
+              390.919
+            ],
+            "mass_identity": 5229484,
+            "normal_z": 0.99635,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97276.006,
+              222244.854,
+              392.919
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_172",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96826.902,
+              222438.217,
+              399.837
+            ],
+            "mass_identity": 1887063,
+            "normal_z": 0.99847,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96826.902,
+              222438.217,
+              401.837
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_173",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97186.615,
+              222441.12,
+              391.231
+            ],
+            "mass_identity": 3066741,
+            "normal_z": 0.99861,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97186.615,
+              222441.12,
+              393.231
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_174",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97178.069,
+              222163.478,
+              401.408
+            ],
+            "mass_identity": 1690450,
+            "normal_z": 0.99286,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97178.069,
+              222163.478,
+              403.408
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_175",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96529.931,
+              222409.887,
+              404.176
+            ],
+            "mass_identity": 903998,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96529.931,
+              222409.887,
+              406.176
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_176",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96610.899,
+              222329.883,
+              404.201
+            ],
+            "mass_identity": 4443032,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -96610.899,
+              222329.883,
+              406.202
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_150",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96427.638,
+              222462.805,
+              405.118
+            ],
+            "mass_identity": 2673515,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96427.638,
+              222462.805,
+              407.118
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_152",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96365.033,
+              222591.635,
+              403.744
+            ],
+            "mass_identity": 1100611,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96365.033,
+              222591.635,
+              405.744
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_153",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96448.847,
+              222546.41,
+              403.009
+            ],
+            "mass_identity": 1297224,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -96448.847,
+              222546.41,
+              405.01
+            ],
+            "trace_hit": true
+          }
+        ],
+        "probe_mode": "exact_xy_only",
+        "requested_actor_count": 30,
+        "root_max_abs_error_cm": 0.001,
+        "root_tolerance_cm": 8.0,
+        "root_within_tolerance_count": 30,
+        "target_root_ground_offset_cm": 2.0,
+        "trace_hit_count": 30
+      },
+      {
+        "cesium_component_count": 89,
+        "measurements": [
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_107",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97159.226,
+              222359.447,
+              389.491
+            ],
+            "mass_identity": 5819323,
+            "normal_z": 0.99967,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97159.226,
+              222359.447,
+              391.491
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_129",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97497.622,
+              222493.25,
+              382.555
+            ],
+            "mass_identity": 4639645,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.001,
+            "root_ground_offset_cm": 1.999,
+            "root_location": [
+              -97497.622,
+              222493.25,
+              384.554
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_136",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97374.067,
+              222313.781,
+              384.307
+            ],
+            "mass_identity": 2280289,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97374.067,
+              222313.781,
+              386.307
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_139",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97133.014,
+              222440.171,
+              392.484
+            ],
+            "mass_identity": 2083676,
+            "normal_z": 0.99861,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97133.014,
+              222440.171,
+              394.484
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_141",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97347.942,
+              222100.738,
+              414.091
+            ],
+            "mass_identity": 4049806,
+            "normal_z": 0.8618,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97347.942,
+              222100.738,
+              416.091
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_149",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96554.196,
+              222177.326,
+              403.027
+            ],
+            "mass_identity": 510772,
+            "normal_z": 0.9983,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -96554.196,
+              222177.326,
+              405.028
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_152",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97530.401,
+              222229.579,
+              383.892
+            ],
+            "mass_identity": 1493837,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97530.401,
+              222229.579,
+              385.892
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_153",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97276.176,
+              222351.674,
+              386.586
+            ],
+            "mass_identity": 3263354,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -97276.176,
+              222351.674,
+              388.587
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_156",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96396.101,
+              222319.861,
+              403.678
+            ],
+            "mass_identity": 2476902,
+            "normal_z": 0.99857,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96396.101,
+              222319.861,
+              405.678
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_158",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97081.478,
+              222287.872,
+              391.54
+            ],
+            "mass_identity": 707385,
+            "normal_z": 0.99967,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97081.478,
+              222287.872,
+              393.54
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_159",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97308.113,
+              222486.201,
+              385.704
+            ],
+            "mass_identity": 5032871,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97308.113,
+              222486.201,
+              387.704
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_161",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97394.7,
+              222188.601,
+              384.965
+            ],
+            "mass_identity": 3459967,
+            "normal_z": 0.99635,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97394.7,
+              222188.601,
+              386.965
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_162",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97458.819,
+              222561.363,
+              382.069
+            ],
+            "mass_identity": 3853193,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97458.819,
+              222561.363,
+              384.069
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_164",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97454.259,
+              222408.553,
+              382.321
+            ],
+            "mass_identity": 6212549,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97454.259,
+              222408.553,
+              384.321
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_165",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96600.027,
+              222487.883,
+              401.219
+            ],
+            "mass_identity": 3656580,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96600.027,
+              222487.883,
+              403.219
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_166",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97653.539,
+              222424.954,
+              385.25
+            ],
+            "mass_identity": 5622710,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97653.539,
+              222424.954,
+              387.25
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_167",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97467.889,
+              222730.952,
+              381.744
+            ],
+            "mass_identity": 4836258,
+            "normal_z": 0.99374,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97467.889,
+              222730.952,
+              383.744
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_168",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97426.9,
+              222646.475,
+              382.744
+            ],
+            "mass_identity": 4246419,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97426.9,
+              222646.475,
+              384.744
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_169",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97372.024,
+              222550.626,
+              384.132
+            ],
+            "mass_identity": 5426097,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97372.024,
+              222550.626,
+              386.132
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_170",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97585.764,
+              222551.573,
+              383.778
+            ],
+            "mass_identity": 2870128,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97585.764,
+              222551.573,
+              385.778
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_171",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97293.089,
+              222253.193,
+              389.3
+            ],
+            "mass_identity": 5229484,
+            "normal_z": 0.99635,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97293.089,
+              222253.193,
+              391.3
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_172",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96763.024,
+              222452.06,
+              399.725
+            ],
+            "mass_identity": 1887063,
+            "normal_z": 0.99962,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96763.024,
+              222452.06,
+              401.725
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_173",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97231.666,
+              222454.675,
+              390.776
+            ],
+            "mass_identity": 3066741,
+            "normal_z": 0.99861,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97231.666,
+              222454.675,
+              392.776
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_174",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97232.053,
+              222162.917,
+              397.886
+            ],
+            "mass_identity": 1690450,
+            "normal_z": 0.99635,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97232.053,
+              222162.917,
+              399.886
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_175",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96568.622,
+              222388.287,
+              403.852
+            ],
+            "mass_identity": 903998,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96568.622,
+              222388.287,
+              405.852
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_176",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96700.988,
+              222337.325,
+              399.392
+            ],
+            "mass_identity": 4443032,
+            "normal_z": 0.99603,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96700.988,
+              222337.325,
+              401.392
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_177",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96482.465,
+              222448.197,
+              404.335
+            ],
+            "mass_identity": 2673515,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96482.465,
+              222448.197,
+              406.335
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_152",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96305.465,
+              222555.674,
+              405.643
+            ],
+            "mass_identity": 1100611,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96305.465,
+              222555.674,
+              407.643
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_153",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96404.27,
+              222571.966,
+              403.369
+            ],
+            "mass_identity": 1297224,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -96404.27,
+              222571.966,
+              405.37
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_154",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96499.156,
+              222547.136,
+              402.005
+            ],
+            "mass_identity": 6015936,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96499.156,
+              222547.136,
+              404.005
+            ],
+            "trace_hit": true
+          }
+        ],
+        "probe_mode": "exact_xy_only",
+        "requested_actor_count": 30,
+        "root_max_abs_error_cm": 0.001,
+        "root_tolerance_cm": 8.0,
+        "root_within_tolerance_count": 30,
+        "target_root_ground_offset_cm": 2.0,
+        "trace_hit_count": 30
+      },
+      {
+        "cesium_component_count": 89,
+        "measurements": [
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_107",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97124.308,
+              222361.97,
+              390.394
+            ],
+            "mass_identity": 5819323,
+            "normal_z": 0.99967,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97124.308,
+              222361.97,
+              392.394
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_129",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97538.701,
+              222491.202,
+              383.215
+            ],
+            "mass_identity": 4639645,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97538.701,
+              222491.202,
+              385.215
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_136",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97369.798,
+              222323.583,
+              384.399
+            ],
+            "mass_identity": 2280289,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97369.798,
+              222323.583,
+              386.399
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_139",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97158.134,
+              222447.656,
+              392.226
+            ],
+            "mass_identity": 2083676,
+            "normal_z": 0.99861,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -97158.134,
+              222447.656,
+              394.227
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_141",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97345.87,
+              222084.758,
+              423.455
+            ],
+            "mass_identity": 4049806,
+            "normal_z": 0.8618,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97345.87,
+              222084.758,
+              425.455
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_149",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96595.269,
+              222186.318,
+              399.591
+            ],
+            "mass_identity": 510772,
+            "normal_z": 0.99618,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96595.269,
+              222186.318,
+              401.591
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_152",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97495.912,
+              222224.051,
+              383.36
+            ],
+            "mass_identity": 1493837,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97495.912,
+              222224.051,
+              385.36
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_153",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97251.701,
+              222352.505,
+              387.683
+            ],
+            "mass_identity": 3263354,
+            "normal_z": 0.99635,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97251.701,
+              222352.505,
+              389.683
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_158",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97067.15,
+              222267.886,
+              391.921
+            ],
+            "mass_identity": 707385,
+            "normal_z": 0.99967,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97067.15,
+              222267.886,
+              393.921
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_159",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97343.644,
+              222479.585,
+              384.87
+            ],
+            "mass_identity": 5032871,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97343.644,
+              222479.585,
+              386.87
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_161",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97367.053,
+              222197.259,
+              386.558
+            ],
+            "mass_identity": 3459967,
+            "normal_z": 0.99635,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97367.053,
+              222197.259,
+              388.558
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_162",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97483.308,
+              222568.295,
+              382.094
+            ],
+            "mass_identity": 3853193,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97483.308,
+              222568.295,
+              384.094
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_164",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97411.908,
+              222404.642,
+              383.326
+            ],
+            "mass_identity": 6212549,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -97411.908,
+              222404.642,
+              385.327
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_165",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96589.853,
+              222512.067,
+              400.902
+            ],
+            "mass_identity": 3656580,
+            "normal_z": 0.99867,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96589.853,
+              222512.067,
+              402.902
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_166",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97664.381,
+              222389.385,
+              385.532
+            ],
+            "mass_identity": 5622710,
+            "normal_z": 0.99987,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97664.381,
+              222389.385,
+              387.532
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_167",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97439.59,
+              222728.449,
+              384.347
+            ],
+            "mass_identity": 4836258,
+            "normal_z": 0.99374,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97439.59,
+              222728.449,
+              386.347
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_168",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97380.595,
+              222641.262,
+              386.302
+            ],
+            "mass_identity": 4246419,
+            "normal_z": 0.9944,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97380.595,
+              222641.262,
+              388.302
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_169",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97386.486,
+              222550.542,
+              383.79
+            ],
+            "mass_identity": 5426097,
+            "normal_z": 0.99972,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97386.486,
+              222550.542,
+              385.79
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_170",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97615.69,
+              222572.41,
+              383.452
+            ],
+            "mass_identity": 2870128,
+            "normal_z": 0.99976,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97615.69,
+              222572.41,
+              385.452
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_171",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97305.295,
+              222260.784,
+              388.068
+            ],
+            "mass_identity": 5229484,
+            "normal_z": 0.99635,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97305.295,
+              222260.784,
+              390.068
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_172",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96730.507,
+              222469.725,
+              399.924
+            ],
+            "mass_identity": 1887063,
+            "normal_z": 0.99994,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96730.507,
+              222469.725,
+              401.924
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_173",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97265.644,
+              222452.029,
+              387.576
+            ],
+            "mass_identity": 3066741,
+            "normal_z": 0.9944,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97265.644,
+              222452.029,
+              389.576
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_174",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -97257.304,
+              222153.957,
+              396.48
+            ],
+            "mass_identity": 1690450,
+            "normal_z": 0.99635,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -97257.304,
+              222153.957,
+              398.48
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_175",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96594.957,
+              222379.116,
+              403.519
+            ],
+            "mass_identity": 903998,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96594.957,
+              222379.116,
+              405.519
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_176",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96744.032,
+              222342.307,
+              397.133
+            ],
+            "mass_identity": 4443032,
+            "normal_z": 0.99603,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96744.032,
+              222342.307,
+              399.133
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleActor_177",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96514.89,
+              222446.81,
+              403.725
+            ],
+            "mass_identity": 2673515,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96514.89,
+              222446.81,
+              405.725
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_152",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96282.386,
+              222532.042,
+              405.283
+            ],
+            "mass_identity": 1100611,
+            "normal_z": 0.99857,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96282.386,
+              222532.042,
+              407.283
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_153",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96385.066,
+              222582.406,
+              403.536
+            ],
+            "mass_identity": 1297224,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96385.066,
+              222582.406,
+              405.536
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_154",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96480.763,
+              222555.958,
+              402.188
+            ],
+            "mass_identity": 6015936,
+            "normal_z": 0.9996,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": 0.001,
+            "root_ground_offset_cm": 2.001,
+            "root_location": [
+              -96480.763,
+              222555.958,
+              404.189
+            ],
+            "trace_hit": true
+          },
+          {
+            "actor_name": "OpenMassCrowdCitySampleLowResActor_155",
+            "component_class": "CesiumGltfPrimitiveComponent",
+            "ground_location": [
+              -96373.984,
+              222347.325,
+              403.562
+            ],
+            "mass_identity": 2476902,
+            "normal_z": 0.99857,
+            "probe_offset_xy_cm": [
+              0.0,
+              0.0
+            ],
+            "root_ground_error_cm": -0.0,
+            "root_ground_offset_cm": 2.0,
+            "root_location": [
+              -96373.984,
+              222347.325,
+              405.562
+            ],
+            "trace_hit": true
+          }
+        ],
+        "probe_mode": "exact_xy_only",
+        "requested_actor_count": 30,
+        "root_max_abs_error_cm": 0.001,
+        "root_tolerance_cm": 8.0,
+        "root_within_tolerance_count": 30,
+        "target_root_ground_offset_cm": 2.0,
+        "trace_hit_count": 30
+      }
+    ],
+    "target_root_ground_offset_cm": 2.0,
+    "trace_hit_actor_count": 30,
+    "trace_hit_every_sample_actor_count": 30,
+    "unique_actor_count": 30,
+    "validation_sample_count": 3
+  },
+  "checks": {
+    "all_30_representation_actors_move": {
+      "actual": {
+        "minimum_cumulative_path_cm": 1734.717,
+        "moved": 30,
+        "tracked": 30
+      },
+      "expected": {
+        "exact_moved": 30,
+        "minimum_path_per_actor_cm": 150.0
+      },
+      "passed": true,
+      "required": true
+    },
+    "all_30_roots_trace_to_loaded_cesium_collision": {
+      "actual": {
+        "actors_traced_every_sample": 30,
+        "actors_with_correction_point_observed": 30,
+        "actors_with_trace_hit": 30,
+        "actors_within_dynamic_envelope": 30,
+        "cesium_components": 89,
+        "maximum_instantaneous_abs_error_cm": 0.001,
+        "validation_samples": 3
+      },
+      "expected": {
+        "component_class": "CesiumGltfPrimitiveComponent",
+        "correction_point_tolerance_cm": 8.0,
+        "exact_actor_count": 30,
+        "instantaneous_error_envelope_cm": 35.0,
+        "target_root_offset_cm": 2.0,
+        "validation_sample_count": 3
+      },
+      "passed": true,
+      "required": true
+    },
+    "at_least_one_completed_a_to_b_trip": {
+      "actual": {
+        "delta_during_sample": 43,
+        "final": 443,
+        "initial": 400
+      },
+      "expected": {
+        "minimum_final": 1
+      },
+      "passed": true,
+      "required": true
+    },
+    "broad_xy_coverage_and_route_branching": {
+      "actual": {
+        "coarse_200cm_cells": 32,
+        "coverage_x_cm": 1541.614,
+        "coverage_y_cm": 680.958,
+        "direction_bins": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "turning_actors": 30,
+        "x_active_actors": 30,
+        "y_active_actors": 30
+      },
+      "expected": {
+        "minimum_active_actors_per_axis": 10,
+        "minimum_coverage_x_cm": 1000.0,
+        "minimum_coverage_y_cm": 300.0,
+        "minimum_direction_bins": 4
+      },
+      "passed": true,
+      "required": true
+    },
+    "editor_frame_proxy_median_fps_advisory": {
+      "actual": {
+        "frames_over_50ms": 44,
+        "median_fps_proxy": 59.154,
+        "p95_frame_ms": 51.12
+      },
+      "expected": {
+        "minimum_median_fps_proxy": 15.0
+      },
+      "passed": true,
+      "required": false
+    },
+    "exactly_30_mass_entities_and_proxies": {
+      "actual": {
+        "entities": 30,
+        "proxies_active": 30,
+        "proxies_total": 30,
+        "requested": 30,
+        "stable_mass_identities": 30
+      },
+      "expected": {
+        "exact_each": 30
+      },
+      "passed": true,
+      "required": true
+    },
+    "no_possible_stuck_actor": {
+      "actual": {
+        "possible_stuck_count": 0,
+        "track_ids": []
+      },
+      "expected": {
+        "count": 0,
+        "minimum_path_cm": 150.0,
+        "stationary_interval_under_seconds": 5.0
+      },
+      "passed": true,
+      "required": true
+    },
+    "no_severe_center_overlap": {
+      "actual": {
+        "body_overlap_pair_samples": 1,
+        "minimum_pairwise_xy_distance_cm": 37.928,
+        "severe_overlap_pair_samples": 0
+      },
+      "expected": {
+        "body_overlap_threshold_cm_diagnostic": 60.0,
+        "severe_pair_samples": 0,
+        "severe_threshold_cm": 20.0
+      },
+      "passed": true,
+      "required": true
+    },
+    "pie_world_is_shanghai": {
+      "actual": "shanghai",
+      "expected": "shanghai (PIE prefix allowed)",
+      "passed": true,
+      "required": true
+    },
+    "representation_getters_account_for_population": {
+      "actual": {
+        "final_high": 26,
+        "final_low": 4,
+        "observed_high_low_pairs": [
+          [
+            23,
+            7
+          ],
+          [
+            24,
+            6
+          ],
+          [
+            25,
+            5
+          ],
+          [
+            26,
+            4
+          ],
+          [
+            27,
+            3
+          ],
+          [
+            28,
+            2
+          ],
+          [
+            29,
+            1
+          ]
+        ]
+      },
+      "expected": {
+        "high_plus_low": 30
+      },
+      "passed": true,
+      "required": true
+    },
+    "route_assignments_cover_population": {
+      "actual": {
+        "final": 473,
+        "initial": 430
+      },
+      "expected": {
+        "minimum_final": 30
+      },
+      "passed": true,
+      "required": true
+    },
+    "route_replans_are_reasonable": {
+      "actual": {
+        "final": 0,
+        "initial": 0
+      },
+      "expected": {
+        "ideal": 0,
+        "maximum": 3
+      },
+      "passed": true,
+      "required": true
+    },
+    "route_replans_ideal_zero": {
+      "actual": 0,
+      "expected": 0,
+      "passed": true,
+      "required": false
+    },
+    "runtime_navigation_grid_is_9_nodes_and_connected_collision_pruned_lanes": {
+      "actual": {
+        "directed_lanes": 22,
+        "nodes": 9
+      },
+      "expected": {
+        "directed_lanes_even": true,
+        "directed_lanes_maximum": 24,
+        "directed_lanes_minimum": 16,
+        "nodes": 9
+      },
+      "passed": true,
+      "required": true
+    },
+    "single_open_mass_spawner": {
+      "actual": 1,
+      "expected": 1,
+      "passed": true,
+      "required": true
+    },
+    "unsupported_ground_steps_are_recovered_before_render": {
+      "actual": {
+        "currently_unsupported_visuals": 0,
+        "lane_center_recoveries": 71,
+        "last_valid_rollbacks": 0,
+        "projection_failures": 71,
+        "unrecoverable": 0
+      },
+      "expected": {
+        "currently_unsupported_visuals": 0,
+        "every_failure_is_recovered_or_accounted": true,
+        "unrecoverable": 0
+      },
+      "passed": true,
+      "required": true
+    }
+  },
+  "collision_and_spacing": {
+    "agent_radius_cm": 30.0,
+    "body_overlap_examples": [
+      {
+        "actors": [
+          "1100611",
+          "4639645"
+        ],
+        "distance_cm": 37.928,
+        "time_seconds": 14.457
+      }
+    ],
+    "body_overlap_frame_count": 1,
+    "body_overlap_pair_samples": 1,
+    "body_overlap_threshold_cm": 60.0,
+    "minimum_pairwise_xy_distance_cm": 37.928,
+    "sample_frame_count": 37,
+    "severe_overlap_examples": [],
+    "severe_overlap_frame_count": 0,
+    "severe_overlap_pair_samples": 0,
+    "severe_overlap_threshold_cm": 20.0,
+    "unique_body_overlap_pair_count": 1,
+    "unique_severe_overlap_pair_count": 0
+  },
+  "completion_reason": "completed",
+  "diagnostics": {
+    "error_count": 0,
+    "errors": [],
+    "status_updates": [
+      {
+        "active_proxy_actor_count": 30,
+        "completed_trips": 400,
+        "directed_lanes": 22,
+        "elapsed_wall_seconds": 0.032,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "network_nodes": 9,
+        "proxy_actor_count": 30,
+        "route_assignments": 430,
+        "route_replans": 0,
+        "spawned_entities": 30,
+        "spawner_count": 1,
+        "status": "sampling_city_navigation",
+        "utc": "2026-07-18T04:48:34.333294+00:00"
+      },
+      {
+        "active_proxy_actor_count": 30,
+        "completed_trips": 442,
+        "directed_lanes": 22,
+        "elapsed_wall_seconds": 20.063,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "network_nodes": 9,
+        "proxy_actor_count": 30,
+        "route_assignments": 472,
+        "route_replans": 0,
+        "spawned_entities": 30,
+        "spawner_count": 1,
+        "status": "sampling_cesium_ground_correction_1/3",
+        "utc": "2026-07-18T04:48:54.362753+00:00"
+      },
+      {
+        "active_proxy_actor_count": 30,
+        "completed_trips": 443,
+        "directed_lanes": 22,
+        "elapsed_wall_seconds": 20.61,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "network_nodes": 9,
+        "proxy_actor_count": 30,
+        "route_assignments": 473,
+        "route_replans": 0,
+        "spawned_entities": 30,
+        "spawner_count": 1,
+        "status": "sampling_cesium_ground_correction_2/3",
+        "utc": "2026-07-18T04:48:54.905622+00:00"
+      },
+      {
+        "active_proxy_actor_count": 30,
+        "completed_trips": 443,
+        "directed_lanes": 22,
+        "elapsed_wall_seconds": 20.875,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "network_nodes": 9,
+        "proxy_actor_count": 30,
+        "route_assignments": 473,
+        "route_replans": 0,
+        "spawned_entities": 30,
+        "spawner_count": 1,
+        "status": "sampling_cesium_ground_correction_3/3",
+        "utc": "2026-07-18T04:48:55.172521+00:00"
+      },
+      {
+        "active_proxy_actor_count": 30,
+        "completed_trips": 443,
+        "directed_lanes": 22,
+        "elapsed_wall_seconds": 20.875,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "network_nodes": 9,
+        "proxy_actor_count": 30,
+        "route_assignments": 473,
+        "route_replans": 0,
+        "spawned_entities": 30,
+        "spawner_count": 1,
+        "status": "finalizing_navigation_evidence",
+        "utc": "2026-07-18T04:48:55.173529+00:00"
+      }
+    ]
+  },
+  "engine_version": "5.7.4-51494982+++UE5+Release-5.7",
+  "generated_utc": "2026-07-18T04:48:55.176534+00:00",
+  "movement_and_branching": {
+    "coarse_200cm_cell_count": 32,
+    "coverage_x_cm": 1541.614,
+    "coverage_y_cm": 680.958,
+    "direction_bin_count": 8,
+    "direction_bins_45deg": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "maximum_cumulative_path_cm": 2668.047,
+    "meaningful_turn_actor_count": 30,
+    "median_cumulative_path_cm": 2189.427,
+    "minimum_cumulative_path_cm": 1734.717,
+    "moved_actor_count": 30,
+    "per_actor": [
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_103",
+          "OpenMassCrowdCitySampleLowResActor_142",
+          "OpenMassCrowdCitySampleActor_163",
+          "OpenMassCrowdCitySampleLowResActor_144",
+          "OpenMassCrowdCitySampleActor_165"
+        ],
+        "cumulative_abs_x_cm": 1893.447,
+        "cumulative_abs_y_cm": 916.348,
+        "cumulative_path_cm": 2276.998,
+        "end_location": [
+          -96589.853,
+          222512.067,
+          402.902
+        ],
+        "longest_stationary_interval_seconds": 0.549,
+        "mass_identity": 3656580,
+        "meaningful_turn_count": 3,
+        "net_displacement_cm": 562.8,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97112.868,
+          222304.223,
+          392.719
+        ],
+        "track_id": "mass_3656580"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_104",
+          "OpenMassCrowdCitySampleLowResActor_135",
+          "OpenMassCrowdCitySampleActor_161"
+        ],
+        "cumulative_abs_x_cm": 1747.539,
+        "cumulative_abs_y_cm": 752.987,
+        "cumulative_path_cm": 2008.189,
+        "end_location": [
+          -97367.053,
+          222197.259,
+          388.558
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 3459967,
+        "meaningful_turn_count": 4,
+        "net_displacement_cm": 917.639,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96450.508,
+          222242.052,
+          405.639
+        ],
+        "track_id": "mass_3459967"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_107"
+        ],
+        "cumulative_abs_x_cm": 2052.491,
+        "cumulative_abs_y_cm": 1143.205,
+        "cumulative_path_cm": 2668.047,
+        "end_location": [
+          -97124.308,
+          222361.97,
+          392.394
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 5819323,
+        "meaningful_turn_count": 1,
+        "net_displacement_cm": 589.581,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96535.181,
+          222385.105,
+          406.574
+        ],
+        "track_id": "mass_5819323"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_116",
+          "OpenMassCrowdCitySampleLowResActor_154"
+        ],
+        "cumulative_abs_x_cm": 1376.439,
+        "cumulative_abs_y_cm": 899.107,
+        "cumulative_path_cm": 1804.532,
+        "end_location": [
+          -96480.763,
+          222555.958,
+          404.189
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 6015936,
+        "meaningful_turn_count": 2,
+        "net_displacement_cm": 313.299,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96740.83,
+          222381.255,
+          401.899
+        ],
+        "track_id": "mass_6015936"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_117",
+          "OpenMassCrowdCitySampleLowResActor_143",
+          "OpenMassCrowdCitySampleActor_170"
+        ],
+        "cumulative_abs_x_cm": 2139.318,
+        "cumulative_abs_y_cm": 626.21,
+        "cumulative_path_cm": 2300.037,
+        "end_location": [
+          -97615.69,
+          222572.41,
+          385.452
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 2870128,
+        "meaningful_turn_count": 3,
+        "net_displacement_cm": 494.108,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97131.094,
+          222475.924,
+          396.205
+        ],
+        "track_id": "mass_2870128"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_121",
+          "OpenMassCrowdCitySampleLowResActor_139",
+          "OpenMassCrowdCitySampleActor_162"
+        ],
+        "cumulative_abs_x_cm": 1671.505,
+        "cumulative_abs_y_cm": 710.547,
+        "cumulative_path_cm": 1926.48,
+        "end_location": [
+          -97483.308,
+          222568.295,
+          384.094
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 3853193,
+        "meaningful_turn_count": 1,
+        "net_displacement_cm": 659.96,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96854.225,
+          222368.792,
+          399.382
+        ],
+        "track_id": "mass_3853193"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_124",
+          "OpenMassCrowdCitySampleLowResActor_148",
+          "OpenMassCrowdCitySampleActor_172"
+        ],
+        "cumulative_abs_x_cm": 2001.452,
+        "cumulative_abs_y_cm": 609.354,
+        "cumulative_path_cm": 2158.248,
+        "end_location": [
+          -96730.507,
+          222469.725,
+          401.924
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 1887063,
+        "meaningful_turn_count": 2,
+        "net_displacement_cm": 908.768,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97639.275,
+          222469.679,
+          386.884
+        ],
+        "track_id": "mass_1887063"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_127",
+          "OpenMassCrowdCitySampleLowResActor_138",
+          "OpenMassCrowdCitySampleActor_164"
+        ],
+        "cumulative_abs_x_cm": 2017.886,
+        "cumulative_abs_y_cm": 565.837,
+        "cumulative_path_cm": 2184.414,
+        "end_location": [
+          -97411.908,
+          222404.642,
+          385.327
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 6212549,
+        "meaningful_turn_count": 3,
+        "net_displacement_cm": 490.272,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96924.672,
+          222459.117,
+          400.413
+        ],
+        "track_id": "mass_6212549"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_129"
+        ],
+        "cumulative_abs_x_cm": 2239.787,
+        "cumulative_abs_y_cm": 851.285,
+        "cumulative_path_cm": 2591.894,
+        "end_location": [
+          -97538.701,
+          222491.202,
+          385.215
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 4639645,
+        "meaningful_turn_count": 3,
+        "net_displacement_cm": 1104.345,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96490.26,
+          222144.289,
+          404.274
+        ],
+        "track_id": "mass_4639645"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_132",
+          "OpenMassCrowdCitySampleLowResActor_137",
+          "OpenMassCrowdCitySampleActor_169"
+        ],
+        "cumulative_abs_x_cm": 1866.955,
+        "cumulative_abs_y_cm": 656.951,
+        "cumulative_path_cm": 2109.842,
+        "end_location": [
+          -97386.486,
+          222550.542,
+          385.79
+        ],
+        "longest_stationary_interval_seconds": 0.514,
+        "mass_identity": 5426097,
+        "meaningful_turn_count": 5,
+        "net_displacement_cm": 466.77,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96961.093,
+          222358.409,
+          396.621
+        ],
+        "track_id": "mass_5426097"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_133",
+          "OpenMassCrowdCitySampleLowResActor_146",
+          "OpenMassCrowdCitySampleActor_173"
+        ],
+        "cumulative_abs_x_cm": 1954.615,
+        "cumulative_abs_y_cm": 662.785,
+        "cumulative_path_cm": 2138.554,
+        "end_location": [
+          -97265.644,
+          222452.029,
+          389.576
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 3066741,
+        "meaningful_turn_count": 3,
+        "net_displacement_cm": 154.445,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97410.863,
+          222504.61,
+          385.257
+        ],
+        "track_id": "mass_3066741"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_136"
+        ],
+        "cumulative_abs_x_cm": 1518.284,
+        "cumulative_abs_y_cm": 997.093,
+        "cumulative_path_cm": 2116.699,
+        "end_location": [
+          -97369.798,
+          222323.583,
+          386.399
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 2280289,
+        "meaningful_turn_count": 1,
+        "net_displacement_cm": 239.095,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97602.116,
+          222267.06,
+          386.919
+        ],
+        "track_id": "mass_2280289"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_139"
+        ],
+        "cumulative_abs_x_cm": 1941.556,
+        "cumulative_abs_y_cm": 910.25,
+        "cumulative_path_cm": 2252.343,
+        "end_location": [
+          -97158.134,
+          222447.656,
+          394.227
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 2083676,
+        "meaningful_turn_count": 2,
+        "net_displacement_cm": 550.944,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97640.302,
+          222181.098,
+          387.793
+        ],
+        "track_id": "mass_2083676"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_141"
+        ],
+        "cumulative_abs_x_cm": 1508.003,
+        "cumulative_abs_y_cm": 968.04,
+        "cumulative_path_cm": 2035.928,
+        "end_location": [
+          -97345.87,
+          222084.758,
+          425.455
+        ],
+        "longest_stationary_interval_seconds": 0.527,
+        "mass_identity": 4049806,
+        "meaningful_turn_count": 2,
+        "net_displacement_cm": 630.217,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97787.109,
+          222534.738,
+          389.153
+        ],
+        "track_id": "mass_4049806"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_142",
+          "OpenMassCrowdCitySampleLowResActor_147",
+          "OpenMassCrowdCitySampleActor_171"
+        ],
+        "cumulative_abs_x_cm": 1671.849,
+        "cumulative_abs_y_cm": 1053.289,
+        "cumulative_path_cm": 2161.208,
+        "end_location": [
+          -97305.295,
+          222260.784,
+          390.068
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 5229484,
+        "meaningful_turn_count": 3,
+        "net_displacement_cm": 434.656,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97061.408,
+          222620.569,
+          404.755
+        ],
+        "track_id": "mass_5229484"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_144",
+          "OpenMassCrowdCitySampleLowResActor_152"
+        ],
+        "cumulative_abs_x_cm": 2110.157,
+        "cumulative_abs_y_cm": 778.913,
+        "cumulative_path_cm": 2403.179,
+        "end_location": [
+          -96282.386,
+          222532.042,
+          407.283
+        ],
+        "longest_stationary_interval_seconds": 0.515,
+        "mass_identity": 1100611,
+        "meaningful_turn_count": 3,
+        "net_displacement_cm": 945.34,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97204.535,
+          222323.933,
+          392.571
+        ],
+        "track_id": "mass_1100611"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_145",
+          "OpenMassCrowdCitySampleLowResActor_141",
+          "OpenMassCrowdCitySampleActor_167"
+        ],
+        "cumulative_abs_x_cm": 1981.538,
+        "cumulative_abs_y_cm": 662.484,
+        "cumulative_path_cm": 2227.781,
+        "end_location": [
+          -97439.59,
+          222728.449,
+          386.347
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 4836258,
+        "meaningful_turn_count": 4,
+        "net_displacement_cm": 492.946,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97054.018,
+          222421.317,
+          395.512
+        ],
+        "track_id": "mass_4836258"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_147",
+          "OpenMassCrowdCitySampleLowResActor_136",
+          "OpenMassCrowdCitySampleActor_166"
+        ],
+        "cumulative_abs_x_cm": 1678.803,
+        "cumulative_abs_y_cm": 736.447,
+        "cumulative_path_cm": 2030.556,
+        "end_location": [
+          -97664.381,
+          222389.385,
+          387.532
+        ],
+        "longest_stationary_interval_seconds": 0.833,
+        "mass_identity": 5622710,
+        "meaningful_turn_count": 3,
+        "net_displacement_cm": 1115.556,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96556.718,
+          222256.916,
+          404.908
+        ],
+        "track_id": "mass_5622710"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_148",
+          "OpenMassCrowdCitySampleLowResActor_151",
+          "OpenMassCrowdCitySampleActor_176"
+        ],
+        "cumulative_abs_x_cm": 1880.911,
+        "cumulative_abs_y_cm": 1140.768,
+        "cumulative_path_cm": 2464.683,
+        "end_location": [
+          -96744.032,
+          222342.307,
+          399.133
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 4443032,
+        "meaningful_turn_count": 5,
+        "net_displacement_cm": 841.46,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97583.343,
+          222402.405,
+          386.201
+        ],
+        "track_id": "mass_4443032"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_149"
+        ],
+        "cumulative_abs_x_cm": 1513.307,
+        "cumulative_abs_y_cm": 726.126,
+        "cumulative_path_cm": 1771.788,
+        "end_location": [
+          -96595.269,
+          222186.318,
+          401.591
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 510772,
+        "meaningful_turn_count": 4,
+        "net_displacement_cm": 875.753,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97464.298,
+          222294.634,
+          384.638
+        ],
+        "track_id": "mass_510772"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_151",
+          "OpenMassCrowdCitySampleLowResActor_149",
+          "OpenMassCrowdCitySampleActor_175"
+        ],
+        "cumulative_abs_x_cm": 1870.742,
+        "cumulative_abs_y_cm": 1153.02,
+        "cumulative_path_cm": 2418.112,
+        "end_location": [
+          -96594.957,
+          222379.116,
+          405.519
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 903998,
+        "meaningful_turn_count": 2,
+        "net_displacement_cm": 833.96,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97428.521,
+          222404.804,
+          384.933
+        ],
+        "track_id": "mass_903998"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_152"
+        ],
+        "cumulative_abs_x_cm": 1904.645,
+        "cumulative_abs_y_cm": 954.429,
+        "cumulative_path_cm": 2400.449,
+        "end_location": [
+          -97495.912,
+          222224.051,
+          385.36
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 1493837,
+        "meaningful_turn_count": 4,
+        "net_displacement_cm": 431.013,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97265.897,
+          222588.558,
+          396.404
+        ],
+        "track_id": "mass_1493837"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_153"
+        ],
+        "cumulative_abs_x_cm": 1714.367,
+        "cumulative_abs_y_cm": 802.245,
+        "cumulative_path_cm": 2114.736,
+        "end_location": [
+          -97251.701,
+          222352.505,
+          389.683
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 3263354,
+        "meaningful_turn_count": 7,
+        "net_displacement_cm": 173.264,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -97231.798,
+          222180.388,
+          399.095
+        ],
+        "track_id": "mass_3263354"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_154",
+          "OpenMassCrowdCitySampleLowResActor_140",
+          "OpenMassCrowdCitySampleActor_168"
+        ],
+        "cumulative_abs_x_cm": 2179.348,
+        "cumulative_abs_y_cm": 707.637,
+        "cumulative_path_cm": 2385.292,
+        "end_location": [
+          -97380.595,
+          222641.262,
+          388.302
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 4246419,
+        "meaningful_turn_count": 1,
+        "net_displacement_cm": 556.345,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96986.943,
+          222248.123,
+          396.008
+        ],
+        "track_id": "mass_4246419"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_155",
+          "OpenMassCrowdCitySampleLowResActor_145",
+          "OpenMassCrowdCitySampleActor_174"
+        ],
+        "cumulative_abs_x_cm": 1663.553,
+        "cumulative_abs_y_cm": 1005.936,
+        "cumulative_path_cm": 2194.439,
+        "end_location": [
+          -97257.304,
+          222153.957,
+          398.48
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 1690450,
+        "meaningful_turn_count": 3,
+        "net_displacement_cm": 390.727,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96872.467,
+          222221.543,
+          397.57
+        ],
+        "track_id": "mass_1690450"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_156",
+          "OpenMassCrowdCitySampleLowResActor_155"
+        ],
+        "cumulative_abs_x_cm": 2219.066,
+        "cumulative_abs_y_cm": 854.678,
+        "cumulative_path_cm": 2483.493,
+        "end_location": [
+          -96373.984,
+          222347.325,
+          405.562
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 2476902,
+        "meaningful_turn_count": 2,
+        "net_displacement_cm": 299.143,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96670.69,
+          222309.215,
+          401.357
+        ],
+        "track_id": "mass_2476902"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleActor",
+          "OpenMassCrowdCitySampleLowResActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleActor_157",
+          "OpenMassCrowdCitySampleLowResActor_153"
+        ],
+        "cumulative_abs_x_cm": 2180.364,
+        "cumulative_abs_y_cm": 786.04,
+        "cumulative_path_cm": 2417.858,
+        "end_location": [
+          -96385.066,
+          222582.406,
+          405.536
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 1297224,
+        "meaningful_turn_count": 1,
+        "net_displacement_cm": 204.013,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96569.834,
+          222495.906,
+          403.651
+        ],
+        "track_id": "mass_1297224"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleLowResActor",
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleLowResActor_131",
+          "OpenMassCrowdCitySampleActor_158"
+        ],
+        "cumulative_abs_x_cm": 1876.933,
+        "cumulative_abs_y_cm": 673.946,
+        "cumulative_path_cm": 2049.22,
+        "end_location": [
+          -97067.15,
+          222267.886,
+          393.921
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 707385,
+        "meaningful_turn_count": 2,
+        "net_displacement_cm": 780.48,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96332.449,
+          222531.254,
+          407.606
+        ],
+        "track_id": "mass_707385"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleLowResActor",
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleLowResActor_133",
+          "OpenMassCrowdCitySampleActor_160",
+          "OpenMassCrowdCitySampleLowResActor_150",
+          "OpenMassCrowdCitySampleActor_177"
+        ],
+        "cumulative_abs_x_cm": 1232.294,
+        "cumulative_abs_y_cm": 913.292,
+        "cumulative_path_cm": 1734.717,
+        "end_location": [
+          -96514.89,
+          222446.81,
+          405.725
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 2673515,
+        "meaningful_turn_count": 2,
+        "net_displacement_cm": 216.737,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96378.382,
+          222615.156,
+          405.005
+        ],
+        "track_id": "mass_2673515"
+      },
+      {
+        "actor_classes": [
+          "OpenMassCrowdCitySampleLowResActor",
+          "OpenMassCrowdCitySampleActor"
+        ],
+        "actor_names": [
+          "OpenMassCrowdCitySampleLowResActor_134",
+          "OpenMassCrowdCitySampleActor_159"
+        ],
+        "cumulative_abs_x_cm": 2378.113,
+        "cumulative_abs_y_cm": 655.363,
+        "cumulative_path_cm": 2563.124,
+        "end_location": [
+          -97343.644,
+          222479.585,
+          386.87
+        ],
+        "longest_stationary_interval_seconds": 0.0,
+        "mass_identity": 5032871,
+        "meaningful_turn_count": 5,
+        "net_displacement_cm": 995.304,
+        "possible_stuck": false,
+        "sample_count": 37,
+        "start_location": [
+          -96355.459,
+          222360.758,
+          405.169
+        ],
+        "track_id": "mass_5032871"
+      }
+    ],
+    "possible_stuck_actor_count": 0,
+    "possible_stuck_track_ids": [],
+    "tracked_actor_count": 30,
+    "unmatched_track_events": 0,
+    "x_active_actor_count": 30,
+    "y_active_actor_count": 30
+  },
+  "navigation_metrics_at_sample_start": {
+    "completed_trips": 400,
+    "high_res_representations": 27,
+    "low_res_representations": 3,
+    "route_assignments": 430,
+    "route_replans": 0
+  },
+  "overall_passed": true,
+  "performance": {
+    "frame_sample_count": 863,
+    "frames_over_50ms": 44,
+    "game_to_wall_time_ratio": 0.9992,
+    "maximum_frame_ms": 125.0,
+    "measurement_kind": "Slate post-tick editor-frame proxy; includes editor/verifier overhead",
+    "median_fps_proxy": 59.154,
+    "median_frame_ms": 16.905,
+    "p95_frame_ms": 51.12,
+    "process_memory_end": {
+      "available": true,
+      "peak_working_set_mib": 7135.867,
+      "private_usage_mib": 9198.973,
+      "working_set_mib": 7131.082
+    },
+    "process_memory_start": {
+      "available": true,
+      "peak_working_set_mib": 7089.398,
+      "private_usage_mib": 9155.797,
+      "working_set_mib": 7089.398
+    },
+    "sample_game_seconds": 20.827,
+    "sample_wall_seconds": 20.843,
+    "working_set_delta_mib": 41.684
+  },
+  "project_dir": "C:/Users/15958/OneDrive/xwechat_files/wxid_0sjqfnxov0rv22_2017/msg/file/2026-07/TelecomTwin/",
+  "representations": {
+    "final_high": 26,
+    "final_low": 4,
+    "observed_high_low_pairs": [
+      [
+        23,
+        7
+      ],
+      [
+        24,
+        6
+      ],
+      [
+        25,
+        5
+      ],
+      [
+        26,
+        4
+      ],
+      [
+        27,
+        3
+      ],
+      [
+        28,
+        2
+      ],
+      [
+        29,
+        1
+      ]
+    ]
+  },
+  "required_failed_checks": [],
+  "runtime_snapshot_final": {
+    "active_proxy_actor_count": 30,
+    "completed_trips": 443,
+    "current_unsupported_visuals": 0,
+    "directed_lanes": 22,
+    "ground_center_recoveries": 71,
+    "ground_projection_failures": 71,
+    "ground_rollbacks": 0,
+    "ground_unrecoverable": 0,
+    "high_res_representations": 26,
+    "low_res_representations": 4,
+    "network_nodes": 9,
+    "position_records": [
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_107",
+        "location": [
+          -97124.308,
+          222361.97,
+          392.394
+        ],
+        "mass_identity": 5819323
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_129",
+        "location": [
+          -97538.701,
+          222491.202,
+          385.215
+        ],
+        "mass_identity": 4639645
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_136",
+        "location": [
+          -97369.798,
+          222323.583,
+          386.399
+        ],
+        "mass_identity": 2280289
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_139",
+        "location": [
+          -97158.134,
+          222447.656,
+          394.227
+        ],
+        "mass_identity": 2083676
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_141",
+        "location": [
+          -97345.87,
+          222084.758,
+          425.455
+        ],
+        "mass_identity": 4049806
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_149",
+        "location": [
+          -96595.269,
+          222186.318,
+          401.591
+        ],
+        "mass_identity": 510772
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_152",
+        "location": [
+          -97495.912,
+          222224.051,
+          385.36
+        ],
+        "mass_identity": 1493837
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_153",
+        "location": [
+          -97251.701,
+          222352.505,
+          389.683
+        ],
+        "mass_identity": 3263354
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_158",
+        "location": [
+          -97067.15,
+          222267.886,
+          393.921
+        ],
+        "mass_identity": 707385
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_159",
+        "location": [
+          -97343.644,
+          222479.585,
+          386.87
+        ],
+        "mass_identity": 5032871
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_161",
+        "location": [
+          -97367.053,
+          222197.259,
+          388.558
+        ],
+        "mass_identity": 3459967
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_162",
+        "location": [
+          -97483.308,
+          222568.295,
+          384.094
+        ],
+        "mass_identity": 3853193
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_164",
+        "location": [
+          -97411.908,
+          222404.642,
+          385.327
+        ],
+        "mass_identity": 6212549
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_165",
+        "location": [
+          -96589.853,
+          222512.067,
+          402.902
+        ],
+        "mass_identity": 3656580
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_166",
+        "location": [
+          -97664.381,
+          222389.385,
+          387.532
+        ],
+        "mass_identity": 5622710
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_167",
+        "location": [
+          -97439.59,
+          222728.449,
+          386.347
+        ],
+        "mass_identity": 4836258
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_168",
+        "location": [
+          -97380.595,
+          222641.262,
+          388.302
+        ],
+        "mass_identity": 4246419
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_169",
+        "location": [
+          -97386.486,
+          222550.542,
+          385.79
+        ],
+        "mass_identity": 5426097
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_170",
+        "location": [
+          -97615.69,
+          222572.41,
+          385.452
+        ],
+        "mass_identity": 2870128
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_171",
+        "location": [
+          -97305.295,
+          222260.784,
+          390.068
+        ],
+        "mass_identity": 5229484
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_172",
+        "location": [
+          -96730.507,
+          222469.725,
+          401.924
+        ],
+        "mass_identity": 1887063
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_173",
+        "location": [
+          -97265.644,
+          222452.029,
+          389.576
+        ],
+        "mass_identity": 3066741
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_174",
+        "location": [
+          -97257.304,
+          222153.957,
+          398.48
+        ],
+        "mass_identity": 1690450
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_175",
+        "location": [
+          -96594.957,
+          222379.116,
+          405.519
+        ],
+        "mass_identity": 903998
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_176",
+        "location": [
+          -96744.032,
+          222342.307,
+          399.133
+        ],
+        "mass_identity": 4443032
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleActor",
+        "actor_name": "OpenMassCrowdCitySampleActor_177",
+        "location": [
+          -96514.89,
+          222446.81,
+          405.725
+        ],
+        "mass_identity": 2673515
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleLowResActor",
+        "actor_name": "OpenMassCrowdCitySampleLowResActor_152",
+        "location": [
+          -96282.386,
+          222532.042,
+          407.283
+        ],
+        "mass_identity": 1100611
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleLowResActor",
+        "actor_name": "OpenMassCrowdCitySampleLowResActor_153",
+        "location": [
+          -96385.066,
+          222582.406,
+          405.536
+        ],
+        "mass_identity": 1297224
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleLowResActor",
+        "actor_name": "OpenMassCrowdCitySampleLowResActor_154",
+        "location": [
+          -96480.763,
+          222555.958,
+          404.189
+        ],
+        "mass_identity": 6015936
+      },
+      {
+        "actor_class": "OpenMassCrowdCitySampleLowResActor",
+        "actor_name": "OpenMassCrowdCitySampleLowResActor_155",
+        "location": [
+          -96373.984,
+          222347.325,
+          405.562
+        ],
+        "mass_identity": 2476902
+      }
+    ],
+    "positions": {
+      "1100611": [
+        -96282.386,
+        222532.042,
+        407.283
+      ],
+      "1297224": [
+        -96385.066,
+        222582.406,
+        405.536
+      ],
+      "1493837": [
+        -97495.912,
+        222224.051,
+        385.36
+      ],
+      "1690450": [
+        -97257.304,
+        222153.957,
+        398.48
+      ],
+      "1887063": [
+        -96730.507,
+        222469.725,
+        401.924
+      ],
+      "2083676": [
+        -97158.134,
+        222447.656,
+        394.227
+      ],
+      "2280289": [
+        -97369.798,
+        222323.583,
+        386.399
+      ],
+      "2476902": [
+        -96373.984,
+        222347.325,
+        405.562
+      ],
+      "2673515": [
+        -96514.89,
+        222446.81,
+        405.725
+      ],
+      "2870128": [
+        -97615.69,
+        222572.41,
+        385.452
+      ],
+      "3066741": [
+        -97265.644,
+        222452.029,
+        389.576
+      ],
+      "3263354": [
+        -97251.701,
+        222352.505,
+        389.683
+      ],
+      "3459967": [
+        -97367.053,
+        222197.259,
+        388.558
+      ],
+      "3656580": [
+        -96589.853,
+        222512.067,
+        402.902
+      ],
+      "3853193": [
+        -97483.308,
+        222568.295,
+        384.094
+      ],
+      "4049806": [
+        -97345.87,
+        222084.758,
+        425.455
+      ],
+      "4246419": [
+        -97380.595,
+        222641.262,
+        388.302
+      ],
+      "4443032": [
+        -96744.032,
+        222342.307,
+        399.133
+      ],
+      "4639645": [
+        -97538.701,
+        222491.202,
+        385.215
+      ],
+      "4836258": [
+        -97439.59,
+        222728.449,
+        386.347
+      ],
+      "5032871": [
+        -97343.644,
+        222479.585,
+        386.87
+      ],
+      "510772": [
+        -96595.269,
+        222186.318,
+        401.591
+      ],
+      "5229484": [
+        -97305.295,
+        222260.784,
+        390.068
+      ],
+      "5426097": [
+        -97386.486,
+        222550.542,
+        385.79
+      ],
+      "5622710": [
+        -97664.381,
+        222389.385,
+        387.532
+      ],
+      "5819323": [
+        -97124.308,
+        222361.97,
+        392.394
+      ],
+      "6015936": [
+        -96480.763,
+        222555.958,
+        404.189
+      ],
+      "6212549": [
+        -97411.908,
+        222404.642,
+        385.327
+      ],
+      "707385": [
+        -97067.15,
+        222267.886,
+        393.921
+      ],
+      "903998": [
+        -96594.957,
+        222379.116,
+        405.519
+      ]
+    },
+    "proxy_actor_count": 30,
+    "representation_actor_classes": [
+      "OpenMassCrowdCitySampleActor",
+      "OpenMassCrowdCitySampleLowResActor"
+    ],
+    "requested_population": 30,
+    "route_assignments": 473,
+    "route_replans": 0,
+    "spawned_entities": 30,
+    "spawner_count": 1,
+    "spawner_labels": [
+      "HK_OpenMass_Crowd_Spawner"
+    ],
+    "stable_mass_identity_count": 30,
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+    "world_name": "shanghai"
+  },
+  "sampling": {
+    "maximum_seconds": 60.0,
+    "minimum_seconds": 20.0,
+    "position_interval_seconds": 0.5,
+    "sample_count": 37,
+    "sample_summaries": [
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 400,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 87.488,
+        "route_assignments": 430,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 0.0
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 402,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 81.065,
+        "route_assignments": 432,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 0.766
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 404,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "minimum_distance_cm": 79.656,
+        "route_assignments": 434,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 1.272
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 404,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 81.272,
+        "route_assignments": 434,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 1.801
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 405,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 78.398,
+        "route_assignments": 435,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 2.555
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 409,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 65.51,
+        "route_assignments": 439,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 3.299
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 410,
+        "high_res_representations": 28,
+        "low_res_representations": 2,
+        "minimum_distance_cm": 72.184,
+        "route_assignments": 440,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 3.866
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 410,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "minimum_distance_cm": 79.701,
+        "route_assignments": 440,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 4.415
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 410,
+        "high_res_representations": 25,
+        "low_res_representations": 5,
+        "minimum_distance_cm": 78.059,
+        "route_assignments": 440,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 5.248
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 410,
+        "high_res_representations": 25,
+        "low_res_representations": 5,
+        "minimum_distance_cm": 82.098,
+        "route_assignments": 440,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 5.795
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 411,
+        "high_res_representations": 25,
+        "low_res_representations": 5,
+        "minimum_distance_cm": 72.775,
+        "route_assignments": 441,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 6.311
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 411,
+        "high_res_representations": 23,
+        "low_res_representations": 7,
+        "minimum_distance_cm": 60.002,
+        "route_assignments": 441,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 6.815
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 414,
+        "high_res_representations": 24,
+        "low_res_representations": 6,
+        "minimum_distance_cm": 82.794,
+        "route_assignments": 444,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 7.607
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 414,
+        "high_res_representations": 23,
+        "low_res_representations": 7,
+        "minimum_distance_cm": 80.034,
+        "route_assignments": 444,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 8.108
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 415,
+        "high_res_representations": 24,
+        "low_res_representations": 6,
+        "minimum_distance_cm": 87.146,
+        "route_assignments": 445,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 8.63
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 419,
+        "high_res_representations": 25,
+        "low_res_representations": 5,
+        "minimum_distance_cm": 81.377,
+        "route_assignments": 449,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 9.13
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 420,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "minimum_distance_cm": 88.3,
+        "route_assignments": 450,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 9.684
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 423,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "minimum_distance_cm": 78.307,
+        "route_assignments": 453,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 10.253
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 425,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "minimum_distance_cm": 77.483,
+        "route_assignments": 455,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 10.778
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 428,
+        "high_res_representations": 28,
+        "low_res_representations": 2,
+        "minimum_distance_cm": 71.68,
+        "route_assignments": 458,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 11.279
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 428,
+        "high_res_representations": 28,
+        "low_res_representations": 2,
+        "minimum_distance_cm": 72.61,
+        "route_assignments": 458,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 11.876
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 429,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 78.387,
+        "route_assignments": 459,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 12.426
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 431,
+        "high_res_representations": 28,
+        "low_res_representations": 2,
+        "minimum_distance_cm": 81.156,
+        "route_assignments": 461,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 12.941
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 431,
+        "high_res_representations": 28,
+        "low_res_representations": 2,
+        "minimum_distance_cm": 66.432,
+        "route_assignments": 461,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 13.448
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 432,
+        "high_res_representations": 29,
+        "low_res_representations": 1,
+        "minimum_distance_cm": 79.652,
+        "route_assignments": 462,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 13.955
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 1,
+        "agent_body_overlap_samples": [
+          [
+            "1100611",
+            "4639645",
+            37.928
+          ]
+        ],
+        "completed_trips": 432,
+        "high_res_representations": 29,
+        "low_res_representations": 1,
+        "minimum_distance_cm": 37.928,
+        "route_assignments": 462,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 14.457
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 434,
+        "high_res_representations": 29,
+        "low_res_representations": 1,
+        "minimum_distance_cm": 66.768,
+        "route_assignments": 464,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 15.217
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 434,
+        "high_res_representations": 29,
+        "low_res_representations": 1,
+        "minimum_distance_cm": 69.624,
+        "route_assignments": 464,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 15.731
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 435,
+        "high_res_representations": 28,
+        "low_res_representations": 2,
+        "minimum_distance_cm": 72.923,
+        "route_assignments": 465,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 16.28
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 438,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 81.778,
+        "route_assignments": 468,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 17.029
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 440,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 71.398,
+        "route_assignments": 470,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 17.556
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 440,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "minimum_distance_cm": 85.987,
+        "route_assignments": 470,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 18.132
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 440,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "minimum_distance_cm": 80.148,
+        "route_assignments": 470,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 18.667
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 441,
+        "high_res_representations": 28,
+        "low_res_representations": 2,
+        "minimum_distance_cm": 80.873,
+        "route_assignments": 471,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 19.21
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 441,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 80.425,
+        "route_assignments": 471,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 19.756
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 443,
+        "high_res_representations": 27,
+        "low_res_representations": 3,
+        "minimum_distance_cm": 78.39,
+        "route_assignments": 473,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 20.551
+      },
+      {
+        "actor_count": 30,
+        "agent_body_overlap_pair_count": 0,
+        "agent_body_overlap_samples": [],
+        "completed_trips": 443,
+        "high_res_representations": 26,
+        "low_res_representations": 4,
+        "minimum_distance_cm": 82.724,
+        "route_assignments": 473,
+        "route_replans": 0,
+        "severe_overlap_pair_count": 0,
+        "severe_overlap_samples": [],
+        "time_seconds": 20.827
+      }
+    ]
+  },
+  "schema_version": 1
+}

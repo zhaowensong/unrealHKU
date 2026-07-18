@@ -1,0 +1,167 @@
+{
+  "completion_reason": "completed",
+  "engine_version": "5.7.4-51494982+++UE5+Release-5.7",
+  "errors": [],
+  "expected_sequence": [
+    [
+      0,
+      30
+    ],
+    [
+      30,
+      0
+    ],
+    [
+      0,
+      30
+    ]
+  ],
+  "generated_utc": "2026-07-18T04:49:51.467753+00:00",
+  "observations": [
+    {
+      "active_proxy_count": 30,
+      "high": 0,
+      "low": 30,
+      "mass_seeds": [
+        510772,
+        707385,
+        903998,
+        1100611,
+        1297224,
+        1493837,
+        1690450,
+        1887063,
+        2083676,
+        2280289,
+        2476902,
+        2673515,
+        2870128,
+        3066741,
+        3263354,
+        3459967,
+        3656580,
+        3853193,
+        4049806,
+        4246419,
+        4443032,
+        4639645,
+        4836258,
+        5032871,
+        5229484,
+        5426097,
+        5622710,
+        5819323,
+        6015936,
+        6212549
+      ],
+      "representation_classes": [
+        "OpenMassCrowdCitySampleLowResActor"
+      ],
+      "stage": "low"
+    },
+    {
+      "active_proxy_count": 30,
+      "high": 30,
+      "low": 0,
+      "mass_seeds": [
+        510772,
+        707385,
+        903998,
+        1100611,
+        1297224,
+        1493837,
+        1690450,
+        1887063,
+        2083676,
+        2280289,
+        2476902,
+        2673515,
+        2870128,
+        3066741,
+        3263354,
+        3459967,
+        3656580,
+        3853193,
+        4049806,
+        4246419,
+        4443032,
+        4639645,
+        4836258,
+        5032871,
+        5229484,
+        5426097,
+        5622710,
+        5819323,
+        6015936,
+        6212549
+      ],
+      "representation_classes": [
+        "OpenMassCrowdCitySampleActor"
+      ],
+      "stage": "high"
+    },
+    {
+      "active_proxy_count": 30,
+      "high": 0,
+      "low": 30,
+      "mass_seeds": [
+        510772,
+        707385,
+        903998,
+        1100611,
+        1297224,
+        1493837,
+        1690450,
+        1887063,
+        2083676,
+        2280289,
+        2476902,
+        2673515,
+        2870128,
+        3066741,
+        3263354,
+        3459967,
+        3656580,
+        3853193,
+        4049806,
+        4246419,
+        4443032,
+        4639645,
+        4836258,
+        5032871,
+        5229484,
+        5426097,
+        5622710,
+        5819323,
+        6015936,
+        6212549
+      ],
+      "representation_classes": [
+        "OpenMassCrowdCitySampleLowResActor"
+      ],
+      "stage": "low"
+    }
+  ],
+  "observed_sequence": [
+    [
+      0,
+      30
+    ],
+    [
+      30,
+      0
+    ],
+    [
+      0,
+      30
+    ]
+  ],
+  "overall_passed": true,
+  "schema_version": 1,
+  "screenshots": [
+    "C:\\Users\\15958\\OneDrive\\xwechat_files\\wxid_0sjqfnxov0rv22_2017\\msg\\file\\2026-07\\TelecomTwin\\Docs\\Evidence\\OpenMassCrowd\\08_lod_low_30.png",
+    "C:\\Users\\15958\\OneDrive\\xwechat_files\\wxid_0sjqfnxov0rv22_2017\\msg\\file\\2026-07\\TelecomTwin\\Docs\\Evidence\\OpenMassCrowd\\09_lod_high_30.png",
+    "C:\\Users\\15958\\OneDrive\\xwechat_files\\wxid_0sjqfnxov0rv22_2017\\msg\\file\\2026-07\\TelecomTwin\\Docs\\Evidence\\OpenMassCrowd\\10_lod_low_30_return.png"
+  ],
+  "stable_mass_identities_preserved": true
+}
