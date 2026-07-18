@@ -69,4 +69,11 @@ $process = Start-Process `
     -WindowStyle Normal `
     -PassThru
 
-$process | Select-Object Id, StartTime, Path
+[pscustomobject]@{
+    Id = $process.Id
+    StartTime = $process.StartTime
+    Path = $process.Path
+    Status = "Editor launched; pedestrians are created only while PIE is running."
+    NextStep = "Wait for the shanghai/Cesium view, then press Alt+P and allow 8-15 seconds for City Sample characters."
+    ExpectedLog = "OPEN_MASS_CROWD_READY requested=30 spawned=30"
+}

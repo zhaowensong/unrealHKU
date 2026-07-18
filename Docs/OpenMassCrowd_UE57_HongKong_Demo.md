@@ -72,6 +72,24 @@ pwsh -ExecutionPolicy Bypass -File .\Scripts\OpenMassCrowd\launch_telecomtwin_ci
 等待香港 Cesium 瓦片显示后点击工具栏“运行”或按 `Alt+P`。关卡已经保存好，正常
 启动不需要 MCP，也不需要运行 Python。MCP 只用于自动化检查、截图或重建布置。
 
+### 为什么编辑状态下没有人
+
+30 个行人不是关卡里永久摆放的 30 个 Character，而是在
+`AOpenMassCrowdSpawner::BeginPlay` 后由 Mass 动态创建。因此工具栏显示绿色“运行”
+按钮、或者已经停止 PIE 时，道路上没有人是预期状态，不代表资源丢失。
+
+按 `Alt+P` 后等待 8–15 秒。成功时输出日志必须出现：
+
+```text
+OPEN_MASS_CROWD_READY requested=30 spawned=30
+OPEN_MASS_CITY_SAMPLE_ACTOR_READY ... randomized=true
+```
+
+如果日志已经显示 `spawned=30` 但视口里仍看不到人，问题是相机不在局部路线，
+不是生成失败。路线中心约为 `(-97000, 222400, 395)`，范围约
+`X ±720 / Y ±250`；编辑视口可以定位 `HK_OpenMass_Crowd_Spawner` 后再运行。
+不要因为停播画面为空而重新执行布置脚本，生成器已经保存进关卡。
+
 ## 关键实现
 
 - `AOpenMassCrowdSpawner` 创建有界 ZoneGraph、30 个 Mass Entity，并配置移动、

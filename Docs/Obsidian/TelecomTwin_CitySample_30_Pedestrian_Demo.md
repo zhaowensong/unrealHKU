@@ -148,6 +148,24 @@ pwsh -ExecutionPolicy Bypass -File .\Scripts\OpenMassCrowd\launch_telecomtwin_ci
 没有 Fatal、assert、OOM 或 HTTP 507。正常演示不需要 MCP 或 Python，打开后直接
 点击“运行”。
 
+## 为什么打开工程后看不到人
+
+人物是 `BeginPlay` 时动态创建的 Mass 表示，不是编辑器关卡里常驻的 30 个
+Character。绿色“运行”按钮表示 PIE 尚未运行，此时道路为空是正常的；停止 PIE
+后人物也会被正常销毁。
+
+正确操作：
+
+1. 用安全启动脚本打开工程；
+2. 等待香港/Cesium 画面出现；
+3. 按 `Alt+P`；
+4. 首次加载等待 8–15 秒；
+5. 在输出日志确认 `OPEN_MASS_CROWD_READY requested=30 spawned=30`。
+
+日志已显示 `spawned=30` 但仍看不到时，应检查相机：路线中心约为
+`(-97000, 222400, 395)`，范围约 `X ±720 / Y ±250`。不要重新运行布置脚本，
+关卡中唯一生成器已经保存。
+
 ## 验证脚本
 
 运行时自动验证：

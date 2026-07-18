@@ -54,6 +54,13 @@ Sample characters; no setup script is needed for normal startup. See
 [`Docs/OpenMassCrowd_UE57_HongKong_Demo.md`](Docs/OpenMassCrowd_UE57_HongKong_Demo.md)
 for implementation details, screenshots, verification, limitations, and rollback.
 
+The pedestrians are runtime Mass representations, not 30 permanently placed
+editor Actors. An empty road while the toolbar Play button is green is normal:
+press `Alt+P`, then allow 8–15 seconds for the first City Sample character load.
+The Output Log should contain
+`OPEN_MASS_CROWD_READY requested=30 spawned=30`. Do not rerun the setup script
+just because the editor viewport is empty while PIE is stopped.
+
 The 6.058 GiB official asset directory is UE-Only content and is intentionally
 excluded from Git; cloning this repository alone does not install it.
 
