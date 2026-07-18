@@ -53,6 +53,10 @@
 "Enabled": true
 },
 {
+"Name": "RigLogic",
+"Enabled": true
+},
+{
 "Name": "OpenMassCrowd",
 "Enabled": true
 },

@@ -33,6 +33,10 @@ Thumbs.db
 # Per-user Unreal content
 Content/Developers/
 
+# Epic Fab City Sample Crowds is licensed UE-Only content. The demo mounts a
+# local Fab copy here, but the marketplace assets must not be committed.
+Content/CitySampleCrowd/
+
 # Cesium local streaming cache
 cesium-request-cache.sqlite
 cesium-request-cache.sqlite-*

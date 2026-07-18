@@ -17,7 +17,8 @@ TelecomTwin is an Unreal Engine 5.7 telecom digital-twin prototype for Hong Kong
 - Cesium for Unreal 2.25.x
 - VaRest
 - Python Editor Script Plugin
-- UnrealMCP server running on port `13377`
+- Epic City Sample Crowds (free UE-Only Fab content; acquired separately)
+- UnrealMCP server on port `13377` only when running automation scripts
 
 The Google Photorealistic 3D Tiles actor is intentionally not committed because its binary asset contains a local API key. Add the tileset from the Cesium panel after cloning, using your own Cesium ion or Google Maps credentials, and keep credentials out of project assets.
 
@@ -33,11 +34,28 @@ The checked-in `.venv` is intentionally excluded. Create a fresh virtual environ
 
 ## Run the Hong Kong crowd demo
 
-Open `TelecomTwin.uproject`, wait for the nearby Cesium tiles, then click Play or
-press `Alt+P`. The saved `shanghai` level automatically creates 30 Mass crowd
-entities; no setup script is needed for normal startup. See
+On a new machine, acquire City Sample Crowds through the collaborator's own
+Epic/Fab account and mount it with:
+
+```powershell
+pwsh -ExecutionPolicy Bypass -File .\Scripts\OpenMassCrowd\link_city_sample_crowds.ps1 `
+  -Source "D:\CitySampleCrowds_Staging\Content\CitySampleCrowd"
+```
+
+Launch with the D-drive cache/low-memory profile:
+
+```powershell
+pwsh -ExecutionPolicy Bypass -File .\Scripts\OpenMassCrowd\launch_telecomtwin_citysample.ps1
+```
+
+Wait for the nearby Cesium tiles, then click Play or press `Alt+P`. The saved
+`shanghai` level automatically creates 30 Mass entities with official City
+Sample characters; no setup script is needed for normal startup. See
 [`Docs/OpenMassCrowd_UE57_HongKong_Demo.md`](Docs/OpenMassCrowd_UE57_HongKong_Demo.md)
 for implementation details, screenshots, verification, limitations, and rollback.
+
+The 6.058 GiB official asset directory is UE-Only content and is intentionally
+excluded from Git; cloning this repository alone does not install it.
 
 ## Repository policy
 

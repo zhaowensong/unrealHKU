@@ -22,12 +22,14 @@ MAX_PATHS_PER_CLASS = 40
 
 
 def asset_class_name(asset_data):
-    class_path = str(asset_data.asset_class_path)
-    return class_path.rsplit(".", 1)[-1]
+    try:
+        return str(asset_data.asset_class_path.asset_name)
+    except AttributeError:
+        return str(asset_data.asset_class_path).rsplit(".", 1)[-1]
 
 
 def object_path(asset_data):
-    return str(asset_data.get_soft_object_path())
+    return f"{asset_data.package_name}.{asset_data.asset_name}"
 
 
 def is_city_sample_candidate(asset_data):

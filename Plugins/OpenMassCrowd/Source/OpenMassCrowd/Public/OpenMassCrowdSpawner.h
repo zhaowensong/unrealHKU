@@ -66,6 +66,10 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Open Mass Crowd")
     void SpawnMassPopulation();
 
+    /** Replace temporary mannequin VAT visuals with Epic City Sample actors. */
+    UFUNCTION(BlueprintCallable, Category = "Open Mass Crowd|Visual")
+    void ConfigureOfficialCitySampleVisual();
+
     UFUNCTION(BlueprintPure, Category = "Open Mass Crowd")
     int32 GetSpawnedEntityCount() const { return SpawnedEntities.Num(); }
 
@@ -81,6 +85,7 @@ private:
     bool RequestNextPath(int32 EntityIndex);
     void RefreshCompletedPaths();
     void CorrectMassGrounding();
+    void SyncVisualActorsToMass();
     void RetrySpawn();
     void DestroyRuntimePopulation();
 

@@ -1,5 +1,6 @@
 #include "OpenMassCrowdSpawner.h"
 
+#include "OpenMassCrowdCitySampleActor.h"
 #include "OpenMassCrowdTrait.h"
 #include "OpenMassCrowdVisualization.h"
 
@@ -12,6 +13,7 @@
 #include "Components/SceneComponent.h"
 #include "Engine/World.h"
 #include "Engine/StaticMesh.h"
+#include "MassActorSubsystem.h"
 #include "MassCommonFragments.h"
 #include "MassCrowdFragments.h"
 #include "MassCrowdMemberTrait.h"
@@ -101,7 +103,10 @@ void AppendLane(
 AOpenMassCrowdSpawner::AOpenMassCrowdSpawner()
 {
     PrimaryActorTick.bCanEverTick = true;
-    PrimaryActorTick.TickGroup = TG_PostPhysics;
+    // Mass movement completes in PostPhysics.  Synchronize the owned visual
+    // actors after that phase so we never read entity transforms while the
+    // Mass pipeline may still be updating them.
+    PrimaryActorTick.TickGroup = TG_PostUpdateWork;
 
     SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
     SetRootComponent(SceneRoot);
@@ -124,6 +129,27 @@ AOpenMassCrowdSpawner::AOpenMassCrowdSpawner()
     VisualVariants.Add(MoveTemp(MannequinVisual));
 
     Tags.Add(TEXT("HK_OpenMass_Crowd_Demo"));
+}
+
+void AOpenMassCrowdSpawner::ConfigureOfficialCitySampleVisual()
+{
+    VisualVariants.Reset();
+
+    FOpenMassCrowdVisualConfig OfficialCitySampleVisual;
+    OfficialCitySampleVisual.VariantName = TEXT("Epic_CitySampleCrowd_Official");
+    OfficialCitySampleVisual.bUseActorRepresentation = true;
+    OfficialCitySampleVisual.HighResTemplateActor = AOpenMassCrowdCitySampleActor::StaticClass();
+    OfficialCitySampleVisual.LowResTemplateActor = AOpenMassCrowdCitySampleActor::StaticClass();
+    OfficialCitySampleVisual.LocalTransform = FTransform::Identity;
+    OfficialCitySampleVisual.bCastShadows = true;
+    VisualVariants.Add(MoveTemp(OfficialCitySampleVisual));
+
+    UE_LOG(
+        LogTemp,
+        Warning,
+        TEXT("OPEN_MASS_CITY_SAMPLE_VISUAL_CONFIGURED variants=%d population=%d"),
+        VisualVariants.Num(),
+        PopulationCount);
 }
 
 void AOpenMassCrowdSpawner::BeginPlay()
@@ -170,6 +196,13 @@ void AOpenMassCrowdSpawner::Tick(const float DeltaSeconds)
         GroundCorrectionAccumulator = 0.0f;
         CorrectMassGrounding();
     }
+
+    // Spawned actor representations are positioned when Mass creates or swaps
+    // them, but UE 5.7 does not continuously copy FTransformFragment back to a
+    // plain AActor.  Our official City Sample character is a child of that
+    // lightweight actor, so keep the visible 30-person demo in lock-step with
+    // the Mass/ZoneGraph simulation.
+    SyncVisualActorsToMass();
 }
 
 bool AOpenMassCrowdSpawner::ProjectToCesiumGround(
@@ -180,11 +213,6 @@ bool AOpenMassCrowdSpawner::ProjectToCesiumGround(
     {
         return false;
     }
-
-    const FVector Start(XYPoint.X, XYPoint.Y, GetActorLocation().Z + TraceHeight);
-    const FVector End(XYPoint.X, XYPoint.Y, GetActorLocation().Z - TraceDepth);
-    FCollisionQueryParams Params(SCENE_QUERY_STAT(OpenMassCrowdGround), true, this);
-    Params.AddIgnoredActor(this);
 
     const auto IsAcceptedCesiumHit = [this](const FHitResult& Hit)
     {
@@ -198,54 +226,79 @@ bool AOpenMassCrowdSpawner::ProjectToCesiumGround(
         return bCesiumComponent && bWalkableSlope && bExpectedElevation;
     };
 
-    TArray<FHitResult> Hits;
-    if (GetWorld()->LineTraceMultiByChannel(Hits, Start, End, ECC_Visibility, Params))
+    // Cesium photogrammetry can contain tiny triangle/tile seams.  Probe the
+    // character footprint (18 cm) after the exact XY trace; every accepted Z
+    // still comes from a real, walkable Cesium collision triangle.
+    static const FVector2D ProbeOffsets[] = {
+        FVector2D(0.0, 0.0),
+        FVector2D(18.0, 0.0), FVector2D(-18.0, 0.0),
+        FVector2D(0.0, 18.0), FVector2D(0.0, -18.0),
+        FVector2D(18.0, 18.0), FVector2D(18.0, -18.0),
+        FVector2D(-18.0, 18.0), FVector2D(-18.0, -18.0)
+    };
+
+    for (const FVector2D& ProbeOffset : ProbeOffsets)
     {
-        for (const FHitResult& Hit : Hits)
+        const FVector Start(
+            XYPoint.X + ProbeOffset.X,
+            XYPoint.Y + ProbeOffset.Y,
+            GetActorLocation().Z + TraceHeight);
+        const FVector End(
+            XYPoint.X + ProbeOffset.X,
+            XYPoint.Y + ProbeOffset.Y,
+            GetActorLocation().Z - TraceDepth);
+        FCollisionQueryParams Params(SCENE_QUERY_STAT(OpenMassCrowdGround), true, this);
+        Params.AddIgnoredActor(this);
+
+        TArray<FHitResult> Hits;
+        if (GetWorld()->LineTraceMultiByChannel(Hits, Start, End, ECC_Visibility, Params))
         {
-            if (IsAcceptedCesiumHit(Hit))
+            for (const FHitResult& Hit : Hits)
             {
-                OutGroundPoint = Hit.ImpactPoint;
-                return true;
+                if (IsAcceptedCesiumHit(Hit))
+                {
+                    OutGroundPoint = FVector(XYPoint.X, XYPoint.Y, Hit.ImpactPoint.Z);
+                    return true;
+                }
             }
         }
-    }
 
-    // A world trace can be stopped by an unrelated blocking component before it
-    // reaches a streamed Cesium tile. Mirror the validated editor setup by
-    // querying the loaded Cesium collision components directly as a fallback.
-    bool bFoundCesiumHit = false;
-    float NearestDistanceSquared = TNumericLimits<float>::Max();
-    FHitResult NearestHit;
-    for (TObjectIterator<UPrimitiveComponent> It; It; ++It)
-    {
-        UPrimitiveComponent* Component = *It;
-        if (!IsValid(Component) || Component->GetWorld() != GetWorld() ||
-            !Component->IsRegistered() || !Component->IsVisible() ||
-            !Component->IsQueryCollisionEnabled() ||
-            !Component->GetClass()->GetName().Contains(TEXT("CesiumGltfPrimitiveComponent")))
+        // A world trace can be stopped by an unrelated blocking component
+        // before it reaches a streamed Cesium tile. Query the loaded Cesium
+        // collision components directly as a fallback for this footprint point.
+        bool bFoundCesiumHit = false;
+        float NearestDistanceSquared = TNumericLimits<float>::Max();
+        FHitResult NearestHit;
+        for (TObjectIterator<UPrimitiveComponent> It; It; ++It)
         {
-            continue;
-        }
-
-        FHitResult ComponentHit;
-        if (Component->LineTraceComponent(ComponentHit, Start, End, Params) &&
-            IsAcceptedCesiumHit(ComponentHit))
-        {
-            const float DistanceSquared = FVector::DistSquared(Start, ComponentHit.ImpactPoint);
-            if (DistanceSquared < NearestDistanceSquared)
+            UPrimitiveComponent* Component = *It;
+            if (!IsValid(Component) || Component->GetWorld() != GetWorld() ||
+                !Component->IsRegistered() || !Component->IsVisible() ||
+                !Component->IsQueryCollisionEnabled() ||
+                !Component->GetClass()->GetName().Contains(TEXT("CesiumGltfPrimitiveComponent")))
             {
-                NearestDistanceSquared = DistanceSquared;
-                NearestHit = ComponentHit;
-                bFoundCesiumHit = true;
+                continue;
+            }
+
+            FHitResult ComponentHit;
+            if (Component->LineTraceComponent(ComponentHit, Start, End, Params) &&
+                IsAcceptedCesiumHit(ComponentHit))
+            {
+                const float DistanceSquared = FVector::DistSquared(Start, ComponentHit.ImpactPoint);
+                if (DistanceSquared < NearestDistanceSquared)
+                {
+                    NearestDistanceSquared = DistanceSquared;
+                    NearestHit = ComponentHit;
+                    bFoundCesiumHit = true;
+                }
             }
         }
-    }
 
-    if (bFoundCesiumHit)
-    {
-        OutGroundPoint = NearestHit.ImpactPoint;
-        return true;
+        if (bFoundCesiumHit)
+        {
+            OutGroundPoint = FVector(XYPoint.X, XYPoint.Y, NearestHit.ImpactPoint.Z);
+            return true;
+        }
     }
 
     return false;
@@ -920,6 +973,46 @@ void AOpenMassCrowdSpawner::CorrectMassGrounding()
             TEXT("OPEN_MASS_CROWD_GROUND corrected=%d total=%d"),
             CorrectedCount,
             SpawnedEntities.Num());
+    }
+}
+
+void AOpenMassCrowdSpawner::SyncVisualActorsToMass()
+{
+    UMassSpawnerSubsystem* SpawnerSubsystem =
+        UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
+    if (!SpawnerSubsystem)
+    {
+        return;
+    }
+
+    FMassEntityManager& EntityManager = SpawnerSubsystem->GetEntityManagerChecked();
+    for (const FMassEntityHandle Entity : SpawnedEntities)
+    {
+        if (!EntityManager.IsEntityValid(Entity))
+        {
+            continue;
+        }
+
+        const FTransformFragment* TransformFragment =
+            EntityManager.GetFragmentDataPtr<FTransformFragment>(Entity);
+        FMassActorFragment* ActorFragment =
+            EntityManager.GetFragmentDataPtr<FMassActorFragment>(Entity);
+        AActor* VisualActor =
+            ActorFragment ? ActorFragment->GetOwnedByMassMutable() : nullptr;
+        if (!TransformFragment || !IsValid(VisualActor))
+        {
+            continue;
+        }
+
+        const FTransform& MassTransform = TransformFragment->GetTransform();
+        if (!VisualActor->GetActorTransform().Equals(MassTransform, 0.01f))
+        {
+            VisualActor->SetActorTransform(
+                MassTransform,
+                false,
+                nullptr,
+                ETeleportType::TeleportPhysics);
+        }
     }
 }
 

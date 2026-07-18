@@ -1,131 +1,112 @@
-# TelecomTwin 香港 Mass 人群 Demo（UE 5.7）
+# TelecomTwin 香港 30 人群集 Demo（UE 5.7）
 
 ## 当前结果
 
-项目已在原来的 `/Game/Maps/shanghai` 香港场景中加入一个可回滚、可重启的
-30 人步行 Demo。运行平台是 UE 5.7 自带的 MassEntity、MassAI、MassCrowd、
-ZoneGraph 和 StateTree，不再依赖已经停止维护的 Miarmy UE 插件。
+项目现在使用 UE 5.7 的 MassEntity、MassMovement、MassCrowd、ZoneGraph 和
+StateTree 作为人群模拟层，使用 Epic 官方 City Sample Crowds 作为可视人物层。
+Miarmy UE 已停止开发，工程不再依赖它。
 
-这次改动没有重建数字孪生场景，也没有修改已有通信射线。Git 变更仅用新的
-`HK_OpenMass_Crowd_Spawner` 替换旧的普通 Character 人群生成器和 NavMesh
-边界；信号射线脚本、射线资产和现有运行输出均未改动。
+最终结果不是在场景里手工摆放 30 个 Character：30 个 Mass Entity 独立移动，
+每个 Entity 一对一驱动一个可见人物，人物位置持续投影到真实
+`CesiumGltfPrimitiveComponent` 路面。
 
-## 运行证据
+## 最终重启验证
 
-首次稳定运行，30 个 Mass 实体已经显示在 Cesium 香港路面：
+2026-07-18 关闭并重新启动 Unreal Editor 后，没有执行布置脚本，直接进入 PIE。
+自动验证器的 `overall_passed` 为 `true`，错误数为 0。
 
-![30 人 Mass 人群运行画面](Evidence/OpenMassCrowd/01_mass_crowd_running.jpg)
+| 检查项 | 结果 |
+|---|---:|
+| 唯一人群生成器 | 1 |
+| 请求 / Mass Entity / 可见人物 | 30 / 30 / 30 |
+| 播放走路动画 | 30 / 30 |
+| 可见外观 | 30 种 |
+| 6.022 秒移动超过 60 cm | 30 / 30 |
+| 移动距离中位数 | 627.887 cm |
+| Cesium 路面命中 | 30 / 30 |
+| Mass 根节点最大贴地误差 | 2.135 cm |
+| 可见脚部贴地检查 | 30 / 30 |
+| 信源 | 30 |
+| 射线几何 | 1920 |
+| 有 Mesh 且可见的射线几何 | 1920 / 1920 |
+| 绿 / 黄 / 橙 / 红 | 480 / 480 / 480 / 480 |
 
-继续运行 6 秒后，队形和位置发生变化，证明不是静态摆放：
+完整机器可读结果见
+[open_mass_city_sample_runtime_latest.json](Evidence/OpenMassCrowd/open_mass_city_sample_runtime_latest.json)。
 
-![运行 6 秒后的移动结果](Evidence/OpenMassCrowd/02_mass_crowd_after_6s.jpg)
+## 截图证据
 
-关闭并重新打开 Unreal Editor 后，没有重新执行布置脚本，直接运行仍能自动
-恢复 30 人：
+30 个 City Sample 人物在香港街道上运行：
 
-![编辑器重启后的烟雾测试](Evidence/OpenMassCrowd/03_restart_smoke.jpg)
+![30 人广角运行画面](Evidence/OpenMassCrowd/04_city_sample_30_wide.png)
 
-两次成功 PIE 的关键日志一致：
+近景截图所在运行批次可见 29 种不同性别、身体、头发和服装组合；最终严格复验
+批次为 30 种：
 
-```text
-OPEN_MASS_CROWD_READY requested=30 spawned=30 lanes=2
-cesium_route_points=12 center=(-97000.00,222400.00,394.83)
-```
+![29 种外观近景](Evidence/OpenMassCrowd/05_city_sample_29_variants_close.png)
 
-最终一次干净重启的日志时间为 2026-07-15 01:28（香港时间）。该次运行没有
-`OPEN_MASS_CROWD_ABORT`、断言、Fatal Error 或 Unhandled Exception。
+低机位检查脚部与 Cesium 道路接触：
 
-## 四个关键问题如何解决
+![Cesium 脚部贴地近景](Evidence/OpenMassCrowd/06_city_sample_cesium_foot_grounding.png)
 
-### 1. 人必须在真实香港场景里走
+重启后的同一批人物继续运行，位置与前图不同：
 
-布置脚本在编辑器中逐个查询已加载的 `CesiumGltfPrimitiveComponent`，先验证
-12 个路线采样点，再允许保存生成器。运行时仍会做同样的 Cesium 类型、坡度
-和高度检查；不接受普通碰撞平面，也没有用悬空代理面伪装地面。
-
-生成器现在拥有真正的 `USceneComponent` 根组件，因此保存的香港坐标会在 PIE
-和编辑器重启后保持为 `(-97000, 222400, 394.83)`，不会退回世界原点。
-
-### 2. 人群必须持续移动，不是手工摆放
-
-运行时创建两条方向相反的闭合 ZoneGraph 路线，并生成 30 个真正的 Mass
-Entity。每个 Entity 都通过 `FMassZoneGraphLaneLocationFragment`、短路径请求
-和 Mass 移动处理器沿路线循环，不由 Actor Tick 直接改坐标假装导航。
-
-### 3. 人群要具备转向和局部避让
-
-实体配置包含以下 UE 5.7 原生 Trait：
-
-- `UMassMovementTrait`
-- `UMassSteeringTrait`
-- `UMassSmoothOrientationTrait`
-- `UMassNavigationObstacleTrait`
-- `UMassObstacleAvoidanceTrait`
-- `UMassZoneGraphNavigationTrait`
-- `UMassCrowdMemberTrait`
-
-`NavigationObstacle` 把每个人注册为局部避障邻居，`ObstacleAvoidance` 计算避让，
-`SmoothOrientation` 让人物跟随运动方向转向。两组人使用相反方向的路线，可以
-在同一片街道上产生会车和局部避让。
-
-### 4. 工程必须稳定、可调、可重启
-
-- 人数由 `PopulationCount` 控制，关卡当前保存为 30，编辑器可调范围 1–500。
-- Cesium 瓦片尚未加载时使用定时重试，禁止同步递归，避免栈溢出。
-- Mass 创建观察器完成后才写入运行时 lane handle，防止默认初始化器清空路线。
-- 每次路径请求显式使用实体当前位置作为 `StartPosition`，不会从世界原点生成
-  假路径。
-- 地面高度每 0.2 秒重新检查一次 Cesium 碰撞，人物脚底保持在真实路面。
-- `EndPlay` 先销毁 Mass Entity，再销毁视觉 Actor 和运行时 ZoneGraph，避免关卡
-  停止或重启时留下无效引用。
+![重启后运行 6 秒](Evidence/OpenMassCrowd/07_city_sample_restart_after_6s.png)
 
 ## 怎么启动
 
-1. 用 UE 5.7 打开项目根目录的 `TelecomTwin.uproject`。
-2. 等待 `shanghai` 场景和附近 Cesium 瓦片显示。
-3. 点击工具栏“运行”，或按 `Alt+P`。
-4. 在日志中确认 `OPEN_MASS_CROWD_READY requested=30 spawned=30`。
+第一次在一台新电脑上使用，需要先通过自己的 Epic/Fab 权限取得 City Sample
+Crowds，然后把官方目录挂到工程的忽略路径：
 
-关卡已经保存好，不需要每次运行 Python。只有在生成器被手动删除或需要重新
-选择街区时，才执行：
-
-```python
-exec(open(r"<项目目录>/Scripts/OpenMassCrowd/setup_open_mass_crowd_demo.py", encoding="utf-8").read())
+```powershell
+pwsh -ExecutionPolicy Bypass -File .\Scripts\OpenMassCrowd\link_city_sample_crowds.ps1 `
+  -Source "D:\CitySampleCrowds_Staging\Content\CitySampleCrowd"
 ```
 
-该脚本只删除既有的人群 Demo 标签，不会删除或重建通信射线。
+随后使用低内存启动器：
 
-## 主要文件
+```powershell
+pwsh -ExecutionPolicy Bypass -File .\Scripts\OpenMassCrowd\launch_telecomtwin_citysample.ps1
+```
 
-- `Plugins/OpenMassCrowd/`：隔离的 UE 5.7 Mass/ZoneGraph 运行时插件。
-- `Scripts/OpenMassCrowd/setup_open_mass_crowd_demo.py`：Cesium 路面验证和一次性
-  关卡布置脚本。
-- `Config/DefaultPlugins.ini`：MassCrowd 使用的 lane tag 配置。
-- `Content/Maps/shanghai.umap` 与对应 External Actor：保存人群生成器实例。
-- `Docs/Evidence/OpenMassCrowd/`：本次验证截图。
+等待香港 Cesium 瓦片显示后点击工具栏“运行”或按 `Alt+P`。关卡已经保存好，正常
+启动不需要 MCP，也不需要运行 Python。MCP 只用于自动化检查、截图或重建布置。
+
+## 关键实现
+
+- `AOpenMassCrowdSpawner` 创建有界 ZoneGraph、30 个 Mass Entity，并配置移动、
+  转向、局部障碍和避让 Trait。
+- `AOpenMassCrowdCitySampleActor` 只负责显示。它在官方 Blueprint 构造前调用
+  `SetRandomOptions`，随机人物组合，并播放官方 MTN 走路动画。
+- 每帧在 Mass 更新之后把 `FTransformFragment` 同步到可视 Actor；不存在第二套
+  Character 导航或 Tick 移动逻辑。
+- 贴地只接受真实 Cesium 碰撞组件。18 cm 脚掌范围的备用采样只用于跨越瓦片
+  小缝隙，使用相邻采样的高度时仍保持实体原始 XY。
+- 可视人物碰撞全部关闭，避免影响 Cesium 探测和通信射线。
+- 布置脚本按类和标签删除旧生成器，并保存唯一实例；旧 BattleWizard External
+  Actor 已从关卡删除，因此重启后不会再次出现 60 人重复生成。
+
+## 文件与许可
+
+- `Plugins/OpenMassCrowd/`：隔离的人群运行时代码。
+- `Scripts/OpenMassCrowd/`：资源审计、挂载、启动、运行验证和截图脚本。
+- `Docs/Evidence/OpenMassCrowd/`：最终 JSON 与截图。
+- `Docs/Obsidian/TelecomTwin_CitySample_30_Pedestrian_Demo.md`：完整实施记录。
+
+City Sample Crowds 是 UE-Only Content，完整 6.058 GiB 官方素材通过本地目录联接
+加载并被 `.gitignore` 排除。Git 只保存本项目代码、关卡引用、脚本、文档和证据。
 
 ## 已知限制
 
-- 当前人物外观复用工程已有的 BattleWizard 骨骼网格，所以 30 人外观相同；
-  这验证的是群集运动架构，不是最终城市人口美术。
-- 30 人 Demo 使用轻量视觉 Actor 同步 Mass Transform。若扩展到数百或数千人，
-  应替换为 MassRepresentation + VAT/实例化人物 LOD；这不影响当前行为层。
-- 路线是本地 12 点闭合路线，不是全香港自动人行路网。
-- 启动时仍可能出现工程原有的 Cesium metadata 检查警告和 Water collision profile
-  提示；它们与本次人群运行无关，成功运行日志已验证不会阻止 Demo。
+- Demo 只覆盖香港场景中的一段局部道路，不是全城人行路网。
+- 当前 30 人使用 Actor 可视表示；没有实现适合数百/数千人的 VAT/ISM 远景 LOD。
+- 已启用避让，但本轮没有输出最小人际距离的定量统计。
+- 首次构建 City Sample 纹理仍然较重，必须预留 D 盘缓存空间；启动器通过单并发
+  编译降低峰值，不代表低配置机器一定实时流畅。
 
-## 许可与回滚
-
-运行时使用 Unreal Engine 自带模块，遵循 Epic Games 的 Unreal Engine 许可。
-方案调研参考了 MIT 许可的 `Ji-Rath/MassAIExample`，本插件没有复制该仓库源文件；
-详见 `Plugins/OpenMassCrowd/THIRD_PARTY_NOTICES.md`。
-
-集成前的远程回滚点是：
+## 回滚点
 
 ```text
-rollback/hk-street-crowd-30-2026-07-14
-8a4a24e879414c10dae72f6d145ca31bf548f034
+checkpoint/citysample-pre-assets-2026-07-15
+0ad264252223654da99ac5400548d2524df3f4f7
 ```
-
-Mass 版本位于分支 `experiment/open-mass-crowd-ue57`。因此可以在新版本和旧的
-30 人 Character 版本之间明确切换，不需要手工拆插件或猜测哪些文件被改过。
