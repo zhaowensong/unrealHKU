@@ -1,0 +1,90 @@
+{
+  "certified_cache_loaded": true,
+  "certified_lane_count": 818,
+  "cesium_component_count": 590,
+  "drawn_segment_counts": {
+    "certified-lane": 37432,
+    "crossing": 54,
+    "imported-footway": 332,
+    "imported-sidewalk": 220,
+    "manual-review": 25,
+    "pedestrian-zone": 21,
+    "rejected-candidate": 273
+  },
+  "duration_seconds": 180.0,
+  "legend": {
+    "certified-lane": [
+      0.0,
+      1.0,
+      0.15,
+      1.0
+    ],
+    "crossing": [
+      1.0,
+      0.85,
+      0.0,
+      1.0
+    ],
+    "imported-footway": [
+      0.0,
+      0.65,
+      1.0,
+      1.0
+    ],
+    "imported-sidewalk": [
+      0.15,
+      0.35,
+      1.0,
+      1.0
+    ],
+    "manual-correction": [
+      0.9,
+      0.05,
+      1.0,
+      1.0
+    ],
+    "manual-review": [
+      1.0,
+      0.35,
+      0.0,
+      1.0
+    ],
+    "pedestrian-zone": [
+      0.2,
+      0.85,
+      0.9,
+      1.0
+    ],
+    "portal": [
+      1.0,
+      0.1,
+      0.65,
+      1.0
+    ],
+    "rejected-candidate": [
+      1.0,
+      0.02,
+      0.02,
+      1.0
+    ],
+    "spawn-district": [
+      0.1,
+      0.45,
+      1.0,
+      1.0
+    ]
+  },
+  "level_saved": false,
+  "manual_correction_count": 0,
+  "overlay_version": "1.0.0",
+  "portal_count": 46,
+  "rejected_way_count": 74,
+  "schema_version": 1,
+  "source_feature_count": 229,
+  "surface_snap_enabled": true,
+  "surface_snap_failure_count": 0,
+  "surface_snap_success_count": 629,
+  "transient": true,
+  "viewport_focused_on_core": true,
+  "world": "shanghai"
+}

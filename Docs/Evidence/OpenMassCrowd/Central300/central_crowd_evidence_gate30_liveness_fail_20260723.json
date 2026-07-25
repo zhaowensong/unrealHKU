@@ -1,0 +1,310 @@
+{
+  "acceptance_gate_evaluated": false,
+  "camera": {
+    "center_source": "central_network_bounds",
+    "location": {
+      "x": -169369.45473375,
+      "y": 243402.02512500001,
+      "z": 6538.943733000001
+    },
+    "rotation": {
+      "pitch": -21.26300640214704,
+      "roll": 1.3943677673501444e-07,
+      "yaw": 49.635463426902604
+    },
+    "strategy": "telemetry",
+    "target": {
+      "x": -160206.8098,
+      "y": 254181.6074,
+      "z": 1033.56095
+    },
+    "visible_proxy_count": 0,
+    "visual_target": {
+      "authoritative_data": "report.runtime.metrics and report.telemetry_summary",
+      "hud_rendered": false,
+      "kind": "telemetry_visual_context",
+      "reason": "The observer does not inject a UMG/stat HUD.",
+      "screenshot_role": "context_only"
+    }
+  },
+  "camera_preset": "telemetry",
+  "capture_passed": true,
+  "collision_contract": {
+    "checks": {
+      "current_center_clearance_at_least_20cm": true,
+      "planned_spawn_clearance_at_least_hard_20cm": true,
+      "zero_current_overlap_agents": true,
+      "zero_current_overlap_pairs": true
+    },
+    "cumulative_snapshot_checks_passed": true,
+    "hard_snapshot_checks_passed": true,
+    "observer_limit": "This instantaneous capture validates cumulative counters but cannot compute sampled peaks; it does not replace the schema-4 60-second gate verifier or claim that its named check passed.",
+    "pedestrian_radius_cm": 27.0,
+    "planned_spawn_quality_target_cm": 55.0,
+    "planned_spawn_quality_target_is_advisory": true,
+    "quality_diagnostics": {
+      "advisory_not_spec_gate": true,
+      "lifetime_overlap_pair_observations": 0,
+      "lifetime_peak_overlap_agents": 0,
+      "lifetime_peak_overlap_pairs": 0,
+      "minimum_observed_center_distance_cm": 20.011537551879883,
+      "planned_spawn_clearance_quality_target_met": true
+    },
+    "required_gate_runtime_report_schema_version": 4,
+    "required_gate_verifier_check_name": "no_severe_overlap_below_20cm_during_steady_60s_window",
+    "schema4_gate_check_evaluated": false,
+    "schema4_sampled_peak_requirements": {
+      "evaluated_by_this_capture": false,
+      "maximum_sampled_current_agents": 0,
+      "maximum_sampled_current_pairs": 0
+    },
+    "scope": "This instantaneous capture checks the current hard 20 cm state only; the named schema-4 gate verifier remains authoritative for the full 60-second steady window.",
+    "severe_overlap_threshold_cm": 20.0,
+    "values": {
+      "current_minimum_center_distance_cm": 64.53435516357422,
+      "current_overlap_agents": 0,
+      "current_overlap_pairs": 0,
+      "lifetime_overlap_pair_observations": 0,
+      "lifetime_peak_overlap_agents": 0,
+      "lifetime_peak_overlap_pairs": 0,
+      "minimum_observed_center_distance_cm": 20.011537551879883,
+      "minimum_planned_spawn_clearance_cm": 59.79716110229492
+    }
+  },
+  "completion_reason": "screenshot_written_and_validated",
+  "generated_utc": "2026-07-23T15:14:29.124926+00:00",
+  "image": {
+    "actual_label_latest_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-liveness-fail-20260723_latest.png",
+    "actual_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-liveness-fail-20260723_20260723T151411351417Z.png",
+    "bytes": 2437815,
+    "height": 900,
+    "png_validated": true,
+    "width": 1600
+  },
+  "label": "gate30-liveness-fail-20260723",
+  "label_latest_image_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-liveness-fail-20260723_latest.png",
+  "label_latest_report_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-liveness-fail-20260723_latest.json",
+  "network_visual_context": {
+    "physical_certified_lane_count": 409,
+    "visible_city_sample_proxy_count": 0,
+    "world_bounds_max": {
+      "x": -140607.5693,
+      "y": 269286.8459,
+      "z": 1790.0528
+    },
+    "world_bounds_min": {
+      "x": -179806.0503,
+      "y": 239076.3689,
+      "z": 77.0691
+    }
+  },
+  "required_gate_runtime_report_schema_version": 4,
+  "runtime": {
+    "gate": 30,
+    "gate_property": "<OpenMassCrowdCentralPopulationGate.GATE30: 0>",
+    "metrics": {
+      "actor_total": 0,
+      "admission_batches": 3,
+      "admission_target": 30,
+      "admitted": 30,
+      "completed_trips": 484,
+      "expected_moving": 30,
+      "frame_maximum_ms": 16052.6240234375,
+      "frame_p50_ms": 16.666900634765625,
+      "frame_p95_ms": 48.59379577636719,
+      "frame_sample_count": 1332,
+      "frame_window_seconds": 59.984561920166016,
+      "ground_candidate_component_tests": 105395,
+      "ground_center_recoveries": 1,
+      "ground_component_cache_refreshes": 121,
+      "ground_guard_queries": 30909,
+      "ground_projection_failures": 1,
+      "ground_rollbacks": 0,
+      "ground_unrecoverable": 0,
+      "high_actor": 0,
+      "low_actor": 0,
+      "minimum_center_distance_cm": 64.53435516357422,
+      "minimum_observed_center_distance_cm": 20.011537551879883,
+      "minimum_planned_spawn_clearance_cm": 59.79716110229492,
+      "moving": 0,
+      "peak_severe_overlap_agents": 0,
+      "peak_severe_overlap_pairs": 0,
+      "planned_spawn_slots": 300,
+      "represented": 30,
+      "route_assignments": 514,
+      "route_replans": 0,
+      "runtime_lanes": 818,
+      "runtime_nodes": 476,
+      "severe_overlap_agents": 0,
+      "severe_overlap_pair_observations": 0,
+      "severe_overlap_pairs": 0,
+      "short_path_chunks": 3801,
+      "simulated": 30,
+      "spawned": 30,
+      "stuck": 30,
+      "telemetry_observations": 5873,
+      "unsupported_visuals": 0,
+      "vat": 30
+    },
+    "network_asset": "/Game/OpenMassCrowd/Central/DA_CentralNetwork_Certified.DA_CentralNetwork_Certified",
+    "network_mode": "<OpenMassCrowdNetworkMode.CENTRAL_CERTIFIED_CACHE: 1>",
+    "pie_proof": true,
+    "population": 30,
+    "population_property": 30,
+    "population_source": "central_simulated",
+    "spawner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdSpawner_UAID_FC5CEEE089AE52EF02_1864962311",
+    "spawner_count": 1,
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+    "world_name": "shanghai"
+  },
+  "safe_label": "gate30-liveness-fail-20260723",
+  "safety": {
+    "camera_is_editor_viewport_only": true,
+    "debug_overlays_are_transient_and_nonpersistent": true,
+    "existing_pie_only": true,
+    "mutates_map_spawner_network_population_or_entities": false,
+    "starts_or_stops_pie": false,
+    "temporary_signal_actor_visibility_may_change": true,
+    "temporary_signal_visibility_must_restore_before_pass": true
+  },
+  "schema_id": "open_mass_central_evidence_capture",
+  "schema_version": 2,
+  "screenshot_request_return": "/Engine/Transient.AutomationEditorTask_0",
+  "signal_inventory_after_restore": {
+    "actor_identity_source": "Exact PIE labels matching the schema-4 verifier regex contract",
+    "assigned_mesh_component_count": 1920,
+    "checks": {
+      "per_color_visible_geometry_counts": true,
+      "ray_actor_unique_label_and_visible_geometry_count": true,
+      "source_actor_and_unique_label_count": true
+    },
+    "color_geometry_counts": {
+      "Green": 480,
+      "Orange": 480,
+      "Red": 480,
+      "Yellow": 480
+    },
+    "expected": {
+      "color_geometry_counts": {
+        "Green": 480,
+        "Orange": 480,
+        "Red": 480,
+        "Yellow": 480
+      },
+      "ray_geometry_count": 1920,
+      "source_actor_count": 30
+    },
+    "ray_actor_count": 1920,
+    "ray_geometry_count": 1920,
+    "ray_labels_without_visible_geometry_count": 0,
+    "ray_labels_without_visible_geometry_samples": [],
+    "source_actor_count": 30,
+    "strict_visible_regression_pass": true,
+    "unique_ray_label_count": 1920,
+    "unique_source_label_count": 30,
+    "visible_mesh_component_count": 1920
+  },
+  "signal_inventory_pre_capture": {
+    "actor_identity_source": "Exact PIE labels matching the schema-4 verifier regex contract",
+    "assigned_mesh_component_count": 1920,
+    "checks": {
+      "per_color_visible_geometry_counts": true,
+      "ray_actor_unique_label_and_visible_geometry_count": true,
+      "source_actor_and_unique_label_count": true
+    },
+    "color_geometry_counts": {
+      "Green": 480,
+      "Orange": 480,
+      "Red": 480,
+      "Yellow": 480
+    },
+    "expected": {
+      "color_geometry_counts": {
+        "Green": 480,
+        "Orange": 480,
+        "Red": 480,
+        "Yellow": 480
+      },
+      "ray_geometry_count": 1920,
+      "source_actor_count": 30
+    },
+    "ray_actor_count": 1920,
+    "ray_geometry_count": 1920,
+    "ray_labels_without_visible_geometry_count": 0,
+    "ray_labels_without_visible_geometry_samples": [],
+    "source_actor_count": 30,
+    "strict_visible_regression_pass": true,
+    "unique_ray_label_count": 1920,
+    "unique_source_label_count": 30,
+    "visible_mesh_component_count": 1920
+  },
+  "signal_visual_isolation": {
+    "already_hidden_actor_count": 0,
+    "changed_actor_count": 1950,
+    "map_or_asset_modified": false,
+    "matched_actor_count": 1950,
+    "requested": true,
+    "restoration_attempted": true,
+    "restoration_errors": [],
+    "restoration_passed": true,
+    "restored_actor_count": 1950,
+    "selection": "PIE SIG_Ray_* and SIG_Source_* actors"
+  },
+  "status": "PASS",
+  "telemetry_summary": {
+    "authoritative_source": "reflected AOpenMassCrowdSpawner getters in this JSON",
+    "hud_rendered": false,
+    "missing_fields": [],
+    "screenshot_role": "visual context only; counts are not burned into pixels",
+    "values": {
+      "admission_target": 30,
+      "admitted": 30,
+      "expected_moving": 30,
+      "frame_maximum_ms": 16052.6240234375,
+      "frame_p50_ms": 16.666900634765625,
+      "frame_p95_ms": 48.59379577636719,
+      "frame_sample_count": 1332,
+      "frame_window_seconds": 59.984561920166016,
+      "ground_candidate_component_tests": 105395,
+      "ground_component_cache_refreshes": 121,
+      "ground_guard_queries": 30909,
+      "high_actor": 0,
+      "low_actor": 0,
+      "minimum_center_distance_cm": 64.53435516357422,
+      "minimum_observed_center_distance_cm": 20.011537551879883,
+      "minimum_planned_spawn_clearance_cm": 59.79716110229492,
+      "moving": 0,
+      "peak_severe_overlap_agents": 0,
+      "peak_severe_overlap_pairs": 0,
+      "represented": 30,
+      "severe_overlap_agents": 0,
+      "severe_overlap_pair_observations": 0,
+      "severe_overlap_pairs": 0,
+      "simulated": 30,
+      "stuck": 30,
+      "unsupported_visuals": 0,
+      "vat": 30
+    }
+  },
+  "timestamped_image_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-liveness-fail-20260723_20260723T151411351417Z.png",
+  "timestamped_report_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-liveness-fail-20260723_20260723T151411351417Z.json",
+  "transient_visual_overlay": {
+    "kind": "none",
+    "reason": "preset uses unmodified scene visuals"
+  },
+  "visual_evidence_checks": {
+    "acceptance_gate_evaluated": false,
+    "all_required_checks_passed": true,
+    "checks": {
+      "all_simulated_entities_represented": true,
+      "critical_telemetry_fields_present": true,
+      "positive_simulated_population": true,
+      "schema4_collision_current_snapshot_preconditions": true,
+      "zero_unsupported_visuals": true
+    },
+    "does_not_replace_gate_verifier": true,
+    "notes": [
+      "No HUD was injected. The PNG is context only; use telemetry_summary.values."
+    ]
+  }
+}

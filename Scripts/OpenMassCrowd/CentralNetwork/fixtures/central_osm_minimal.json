@@ -1,0 +1,108 @@
+{
+  "version": 0.6,
+  "generator": "TelecomTwin deterministic offline fixture",
+  "osm3s": {
+    "timestamp_osm_base": "2026-01-01T00:00:00Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    { "type": "node", "id": 1, "lat": 22.27900, "lon": 114.16350, "version": 1 },
+    { "type": "node", "id": 2, "lat": 22.27900, "lon": 114.16810, "version": 1 },
+    { "type": "node", "id": 3, "lat": 22.28055, "lon": 114.16350, "version": 1 },
+    { "type": "node", "id": 4, "lat": 22.28055, "lon": 114.16810, "version": 1 },
+    { "type": "node", "id": 5, "lat": 22.27840, "lon": 114.16430, "version": 1 },
+    { "type": "node", "id": 6, "lat": 22.28130, "lon": 114.16430, "version": 1 },
+    { "type": "node", "id": 7, "lat": 22.27970, "lon": 114.16600, "version": 1 },
+    { "type": "node", "id": 8, "lat": 22.27998, "lon": 114.16600, "version": 1 },
+    { "type": "node", "id": 9, "lat": 22.28020, "lon": 114.16710, "version": 1 },
+    { "type": "node", "id": 10, "lat": 22.28080, "lon": 114.16740, "version": 1 },
+    { "type": "node", "id": 11, "lat": 22.27880, "lon": 114.16550, "version": 1 },
+    { "type": "node", "id": 12, "lat": 22.27940, "lon": 114.16580, "version": 1 },
+    { "type": "node", "id": 13, "lat": 22.28010, "lon": 114.16480, "version": 1 },
+    { "type": "node", "id": 14, "lat": 22.28070, "lon": 114.16520, "version": 1 },
+    { "type": "node", "id": 15, "lat": 22.28010, "lon": 114.16680, "version": 1 },
+    { "type": "node", "id": 16, "lat": 22.28070, "lon": 114.16690, "version": 1 },
+    { "type": "node", "id": 17, "lat": 22.27920, "lon": 114.16700, "version": 1 },
+    { "type": "node", "id": 18, "lat": 22.27950, "lon": 114.16750, "version": 1 },
+    { "type": "node", "id": 19, "lat": 22.27920, "lon": 114.16400, "version": 1 },
+    { "type": "node", "id": 20, "lat": 22.27950, "lon": 114.16450, "version": 1 },
+
+    {
+      "type": "way",
+      "id": 1001,
+      "version": 3,
+      "nodes": [1, 2],
+      "tags": { "highway": "footway", "footway": "sidewalk", "surface": "paving_stones" }
+    },
+    {
+      "type": "way",
+      "id": 1002,
+      "version": 2,
+      "nodes": [3, 4],
+      "tags": { "highway": "footway", "surface": "concrete" }
+    },
+    {
+      "type": "way",
+      "id": 1003,
+      "version": 1,
+      "nodes": [5, 6],
+      "tags": { "highway": "path", "foot": "designated" }
+    },
+    {
+      "type": "way",
+      "id": 1004,
+      "version": 4,
+      "nodes": [7, 8],
+      "tags": { "highway": "footway", "footway": "crossing", "crossing": "marked" }
+    },
+    {
+      "type": "way",
+      "id": 1005,
+      "version": 1,
+      "nodes": [9, 10],
+      "tags": { "highway": "pedestrian", "surface": "paving_stones" }
+    },
+    {
+      "type": "way",
+      "id": 1006,
+      "version": 1,
+      "nodes": [11, 12],
+      "tags": { "highway": "steps", "step_count": "12" }
+    },
+    {
+      "type": "way",
+      "id": 1007,
+      "version": 5,
+      "nodes": [13, 14],
+      "tags": { "highway": "service", "sidewalk": "right", "name": "Fixture Service Street" }
+    },
+    {
+      "type": "way",
+      "id": 1008,
+      "version": 2,
+      "nodes": [15, 16],
+      "tags": { "highway": "residential", "name": "Rejected Car Street" }
+    },
+    {
+      "type": "way",
+      "id": 1009,
+      "version": 1,
+      "nodes": [17, 18],
+      "tags": { "highway": "footway", "access": "private" }
+    },
+    {
+      "type": "way",
+      "id": 1010,
+      "version": 1,
+      "nodes": [19, 20],
+      "tags": { "highway": "path", "area": "yes" }
+    },
+    {
+      "type": "way",
+      "id": 1011,
+      "version": 1,
+      "nodes": [17, 18],
+      "tags": { "highway": "service", "foot": "designated", "motor_vehicle": "no" }
+    }
+  ]
+}

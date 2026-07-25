@@ -1,0 +1,1130 @@
+{
+  "engine_version": "5.7.4-51494982+++UE5+Release-5.7",
+  "expected_asset_count": 144,
+  "manifest_sha256": "b173b67f07813e60627b9fcf81ba1d1231c374fadc87d197fa549c92e41153dc",
+  "output_root": "/Game/OpenMassCrowd/CitySampleVAT",
+  "part_count": 24,
+  "removed_obsolete_assets": [
+    "/Game/OpenMassCrowd/CitySampleVAT/FTN/DA_CitySample_FTN_VAT.DA_CitySample_FTN_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTN/MI_CitySample_FTN_VAT.MI_CitySample_FTN_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_VAT.SM_CitySample_FTN_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_BonePosition.TX_FTN_BonePosition",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_BoneRotation.TX_FTN_BoneRotation",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_BoneWeight.TX_FTN_BoneWeight",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTO/DA_CitySample_FTO_VAT.DA_CitySample_FTO_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTO/MI_CitySample_FTO_VAT.MI_CitySample_FTO_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_VAT.SM_CitySample_FTO_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_BonePosition.TX_FTO_BonePosition",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_BoneRotation.TX_FTO_BoneRotation",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_BoneWeight.TX_FTO_BoneWeight",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTU/DA_CitySample_FTU_VAT.DA_CitySample_FTU_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTU/MI_CitySample_FTU_VAT.MI_CitySample_FTU_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_VAT.SM_CitySample_FTU_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_BonePosition.TX_FTU_BonePosition",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_BoneRotation.TX_FTU_BoneRotation",
+    "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_BoneWeight.TX_FTU_BoneWeight",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTN/DA_CitySample_MTN_VAT.DA_CitySample_MTN_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTN/MI_CitySample_MTN_VAT.MI_CitySample_MTN_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_VAT.SM_CitySample_MTN_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_BonePosition.TX_MTN_BonePosition",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_BoneRotation.TX_MTN_BoneRotation",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_BoneWeight.TX_MTN_BoneWeight",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTO/DA_CitySample_MTO_VAT.DA_CitySample_MTO_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTO/MI_CitySample_MTO_VAT.MI_CitySample_MTO_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_VAT.SM_CitySample_MTO_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_BonePosition.TX_MTO_BonePosition",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_BoneRotation.TX_MTO_BoneRotation",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_BoneWeight.TX_MTO_BoneWeight",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTU/DA_CitySample_MTU_VAT.DA_CitySample_MTU_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTU/MI_CitySample_MTU_VAT.MI_CitySample_MTU_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_VAT.SM_CitySample_MTU_VAT",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_BonePosition.TX_MTU_BonePosition",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_BoneRotation.TX_MTU_BoneRotation",
+    "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_BoneWeight.TX_MTU_BoneWeight"
+  ],
+  "schema_version": 2,
+  "status": "PASS",
+  "variant_count": 6,
+  "variants": [
+    {
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTN_Set/FTN_N_Walk_F_VarB.FTN_N_Walk_F_VarB",
+      "id": "FTN",
+      "part_count": 4,
+      "parts": [
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTN/DA_CitySample_FTN_Torso_VAT.DA_CitySample_FTN_Torso_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Body_BonePosition.TX_FTN_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Body_BoneRotation.TX_FTN_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Torso_BoneWeight.TX_FTN_Torso_BoneWeight",
+          "id": "Torso",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTN/MI_CitySample_FTN_Torso_S0_VAT.MI_CitySample_FTN_Torso_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_buttonDown.MI_f_nrw_buttonDown",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_buttonDown.MI_f_nrw_buttonDown"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 98,
+          "precision": "eight_bits",
+          "role": "torso",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTN_Set/FTN_N_Walk_F_VarB.FTN_N_Walk_F_VarB",
+          "source_lod_vertices": 1327,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_buttonDown.f_tal_nrw_buttonDown",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Torso_VAT.SM_CitySample_FTN_Torso_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTN/DA_CitySample_FTN_Legs_VAT.DA_CitySample_FTN_Legs_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Body_BonePosition.TX_FTN_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Body_BoneRotation.TX_FTN_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Legs_BoneWeight.TX_FTN_Legs_BoneWeight",
+          "id": "Legs",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTN/MI_CitySample_FTN_Legs_S0_VAT.MI_CitySample_FTN_Legs_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_jeans.MI_f_nrw_jeans",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_jeans.MI_f_nrw_jeans"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTN/MI_CitySample_FTN_Legs_S1_VAT.MI_CitySample_FTN_Legs_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_BodySynthesized.M_BodySynthesized",
+              "slot": 1,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_BodySynthesized.M_BodySynthesized"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 98,
+          "precision": "eight_bits",
+          "role": "legs",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTN_Set/FTN_N_Walk_F_VarB.FTN_N_Walk_F_VarB",
+          "source_lod_vertices": 1124,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_jeans.f_tal_nrw_jeans",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Legs_VAT.SM_CitySample_FTN_Legs_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0,
+            1
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTN/DA_CitySample_FTN_Shoes_VAT.DA_CitySample_FTN_Shoes_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Body_BonePosition.TX_FTN_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Body_BoneRotation.TX_FTN_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Shoes_BoneWeight.TX_FTN_Shoes_BoneWeight",
+          "id": "Shoes",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTN/MI_CitySample_FTN_Shoes_S0_VAT.MI_CitySample_FTN_Shoes_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_dressFlats.MI_f_dressFlats",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_dressFlats.MI_f_dressFlats"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 98,
+          "precision": "eight_bits",
+          "role": "shoes",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTN_Set/FTN_N_Walk_F_VarB.FTN_N_Walk_F_VarB",
+          "source_lod_vertices": 454,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_dressFlats.f_tal_nrw_dressFlats",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Shoes_VAT.SM_CitySample_FTN_Shoes_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTN/DA_CitySample_FTN_Head_VAT.DA_CitySample_FTN_Head_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Head_BonePosition.TX_FTN_Head_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Head_BoneRotation.TX_FTN_Head_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTN/TX_FTN_Head_BoneWeight.TX_FTN_Head_BoneWeight",
+          "id": "Head",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTN/MI_CitySample_FTN_Head_S0_VAT.MI_CitySample_FTN_Head_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_HeadSynthesized.M_HeadSynthesized",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_HeadSynthesized.M_HeadSynthesized"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTN/MI_CitySample_FTN_Head_S1_VAT.MI_CitySample_FTN_Head_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_TeethCharacterCreator_Inst.M_TeethCharacterCreator_Inst",
+              "slot": 1,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTN/MI_CitySample_FTN_Head_S2_VAT.MI_CitySample_FTN_Head_S2_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Shared/Materials/MetaHuman/M_lacrimal_fluid_Inst.M_lacrimal_fluid_Inst",
+              "slot": 2,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTN/MI_CitySample_FTN_Head_S3_VAT.MI_CitySample_FTN_Head_S3_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L",
+              "slot": 3,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L"
+            }
+          ],
+          "num_bones": 892,
+          "num_frames": 98,
+          "precision": "sixteen_bits",
+          "role": "head",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "source_lod_vertices": 942,
+          "source_skeletal_lod": 5,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/f_001/Face/f_001_nrw_FaceMesh.f_001_nrw_FaceMesh",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Head_VAT.SM_CitySample_FTN_Head_VAT",
+          "texture_group": "Head",
+          "used_material_slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        }
+      ],
+      "target_frame_count": 98
+    },
+    {
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTO_Set/FTO_N_Walk_F_VarB.FTO_N_Walk_F_VarB",
+      "id": "FTO",
+      "part_count": 4,
+      "parts": [
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTO/DA_CitySample_FTO_Torso_VAT.DA_CitySample_FTO_Torso_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Body_BonePosition.TX_FTO_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Body_BoneRotation.TX_FTO_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Torso_BoneWeight.TX_FTO_Torso_BoneWeight",
+          "id": "Torso",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTO/MI_CitySample_FTO_Torso_S0_VAT.MI_CitySample_FTO_Torso_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_turtleneck.MI_f_nrw_turtleneck",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_turtleneck.MI_f_nrw_turtleneck"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 98,
+          "precision": "eight_bits",
+          "role": "torso",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTO_Set/FTO_N_Walk_F_VarB.FTO_N_Walk_F_VarB",
+          "source_lod_vertices": 1017,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_turtleneck.f_tal_ovw_turtleneck",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Torso_VAT.SM_CitySample_FTO_Torso_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTO/DA_CitySample_FTO_Legs_VAT.DA_CitySample_FTO_Legs_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Body_BonePosition.TX_FTO_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Body_BoneRotation.TX_FTO_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Legs_BoneWeight.TX_FTO_Legs_BoneWeight",
+          "id": "Legs",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTO/MI_CitySample_FTO_Legs_S0_VAT.MI_CitySample_FTO_Legs_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_slacks.MI_f_nrw_slacks",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_slacks.MI_f_nrw_slacks"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTO/MI_CitySample_FTO_Legs_S1_VAT.MI_CitySample_FTO_Legs_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_BodySynthesized.M_BodySynthesized",
+              "slot": 1,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_BodySynthesized.M_BodySynthesized"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 98,
+          "precision": "eight_bits",
+          "role": "legs",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTO_Set/FTO_N_Walk_F_VarB.FTO_N_Walk_F_VarB",
+          "source_lod_vertices": 1411,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_slacks.f_tal_ovw_slacks",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Legs_VAT.SM_CitySample_FTO_Legs_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0,
+            1
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTO/DA_CitySample_FTO_Shoes_VAT.DA_CitySample_FTO_Shoes_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Body_BonePosition.TX_FTO_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Body_BoneRotation.TX_FTO_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Shoes_BoneWeight.TX_FTO_Shoes_BoneWeight",
+          "id": "Shoes",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTO/MI_CitySample_FTO_Shoes_S0_VAT.MI_CitySample_FTO_Shoes_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_loafers.MI_loafers",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_loafers.MI_loafers"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 98,
+          "precision": "eight_bits",
+          "role": "shoes",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTO_Set/FTO_N_Walk_F_VarB.FTO_N_Walk_F_VarB",
+          "source_lod_vertices": 488,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_loafers.f_tal_ovw_loafers",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Shoes_VAT.SM_CitySample_FTO_Shoes_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTO/DA_CitySample_FTO_Head_VAT.DA_CitySample_FTO_Head_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Head_BonePosition.TX_FTO_Head_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Head_BoneRotation.TX_FTO_Head_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTO/TX_FTO_Head_BoneWeight.TX_FTO_Head_BoneWeight",
+          "id": "Head",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTO/MI_CitySample_FTO_Head_S0_VAT.MI_CitySample_FTO_Head_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_002/Materials/M_HeadSynthesized.M_HeadSynthesized",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_002/Materials/M_HeadSynthesized.M_HeadSynthesized"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTO/MI_CitySample_FTO_Head_S1_VAT.MI_CitySample_FTO_Head_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_002/Materials/M_TeethCharacterCreator_Inst.M_TeethCharacterCreator_Inst",
+              "slot": 1,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_002/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTO/MI_CitySample_FTO_Head_S2_VAT.MI_CitySample_FTO_Head_S2_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Shared/Materials/MetaHuman/M_lacrimal_fluid_Inst.M_lacrimal_fluid_Inst",
+              "slot": 2,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_002/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTO/MI_CitySample_FTO_Head_S3_VAT.MI_CitySample_FTO_Head_S3_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_002/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L",
+              "slot": 3,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_002/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L"
+            }
+          ],
+          "num_bones": 892,
+          "num_frames": 98,
+          "precision": "sixteen_bits",
+          "role": "head",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "source_lod_vertices": 946,
+          "source_skeletal_lod": 5,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/f_002/Face/f_002_nrw_FaceMesh.f_002_nrw_FaceMesh",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Head_VAT.SM_CitySample_FTO_Head_VAT",
+          "texture_group": "Head",
+          "used_material_slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        }
+      ],
+      "target_frame_count": 98
+    },
+    {
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTU_Set/FTU_N_Walk_F_VarB.FTU_N_Walk_F_VarB",
+      "id": "FTU",
+      "part_count": 4,
+      "parts": [
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTU/DA_CitySample_FTU_Torso_VAT.DA_CitySample_FTU_Torso_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Body_BonePosition.TX_FTU_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Body_BoneRotation.TX_FTU_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Torso_BoneWeight.TX_FTU_Torso_BoneWeight",
+          "id": "Torso",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTU/MI_CitySample_FTU_Torso_S0_VAT.MI_CitySample_FTU_Torso_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_scoopneck.MI_f_nrw_scoopneck",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_scoopneck.MI_f_nrw_scoopneck"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 98,
+          "precision": "eight_bits",
+          "role": "torso",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTU_Set/FTU_N_Walk_F_VarB.FTU_N_Walk_F_VarB",
+          "source_lod_vertices": 1008,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_scoopneck.f_tal_unw_scoopneck",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Torso_VAT.SM_CitySample_FTU_Torso_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTU/DA_CitySample_FTU_Legs_VAT.DA_CitySample_FTU_Legs_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Body_BonePosition.TX_FTU_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Body_BoneRotation.TX_FTU_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Legs_BoneWeight.TX_FTU_Legs_BoneWeight",
+          "id": "Legs",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTU/MI_CitySample_FTU_Legs_S0_VAT.MI_CitySample_FTU_Legs_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_jeans.MI_f_nrw_jeans",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Materials/MI_f_nrw_jeans.MI_f_nrw_jeans"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTU/MI_CitySample_FTU_Legs_S1_VAT.MI_CitySample_FTU_Legs_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_BodySynthesized.M_BodySynthesized",
+              "slot": 1,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/M_BodySynthesized.M_BodySynthesized"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 98,
+          "precision": "eight_bits",
+          "role": "legs",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTU_Set/FTU_N_Walk_F_VarB.FTU_N_Walk_F_VarB",
+          "source_lod_vertices": 1124,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_jeans.f_tal_unw_jeans",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Legs_VAT.SM_CitySample_FTU_Legs_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0,
+            1
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTU/DA_CitySample_FTU_Shoes_VAT.DA_CitySample_FTU_Shoes_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Body_BonePosition.TX_FTU_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Body_BoneRotation.TX_FTU_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Shoes_BoneWeight.TX_FTU_Shoes_BoneWeight",
+          "id": "Shoes",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTU/MI_CitySample_FTU_Shoes_S0_VAT.MI_CitySample_FTU_Shoes_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_oxfords.MI_oxfords",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_oxfords.MI_oxfords"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 98,
+          "precision": "eight_bits",
+          "role": "shoes",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTU_Set/FTU_N_Walk_F_VarB.FTU_N_Walk_F_VarB",
+          "source_lod_vertices": 1296,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_oxfords.f_tal_unw_oxfords",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Shoes_VAT.SM_CitySample_FTU_Shoes_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/FTU/DA_CitySample_FTU_Head_VAT.DA_CitySample_FTU_Head_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Head_BonePosition.TX_FTU_Head_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Head_BoneRotation.TX_FTU_Head_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/FTU/TX_FTU_Head_BoneWeight.TX_FTU_Head_BoneWeight",
+          "id": "Head",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTU/MI_CitySample_FTU_Head_S0_VAT.MI_CitySample_FTU_Head_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_003/Materials/M_HeadSynthesized.M_HeadSynthesized",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_003/Materials/M_HeadSynthesized.M_HeadSynthesized"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTU/MI_CitySample_FTU_Head_S1_VAT.MI_CitySample_FTU_Head_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_003/Materials/M_TeethCharacterCreator_Inst.M_TeethCharacterCreator_Inst",
+              "slot": 1,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_003/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTU/MI_CitySample_FTU_Head_S2_VAT.MI_CitySample_FTU_Head_S2_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Shared/Materials/MetaHuman/M_lacrimal_fluid_Inst.M_lacrimal_fluid_Inst",
+              "slot": 2,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_003/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/FTU/MI_CitySample_FTU_Head_S3_VAT.MI_CitySample_FTU_Head_S3_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Female/f_003/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L",
+              "slot": 3,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Female/f_003/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L"
+            }
+          ],
+          "num_bones": 892,
+          "num_frames": 98,
+          "precision": "sixteen_bits",
+          "role": "head",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "source_lod_vertices": 946,
+          "source_skeletal_lod": 5,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/f_003/Face/f_003_nrw_FaceMesh.f_003_nrw_FaceMesh",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Head_VAT.SM_CitySample_FTU_Head_VAT",
+          "texture_group": "Head",
+          "used_material_slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        }
+      ],
+      "target_frame_count": 98
+    },
+    {
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTN_Set/MTN_N_Walk_F_VarB.MTN_N_Walk_F_VarB",
+      "id": "MTN",
+      "part_count": 4,
+      "parts": [
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTN/DA_CitySample_MTN_Torso_VAT.DA_CitySample_MTN_Torso_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Body_BonePosition.TX_MTN_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Body_BoneRotation.TX_MTN_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Torso_BoneWeight.TX_MTN_Torso_BoneWeight",
+          "id": "Torso",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTN/MI_CitySample_MTN_Torso_S0_VAT.MI_CitySample_MTN_Torso_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_buttonDown.MI_m_nrw_buttonDown",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_buttonDown.MI_m_nrw_buttonDown"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 99,
+          "precision": "eight_bits",
+          "role": "torso",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTN_Set/MTN_N_Walk_F_VarB.MTN_N_Walk_F_VarB",
+          "source_lod_vertices": 1748,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_buttonDown.m_tal_nrw_buttonDown",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Torso_VAT.SM_CitySample_MTN_Torso_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTN/DA_CitySample_MTN_Legs_VAT.DA_CitySample_MTN_Legs_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Body_BonePosition.TX_MTN_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Body_BoneRotation.TX_MTN_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Legs_BoneWeight.TX_MTN_Legs_BoneWeight",
+          "id": "Legs",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTN/MI_CitySample_MTN_Legs_S0_VAT.MI_CitySample_MTN_Legs_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_jeans.MI_m_nrw_jeans",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_jeans.MI_m_nrw_jeans"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTN/MI_CitySample_MTN_Legs_S1_VAT.MI_CitySample_MTN_Legs_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_socks.MI_m_nrw_socks",
+              "slot": 1,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_socks.MI_m_nrw_socks"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 99,
+          "precision": "eight_bits",
+          "role": "legs",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTN_Set/MTN_N_Walk_F_VarB.MTN_N_Walk_F_VarB",
+          "source_lod_vertices": 1377,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_jeans.m_tal_nrw_jeans",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Legs_VAT.SM_CitySample_MTN_Legs_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0,
+            1
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTN/DA_CitySample_MTN_Shoes_VAT.DA_CitySample_MTN_Shoes_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Body_BonePosition.TX_MTN_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Body_BoneRotation.TX_MTN_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Shoes_BoneWeight.TX_MTN_Shoes_BoneWeight",
+          "id": "Shoes",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTN/MI_CitySample_MTN_Shoes_S0_VAT.MI_CitySample_MTN_Shoes_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_oxfords.MI_oxfords",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_oxfords.MI_oxfords"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 99,
+          "precision": "eight_bits",
+          "role": "shoes",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTN_Set/MTN_N_Walk_F_VarB.MTN_N_Walk_F_VarB",
+          "source_lod_vertices": 1294,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_oxfords.m_tal_nrw_oxfords",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Shoes_VAT.SM_CitySample_MTN_Shoes_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTN/DA_CitySample_MTN_Head_VAT.DA_CitySample_MTN_Head_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Head_BonePosition.TX_MTN_Head_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Head_BoneRotation.TX_MTN_Head_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTN/TX_MTN_Head_BoneWeight.TX_MTN_Head_BoneWeight",
+          "id": "Head",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTN/MI_CitySample_MTN_Head_S0_VAT.MI_CitySample_MTN_Head_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/m_001/Materials/M_HeadSynthesized.M_HeadSynthesized",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_001/Materials/M_HeadSynthesized.M_HeadSynthesized"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTN/MI_CitySample_MTN_Head_S1_VAT.MI_CitySample_MTN_Head_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/m_001/Materials/M_TeethCharacterCreator_Inst.M_TeethCharacterCreator_Inst",
+              "slot": 1,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_001/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTN/MI_CitySample_MTN_Head_S2_VAT.MI_CitySample_MTN_Head_S2_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Shared/Materials/MetaHuman/M_lacrimal_fluid_Inst.M_lacrimal_fluid_Inst",
+              "slot": 2,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_001/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTN/MI_CitySample_MTN_Head_S3_VAT.MI_CitySample_MTN_Head_S3_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/m_001/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L",
+              "slot": 3,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_001/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L"
+            }
+          ],
+          "num_bones": 892,
+          "num_frames": 99,
+          "precision": "sixteen_bits",
+          "role": "head",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "source_lod_vertices": 946,
+          "source_skeletal_lod": 5,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/m_001/Face/m_001_nrw_FaceMesh.m_001_nrw_FaceMesh",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Head_VAT.SM_CitySample_MTN_Head_VAT",
+          "texture_group": "Head",
+          "used_material_slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        }
+      ],
+      "target_frame_count": 99
+    },
+    {
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTO_Set/MTO_N_Walk_F_VarB.MTO_N_Walk_F_VarB",
+      "id": "MTO",
+      "part_count": 4,
+      "parts": [
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTO/DA_CitySample_MTO_Torso_VAT.DA_CitySample_MTO_Torso_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Body_BonePosition.TX_MTO_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Body_BoneRotation.TX_MTO_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Torso_BoneWeight.TX_MTO_Torso_BoneWeight",
+          "id": "Torso",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTO/MI_CitySample_MTO_Torso_S0_VAT.MI_CitySample_MTO_Torso_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/OverWeight/Materials/MI_m_ovw_crewneck.MI_m_ovw_crewneck",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/OverWeight/Materials/MI_m_ovw_crewneck.MI_m_ovw_crewneck"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 99,
+          "precision": "eight_bits",
+          "role": "torso",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTO_Set/MTO_N_Walk_F_VarB.MTO_N_Walk_F_VarB",
+          "source_lod_vertices": 707,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_crewneck.m_tal_ovw_crewneck",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Torso_VAT.SM_CitySample_MTO_Torso_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTO/DA_CitySample_MTO_Legs_VAT.DA_CitySample_MTO_Legs_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Body_BonePosition.TX_MTO_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Body_BoneRotation.TX_MTO_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Legs_BoneWeight.TX_MTO_Legs_BoneWeight",
+          "id": "Legs",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTO/MI_CitySample_MTO_Legs_S0_VAT.MI_CitySample_MTO_Legs_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_slacks.MI_m_nrw_slacks",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_slacks.MI_m_nrw_slacks"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTO/MI_CitySample_MTO_Legs_S1_VAT.MI_CitySample_MTO_Legs_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_socks.MI_m_nrw_socks",
+              "slot": 1,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_socks.MI_m_nrw_socks"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 99,
+          "precision": "eight_bits",
+          "role": "legs",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTO_Set/MTO_N_Walk_F_VarB.MTO_N_Walk_F_VarB",
+          "source_lod_vertices": 1896,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_slacks.m_tal_ovw_slacks",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Legs_VAT.SM_CitySample_MTO_Legs_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0,
+            1
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTO/DA_CitySample_MTO_Shoes_VAT.DA_CitySample_MTO_Shoes_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Body_BonePosition.TX_MTO_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Body_BoneRotation.TX_MTO_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Shoes_BoneWeight.TX_MTO_Shoes_BoneWeight",
+          "id": "Shoes",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTO/MI_CitySample_MTO_Shoes_S0_VAT.MI_CitySample_MTO_Shoes_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_loafers.MI_loafers",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_loafers.MI_loafers"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 99,
+          "precision": "eight_bits",
+          "role": "shoes",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTO_Set/MTO_N_Walk_F_VarB.MTO_N_Walk_F_VarB",
+          "source_lod_vertices": 488,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_loafers.m_tal_ovw_loafers",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Shoes_VAT.SM_CitySample_MTO_Shoes_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTO/DA_CitySample_MTO_Head_VAT.DA_CitySample_MTO_Head_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Head_BonePosition.TX_MTO_Head_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Head_BoneRotation.TX_MTO_Head_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTO/TX_MTO_Head_BoneWeight.TX_MTO_Head_BoneWeight",
+          "id": "Head",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTO/MI_CitySample_MTO_Head_S0_VAT.MI_CitySample_MTO_Head_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/m_002/Materials/M_HeadSynthesized.M_HeadSynthesized",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_002/Materials/M_HeadSynthesized.M_HeadSynthesized"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTO/MI_CitySample_MTO_Head_S1_VAT.MI_CitySample_MTO_Head_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/m_002/Materials/M_TeethCharacterCreator_Inst.M_TeethCharacterCreator_Inst",
+              "slot": 1,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_002/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTO/MI_CitySample_MTO_Head_S2_VAT.MI_CitySample_MTO_Head_S2_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Shared/Materials/MetaHuman/M_lacrimal_fluid_Inst.M_lacrimal_fluid_Inst",
+              "slot": 2,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_002/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTO/MI_CitySample_MTO_Head_S3_VAT.MI_CitySample_MTO_Head_S3_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/m_002/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L",
+              "slot": 3,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_002/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L"
+            }
+          ],
+          "num_bones": 892,
+          "num_frames": 99,
+          "precision": "sixteen_bits",
+          "role": "head",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "source_lod_vertices": 946,
+          "source_skeletal_lod": 5,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/m_002/Face/m_002_nrw_FaceMesh.m_002_nrw_FaceMesh",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Head_VAT.SM_CitySample_MTO_Head_VAT",
+          "texture_group": "Head",
+          "used_material_slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        }
+      ],
+      "target_frame_count": 99
+    },
+    {
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTU_Set/MTU_N_Walk_F_VarB.MTU_N_Walk_F_VarB",
+      "id": "MTU",
+      "part_count": 4,
+      "parts": [
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTU/DA_CitySample_MTU_Torso_VAT.DA_CitySample_MTU_Torso_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Body_BonePosition.TX_MTU_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Body_BoneRotation.TX_MTU_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Torso_BoneWeight.TX_MTU_Torso_BoneWeight",
+          "id": "Torso",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTU/MI_CitySample_MTU_Torso_S0_VAT.MI_CitySample_MTU_Torso_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_turtleneck.MI_m_nrw_turtleneck",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_turtleneck.MI_m_nrw_turtleneck"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 99,
+          "precision": "eight_bits",
+          "role": "torso",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTU_Set/MTU_N_Walk_F_VarB.MTU_N_Walk_F_VarB",
+          "source_lod_vertices": 974,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_turtleneck.m_tal_unw_turtleneck",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Torso_VAT.SM_CitySample_MTU_Torso_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTU/DA_CitySample_MTU_Legs_VAT.DA_CitySample_MTU_Legs_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Body_BonePosition.TX_MTU_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Body_BoneRotation.TX_MTU_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Legs_BoneWeight.TX_MTU_Legs_BoneWeight",
+          "id": "Legs",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTU/MI_CitySample_MTU_Legs_S0_VAT.MI_CitySample_MTU_Legs_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_jeansLong.MI_m_nrw_jeansLong",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_jeansLong.MI_m_nrw_jeansLong"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTU/MI_CitySample_MTU_Legs_S1_VAT.MI_CitySample_MTU_Legs_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_socks.MI_m_nrw_socks",
+              "slot": 1,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_m_nrw_socks.MI_m_nrw_socks"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 99,
+          "precision": "eight_bits",
+          "role": "legs",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTU_Set/MTU_N_Walk_F_VarB.MTU_N_Walk_F_VarB",
+          "source_lod_vertices": 1071,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_jeansLong.m_tal_unw_jeansLong",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Legs_VAT.SM_CitySample_MTU_Legs_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0,
+            1
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTU/DA_CitySample_MTU_Shoes_VAT.DA_CitySample_MTU_Shoes_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Body_BonePosition.TX_MTU_Body_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Body_BoneRotation.TX_MTU_Body_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Shoes_BoneWeight.TX_MTU_Shoes_BoneWeight",
+          "id": "Shoes",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTU/MI_CitySample_MTU_Shoes_S0_VAT.MI_CitySample_MTU_Shoes_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_oxfords.MI_oxfords",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Materials/MI_oxfords.MI_oxfords"
+            }
+          ],
+          "num_bones": 171,
+          "num_frames": 99,
+          "precision": "eight_bits",
+          "role": "shoes",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTU_Set/MTU_N_Walk_F_VarB.MTU_N_Walk_F_VarB",
+          "source_lod_vertices": 1294,
+          "source_skeletal_lod": 3,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Shoes_VAT.SM_CitySample_MTU_Shoes_VAT",
+          "texture_group": "Body",
+          "used_material_slots": [
+            0
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        },
+        {
+          "animation_data": "/Game/OpenMassCrowd/CitySampleVAT/MTU/DA_CitySample_MTU_Head_VAT.DA_CitySample_MTU_Head_VAT",
+          "animation_index": 0,
+          "bone_position_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Head_BonePosition.TX_MTU_Head_BonePosition",
+          "bone_rotation_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Head_BoneRotation.TX_MTU_Head_BoneRotation",
+          "bone_weight_texture": "/Game/OpenMassCrowd/CitySampleVAT/MTU/TX_MTU_Head_BoneWeight.TX_MTU_Head_BoneWeight",
+          "id": "Head",
+          "materials": [
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTU/MI_CitySample_MTU_Head_S0_VAT.MI_CitySample_MTU_Head_S0_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/m_003/Materials/M_HeadSynthesized.M_HeadSynthesized",
+              "slot": 0,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_003/Materials/M_HeadSynthesized.M_HeadSynthesized"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTU/MI_CitySample_MTU_Head_S1_VAT.MI_CitySample_MTU_Head_S1_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/m_003/Materials/M_TeethCharacterCreator_Inst.M_TeethCharacterCreator_Inst",
+              "slot": 1,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_003/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTU/MI_CitySample_MTU_Head_S2_VAT.MI_CitySample_MTU_Head_S2_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Shared/Materials/MetaHuman/M_lacrimal_fluid_Inst.M_lacrimal_fluid_Inst",
+              "slot": 2,
+              "used_fallback": true,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_003/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+            },
+            {
+              "generated": "/Game/OpenMassCrowd/CitySampleVAT/MTU/MI_CitySample_MTU_Head_S3_VAT.MI_CitySample_MTU_Head_S3_VAT",
+              "original_source": "/Game/CitySampleCrowd/Character/Male/m_003/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L",
+              "slot": 3,
+              "used_fallback": false,
+              "vat_parent": "/Game/CitySampleCrowd/Character/Male/m_003/Materials/M_EyeRefractive_Inst_L.M_EyeRefractive_Inst_L"
+            }
+          ],
+          "num_bones": 892,
+          "num_frames": 99,
+          "precision": "sixteen_bits",
+          "role": "head",
+          "sample_rate": 30.0,
+          "source_animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "source_lod_vertices": 946,
+          "source_skeletal_lod": 5,
+          "source_skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/m_003/Face/m_003_nrw_FaceMesh.m_003_nrw_FaceMesh",
+          "source_skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "static_mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Head_VAT.SM_CitySample_MTU_Head_VAT",
+          "texture_group": "Head",
+          "used_material_slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "uv_channel": 2,
+          "vertex_normal_texture": "",
+          "vertex_position_texture": ""
+        }
+      ],
+      "target_frame_count": 99
+    }
+  ]
+}

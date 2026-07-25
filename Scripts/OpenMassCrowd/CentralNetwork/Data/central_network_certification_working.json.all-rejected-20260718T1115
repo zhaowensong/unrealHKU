@@ -1,0 +1,3507 @@
+{
+  "compatibility": {
+    "collision_settings_sha256": "40ffaf74ea6c3a426f9c8d9c5e659c965e5439f4032d808f76603dc6014bc4c5",
+    "georeference_sha256": "c954a46104715d693ba2d048a1c244a5124ab3bf5e35a5b4f562d114c8652fd8",
+    "manual_corrections_sha256": "84e8fd868b2185e612ea06950278272fd45f0ad4aa7be47630e91c3b7c4eb662",
+    "projected_combined_sha256": "d34e5d41f1cd09d449afb73e019c1778f7f575ed2c42c704e521852d1017dca6",
+    "projected_document_sha256": "7a436fbf1b22ffd71f6b64bf44119ef518a7a05f34a38d0d329d30a7d58d72f3",
+    "settings_sha256": "72c9c6f4ad93f7e035e098688776137df24929bb58275fdd83128d69ac201009",
+    "tileset_sha256": "730b980cb51da953c436ff15d631a39dce5a2a639849d33aead2a95a259940e9"
+  },
+  "complete": false,
+  "generator_version": "1.0.0",
+  "network_id": "hk-central-signal-core-v1",
+  "results": {
+    "candidate-osm-way-107361328-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-107361328-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1428.532 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361328-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-107361328-central-r0-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1368.861 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361335-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-107361335-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1415.366 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1421.918 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s000",
+      "detail": "first blocker differs from expected elevation by 1415.366 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s001",
+      "detail": "first blocker differs from expected elevation by 1428.532 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s002",
+      "detail": "first blocker differs from expected elevation by 1422.075 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s003",
+      "detail": "first blocker differs from expected elevation by 1423.811 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s004": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s004",
+      "detail": "first blocker differs from expected elevation by 1416.935 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s005": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s005",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s006": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s006",
+      "detail": "first blocker differs from expected elevation by 1412.798 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107497683-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-107497683-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861606-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861606-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861606-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861606-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861607-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861607-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861608-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861608-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1431.276 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861609-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861609-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861610-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861610-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1428.460 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861611-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861611-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1265.277 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861612-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861612-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861612-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861612-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861619-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861619-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861621-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861621-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861621-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861621-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861622-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1112861622-central-r0-c0-part-001-s000",
+      "detail": "first blocker differs from expected elevation by 1576.676 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861622-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861622-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1317.446 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861622-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861622-central-r0-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1577.557 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861623-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861623-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1565.291 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861623-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861623-central-r0-c0-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1566.575 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861625-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861625-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861625-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861625-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861625-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112861625-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1534.797 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s005",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s006",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861629-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861629-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861629-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861629-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861629-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112861629-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861629-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1112861629-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112863862-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112863862-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112863862-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112863862-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112863862-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112863862-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819994-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819994-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819994-central-r0-c2-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1118819994-central-r0-c2-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819994-central-r0-c2-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1118819994-central-r0-c2-part-001-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819995-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819995-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819996-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819996-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819996-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1118819996-central-r0-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819996-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1118819996-central-r0-c2-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1230.080 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819996-central-r0-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1118819996-central-r0-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819997-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819997-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819998-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819998-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-114127527-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-114127527-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1579.335 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1301.905 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s004",
+      "detail": "first blocker differs from expected elevation by 1583.795 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s005",
+      "detail": "first blocker differs from expected elevation by 1575.302 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892477-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892477-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892477-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892477-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892478-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892478-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892478-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892478-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892479-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892479-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892480-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892480-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892480-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892480-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892480-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892480-central-r0-c0-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1208.398 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1208.398 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1574.836 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892482-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892482-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892482-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892482-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892482-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892482-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892482-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265892482-central-r0-c0-part-000-s003",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892483-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892483-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892484-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892484-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892485-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892485-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1239.527 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892486-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892486-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892487-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892487-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892487-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892487-central-r0-c0-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1326.158 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892487-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892487-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s005",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892491-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892491-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892492-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892492-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892493-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892493-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892494-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892494-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892494-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892494-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892494-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892494-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892495-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892495-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892495-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892495-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892496-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892496-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892497-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892497-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892497-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892497-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892498-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892498-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1595.006 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892499-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892499-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s008": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s008",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892503-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892503-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892503-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892503-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892505-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892505-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892506-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892506-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892510-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892510-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892510-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892510-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892511-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892511-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892511-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892511-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929165-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265929165-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929165-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265929165-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929165-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265929165-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929165-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265929165-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s005",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s007",
+      "detail": "first blocker differs from expected elevation by 1426.238 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s008": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s008",
+      "detail": "first blocker differs from expected elevation by 1423.577 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s009": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s009",
+      "detail": "first blocker differs from expected elevation by 1423.577 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s010": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s010",
+      "detail": "first blocker differs from expected elevation by 1428.460 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s011": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s011",
+      "detail": "first blocker differs from expected elevation by 1417.356 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s012": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s012",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s013": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s013",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931454-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931454-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931454-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931454-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931457-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931457-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c0-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c0-part-001-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c0-part-001-s002": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c0-part-001-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1432.070 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931459-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931459-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931459-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931459-central-r0-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1432.070 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931460-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931460-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931460-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931460-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931461-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931461-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931461-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931461-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931462-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931462-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931462-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931462-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931462-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931462-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931463-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931463-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931463-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931463-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931463-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931463-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931463-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265931463-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931465-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931465-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931465-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931465-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931465-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931465-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931465-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1265931465-central-r0-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931466-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931466-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931466-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931466-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931467-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931467-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931467-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931467-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931468-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931468-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931468-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931468-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931468-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931468-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931468-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265931468-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073882-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073882-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073883-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073883-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073884-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073884-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073884-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073884-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073891-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073891-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073892-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073892-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073892-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073892-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073892-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266073892-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073893-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073893-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073893-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073893-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073893-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266073893-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073894-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073894-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073894-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073894-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s006",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s008": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s008",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s009": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s009",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s010": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s010",
+      "detail": "first blocker differs from expected elevation by 1575.198 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s004": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s005": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s006": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s007": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s007",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s008": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s008",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s009": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s009",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s010": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s010",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s011": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s011",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s012": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s012",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s013": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s013",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s014": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s014",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s015": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s015",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s016": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s016",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s017": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s017",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s018": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s018",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s019": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s019",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s020": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s020",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s021": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s021",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s022": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s022",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266315076-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266315076-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266315076-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266315076-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266315076-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266315076-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266315076-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266315076-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320583-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320583-central-r0-c0-part-000-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320583-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320583-central-r0-c0-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1572.792 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320583-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320583-central-r0-c0-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1587.020 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320583-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266320583-central-r0-c0-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1587.020 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1578.889 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1584.064 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1566.588 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r1-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r1-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s008": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s008",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s009": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s009",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s010": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s010",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320586-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266320586-central-r0-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320586-central-r0-c0-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1266320586-central-r0-c0-part-001-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320586-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320586-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320586-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320586-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320587-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320587-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320587-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320587-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320587-central-r1-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266320587-central-r1-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r0-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r0-c0-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r0-c0-part-001-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r0-c0-part-001-s002": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r0-c0-part-001-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320589-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320589-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320589-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320589-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320589-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320589-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320590-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320590-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1400.198 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320590-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320590-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320591-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320591-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320591-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320591-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320592-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320592-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1400.198 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320592-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320592-central-r0-c0-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1407.086 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320592-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320592-central-r0-c0-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1569.139 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320592-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266320592-central-r0-c0-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1567.856 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320593-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320593-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320593-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320593-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320593-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320593-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767624-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767624-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767624-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1267767624-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767625-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767625-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767625-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1267767625-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767625-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1267767625-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767626-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767626-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767627-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767627-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767628-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767628-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767628-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1267767628-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767628-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1267767628-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1268073825-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1268073825-central-r0-c1-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1309901651-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1309901651-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1309901651-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1309901651-central-r0-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1309901651-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1309901651-central-r0-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1230.080 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s006",
+      "detail": "first blocker differs from expected elevation by 1530.804 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1442100549-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1442100549-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1442100549-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1442100549-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1442100549-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1442100549-central-r0-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1562.967 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1442100549-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1442100549-central-r0-c1-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1582.308 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509652216-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509652216-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509652223-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509652223-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509761021-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509761021-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509761022-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509761022-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1577.557 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509776255-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509776255-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509776256-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509776256-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1575.382 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509776256-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1509776256-central-r0-c0-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1565.291 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1513982995-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1513982995-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1583.795 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s005",
+      "detail": "first blocker differs from expected elevation by 1226.274 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s006": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s007": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s007",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1414.093 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1223.971 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113680-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-242113680-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1470.395 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113680-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-242113680-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1396.777 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113699-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-242113699-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113699-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-242113699-central-r1-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113699-central-r1-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-242113699-central-r1-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113699-central-r1-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-242113699-central-r1-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-247781149-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-247781149-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1422.075 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-271668517-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-271668517-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1416.416 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-311799411-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-311799411-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-363213310-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-363213310-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s004": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s004",
+      "detail": "first blocker differs from expected elevation by 1205.345 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s005": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s006": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c2-part-002-s000": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c2-part-002-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c2-part-002-s001": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c2-part-002-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-364755219-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-364755219-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-364755219-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-364755219-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-364755219-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-364755219-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-364755219-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-364755219-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-392192441-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-392192441-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1572.602 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-392192441-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-392192441-central-r0-c0-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1219.475 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-392192441-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-392192441-central-r0-c0-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1572.710 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-392192785-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-392192785-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1521.211 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1429.057 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1265.277 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s004",
+      "detail": "first blocker differs from expected elevation by 1400.458 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-484758188-central-r1-c1-part-001-s000",
+      "detail": "first blocker differs from expected elevation by 1361.504 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r1-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-484758188-central-r1-c1-part-001-s001",
+      "detail": "first blocker differs from expected elevation by 1361.504 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r1-c2-part-002-s000": {
+      "candidate_id": "candidate-osm-way-484758188-central-r1-c2-part-002-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r1-c2-part-002-s001": {
+      "candidate_id": "candidate-osm-way-484758188-central-r1-c2-part-002-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1414.968 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1414.619 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1413.969 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1411.410 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s004",
+      "detail": "first blocker differs from expected elevation by 1409.672 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s005",
+      "detail": "first blocker differs from expected elevation by 1407.964 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s006": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s006",
+      "detail": "first blocker differs from expected elevation by 1406.486 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s007": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s007",
+      "detail": "first blocker differs from expected elevation by 1405.449 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s008": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s008",
+      "detail": "first blocker differs from expected elevation by 1404.713 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s009": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s009",
+      "detail": "first blocker differs from expected elevation by 1404.248 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s010": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s010",
+      "detail": "first blocker differs from expected elevation by 1404.142 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s011": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s011",
+      "detail": "first blocker differs from expected elevation by 1404.185 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-505306995-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-505306995-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-505306995-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-505306995-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-519414518-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-519414518-central-r0-c2-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1483.633 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-519414518-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-519414518-central-r0-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-519414518-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-519414518-central-r0-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-529601750-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-529601750-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1416.935 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-529601750-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-529601750-central-r0-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1416.935 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-548044631-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-548044631-central-r0-c2-part-000-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-563873335-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s000": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s001": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s002": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s003": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s004": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s004",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-002-s000": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-002-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931465-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-581931465-central-r1-c1-part-001-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931465-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931465-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931468-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931468-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931468-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931468-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931468-central-r1-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-581931468-central-r1-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931472-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931472-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931472-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931472-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931486-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931486-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931486-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931486-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931486-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-581931486-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931486-central-r1-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-581931486-central-r1-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c1-part-001-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c0-part-001-s000",
+      "detail": "first blocker differs from expected elevation by 1574.519 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c0-part-001-s001": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c0-part-001-s001",
+      "detail": "first blocker differs from expected elevation by 1571.300 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1594.421 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1594.421 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1582.308 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c1-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1576.995 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931493-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-581931493-central-r0-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931493-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931493-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931493-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931493-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-586393628-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-586393628-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764838-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-690764838-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764838-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-690764838-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764838-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-690764838-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-731944546-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-731944546-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-731944546-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-731944546-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-731944548-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-731944548-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-731944549-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-731944549-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-758689529-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-758689529-central-r1-c1-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-768584604-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-768584604-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-768584604-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-768584604-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-768584604-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-768584604-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-768584604-central-r1-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-768584604-central-r1-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c1-part-001-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c1-part-001-s001",
+      "detail": "first blocker differs from expected elevation by 1417.356 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c1-part-001-s002",
+      "detail": "first blocker differs from expected elevation by 1417.356 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c1-part-001-s003",
+      "detail": "first blocker differs from expected elevation by 1429.716 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1467.715 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s004": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s005": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s006": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s006",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s007": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s007",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s008": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s008",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s009": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s009",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s010": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s010",
+      "detail": "first blocker differs from expected elevation by 1256.714 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s011": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s011",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s012": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s012",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s013": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s013",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s014": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s014",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s015": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s015",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s016": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s016",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333897-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333897-central-r0-c0-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1571.300 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333897-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333897-central-r0-c0-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1576.008 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c0-part-002-s000": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c0-part-002-s000",
+      "detail": "first blocker differs from expected elevation by 1251.985 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c0-part-002-s001": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c0-part-002-s001",
+      "detail": "first blocker differs from expected elevation by 1571.300 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c1-part-001-s000",
+      "detail": "first blocker differs from expected elevation by 1273.685 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c1-part-001-s001",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c1-part-001-s002",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c1-part-001-s003",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333898-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1333.076 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333904-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333904-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1522.402 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333904-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333904-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1430.962 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333904-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333904-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333904-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333904-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1404.185 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1407.654 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1409.270 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1411.574 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s004",
+      "detail": "first blocker differs from expected elevation by 1413.548 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333912-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333912-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333913-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333913-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1404.185 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333913-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333913-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1403.336 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333913-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333913-central-r1-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1402.187 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333913-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333913-central-r1-c1-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1431.824 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333914-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333914-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1414.968 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333914-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333914-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1416.416 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333915-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333915-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1464.539 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333915-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333915-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1400.170 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333915-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333915-central-r1-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1400.170 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333915-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333915-central-r1-c1-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1400.018 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1403.046 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1402.250 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1401.648 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1416.604 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s004",
+      "detail": "first blocker differs from expected elevation by 1425.471 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1399.880 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1399.770 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s005",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333918-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333918-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333918-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333918-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1499.103 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333918-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333918-central-r1-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1488.420 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333919-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333919-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333920-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333920-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1566.988 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333920-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333920-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1566.988 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333920-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333920-central-r1-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1521.211 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1431.824 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s001",
+      "detail": "first blocker differs from expected elevation by 1416.123 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s002",
+      "detail": "first blocker differs from expected elevation by 1416.178 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s003",
+      "detail": "first blocker differs from expected elevation by 1401.170 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s004",
+      "detail": "first blocker differs from expected elevation by 1405.319 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s005",
+      "detail": "first blocker differs from expected elevation by 1412.679 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s006": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s006",
+      "detail": "first blocker differs from expected elevation by 1405.448 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s007": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s007",
+      "detail": "first blocker differs from expected elevation by 1414.422 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s008": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s008",
+      "detail": "first blocker differs from expected elevation by 1414.901 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s009": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s009",
+      "detail": "first blocker differs from expected elevation by 1415.109 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s010": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s010",
+      "detail": "first blocker differs from expected elevation by 1415.006 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s011": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s011",
+      "detail": "first blocker differs from expected elevation by 1414.619 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983546-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983546-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983547-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983547-central-r1-c2-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983547-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983547-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983547-central-r1-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-963983547-central-r1-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983549-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983549-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s004": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983553-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983554-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983554-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983555-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983555-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983556-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983556-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r0-c2-part-001-s000": {
+      "candidate_id": "candidate-osm-way-963983557-central-r0-c2-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s004": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s005",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c2-part-001-s000": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c2-part-001-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983559-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983559-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983559-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983559-central-r1-c2-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s000",
+      "detail": "first blocker differs from expected elevation by 1487.756 cm",
+      "reason": "height_continuity",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s004": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s004",
+      "detail": "Cesium support is unavailable to the capsule trace channel",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    }
+  },
+  "schema_version": 1,
+  "started_at_utc": "2026-07-18T11:10:20.701328+00:00",
+  "streaming_cells": {
+    "central-r0-c0": {
+      "component_count": 72,
+      "component_signature_sha256": "a8ac166b691f096183a77ef666766c2123f052f8d013b84b19fee8c04213afe2",
+      "stabilized_at_utc": "2026-07-18T11:15:25.283001+00:00"
+    },
+    "central-r0-c1": {
+      "component_count": 62,
+      "component_signature_sha256": "1060c369d4292f9da1b7f9016fcd9b3570913f70ee4d0a4e73a0dd90ba9f5188",
+      "stabilized_at_utc": "2026-07-18T11:15:15.321668+00:00"
+    },
+    "central-r0-c2": {
+      "component_count": 57,
+      "component_signature_sha256": "a0173dc29bc59aa016dea663c499c683968d806fe1d6ba17f9ae2581b45ddd03",
+      "stabilized_at_utc": "2026-07-18T11:15:27.173986+00:00"
+    },
+    "central-r1-c0": {
+      "component_count": 61,
+      "component_signature_sha256": "6abd97a7b47b0c8abaf1ef2903796a905491669d334340900e1c9412fd297bb6",
+      "stabilized_at_utc": "2026-07-18T11:15:20.536329+00:00"
+    },
+    "central-r1-c1": {
+      "component_count": 80,
+      "component_signature_sha256": "302733b3a63946aee5d2d17cd078e5de5b2ac5176e8551d2dbade2416a5ca8bd",
+      "stabilized_at_utc": "2026-07-18T11:15:18.741482+00:00"
+    },
+    "central-r1-c2": {
+      "component_count": 62,
+      "component_signature_sha256": "0334927f75ea4dc2e6d423c824eb843790d9574ec7689a8902a70cc6a3f4e8e2",
+      "stabilized_at_utc": "2026-07-18T11:15:28.640930+00:00"
+    }
+  },
+  "updated_at_utc": "2026-07-18T11:15:28.641929+00:00"
+}

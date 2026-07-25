@@ -1,0 +1,19 @@
+{
+  "compatibility": {
+    "collision_settings_sha256": "40ffaf74ea6c3a426f9c8d9c5e659c965e5439f4032d808f76603dc6014bc4c5",
+    "georeference_sha256": "c954a46104715d693ba2d048a1c244a5124ab3bf5e35a5b4f562d114c8652fd8",
+    "manual_corrections_sha256": "84e8fd868b2185e612ea06950278272fd45f0ad4aa7be47630e91c3b7c4eb662",
+    "projected_combined_sha256": "d34e5d41f1cd09d449afb73e019c1778f7f575ed2c42c704e521852d1017dca6",
+    "projected_document_sha256": "7a436fbf1b22ffd71f6b64bf44119ef518a7a05f34a38d0d329d30a7d58d72f3",
+    "settings_sha256": "6213f5f832a589ac76be2cbacafe1aa7068b260d4d7f02f9217aecf05edfb8ca",
+    "tileset_sha256": "730b980cb51da953c436ff15d631a39dce5a2a639849d33aead2a95a259940e9"
+  },
+  "complete": false,
+  "generator_version": "1.0.0",
+  "network_id": "hk-central-signal-core-v1",
+  "results": {},
+  "schema_version": 1,
+  "started_at_utc": "2026-07-18T11:05:05.368962+00:00",
+  "streaming_cells": {},
+  "updated_at_utc": "2026-07-18T11:05:05.368962+00:00"
+}

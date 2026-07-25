@@ -1,0 +1,278 @@
+{
+  "schema_version": 2,
+  "output_root": "/Game/OpenMassCrowd/CitySampleVAT",
+  "sample_rate": 30.0,
+  "uv_channel": 2,
+  "source_provenance": {
+    "content_root": "/Game/CitySampleCrowd",
+    "license_note": "Official Epic City Sample Crowds content already linked into this project",
+    "bake_tool": "UE 5.7 AnimToTextureEditor",
+    "assembly_note": "City Sample crowd bodies are modular. The SK_Base *_base assets are animation-driver triangles and are intentionally forbidden. Torso, legs and shoes share SK_Base and one walk frame range. City Sample has no visible SK_Base head; the official FaceMesh is therefore baked as a separate Face_Archetype_Skeleton VAT part with the same frame count and entity phase."
+  },
+  "variants": [
+    {
+      "id": "FTN",
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTN_Set/FTN_N_Walk_F_VarB.FTN_N_Walk_F_VarB",
+      "parts": [
+        {
+          "id": "Torso",
+          "role": "torso",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_buttonDown.f_tal_nrw_buttonDown",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Legs",
+          "role": "legs",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_jeans.f_tal_nrw_jeans",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Shoes",
+          "role": "shoes",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/NormalWeight/Meshes/f_tal_nrw_dressFlats.f_tal_nrw_dressFlats",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Head",
+          "role": "head",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/f_001/Face/f_001_nrw_FaceMesh.f_001_nrw_FaceMesh",
+          "skeletal_lod": 5,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "texture_group": "Head",
+          "precision": "sixteen_bits",
+          "material_fallback": "/Game/CitySampleCrowd/Character/Female/f_001/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+        }
+      ]
+    },
+    {
+      "id": "FTO",
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTO_Set/FTO_N_Walk_F_VarB.FTO_N_Walk_F_VarB",
+      "parts": [
+        {
+          "id": "Torso",
+          "role": "torso",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_turtleneck.f_tal_ovw_turtleneck",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Legs",
+          "role": "legs",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_slacks.f_tal_ovw_slacks",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Shoes",
+          "role": "shoes",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/OverWeight/Meshes/f_tal_ovw_loafers.f_tal_ovw_loafers",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Head",
+          "role": "head",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/f_002/Face/f_002_nrw_FaceMesh.f_002_nrw_FaceMesh",
+          "skeletal_lod": 5,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "texture_group": "Head",
+          "precision": "sixteen_bits",
+          "material_fallback": "/Game/CitySampleCrowd/Character/Female/f_002/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+        }
+      ]
+    },
+    {
+      "id": "FTU",
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/FTU_Set/FTU_N_Walk_F_VarB.FTU_N_Walk_F_VarB",
+      "parts": [
+        {
+          "id": "Torso",
+          "role": "torso",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_scoopneck.f_tal_unw_scoopneck",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Legs",
+          "role": "legs",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_jeans.f_tal_unw_jeans",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Shoes",
+          "role": "shoes",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/UnderWeight/Meshes/f_tal_unw_oxfords.f_tal_unw_oxfords",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Head",
+          "role": "head",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Female/f_003/Face/f_003_nrw_FaceMesh.f_003_nrw_FaceMesh",
+          "skeletal_lod": 5,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "texture_group": "Head",
+          "precision": "sixteen_bits",
+          "material_fallback": "/Game/CitySampleCrowd/Character/Female/f_003/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+        }
+      ]
+    },
+    {
+      "id": "MTN",
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTN_Set/MTN_N_Walk_F_VarB.MTN_N_Walk_F_VarB",
+      "parts": [
+        {
+          "id": "Torso",
+          "role": "torso",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_buttonDown.m_tal_nrw_buttonDown",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Legs",
+          "role": "legs",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_jeans.m_tal_nrw_jeans",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Shoes",
+          "role": "shoes",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/NormalWeight/Meshes/m_tal_nrw_oxfords.m_tal_nrw_oxfords",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Head",
+          "role": "head",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/m_001/Face/m_001_nrw_FaceMesh.m_001_nrw_FaceMesh",
+          "skeletal_lod": 5,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "texture_group": "Head",
+          "precision": "sixteen_bits",
+          "material_fallback": "/Game/CitySampleCrowd/Character/Male/m_001/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+        }
+      ]
+    },
+    {
+      "id": "MTO",
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTO_Set/MTO_N_Walk_F_VarB.MTO_N_Walk_F_VarB",
+      "parts": [
+        {
+          "id": "Torso",
+          "role": "torso",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_crewneck.m_tal_ovw_crewneck",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Legs",
+          "role": "legs",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_slacks.m_tal_ovw_slacks",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Shoes",
+          "role": "shoes",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/OverWeight/Meshes/m_tal_ovw_loafers.m_tal_ovw_loafers",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Head",
+          "role": "head",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/m_002/Face/m_002_nrw_FaceMesh.m_002_nrw_FaceMesh",
+          "skeletal_lod": 5,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "texture_group": "Head",
+          "precision": "sixteen_bits",
+          "material_fallback": "/Game/CitySampleCrowd/Character/Male/m_002/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+        }
+      ]
+    },
+    {
+      "id": "MTU",
+      "animation": "/Game/CitySampleCrowd/Character/Anims/Loco/MTU_Set/MTU_N_Walk_F_VarB.MTU_N_Walk_F_VarB",
+      "parts": [
+        {
+          "id": "Torso",
+          "role": "torso",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_turtleneck.m_tal_unw_turtleneck",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Legs",
+          "role": "legs",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_jeansLong.m_tal_unw_jeansLong",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Shoes",
+          "role": "shoes",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/UnderWeight/Meshes/m_tal_unw_oxfords.m_tal_unw_oxfords",
+          "skeletal_lod": 3,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/SK_Base.SK_Base",
+          "texture_group": "Body",
+          "precision": "eight_bits"
+        },
+        {
+          "id": "Head",
+          "role": "head",
+          "skeletal_mesh": "/Game/CitySampleCrowd/Character/Male/m_003/Face/m_003_nrw_FaceMesh.m_003_nrw_FaceMesh",
+          "skeletal_lod": 5,
+          "skeleton": "/Game/CitySampleCrowd/Character/Shared/Rig/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
+          "animation": "/Game/CitySampleCrowd/Character/Anims/Facial/Crowd_Neutral.Crowd_Neutral",
+          "texture_group": "Head",
+          "precision": "sixteen_bits",
+          "material_fallback": "/Game/CitySampleCrowd/Character/Male/m_003/Materials/LODs/M_HeadSynthesized_LOD5.M_HeadSynthesized_LOD5"
+        }
+      ]
+    }
+  ]
+}

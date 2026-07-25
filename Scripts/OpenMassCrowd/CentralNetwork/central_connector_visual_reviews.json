@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "review_policy": "accept only when the complete thick-white candidate remains on a visible pedestrian-capable surface between both endpoints; reject roads without a visible crossing, vegetation, occlusion, structures, and ambiguous geometry",
+  "reviewed_at_utc": "2026-07-24T19:50:00Z",
+  "reviewer": "Codex visual review in Unreal Editor",
+  "generated_connector_reviews": [
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-11759357179-osm-node-11760754596",
+      "status": "accepted",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_01.png",
+      "reason": "short supported connection between adjacent visible pedestrian-edge surfaces"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-11759367735-osm-node-5144406838",
+      "status": "accepted",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_02.png",
+      "reason": "supported connection stays on the visible elevated pedestrian-platform junction"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-11760754572-osm-node-3175200595",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_03.png",
+      "reason": "crosses a roadway/roundabout without a visible pedestrian crossing"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-11759357171-osm-node-11759357177",
+      "status": "accepted",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_04.png",
+      "reason": "supported chord remains within the visible curved elevated pedestrian surface"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-10182123145-osm-node-11759062637",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_05.png",
+      "reason": "endpoint and route enter vegetation/ambiguous terrain"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-11762400951-osm-node-11762476673",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_06.png",
+      "reason": "route is obstructed by structural geometry and cannot be visually certified"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-8528949395-osm-node-8530698936",
+      "status": "accepted",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_07.png",
+      "reason": "supported connection follows the visible curved pedestrian-side surface"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-4834803292-osm-node-8530698937",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_08.png",
+      "reason": "crosses landscaped/vegetated interior rather than a visible pedestrian path"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-11759357178-osm-node-11760754592",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_09.png",
+      "reason": "long diagonal roadway crossing without a visible pedestrian crossing"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-11759367734-osm-node-11760735008",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_10.png",
+      "reason": "candidate is fully occluded by scene geometry"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-11759357180-osm-node-11760754600",
+      "status": "accepted",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_11.png",
+      "reason": "supported polyline follows the visible sidewalk edge beside the building"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-11759367734-osm-way-1266073882-split-1c1eb92a0186",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_12.png",
+      "reason": "diagonal yellow-box road crossing is not a normal pedestrian route"
+    },
+    {
+      "candidate_id": "candidate-generated-connector-osm-node-10182123152-osm-node-10182123153",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/generated_connector_review_13.png",
+      "reason": "candidate is fully occluded by scene geometry"
+    }
+  ],
+  "manual_connector_source_reviews": [
+    {
+      "source_id": "candidate-manual-cesium-connector-osm-node-11759062224-osm-node-11759062637",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/manual_connector_review_01.png",
+      "reason": "complete chain is obscured by vegetation and ambiguous scene geometry"
+    },
+    {
+      "source_id": "candidate-manual-cesium-connector-osm-node-11759357170-semantic-chain-candidate-osm-way-1265929166-central-r0-c1-part-000-s002-m020-start-osm-n-1cb095b59a6c0dda",
+      "status": "accepted",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/manual_connector_review_02.png",
+      "reason": "complete Cesium-supported chain follows the visible curved elevated pedestrian ramp"
+    },
+    {
+      "source_id": "candidate-manual-cesium-connector-osm-node-11759357179-osm-node-11759357180",
+      "status": "accepted",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/manual_connector_review_03.png",
+      "reason": "complete supported chain remains on the visible pedestrian-edge surface"
+    },
+    {
+      "source_id": "candidate-manual-cesium-connector-osm-node-11760754590-osm-node-11760754591",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/manual_connector_review_04.png",
+      "reason": "complete-chain-only overlay is partially occluded by scene geometry, so continuity cannot be visually certified"
+    },
+    {
+      "source_id": "candidate-manual-cesium-connector-osm-node-11762400942-osm-node-12533364551",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/manual_connector_review_05.png",
+      "reason": "chain traverses rooftop/skylight geometry rather than a normal pedestrian route"
+    },
+    {
+      "source_id": "candidate-manual-cesium-connector-osm-node-11762476673-semantic-grid-detour-candidate-osm-way-1266320591-central-r0-c0-part-000-s001-a005-start-087db62da887e43d",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/manual_connector_review_06.png",
+      "reason": "chain is obstructed by structural geometry and cannot be visually certified"
+    },
+    {
+      "source_id": "candidate-manual-cesium-connector-osm-node-13801130598-semantic-chain-candidate-osm-way-581931491-central-r0-c1-part-000-s002-z000-start-osm-no-dd54157a9ab92077",
+      "status": "accepted",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/manual_connector_review_07.png",
+      "reason": "complete supported chain stays on the visible pedestrian flyover/platform"
+    },
+    {
+      "source_id": "candidate-manual-cesium-connector-osm-node-3175200595-semantic-chain-candidate-osm-way-1266073895-central-r0-c0-part-000-s004-m020-start-osm-no-aa7efb40a3f46ad9",
+      "status": "rejected",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/manual_connector_review_08.png",
+      "reason": "chain enters the roadway/landscaped edge without a visible pedestrian crossing"
+    },
+    {
+      "source_id": "candidate-manual-cesium-connector-osm-node-8528940294-osm-way-918333898-split-e89f5b85701f",
+      "status": "accepted",
+      "evidence": "Docs/Evidence/OpenMassCrowd/Central300/manual_connector_review_09.png",
+      "reason": "complete supported chain remains on the visible elevated pedestrian platform"
+    }
+  ]
+}

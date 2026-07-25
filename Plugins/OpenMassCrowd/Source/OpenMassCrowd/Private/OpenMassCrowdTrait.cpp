@@ -12,4 +12,5 @@ void UOpenMassCrowdTrait::BuildTemplate(
     BuildContext.AddFragment<FTransformFragment>();
     BuildContext.AddFragment<FAgentRadiusFragment>();
     BuildContext.AddFragment<FMassActorFragment>();
+    BuildContext.AddFragment<FOpenMassCrowdCentralVisualOwnerFragment>();
 }

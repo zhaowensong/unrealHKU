@@ -1,0 +1,53 @@
+{
+  "schema_id": "open_mass_central_lod_identity_summary",
+  "schema_version": 1,
+  "generated_local_date": "2026-07-24",
+  "status": "PASS",
+  "scope": "OpenSpec task 5.3 only; this is not the Central 30-person routing gate",
+  "stable_identity": {
+    "stable_entity_slot": 0,
+    "mass_entity_index": 1,
+    "mass_entity_serial": 1,
+    "appearance_seed": 510772,
+    "variant_index": 0,
+    "variant_name": "CitySample_FTN"
+  },
+  "transition_evidence": [
+    {
+      "tier": "HighActor",
+      "actor_class": "/Script/OpenMassCrowd.OpenMassCrowdCitySampleActor",
+      "report": "central_crowd_lod_identity_high_20260724.json",
+      "image": "central_crowd_lod_identity_high_20260724.png",
+      "status": "PASS"
+    },
+    {
+      "tier": "LowActor",
+      "actor_class": "/Script/OpenMassCrowd.OpenMassCrowdCitySampleLowResActor",
+      "report": "central_crowd_lod_identity_low_20260724.json",
+      "image": "central_crowd_lod_identity_low_20260724.png",
+      "status": "PASS"
+    },
+    {
+      "tier": "VAT",
+      "actor_class": null,
+      "vat_frame_delta": 38.480469,
+      "official_variant_count": 6,
+      "ism_component_count": 24,
+      "components_with_four_or_more_custom_floats": 24,
+      "report": "central_crowd_lod_identity_vat_20260724.json",
+      "image": "central_crowd_lod_identity_vat_20260724.png",
+      "status": "PASS"
+    }
+  ],
+  "requirements": {
+    "stable_entity_identity_across_all_three_tiers": true,
+    "appearance_seed_and_variant_preserved": true,
+    "six_official_city_sample_variants_present": true,
+    "far_representation_animation_frame_advanced": true,
+    "per_instance_vat_custom_data_uploaded_to_every_component": true,
+    "no_mannequin_or_base_proxy_actor": true,
+    "no_mannequin_or_base_proxy_vat_mesh": true
+  },
+  "camera_evidence_note": "The capture callback followed only the PIE viewer, every 0.1 seconds, so the moving Mass entity stayed centered. It did not move a Mass entity or save the map.",
+  "acceptance_gate_evaluated": false
+}

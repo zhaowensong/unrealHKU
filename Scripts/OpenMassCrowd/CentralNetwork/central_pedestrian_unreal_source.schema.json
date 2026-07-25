@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://telecomtwin.local/schemas/central-pedestrian-unreal-source-v1.schema.json",
+  "title": "TelecomTwin Central Cesium-projected pedestrian source",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_schema_version",
+    "network_id",
+    "build_id",
+    "generator_version",
+    "source_topology_sha256",
+    "coordinate_system",
+    "georeference",
+    "world_bounds_cm",
+    "cells",
+    "features",
+    "spawn_districts",
+    "evidence",
+    "hashes"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "const": 1 },
+    "source_schema_version": { "const": 1 },
+    "network_id": { "$ref": "#/$defs/id" },
+    "build_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "generator_version": { "type": "string", "minLength": 1 },
+    "source_topology_sha256": { "$ref": "#/$defs/sha256" },
+    "coordinate_system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "target", "unreal_units", "projection_height_m", "method", "z_policy"],
+      "properties": {
+        "source": { "const": "WGS84 longitude/latitude/ellipsoid-height (EPSG:4979)" },
+        "target": { "const": "TelecomTwin Unreal world" },
+        "unreal_units": { "const": "centimeters" },
+        "projection_height_m": { "type": "number" },
+        "method": { "const": "CesiumGeoreference.transform_longitude_latitude_height_position_to_unreal" },
+        "z_policy": { "const": "reference-only; replace with strict Cesium ground certification" }
+      }
+    },
+    "georeference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_path", "actor_class", "world_name", "properties", "sha256"],
+      "properties": {
+        "actor_path": { "type": "string", "minLength": 1 },
+        "actor_class": { "type": "string", "minLength": 1 },
+        "world_name": { "type": "string", "minLength": 1 },
+        "properties": { "type": "object" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "world_bounds_cm": { "$ref": "#/$defs/bounds3" },
+    "cells": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": { "$ref": "#/$defs/cell" }
+    },
+    "features": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/feature" }
+    },
+    "spawn_districts": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": { "$ref": "#/$defs/district" }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_feature_count",
+        "candidate_point_count",
+        "certified_lane_count",
+        "rejected_lane_count",
+        "whole_area_recertification_count"
+      ],
+      "properties": {
+        "candidate_feature_count": { "type": "integer", "minimum": 0 },
+        "candidate_point_count": { "type": "integer", "minimum": 0 },
+        "certified_lane_count": { "const": 0 },
+        "rejected_lane_count": { "const": 0 },
+        "whole_area_recertification_count": { "const": 0 }
+      }
+    },
+    "hashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "topology_sha256", "georeference_sha256", "projected_geometry_sha256", "combined_sha256"],
+      "properties": {
+        "algorithm": { "const": "SHA-256" },
+        "topology_sha256": { "$ref": "#/$defs/sha256" },
+        "georeference_sha256": { "$ref": "#/$defs/sha256" },
+        "projected_geometry_sha256": { "$ref": "#/$defs/sha256" },
+        "combined_sha256": { "$ref": "#/$defs/sha256" }
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "vector3": {
+      "type": "array",
+      "prefixItems": [{ "type": "number" }, { "type": "number" }, { "type": "number" }],
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "bounds3": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {
+        "min": { "$ref": "#/$defs/vector3" },
+        "max": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["point_id", "wgs84", "unreal_position_cm", "osm_node_id", "is_cell_boundary", "requires_ground_certification"],
+      "properties": {
+        "point_id": { "$ref": "#/$defs/id" },
+        "wgs84": { "$ref": "#/$defs/vector3" },
+        "unreal_position_cm": { "$ref": "#/$defs/vector3" },
+        "osm_node_id": { "type": ["integer", "null"], "minimum": 1 },
+        "is_cell_boundary": { "type": "boolean" },
+        "requires_ground_certification": { "const": true }
+      }
+    },
+    "feature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["feature_id", "parent_feature_id", "origin", "classification", "admission_rule", "requires_manual_review", "cell_id", "part_index", "directionality", "points", "tags", "source_geometry_sha256", "projected_geometry_sha256"],
+      "properties": {
+        "feature_id": { "$ref": "#/$defs/id" },
+        "parent_feature_id": { "$ref": "#/$defs/id" },
+        "origin": { "type": "object" },
+        "classification": { "enum": ["sidewalk", "footway", "crossing", "pedestrian-zone", "manual-pedestrian-link"] },
+        "admission_rule": { "$ref": "#/$defs/id" },
+        "requires_manual_review": { "type": "boolean" },
+        "cell_id": { "type": "string", "pattern": "^central-r[01]-c[012]$" },
+        "part_index": { "type": "integer", "minimum": 0 },
+        "directionality": { "enum": ["bidirectional", "forward", "reverse"] },
+        "points": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/point" } },
+        "tags": { "type": "object", "additionalProperties": { "type": "string" } },
+        "source_geometry_sha256": { "$ref": "#/$defs/sha256" },
+        "projected_geometry_sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "cell_id", "grid_coordinate", "bounds_wgs84", "world_bounds_cm", "source_feature_ids", "nodes", "directed_lanes", "portals", "certified", "hashes"],
+      "properties": {
+        "schema_version": { "const": 1 },
+        "cell_id": { "type": "string", "pattern": "^central-r[01]-c[012]$" },
+        "grid_coordinate": {
+          "type": "array",
+          "prefixItems": [{ "type": "integer" }, { "type": "integer" }],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "bounds_wgs84": { "type": "object" },
+        "world_bounds_cm": { "$ref": "#/$defs/bounds3" },
+        "source_feature_ids": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+        "nodes": { "type": "array", "maxItems": 0 },
+        "directed_lanes": { "type": "array", "maxItems": 0 },
+        "portals": { "type": "array", "maxItems": 0 },
+        "certified": { "const": false },
+        "hashes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["topology_sha256", "georeference_sha256", "cell_content_sha256"],
+          "properties": {
+            "topology_sha256": { "$ref": "#/$defs/sha256" },
+            "georeference_sha256": { "$ref": "#/$defs/sha256" },
+            "cell_content_sha256": { "$ref": "#/$defs/sha256" }
+          }
+        }
+      }
+    },
+    "district": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["district_id", "cell_ids", "spawn_node_ids", "spawn_lane_ids", "world_bounds_cm", "target_population", "selection_weight", "enabled"],
+      "properties": {
+        "district_id": { "$ref": "#/$defs/id" },
+        "cell_ids": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^central-r[01]-c[012]$" } },
+        "spawn_node_ids": { "type": "array", "maxItems": 0 },
+        "spawn_lane_ids": { "type": "array", "maxItems": 0 },
+        "world_bounds_cm": { "$ref": "#/$defs/bounds3" },
+        "target_population": { "const": 50 },
+        "selection_weight": { "const": 1.0 },
+        "enabled": { "const": false }
+      }
+    }
+  }
+}

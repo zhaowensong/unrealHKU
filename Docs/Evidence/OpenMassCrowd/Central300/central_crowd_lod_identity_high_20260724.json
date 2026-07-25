@@ -1,0 +1,433 @@
+{
+  "acceptance_gate_evaluated": false,
+  "camera": {
+    "center_source": "stable_mass_entity_high_actor",
+    "location": {
+      "x": -172632.073167,
+      "y": 268816.4371,
+      "z": 1148.062153
+    },
+    "rotation": {
+      "pitch": -90.0,
+      "roll": 0.0,
+      "yaw": 0.0
+    },
+    "strategy": "lod-high",
+    "target": {
+      "x": -172632.073167,
+      "y": 268816.4371,
+      "z": 443.062153
+    },
+    "visible_proxy_count": 1,
+    "visual_target": {
+      "actor": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_2",
+      "kind": "stable_mass_entity_representation_tier_actor",
+      "line_of_sight": {
+        "candidate_count_tested": 1,
+        "height_cm": 800.0,
+        "horizontal_distance_cm": 0.0,
+        "line_of_sight_clear": true
+      },
+      "required_tier": "High",
+      "stable_identity": {
+        "actor_appearance_seed": 510772,
+        "actor_class": "/Script/OpenMassCrowd.OpenMassCrowdCitySampleActor",
+        "actor_hidden": false,
+        "actor_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_2",
+        "actor_tier": "High",
+        "appearance_seed": 510772,
+        "location": {
+          "x": -172632.073167,
+          "y": 268816.4371,
+          "z": 348.062153
+        },
+        "lod": "High",
+        "mass_entity_index": 1,
+        "mass_entity_serial": 1,
+        "previous_representation": "HighActor",
+        "representation": "HighActor",
+        "stable_entity_slot": 0,
+        "valid": true,
+        "variant_index": 0,
+        "variant_name": "CitySample_FTN",
+        "vat_current_frame": 32.712891,
+        "vat_end_frame": 97.0,
+        "vat_play_rate": 0.9,
+        "vat_start_frame": 0.0,
+        "vat_time_offset": 1.854102,
+        "world_time_seconds": 616.394523
+      },
+      "target_marker": null,
+      "tier": "High"
+    }
+  },
+  "camera_preset": "lod-high",
+  "capture_passed": true,
+  "collision_contract": {
+    "checks": {
+      "current_center_clearance_at_least_20cm": true,
+      "planned_spawn_clearance_at_least_hard_20cm": true,
+      "zero_current_overlap_agents": true,
+      "zero_current_overlap_pairs": true
+    },
+    "cumulative_snapshot_checks_passed": true,
+    "hard_snapshot_checks_passed": true,
+    "observer_limit": "This instantaneous capture validates cumulative counters but cannot compute sampled peaks; it does not replace the schema-4 60-second gate verifier or claim that its named check passed.",
+    "pedestrian_radius_cm": 27.0,
+    "planned_spawn_quality_target_cm": 55.0,
+    "planned_spawn_quality_target_is_advisory": true,
+    "quality_diagnostics": {
+      "advisory_not_spec_gate": true,
+      "lifetime_overlap_pair_observations": 22,
+      "lifetime_peak_overlap_agents": 2,
+      "lifetime_peak_overlap_pairs": 1,
+      "minimum_observed_center_distance_cm": 0.0001372166007058695,
+      "planned_spawn_clearance_quality_target_met": true
+    },
+    "required_gate_runtime_report_schema_version": 4,
+    "required_gate_verifier_check_name": "no_severe_overlap_below_20cm_during_steady_60s_window",
+    "schema4_gate_check_evaluated": false,
+    "schema4_sampled_peak_requirements": {
+      "evaluated_by_this_capture": false,
+      "maximum_sampled_current_agents": 0,
+      "maximum_sampled_current_pairs": 0
+    },
+    "scope": "This instantaneous capture checks the current hard 20 cm state only; the named schema-4 gate verifier remains authoritative for the full 60-second steady window.",
+    "severe_overlap_threshold_cm": 20.0,
+    "values": {
+      "current_minimum_center_distance_cm": 41.346107482910156,
+      "current_overlap_agents": 0,
+      "current_overlap_pairs": 0,
+      "lifetime_overlap_pair_observations": 22,
+      "lifetime_peak_overlap_agents": 2,
+      "lifetime_peak_overlap_pairs": 1,
+      "minimum_observed_center_distance_cm": 0.0001372166007058695,
+      "minimum_planned_spawn_clearance_cm": 59.39790725708008
+    }
+  },
+  "completion_reason": "screenshot_written_and_validated",
+  "generated_utc": "2026-07-23T18:15:09.442841+00:00",
+  "image": {
+    "actual_label_latest_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-identity-high-v2_latest.png",
+    "actual_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-identity-high-v2_20260723T181507787441Z.png",
+    "bytes": 1650050,
+    "height": 900,
+    "png_validated": true,
+    "width": 1600
+  },
+  "label": "gate30-lod-identity-high-v2",
+  "label_latest_image_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-identity-high-v2_latest.png",
+  "label_latest_report_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-identity-high-v2_latest.json",
+  "lod_camera_follow": {
+    "enabled": true,
+    "height_cm": 800.0,
+    "last_camera_location": {
+      "x": -172710.481927,
+      "y": 268750.07927,
+      "z": 1139.581712
+    },
+    "last_target": {
+      "x": -172710.481927,
+      "y": 268750.07927,
+      "z": 339.581712
+    },
+    "moves_mass_entity": false,
+    "update_count": 8
+  },
+  "lod_target_validation": {
+    "post_capture": {
+      "actor_appearance_seed": 510772,
+      "actor_class": "/Script/OpenMassCrowd.OpenMassCrowdCitySampleActor",
+      "actor_hidden": false,
+      "actor_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_2",
+      "actor_tier": "High",
+      "appearance_seed": 510772,
+      "location": {
+        "x": -172710.481927,
+        "y": 268750.07927,
+        "z": 339.581712
+      },
+      "lod": "High",
+      "mass_entity_index": 1,
+      "mass_entity_serial": 1,
+      "previous_representation": "HighActor",
+      "representation": "HighActor",
+      "stable_entity_slot": 0,
+      "valid": true,
+      "variant_index": 0,
+      "variant_name": "CitySample_FTN",
+      "vat_current_frame": 71.527344,
+      "vat_end_frame": 97.0,
+      "vat_play_rate": 0.9,
+      "vat_start_frame": 0.0,
+      "vat_time_offset": 1.854102,
+      "world_time_seconds": 617.83209
+    },
+    "post_capture_observed_tier": "High",
+    "post_capture_target_visible": true,
+    "pre_capture": {
+      "actor_appearance_seed": 510772,
+      "actor_class": "/Script/OpenMassCrowd.OpenMassCrowdCitySampleActor",
+      "actor_hidden": false,
+      "actor_path": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdCitySampleActor_2",
+      "actor_tier": "High",
+      "appearance_seed": 510772,
+      "location": {
+        "x": -172632.073167,
+        "y": 268816.4371,
+        "z": 348.062153
+      },
+      "lod": "High",
+      "mass_entity_index": 1,
+      "mass_entity_serial": 1,
+      "previous_representation": "HighActor",
+      "representation": "HighActor",
+      "stable_entity_slot": 0,
+      "valid": true,
+      "variant_index": 0,
+      "variant_name": "CitySample_FTN",
+      "vat_current_frame": 32.712891,
+      "vat_end_frame": 97.0,
+      "vat_play_rate": 0.9,
+      "vat_start_frame": 0.0,
+      "vat_time_offset": 1.854102,
+      "world_time_seconds": 616.394523
+    },
+    "required_tier": "High",
+    "stable_identity_fields": [
+      "stable_entity_slot",
+      "mass_entity_index",
+      "mass_entity_serial",
+      "appearance_seed",
+      "variant_index",
+      "variant_name"
+    ],
+    "stable_identity_preserved": true
+  },
+  "network_visual_context": {
+    "physical_certified_lane_count": 409,
+    "visible_city_sample_proxy_count": 1,
+    "world_bounds_max": {
+      "x": -140607.5693,
+      "y": 269286.8459,
+      "z": 1790.0528
+    },
+    "world_bounds_min": {
+      "x": -179806.0503,
+      "y": 239076.3689,
+      "z": 77.0691
+    }
+  },
+  "required_gate_runtime_report_schema_version": 4,
+  "runtime": {
+    "gate": 30,
+    "gate_property": "<OpenMassCrowdCentralPopulationGate.GATE30: 0>",
+    "metrics": {
+      "actor_total": 1,
+      "admission_batches": 2,
+      "admission_target": 30,
+      "admitted": 30,
+      "completed_trips": 2643,
+      "expected_moving": 30,
+      "frame_maximum_ms": 1416.24658203125,
+      "frame_p50_ms": 17.23309898376465,
+      "frame_p95_ms": 320.1903076171875,
+      "frame_sample_count": 1045,
+      "frame_window_seconds": 59.37309646606445,
+      "ground_candidate_component_tests": 412493,
+      "ground_center_recoveries": 0,
+      "ground_component_cache_refreshes": 580,
+      "ground_guard_queries": 120196,
+      "ground_projection_failures": 6,
+      "ground_rollbacks": 6,
+      "ground_unrecoverable": 0,
+      "high_actor": 1,
+      "low_actor": 0,
+      "minimum_center_distance_cm": 41.346107482910156,
+      "minimum_observed_center_distance_cm": 0.0001372166007058695,
+      "minimum_planned_spawn_clearance_cm": 59.39790725708008,
+      "moving": 23,
+      "peak_severe_overlap_agents": 2,
+      "peak_severe_overlap_pairs": 1,
+      "planned_spawn_slots": 300,
+      "represented": 30,
+      "route_assignments": 2851,
+      "route_replans": 178,
+      "runtime_lanes": 818,
+      "runtime_nodes": 476,
+      "severe_overlap_agents": 0,
+      "severe_overlap_pair_observations": 22,
+      "severe_overlap_pairs": 0,
+      "short_path_chunks": 29949,
+      "simulated": 30,
+      "spawned": 30,
+      "stuck": 7,
+      "telemetry_observations": 20838,
+      "unsupported_visuals": 0,
+      "vat": 29
+    },
+    "network_asset": "/Game/OpenMassCrowd/Central/DA_CentralNetwork_Certified.DA_CentralNetwork_Certified",
+    "network_mode": "<OpenMassCrowdNetworkMode.CENTRAL_CERTIFIED_CACHE: 1>",
+    "pie_proof": true,
+    "population": 30,
+    "population_property": 30,
+    "population_source": "central_simulated",
+    "spawner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdSpawner_UAID_FC5CEEE089AE52EF02_1864962311",
+    "spawner_count": 1,
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+    "world_name": "shanghai"
+  },
+  "safe_label": "gate30-lod-identity-high-v2",
+  "safety": {
+    "camera_is_editor_viewport_only": true,
+    "debug_overlays_are_transient_and_nonpersistent": true,
+    "existing_pie_only": true,
+    "mutates_map_spawner_network_population_or_entities": false,
+    "starts_or_stops_pie": false,
+    "temporary_signal_actor_visibility_may_change": true,
+    "temporary_signal_visibility_must_restore_before_pass": true
+  },
+  "schema_id": "open_mass_central_evidence_capture",
+  "schema_version": 2,
+  "screenshot_request_return": "/Engine/Transient.AutomationEditorTask_7",
+  "signal_inventory_after_restore": {
+    "actor_identity_source": "Exact PIE labels matching the schema-4 verifier regex contract",
+    "assigned_mesh_component_count": 1920,
+    "checks": {
+      "per_color_visible_geometry_counts": true,
+      "ray_actor_unique_label_and_visible_geometry_count": true,
+      "source_actor_and_unique_label_count": true
+    },
+    "color_geometry_counts": {
+      "Green": 480,
+      "Orange": 480,
+      "Red": 480,
+      "Yellow": 480
+    },
+    "expected": {
+      "color_geometry_counts": {
+        "Green": 480,
+        "Orange": 480,
+        "Red": 480,
+        "Yellow": 480
+      },
+      "ray_geometry_count": 1920,
+      "source_actor_count": 30
+    },
+    "ray_actor_count": 1920,
+    "ray_geometry_count": 1920,
+    "ray_labels_without_visible_geometry_count": 0,
+    "ray_labels_without_visible_geometry_samples": [],
+    "source_actor_count": 30,
+    "strict_visible_regression_pass": true,
+    "unique_ray_label_count": 1920,
+    "unique_source_label_count": 30,
+    "visible_mesh_component_count": 1920
+  },
+  "signal_inventory_pre_capture": {
+    "actor_identity_source": "Exact PIE labels matching the schema-4 verifier regex contract",
+    "assigned_mesh_component_count": 1920,
+    "checks": {
+      "per_color_visible_geometry_counts": true,
+      "ray_actor_unique_label_and_visible_geometry_count": true,
+      "source_actor_and_unique_label_count": true
+    },
+    "color_geometry_counts": {
+      "Green": 480,
+      "Orange": 480,
+      "Red": 480,
+      "Yellow": 480
+    },
+    "expected": {
+      "color_geometry_counts": {
+        "Green": 480,
+        "Orange": 480,
+        "Red": 480,
+        "Yellow": 480
+      },
+      "ray_geometry_count": 1920,
+      "source_actor_count": 30
+    },
+    "ray_actor_count": 1920,
+    "ray_geometry_count": 1920,
+    "ray_labels_without_visible_geometry_count": 0,
+    "ray_labels_without_visible_geometry_samples": [],
+    "source_actor_count": 30,
+    "strict_visible_regression_pass": true,
+    "unique_ray_label_count": 1920,
+    "unique_source_label_count": 30,
+    "visible_mesh_component_count": 1920
+  },
+  "signal_visual_isolation": {
+    "already_hidden_actor_count": 0,
+    "changed_actor_count": 1950,
+    "map_or_asset_modified": false,
+    "matched_actor_count": 1950,
+    "requested": true,
+    "restoration_attempted": true,
+    "restoration_errors": [],
+    "restoration_passed": true,
+    "restored_actor_count": 1950,
+    "selection": "PIE SIG_Ray_* and SIG_Source_* actors"
+  },
+  "status": "PASS",
+  "telemetry_summary": {
+    "authoritative_source": "reflected AOpenMassCrowdSpawner getters in this JSON",
+    "hud_rendered": false,
+    "missing_fields": [],
+    "screenshot_role": "visual context only; counts are not burned into pixels",
+    "values": {
+      "admission_target": 30,
+      "admitted": 30,
+      "expected_moving": 30,
+      "frame_maximum_ms": 1416.24658203125,
+      "frame_p50_ms": 17.23309898376465,
+      "frame_p95_ms": 320.1903076171875,
+      "frame_sample_count": 1045,
+      "frame_window_seconds": 59.37309646606445,
+      "ground_candidate_component_tests": 412493,
+      "ground_component_cache_refreshes": 580,
+      "ground_guard_queries": 120196,
+      "high_actor": 1,
+      "low_actor": 0,
+      "minimum_center_distance_cm": 41.346107482910156,
+      "minimum_observed_center_distance_cm": 0.0001372166007058695,
+      "minimum_planned_spawn_clearance_cm": 59.39790725708008,
+      "moving": 23,
+      "peak_severe_overlap_agents": 2,
+      "peak_severe_overlap_pairs": 1,
+      "represented": 30,
+      "severe_overlap_agents": 0,
+      "severe_overlap_pair_observations": 22,
+      "severe_overlap_pairs": 0,
+      "simulated": 30,
+      "stuck": 7,
+      "unsupported_visuals": 0,
+      "vat": 29
+    }
+  },
+  "timestamped_image_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-identity-high-v2_20260723T181507787441Z.png",
+  "timestamped_report_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-identity-high-v2_20260723T181507787441Z.json",
+  "transient_visual_overlay": {
+    "kind": "none",
+    "reason": "preset uses unmodified scene visuals"
+  },
+  "visual_evidence_checks": {
+    "acceptance_gate_evaluated": false,
+    "all_required_checks_passed": true,
+    "checks": {
+      "actor_appearance_seed_matches_mass_identity": true,
+      "all_simulated_entities_represented": true,
+      "no_placeholder_actor": true,
+      "positive_simulated_population": true,
+      "runtime_tier_count_positive": true,
+      "schema4_collision_current_snapshot_preconditions": true,
+      "stable_mass_identity_preserved": true,
+      "target_tier_matches_preset": true,
+      "tier_target_survived_capture": true,
+      "zero_unsupported_visuals": true
+    },
+    "does_not_replace_gate_verifier": true,
+    "notes": []
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_id": "open_mass_central_gate30_bounded_arbitration_trials",
+  "schema_version": 1,
+  "generated_local_date": "2026-07-24",
+  "status": "FAIL",
+  "acceptance_gate_evaluated": false,
+  "gate30_completed": false,
+  "scope": "Two bounded diagnostic PIE trials after static source/log correlation; no Gate100/200/300 run was started.",
+  "trials": [
+    {
+      "name": "preserve_conflict_wait_age_until_resource_exit",
+      "source_change_retained": true,
+      "engine_frame_window_seconds": 60.0,
+      "simulated": 30,
+      "represented": 30,
+      "moving": 30,
+      "stuck_gt5s": 0,
+      "unsupported_visuals": 0,
+      "peak_severe_overlap_pairs": 1,
+      "severe_overlap_pair_observations": 12,
+      "minimum_observed_center_distance_cm": 8.17,
+      "maximum_conflict_wait_seconds": 1.515,
+      "frame_p95_ms": 28.44,
+      "result": "Liveness regression fixed, but the lifetime severe-overlap gate still failed."
+    },
+    {
+      "name": "infer_next_lane_from_authoritative_route_before_short_path_exposes_transition",
+      "source_change_retained": false,
+      "engine_frame_window_seconds": 60.0,
+      "simulated": 30,
+      "represented": 30,
+      "moving": 1,
+      "stuck_gt5s": 7,
+      "unsupported_visuals": 0,
+      "peak_severe_overlap_pairs": 0,
+      "severe_overlap_pair_observations": 0,
+      "minimum_observed_center_distance_cm": 20.0,
+      "maximum_conflict_wait_seconds": 31.071,
+      "frame_p95_ms": 53.31,
+      "result": "Overlap was prevented, but the conservative reservation caused an unacceptable liveness and performance regression; the change was reverted."
+    }
+  ],
+  "localized_overlap": {
+    "first_entity": 10,
+    "second_entity": 17,
+    "distance_cm": 13.308,
+    "first_lane": 247,
+    "first_progress_cm": 0.0,
+    "second_lane": 286,
+    "second_progress_cm": 0.0,
+    "interpretation": "Both entities reached progress zero on outgoing lanes sharing the same three-way junction."
+  },
+  "formal_conclusion": "OpenSpec 4.5 remains incomplete. The retained wait-age fix is a measured liveness improvement, not a Gate30 pass."
+}

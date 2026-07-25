@@ -1,0 +1,30 @@
+{
+  "accepted_edges": 7,
+  "all_completed_source_ids": [
+    "candidate-manual-cesium-connector-osm-node-11759062224-osm-node-11759062637",
+    "candidate-manual-cesium-connector-osm-node-11759357170-semantic-chain-candidate-osm-way-1265929166-central-r0-c1-part-000-s002-m020-start-osm-n-1cb095b59a6c0dda",
+    "candidate-manual-cesium-connector-osm-node-11759357179-osm-node-11759357180",
+    "candidate-manual-cesium-connector-osm-node-11760754590-osm-node-11760754591",
+    "candidate-manual-cesium-connector-osm-node-11762400942-osm-node-12533364551",
+    "candidate-manual-cesium-connector-osm-node-11762476673-semantic-grid-detour-candidate-osm-way-1266320591-central-r0-c0-part-000-s001-a005-start-087db62da887e43d",
+    "candidate-manual-cesium-connector-osm-node-13801130598-semantic-chain-candidate-osm-way-581931491-central-r0-c1-part-000-s002-z000-start-osm-no-dd54157a9ab92077",
+    "candidate-manual-cesium-connector-osm-node-3175200595-semantic-chain-candidate-osm-way-1266073895-central-r0-c0-part-000-s004-m020-start-osm-no-aa7efb40a3f46ad9",
+    "candidate-manual-cesium-connector-osm-node-8528940294-osm-way-918333898-split-e89f5b85701f"
+  ],
+  "completed_source_ids": [],
+  "detail": "paused for user-facing scope reset",
+  "elapsed_wall_seconds": 37.359,
+  "formally_trusted_component_count": 67,
+  "largest_component_cells": 3,
+  "largest_component_length_cm": 11810.613,
+  "pending_manual_review": true,
+  "probed_edges": 19,
+  "rejected_edges": 12,
+  "sources_completed_this_run": 0,
+  "sources_evaluated_this_run": 2,
+  "status": "operator-bounded-stop",
+  "target_reached": false,
+  "trusted_component_count": 60,
+  "updated_at_utc": "2026-07-24T19:53:09.225218+00:00",
+  "work_path": "C:\\Users\\15958\\OneDrive\\xwechat_files\\wxid_0sjqfnxov0rv22_2017\\msg\\file\\2026-07\\TelecomTwin\\Scripts\\OpenMassCrowd\\CentralNetwork\\Data\\central_network_certification_working.json"
+}

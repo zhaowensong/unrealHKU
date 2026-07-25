@@ -1,0 +1,17 @@
+{
+  "captured_at_utc": "2026-07-24T19:03:10.687506+00:00",
+  "completed_manual_source_ids": [
+    "candidate-manual-cesium-connector-osm-node-13801130598-semantic-chain-candidate-osm-way-581931491-central-r0-c1-part-000-s002-z000-start-osm-no-dd54157a9ab92077"
+  ],
+  "connector_trust_changed": false,
+  "level_saved": false,
+  "overlay_report": "Saved/Reports/central_connector_review_overlay_latest.json",
+  "overlay_report_sha256": "ac7fc9fd541dac475116bd53c08e9a2e5356de2b1bf7057d97f81bcc240f004e",
+  "review_candidate_count": 36,
+  "review_status": "pending-human-visual-review",
+  "schema_version": 1,
+  "screenshot": "Docs/Evidence/OpenMassCrowd/Central300/central_connector_review_latest.png",
+  "signal_ray_count": 1920,
+  "temporarily_hidden_signal_ray_count": 1920,
+  "world": "shanghai"
+}

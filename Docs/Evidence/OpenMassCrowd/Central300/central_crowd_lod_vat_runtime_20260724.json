@@ -1,0 +1,750 @@
+{
+  "acceptance_gate_evaluated": false,
+  "camera": {
+    "center_source": "direct_city_sample_vat_instance_transform",
+    "location": {
+      "x": -176360.7802783043,
+      "y": 264516.73252132745,
+      "z": 1632.8067254856605
+    },
+    "rotation": {
+      "pitch": -12.23955829777656,
+      "roll": 8.112386143092874e-08,
+      "yaw": 49.39870535499553
+    },
+    "strategy": "lod-vat",
+    "target": {
+      "x": -172760.7802783043,
+      "y": 268716.73252132745,
+      "z": 432.8067254856604
+    },
+    "visible_proxy_count": 2,
+    "visual_target": {
+      "direct_instance_target": true,
+      "kind": "city_sample_vat_ism",
+      "runtime_vat_entity_count": 28,
+      "target_marker": "transient debug sphere and stem",
+      "visual_claim_limit": null
+    }
+  },
+  "camera_preset": "lod-vat",
+  "capture_passed": true,
+  "collision_contract": {
+    "checks": {
+      "current_center_clearance_at_least_20cm": true,
+      "planned_spawn_clearance_at_least_hard_20cm": true,
+      "zero_current_overlap_agents": true,
+      "zero_current_overlap_pairs": true
+    },
+    "cumulative_snapshot_checks_passed": true,
+    "hard_snapshot_checks_passed": true,
+    "observer_limit": "This instantaneous capture validates cumulative counters but cannot compute sampled peaks; it does not replace the schema-4 60-second gate verifier or claim that its named check passed.",
+    "pedestrian_radius_cm": 27.0,
+    "planned_spawn_quality_target_cm": 55.0,
+    "planned_spawn_quality_target_is_advisory": true,
+    "quality_diagnostics": {
+      "advisory_not_spec_gate": true,
+      "lifetime_overlap_pair_observations": 23,
+      "lifetime_peak_overlap_agents": 2,
+      "lifetime_peak_overlap_pairs": 1,
+      "minimum_observed_center_distance_cm": 0.0,
+      "planned_spawn_clearance_quality_target_met": true
+    },
+    "required_gate_runtime_report_schema_version": 4,
+    "required_gate_verifier_check_name": "no_severe_overlap_below_20cm_during_steady_60s_window",
+    "schema4_gate_check_evaluated": false,
+    "schema4_sampled_peak_requirements": {
+      "evaluated_by_this_capture": false,
+      "maximum_sampled_current_agents": 0,
+      "maximum_sampled_current_pairs": 0
+    },
+    "scope": "This instantaneous capture checks the current hard 20 cm state only; the named schema-4 gate verifier remains authoritative for the full 60-second steady window.",
+    "severe_overlap_threshold_cm": 20.0,
+    "values": {
+      "current_minimum_center_distance_cm": 64.62872314453125,
+      "current_overlap_agents": 0,
+      "current_overlap_pairs": 0,
+      "lifetime_overlap_pair_observations": 23,
+      "lifetime_peak_overlap_agents": 2,
+      "lifetime_peak_overlap_pairs": 1,
+      "minimum_observed_center_distance_cm": 0.0,
+      "minimum_planned_spawn_clearance_cm": 59.83008575439453
+    }
+  },
+  "completion_reason": "screenshot_written_and_validated",
+  "generated_utc": "2026-07-23T17:48:18.461995+00:00",
+  "image": {
+    "actual_label_latest_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-vat_latest.png",
+    "actual_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-vat_20260723T174816969375Z.png",
+    "bytes": 1143057,
+    "height": 900,
+    "png_validated": true,
+    "width": 1600
+  },
+  "label": "gate30-lod-vat",
+  "label_latest_image_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-vat_latest.png",
+  "label_latest_report_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-vat_latest.json",
+  "network_visual_context": {
+    "physical_certified_lane_count": 409,
+    "visible_city_sample_proxy_count": 2,
+    "world_bounds_max": {
+      "x": -140607.5693,
+      "y": 269286.8459,
+      "z": 1790.0528
+    },
+    "world_bounds_min": {
+      "x": -179806.0503,
+      "y": 239076.3689,
+      "z": 77.0691
+    }
+  },
+  "required_gate_runtime_report_schema_version": 4,
+  "runtime": {
+    "gate": 30,
+    "gate_property": "<OpenMassCrowdCentralPopulationGate.GATE30: 0>",
+    "metrics": {
+      "actor_total": 2,
+      "admission_batches": 2,
+      "admission_target": 30,
+      "admitted": 30,
+      "completed_trips": 910,
+      "expected_moving": 30,
+      "frame_maximum_ms": 845.1355590820312,
+      "frame_p50_ms": 30.193601608276367,
+      "frame_p95_ms": 71.18229675292969,
+      "frame_sample_count": 1338,
+      "frame_window_seconds": 59.88075637817383,
+      "ground_candidate_component_tests": 147879,
+      "ground_center_recoveries": 0,
+      "ground_component_cache_refreshes": 210,
+      "ground_guard_queries": 43084,
+      "ground_projection_failures": 0,
+      "ground_rollbacks": 0,
+      "ground_unrecoverable": 0,
+      "high_actor": 1,
+      "low_actor": 1,
+      "minimum_center_distance_cm": 64.62872314453125,
+      "minimum_observed_center_distance_cm": 0.0,
+      "minimum_planned_spawn_clearance_cm": 59.83008575439453,
+      "moving": 24,
+      "peak_severe_overlap_agents": 2,
+      "peak_severe_overlap_pairs": 1,
+      "planned_spawn_slots": 300,
+      "represented": 30,
+      "route_assignments": 953,
+      "route_replans": 13,
+      "runtime_lanes": 818,
+      "runtime_nodes": 476,
+      "severe_overlap_agents": 0,
+      "severe_overlap_pair_observations": 23,
+      "severe_overlap_pairs": 0,
+      "short_path_chunks": 10412,
+      "simulated": 30,
+      "spawned": 30,
+      "stuck": 6,
+      "telemetry_observations": 6194,
+      "unsupported_visuals": 0,
+      "vat": 28
+    },
+    "network_asset": "/Game/OpenMassCrowd/Central/DA_CentralNetwork_Certified.DA_CentralNetwork_Certified",
+    "network_mode": "<OpenMassCrowdNetworkMode.CENTRAL_CERTIFIED_CACHE: 1>",
+    "pie_proof": true,
+    "population": 30,
+    "population_property": 30,
+    "population_source": "central_simulated",
+    "spawner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.OpenMassCrowdSpawner_UAID_FC5CEEE089AE52EF02_1864962311",
+    "spawner_count": 1,
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+    "world_name": "shanghai"
+  },
+  "safe_label": "gate30-lod-vat",
+  "safety": {
+    "camera_is_editor_viewport_only": true,
+    "debug_overlays_are_transient_and_nonpersistent": true,
+    "existing_pie_only": true,
+    "mutates_map_spawner_network_population_or_entities": false,
+    "starts_or_stops_pie": false,
+    "temporary_signal_actor_visibility_may_change": true,
+    "temporary_signal_visibility_must_restore_before_pass": true
+  },
+  "schema_id": "open_mass_central_evidence_capture",
+  "schema_version": 2,
+  "screenshot_request_return": "/Engine/Transient.AutomationEditorTask_3",
+  "signal_inventory_after_restore": {
+    "actor_identity_source": "Exact PIE labels matching the schema-4 verifier regex contract",
+    "assigned_mesh_component_count": 1920,
+    "checks": {
+      "per_color_visible_geometry_counts": true,
+      "ray_actor_unique_label_and_visible_geometry_count": true,
+      "source_actor_and_unique_label_count": true
+    },
+    "color_geometry_counts": {
+      "Green": 480,
+      "Orange": 480,
+      "Red": 480,
+      "Yellow": 480
+    },
+    "expected": {
+      "color_geometry_counts": {
+        "Green": 480,
+        "Orange": 480,
+        "Red": 480,
+        "Yellow": 480
+      },
+      "ray_geometry_count": 1920,
+      "source_actor_count": 30
+    },
+    "ray_actor_count": 1920,
+    "ray_geometry_count": 1920,
+    "ray_labels_without_visible_geometry_count": 0,
+    "ray_labels_without_visible_geometry_samples": [],
+    "source_actor_count": 30,
+    "strict_visible_regression_pass": true,
+    "unique_ray_label_count": 1920,
+    "unique_source_label_count": 30,
+    "visible_mesh_component_count": 1920
+  },
+  "signal_inventory_pre_capture": {
+    "actor_identity_source": "Exact PIE labels matching the schema-4 verifier regex contract",
+    "assigned_mesh_component_count": 1920,
+    "checks": {
+      "per_color_visible_geometry_counts": true,
+      "ray_actor_unique_label_and_visible_geometry_count": true,
+      "source_actor_and_unique_label_count": true
+    },
+    "color_geometry_counts": {
+      "Green": 480,
+      "Orange": 480,
+      "Red": 480,
+      "Yellow": 480
+    },
+    "expected": {
+      "color_geometry_counts": {
+        "Green": 480,
+        "Orange": 480,
+        "Red": 480,
+        "Yellow": 480
+      },
+      "ray_geometry_count": 1920,
+      "source_actor_count": 30
+    },
+    "ray_actor_count": 1920,
+    "ray_geometry_count": 1920,
+    "ray_labels_without_visible_geometry_count": 0,
+    "ray_labels_without_visible_geometry_samples": [],
+    "source_actor_count": 30,
+    "strict_visible_regression_pass": true,
+    "unique_ray_label_count": 1920,
+    "unique_source_label_count": 30,
+    "visible_mesh_component_count": 1920
+  },
+  "signal_visual_isolation": {
+    "already_hidden_actor_count": 0,
+    "changed_actor_count": 1950,
+    "map_or_asset_modified": false,
+    "matched_actor_count": 1950,
+    "requested": true,
+    "restoration_attempted": true,
+    "restoration_errors": [],
+    "restoration_passed": true,
+    "restored_actor_count": 1950,
+    "selection": "PIE SIG_Ray_* and SIG_Source_* actors"
+  },
+  "status": "PASS",
+  "telemetry_summary": {
+    "authoritative_source": "reflected AOpenMassCrowdSpawner getters in this JSON",
+    "hud_rendered": false,
+    "missing_fields": [],
+    "screenshot_role": "visual context only; counts are not burned into pixels",
+    "values": {
+      "admission_target": 30,
+      "admitted": 30,
+      "expected_moving": 30,
+      "frame_maximum_ms": 845.1355590820312,
+      "frame_p50_ms": 30.193601608276367,
+      "frame_p95_ms": 71.18229675292969,
+      "frame_sample_count": 1338,
+      "frame_window_seconds": 59.88075637817383,
+      "ground_candidate_component_tests": 147879,
+      "ground_component_cache_refreshes": 210,
+      "ground_guard_queries": 43084,
+      "high_actor": 1,
+      "low_actor": 1,
+      "minimum_center_distance_cm": 64.62872314453125,
+      "minimum_observed_center_distance_cm": 0.0,
+      "minimum_planned_spawn_clearance_cm": 59.83008575439453,
+      "moving": 24,
+      "peak_severe_overlap_agents": 2,
+      "peak_severe_overlap_pairs": 1,
+      "represented": 30,
+      "severe_overlap_agents": 0,
+      "severe_overlap_pair_observations": 23,
+      "severe_overlap_pairs": 0,
+      "simulated": 30,
+      "stuck": 6,
+      "unsupported_visuals": 0,
+      "vat": 28
+    }
+  },
+  "timestamped_image_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-vat_20260723T174816969375Z.png",
+  "timestamped_report_path": "D:\\TelecomTwinCitySampleUser\\Saved\\Reports\\OpenMassCrowd\\Central300\\central_crowd_evidence_gate30-lod-vat_20260723T174816969375Z.json",
+  "transient_visual_overlay": {
+    "color": "purple",
+    "duration_seconds": 2.0,
+    "kind": "representation_tier_target",
+    "marker_center": {
+      "x": -172760.7802783043,
+      "y": 268716.73252132745,
+      "z": 432.8067254856604
+    },
+    "persistent": false,
+    "tier": "VAT"
+  },
+  "vat_instance_inspection": {
+    "component_count": 24,
+    "components": [
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_0",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Torso_VAT.SM_CitySample_FTN_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_1",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Legs_VAT.SM_CitySample_FTN_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_2",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Shoes_VAT.SM_CitySample_FTN_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_3",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Head_VAT.SM_CitySample_FTN_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_4",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Torso_VAT.SM_CitySample_FTO_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_5",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Legs_VAT.SM_CitySample_FTO_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_6",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Shoes_VAT.SM_CitySample_FTO_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_7",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Head_VAT.SM_CitySample_FTO_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_8",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Torso_VAT.SM_CitySample_FTU_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_9",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Legs_VAT.SM_CitySample_FTU_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_10",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Shoes_VAT.SM_CitySample_FTU_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_11",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Head_VAT.SM_CitySample_FTU_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_12",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Torso_VAT.SM_CitySample_MTN_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_13",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Legs_VAT.SM_CitySample_MTN_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_14",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Shoes_VAT.SM_CitySample_MTN_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_15",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Head_VAT.SM_CitySample_MTN_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_16",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Torso_VAT.SM_CitySample_MTO_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_17",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Legs_VAT.SM_CitySample_MTO_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_18",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Shoes_VAT.SM_CitySample_MTO_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_19",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Head_VAT.SM_CitySample_MTO_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_20",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Torso_VAT.SM_CitySample_MTU_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_21",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Legs_VAT.SM_CitySample_MTU_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_22",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Shoes_VAT.SM_CitySample_MTU_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_23",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Head_VAT.SM_CitySample_MTU_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      }
+    ],
+    "direct_target_available": true,
+    "entity_count_not_inferred_from_parts": true,
+    "identity_note": "Each VAT person is modular; component instances are part instances, so runtime.metrics.vat remains the authoritative entity count.",
+    "instance_transform_samples": [
+      {
+        "x": -179117.76584624083,
+        "y": 263678.494939276,
+        "z": 370.59620315641143
+      },
+      {
+        "x": -177927.4319448417,
+        "y": 254099.69888471928,
+        "z": 280.5069243175074
+      },
+      {
+        "x": -177400.2817116339,
+        "y": 254102.38447786096,
+        "z": 352.13910413220196
+      },
+      {
+        "x": -174358.93964795387,
+        "y": 243464.1641983884,
+        "z": 240.7480996904476
+      },
+      {
+        "x": -174226.22944870722,
+        "y": 244356.34741015438,
+        "z": 253.66643742242493
+      },
+      {
+        "x": -172760.7802783043,
+        "y": 268716.73252132745,
+        "z": 337.8067254856604
+      },
+      {
+        "x": -172645.44046475968,
+        "y": 239475.9453611865,
+        "z": 233.78220506408888
+      },
+      {
+        "x": -171359.89068361465,
+        "y": 245703.40534932076,
+        "z": 264.23896784667716
+      },
+      {
+        "x": -166789.2484496113,
+        "y": 264929.63883371826,
+        "z": 339.32956990488645
+      },
+      {
+        "x": -166170.8842307214,
+        "y": 256829.56039403236,
+        "z": 1500.1021773456998
+      },
+      {
+        "x": -165368.3604838704,
+        "y": 248057.91237945037,
+        "z": 1344.1745408850675
+      },
+      {
+        "x": -164604.34523450374,
+        "y": 249969.34336133662,
+        "z": 1347.6377631480811
+      }
+    ],
+    "part_instance_count": 112,
+    "unique_instance_transform_count": 28
+  },
+  "vat_instance_inspection_post_capture": {
+    "component_count": 24,
+    "components": [
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_0",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Torso_VAT.SM_CitySample_FTN_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_1",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Legs_VAT.SM_CitySample_FTN_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_2",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Shoes_VAT.SM_CitySample_FTN_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_3",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Head_VAT.SM_CitySample_FTN_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_4",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Torso_VAT.SM_CitySample_FTO_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_5",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Legs_VAT.SM_CitySample_FTO_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_6",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Shoes_VAT.SM_CitySample_FTO_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_7",
+        "instance_count": 4,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Head_VAT.SM_CitySample_FTO_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_8",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Torso_VAT.SM_CitySample_FTU_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_9",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Legs_VAT.SM_CitySample_FTU_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_10",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Shoes_VAT.SM_CitySample_FTU_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_11",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Head_VAT.SM_CitySample_FTU_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_12",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Torso_VAT.SM_CitySample_MTN_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_13",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Legs_VAT.SM_CitySample_MTN_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_14",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Shoes_VAT.SM_CitySample_MTN_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_15",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Head_VAT.SM_CitySample_MTN_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_16",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Torso_VAT.SM_CitySample_MTO_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_17",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Legs_VAT.SM_CitySample_MTO_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_18",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Shoes_VAT.SM_CitySample_MTO_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_19",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Head_VAT.SM_CitySample_MTO_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_20",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Torso_VAT.SM_CitySample_MTU_Torso_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_21",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Legs_VAT.SM_CitySample_MTU_Legs_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_22",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Shoes_VAT.SM_CitySample_MTU_Shoes_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      },
+      {
+        "component": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1.InstancedStaticMeshComponent_23",
+        "instance_count": 5,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Head_VAT.SM_CitySample_MTU_Head_VAT",
+        "owner": "/Game/Maps/UEDPIE_0_shanghai.shanghai:PersistentLevel.MassVisualizer_1"
+      }
+    ],
+    "direct_target_available": true,
+    "entity_count_not_inferred_from_parts": true,
+    "identity_note": "Each VAT person is modular; component instances are part instances, so runtime.metrics.vat remains the authoritative entity count.",
+    "instance_transform_samples": [
+      {
+        "x": -179133.50158886582,
+        "y": 263662.6695592625,
+        "z": 373.74177793455465
+      },
+      {
+        "x": -177980.33019783063,
+        "y": 254161.57133900322,
+        "z": 267.80014132235647
+      },
+      {
+        "x": -177454.05423616397,
+        "y": 254058.03252822947,
+        "z": 317.8823193661445
+      },
+      {
+        "x": -174379.30471485623,
+        "y": 243379.4847244408,
+        "z": 246.16402084354442
+      },
+      {
+        "x": -174207.27292992326,
+        "y": 244413.81615231594,
+        "z": 266.2779728985773
+      },
+      {
+        "x": -172721.04823230443,
+        "y": 268769.26355793024,
+        "z": 339.21862233839624
+      },
+      {
+        "x": -172628.61995186433,
+        "y": 239411.9654208353,
+        "z": 232.7158658912129
+      },
+      {
+        "x": -171422.49071962244,
+        "y": 245713.4101058588,
+        "z": 261.1254961952986
+      },
+      {
+        "x": -166868.30182014446,
+        "y": 264917.4292251051,
+        "z": 339.38861893648516
+      },
+      {
+        "x": -166202.9845058078,
+        "y": 256893.12027456728,
+        "z": 1503.9554063751161
+      },
+      {
+        "x": -165357.02069949257,
+        "y": 247995.56580794757,
+        "z": 1341.569807989211
+      },
+      {
+        "x": -164554.4686367137,
+        "y": 250018.89559494785,
+        "z": 1347.6237894257408
+      }
+    ],
+    "part_instance_count": 112,
+    "unique_instance_transform_count": 28
+  },
+  "visual_evidence_checks": {
+    "acceptance_gate_evaluated": false,
+    "all_required_checks_passed": true,
+    "checks": {
+      "all_simulated_entities_represented": true,
+      "direct_vat_instance_remained_exposed": true,
+      "positive_simulated_population": true,
+      "runtime_vat_entity_count_positive": true,
+      "schema4_collision_current_snapshot_preconditions": true,
+      "vat_target_state_is_declared": true,
+      "zero_unsupported_visuals": true
+    },
+    "does_not_replace_gate_verifier": true,
+    "notes": []
+  }
+}

@@ -233,7 +233,7 @@ void FMCPTCPServer::ProcessClientData()
     for (FMCPClientConnection& ClientConnection : ConnectionsCopy)
     {
         if (!ClientConnection.Socket) continue;
-        
+
         // Check if the client is still connected
         uint32 PendingDataSize = 0;
         if (!ClientConnection.Socket->HasPendingData(PendingDataSize))
@@ -287,7 +287,12 @@ void FMCPTCPServer::ProcessClientData()
             ClientConnection.TimeSinceLastActivity = 0.0f;
             
             int32 BytesRead = 0;
-            if (ClientConnection.Socket->Recv(ClientConnection.ReceiveBuffer.GetData(), ClientConnection.ReceiveBuffer.Num(), BytesRead))
+            // Reserve one byte for the UTF-8 terminator below. Recv may fill the
+            // complete socket buffer; passing Num() here previously made the
+            // terminator write at index Num(), crashing the editor for commands
+            // whose first packet was exactly 64 KiB.
+            const int32 ReceiveCapacity = FMath::Max(0, ClientConnection.ReceiveBuffer.Num() - 1);
+            if (ReceiveCapacity > 0 && ClientConnection.Socket->Recv(ClientConnection.ReceiveBuffer.GetData(), ReceiveCapacity, BytesRead))
             {
                 if (BytesRead > 0)
                 {
@@ -574,4 +579,4 @@ FString FMCPTCPServer::GetSafeSocketDescription(FSocket* Socket)
         // If there's any exception, return a safe description
         return TEXT("Socket_") + FString::FromInt(reinterpret_cast<uint64>(Socket));
     }
-} 
+}

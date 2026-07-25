@@ -6,7 +6,8 @@ param(
     [int]$CoreLimit = 4,
     [string]$UserDir = "D:\TelecomTwinCitySampleUser",
     [string]$LocalDataCachePath = "D:\TelecomTwinCache\DDC",
-    [string]$ZenDataPath = "D:\TelecomTwinCache\Zen"
+    [string]$ZenDataPath = "D:\TelecomTwinCache\Zen",
+    [string]$TempPath = "D:\TelecomTwinTemp"
 )
 
 $ErrorActionPreference = "Stop"
@@ -40,10 +41,13 @@ if ($runningEditor) {
 New-Item -ItemType Directory -Path $UserDir -Force | Out-Null
 New-Item -ItemType Directory -Path $LocalDataCachePath -Force | Out-Null
 New-Item -ItemType Directory -Path $ZenDataPath -Force | Out-Null
+New-Item -ItemType Directory -Path $TempPath -Force | Out-Null
 
 # The file-system Local DDC node in UE 5.7 reads this environment override.
 Set-Item -Path "Env:UE-LocalDataCachePath" -Value $LocalDataCachePath
 Set-Item -Path "Env:UE-ZenDataPath" -Value $ZenDataPath
+Set-Item -Path "Env:TEMP" -Value $TempPath
+Set-Item -Path "Env:TMP" -Value $TempPath
 
 # City Sample contains 4K/8K virtual textures. The D-drive DDC prevents C-drive
 # Zen cache failures, while the core limit keeps first-run texture builds from
@@ -76,4 +80,5 @@ $process = Start-Process `
     Status = "Editor launched; pedestrians are created only while PIE is running."
     NextStep = "Wait for the shanghai/Cesium view, then press Alt+P and allow about 40-50 seconds for collision-certified crowd startup."
     ExpectedLog = "OPEN_MASS_CROWD_READY requested=30 spawned=30"
+    TempPath = $TempPath
 }

@@ -1,0 +1,320 @@
+{
+  "build_id": "f913a75f-8c3c-51cb-99e0-274807b989c3",
+  "cells": [
+    {
+      "cell_id": "central-r0-c0",
+      "certified": false,
+      "grid_coordinate": [
+        0,
+        0
+      ],
+      "source_feature_count": 102,
+      "world_bounds_cm": {
+        "max": [
+          -165992.6383,
+          269186.0154,
+          -72.5055
+        ],
+        "min": [
+          -180972.1564,
+          254179.8818,
+          -82.7658
+        ]
+      }
+    },
+    {
+      "cell_id": "central-r0-c1",
+      "certified": false,
+      "grid_coordinate": [
+        1,
+        0
+      ],
+      "source_feature_count": 50,
+      "world_bounds_cm": {
+        "max": [
+          -151014.7605,
+          269187.5412,
+          -68.7857
+        ],
+        "min": [
+          -165994.2375,
+          254181.5518,
+          -78.6945
+        ]
+      }
+    },
+    {
+      "cell_id": "central-r0-c2",
+      "certified": false,
+      "grid_coordinate": [
+        2,
+        0
+      ],
+      "source_feature_count": 15,
+      "world_bounds_cm": {
+        "max": [
+          -136036.9857,
+          269188.9228,
+          -65.4175
+        ],
+        "min": [
+          -151016.2153,
+          254183.0776,
+          -74.9747
+        ]
+      }
+    },
+    {
+      "cell_id": "central-r1-c0",
+      "certified": false,
+      "grid_coordinate": [
+        0,
+        1
+      ],
+      "source_feature_count": 11,
+      "world_bounds_cm": {
+        "max": [
+          -165991.0391,
+          254181.5518,
+          -66.6713
+        ],
+        "min": [
+          -180970.413,
+          239175.4155,
+          -76.5767
+        ]
+      }
+    },
+    {
+      "cell_id": "central-r1-c1",
+      "certified": false,
+      "grid_coordinate": [
+        1,
+        1
+      ],
+      "source_feature_count": 35,
+      "world_bounds_cm": {
+        "max": [
+          -151013.3056,
+          254183.0776,
+          -62.9516
+        ],
+        "min": [
+          -165992.6383,
+          239177.0855,
+          -72.5055
+        ]
+      }
+    },
+    {
+      "cell_id": "central-r1-c2",
+      "certified": false,
+      "grid_coordinate": [
+        2,
+        1
+      ],
+      "source_feature_count": 16,
+      "world_bounds_cm": {
+        "max": [
+          -136035.675,
+          254184.4592,
+          -59.5834
+        ],
+        "min": [
+          -151014.7605,
+          239178.6113,
+          -68.7857
+        ]
+      }
+    }
+  ],
+  "coordinate_system": {
+    "method": "CesiumGeoreference.transform_longitude_latitude_height_position_to_unreal",
+    "projection_height_m": 0.0,
+    "source": "WGS84 longitude/latitude/ellipsoid-height (EPSG:4979)",
+    "target": "TelecomTwin Unreal world",
+    "unreal_units": "centimeters",
+    "z_policy": "reference-only; replace with strict Cesium ground certification"
+  },
+  "evidence": {
+    "candidate_feature_count": 229,
+    "candidate_point_count": 881,
+    "certified_lane_count": 0,
+    "rejected_lane_count": 0,
+    "whole_area_recertification_count": 0
+  },
+  "georeference": {
+    "actor_class": "CesiumGeoreference",
+    "actor_path": "/Game/Maps/shanghai.shanghai:PersistentLevel.CesiumGeoreference_UAID_FC5CEEE089AED5D502_1616837948",
+    "properties": {
+      "origin_height": 0.0,
+      "origin_latitude": 22.3028,
+      "origin_longitude": 114.1812,
+      "origin_placement": "CARTOGRAPHIC_ORIGIN",
+      "scale": 100.0
+    },
+    "sha256": "c954a46104715d693ba2d048a1c244a5124ab3bf5e35a5b4f562d114c8652fd8",
+    "world_name": "shanghai"
+  },
+  "hashes": {
+    "algorithm": "SHA-256",
+    "combined_sha256": "d34e5d41f1cd09d449afb73e019c1778f7f575ed2c42c704e521852d1017dca6",
+    "georeference_sha256": "c954a46104715d693ba2d048a1c244a5124ab3bf5e35a5b4f562d114c8652fd8",
+    "projected_geometry_sha256": "2d66dc7601485d5d3f648442e308866dfa7360f7ca4e1e02a382bba39f66cffc",
+    "topology_sha256": "e3f0cf8265b8623f7db956bc69aed8147c7b4c49f65866c2dbc3066b6085a2d0"
+  },
+  "network_id": "hk-central-signal-core-v1",
+  "schema_version": 1,
+  "spawn_districts": [
+    {
+      "cell_ids": [
+        "central-r0-c0"
+      ],
+      "district_id": "district-central-r0-c0",
+      "enabled": false,
+      "selection_weight": 1.0,
+      "spawn_lane_ids": [],
+      "spawn_node_ids": [],
+      "target_population": 50,
+      "world_bounds_cm": {
+        "max": [
+          -165992.6383,
+          269186.0154,
+          -72.5055
+        ],
+        "min": [
+          -180972.1564,
+          254179.8818,
+          -82.7658
+        ]
+      }
+    },
+    {
+      "cell_ids": [
+        "central-r0-c1"
+      ],
+      "district_id": "district-central-r0-c1",
+      "enabled": false,
+      "selection_weight": 1.0,
+      "spawn_lane_ids": [],
+      "spawn_node_ids": [],
+      "target_population": 50,
+      "world_bounds_cm": {
+        "max": [
+          -151014.7605,
+          269187.5412,
+          -68.7857
+        ],
+        "min": [
+          -165994.2375,
+          254181.5518,
+          -78.6945
+        ]
+      }
+    },
+    {
+      "cell_ids": [
+        "central-r0-c2"
+      ],
+      "district_id": "district-central-r0-c2",
+      "enabled": false,
+      "selection_weight": 1.0,
+      "spawn_lane_ids": [],
+      "spawn_node_ids": [],
+      "target_population": 50,
+      "world_bounds_cm": {
+        "max": [
+          -136036.9857,
+          269188.9228,
+          -65.4175
+        ],
+        "min": [
+          -151016.2153,
+          254183.0776,
+          -74.9747
+        ]
+      }
+    },
+    {
+      "cell_ids": [
+        "central-r1-c0"
+      ],
+      "district_id": "district-central-r1-c0",
+      "enabled": false,
+      "selection_weight": 1.0,
+      "spawn_lane_ids": [],
+      "spawn_node_ids": [],
+      "target_population": 50,
+      "world_bounds_cm": {
+        "max": [
+          -165991.0391,
+          254181.5518,
+          -66.6713
+        ],
+        "min": [
+          -180970.413,
+          239175.4155,
+          -76.5767
+        ]
+      }
+    },
+    {
+      "cell_ids": [
+        "central-r1-c1"
+      ],
+      "district_id": "district-central-r1-c1",
+      "enabled": false,
+      "selection_weight": 1.0,
+      "spawn_lane_ids": [],
+      "spawn_node_ids": [],
+      "target_population": 50,
+      "world_bounds_cm": {
+        "max": [
+          -151013.3056,
+          254183.0776,
+          -62.9516
+        ],
+        "min": [
+          -165992.6383,
+          239177.0855,
+          -72.5055
+        ]
+      }
+    },
+    {
+      "cell_ids": [
+        "central-r1-c2"
+      ],
+      "district_id": "district-central-r1-c2",
+      "enabled": false,
+      "selection_weight": 1.0,
+      "spawn_lane_ids": [],
+      "spawn_node_ids": [],
+      "target_population": 50,
+      "world_bounds_cm": {
+        "max": [
+          -136035.675,
+          254184.4592,
+          -59.5834
+        ],
+        "min": [
+          -151014.7605,
+          239178.6113,
+          -68.7857
+        ]
+      }
+    }
+  ],
+  "world_bounds_cm": {
+    "max": [
+      -136035.8676,
+      269188.018,
+      -60.4184
+    ],
+    "min": [
+      -180972.0969,
+      239176.3689,
+      -82.6965
+    ]
+  }
+}

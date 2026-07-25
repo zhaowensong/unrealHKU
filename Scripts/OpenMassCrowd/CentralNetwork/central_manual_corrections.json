@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "dataset_id": "hk-central-signal-core-v1",
+  "corrections": [],
+  "notes": [
+    "Corrections are review inputs, not automatically trusted geometry.",
+    "Only entries with review_status=accepted affect converted topology.",
+    "Use add for reviewed sidewalk/crossing splines, exclude for bad OSM ways, and reclassify for semantic fixes."
+  ]
+}

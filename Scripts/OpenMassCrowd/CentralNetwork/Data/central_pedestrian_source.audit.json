@@ -1,0 +1,450 @@
+{
+  "audit": {
+    "accepted_parent_feature_count": 199,
+    "cell_feature_counts": {
+      "central-r0-c0": 102,
+      "central-r0-c1": 50,
+      "central-r0-c2": 15,
+      "central-r1-c0": 11,
+      "central-r1-c1": 35,
+      "central-r1-c2": 16
+    },
+    "classification_counts": {
+      "crossing": 17,
+      "footway": 144,
+      "pedestrian-zone": 2,
+      "sidewalk": 66
+    },
+    "coarse_connected_component_count": 11,
+    "decision_counts": {
+      "allow-footway-crossing": 15,
+      "allow-footway-sidewalk": 52,
+      "allow-highway-footway": 106,
+      "allow-highway-pedestrian": 1,
+      "allow-highway-steps": 21,
+      "allow-road-explicit-sidewalk-review": 4,
+      "reject-access-denied": 12,
+      "reject-area-polygon": 4,
+      "reject-foot-denied": 1,
+      "reject-indoor": 7,
+      "reject-road-without-pedestrian-evidence": 50
+    },
+    "manual_correction_counts": {},
+    "manual_review_feature_part_count": 4,
+    "output_feature_part_count": 229,
+    "raw_element_count": 1205,
+    "raw_node_count": 932,
+    "raw_way_count": 273,
+    "rejected_examples": [
+      {
+        "origin_id": "osm-way-1060045021",
+        "reason": "reject-area-polygon"
+      },
+      {
+        "origin_id": "osm-way-1060045022",
+        "reason": "reject-area-polygon"
+      },
+      {
+        "origin_id": "osm-way-1060045023",
+        "reason": "reject-area-polygon"
+      },
+      {
+        "origin_id": "osm-way-107497698",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-1112861613",
+        "reason": "reject-indoor"
+      },
+      {
+        "origin_id": "osm-way-1112861630",
+        "reason": "reject-indoor"
+      },
+      {
+        "origin_id": "osm-way-1205283530",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-124356355",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-1258924736",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-1265929169",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-1267277657",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-1268381327",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-1338016441",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-142227300",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-1442100548",
+        "reason": "reject-indoor"
+      },
+      {
+        "origin_id": "osm-way-1496404574",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-1496899258",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-1509652217",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-174870816",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-174870822",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-174870833",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-179445690",
+        "reason": "reject-area-polygon"
+      },
+      {
+        "origin_id": "osm-way-179445694",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-179445698",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-179445700",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-179445707",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-241999015",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-241999018",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-242113702",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-250559329",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-250559339",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-254838892",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-254838910",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-254838961",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-254838965",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-26321453",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-311799409",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-311799413",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-311799418",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-311799431",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-311799434",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-364755215",
+        "reason": "reject-indoor"
+      },
+      {
+        "origin_id": "osm-way-364755217",
+        "reason": "reject-indoor"
+      },
+      {
+        "origin_id": "osm-way-364755221",
+        "reason": "reject-indoor"
+      },
+      {
+        "origin_id": "osm-way-392192439",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-462275996",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-466680967",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-466680968",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-47117722",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-595597640",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-595597966",
+        "reason": "reject-access-denied"
+      },
+      {
+        "origin_id": "osm-way-731944547",
+        "reason": "reject-indoor"
+      },
+      {
+        "origin_id": "osm-way-741593472",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-741593473",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-741593474",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-741593488",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-741593492",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-741593493",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-741593494",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-759025141",
+        "reason": "reject-foot-denied"
+      },
+      {
+        "origin_id": "osm-way-768584576",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-776472066",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-776472067",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-776472073",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-88261008",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-88261012",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-88261018",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-88822721",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-88822722",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-88822729",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-88822731",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-88822733",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-88822734",
+        "reason": "reject-road-without-pedestrian-evidence"
+      },
+      {
+        "origin_id": "osm-way-963983548",
+        "reason": "reject-access-denied"
+      }
+    ],
+    "rejected_parent_feature_count": 74,
+    "total_source_length_m": 6052.533
+  },
+  "bounds_wgs84": {
+    "east": 114.168,
+    "north": 22.2812,
+    "south": 22.27849,
+    "west": 114.16364
+  },
+  "build_id": "f913a75f-8c3c-51cb-99e0-274807b989c3",
+  "cells": [
+    {
+      "bounds_wgs84": {
+        "east": 114.16509333,
+        "north": 22.279845,
+        "south": 22.27849,
+        "west": 114.16364
+      },
+      "cell_id": "central-r0-c0",
+      "grid_coordinate": [
+        0,
+        0
+      ],
+      "source_feature_count": 102
+    },
+    {
+      "bounds_wgs84": {
+        "east": 114.16654667,
+        "north": 22.279845,
+        "south": 22.27849,
+        "west": 114.16509333
+      },
+      "cell_id": "central-r0-c1",
+      "grid_coordinate": [
+        1,
+        0
+      ],
+      "source_feature_count": 50
+    },
+    {
+      "bounds_wgs84": {
+        "east": 114.168,
+        "north": 22.279845,
+        "south": 22.27849,
+        "west": 114.16654667
+      },
+      "cell_id": "central-r0-c2",
+      "grid_coordinate": [
+        2,
+        0
+      ],
+      "source_feature_count": 15
+    },
+    {
+      "bounds_wgs84": {
+        "east": 114.16509333,
+        "north": 22.2812,
+        "south": 22.279845,
+        "west": 114.16364
+      },
+      "cell_id": "central-r1-c0",
+      "grid_coordinate": [
+        0,
+        1
+      ],
+      "source_feature_count": 11
+    },
+    {
+      "bounds_wgs84": {
+        "east": 114.16654667,
+        "north": 22.2812,
+        "south": 22.279845,
+        "west": 114.16509333
+      },
+      "cell_id": "central-r1-c1",
+      "grid_coordinate": [
+        1,
+        1
+      ],
+      "source_feature_count": 35
+    },
+    {
+      "bounds_wgs84": {
+        "east": 114.168,
+        "north": 22.2812,
+        "south": 22.279845,
+        "west": 114.16654667
+      },
+      "cell_id": "central-r1-c2",
+      "grid_coordinate": [
+        2,
+        1
+      ],
+      "source_feature_count": 16
+    }
+  ],
+  "dataset_id": "hk-central-signal-core-v1",
+  "hashes": {
+    "algorithm": "SHA-256",
+    "document_sha256": "7f97312ce270d73646034ecd74c07293a1cbd37bc6570d954f404b5c920399a1",
+    "topology_sha256": "e3f0cf8265b8623f7db956bc69aed8147c7b4c49f65866c2dbc3066b6085a2d0"
+  },
+  "schema_version": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "input_mode": "overpass",
+    "license": "ODbL-1.0",
+    "osm_base_timestamp": "2026-07-18T10:17:51Z",
+    "overpass_url": "https://overpass-api.de/api/interpreter",
+    "provider": "OpenStreetMap",
+    "query": "[out:json][timeout:90];\n(\n  way[\"highway\"~\"^(footway|path|pedestrian|residential|service|steps)$\"](22.27849000,114.16364000,22.28120000,114.16800000);\n);\nout body;\n>;\nout skel qt;\n",
+    "query_sha256": "33172c96eddf401312489871f12580a5318b160ec5488bb661f4c44ddbc6cc35",
+    "raw_sha256": "eb94a61b57f6182212d3371ce02d5a9e886799d3b94c93296b11bbea39b5566d"
+  }
+}

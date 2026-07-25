@@ -1,0 +1,42 @@
+{
+  "asset_class": "OpenMassCrowdCentralNetworkDataAsset",
+  "asset_path": "/Game/OpenMassCrowd/Central/DA_CentralNetwork_Certified",
+  "build_id": "39a05fbd-08b4-5654-8994-63b2dda2c916",
+  "counts": {
+    "cell_count": 6,
+    "component_count": 68,
+    "ground_sample_count": 38250,
+    "lane_count": 818,
+    "node_count": 476,
+    "portal_count": 46,
+    "spawn_district_count": 6,
+    "target_population": 300
+  },
+  "hashes": {
+    "algorithm": "SHA-256",
+    "cell_content_sha256": "614c16133d6c07c6e4dbae67cb1cd51ed290692e1178aaac1eae6bedec7d2f84",
+    "collision_settings_sha256": "33067acde063cd414c8b76d9cdac7f6ef6ce6ae1f9ff36a2e44d35e0544d8801",
+    "combined_sha256": "10437d68a5b4f8d86bdd6072d36e2802d6d70d6ff4f305565e96f1802f3cfa87",
+    "georeference_sha256": "c954a46104715d693ba2d048a1c244a5124ab3bf5e35a5b4f562d114c8652fd8",
+    "tileset_sha256": "730b980cb51da953c436ff15d631a39dce5a2a639849d33aead2a95a259940e9",
+    "topology_sha256": "e3f0cf8265b8623f7db956bc69aed8147c7b4c49f65866c2dbc3066b6085a2d0"
+  },
+  "importer_version": "1.1.0",
+  "input_document_sha256": "73102e857a0dd0a880e9df0c89c364ee1cd9d17e039e1bf0ed6347f237d404e4",
+  "input_file_sha256": "d923fdc3305f4fc9d966477bf4c8dc783dbcc8eefe9f7df9ff2ccc9f753df3d5",
+  "input_path": "Scripts/OpenMassCrowd/CentralNetwork/Data/central_network_certified.json",
+  "network_id": "hk-central-signal-core-v1-certified",
+  "schema_file_sha256": "77f93109a4338ddd55027990bfc2caf80e460c12d55973b504c01e6f6955033b",
+  "schema_path": "Scripts/OpenMassCrowd/CentralNetwork/central_network_certified.schema.json",
+  "schema_version": 1,
+  "strict_gates": {
+    "candidate_source_cannot_create_asset": true,
+    "canonical_hashes_valid": true,
+    "certified_only": true,
+    "duplicate_keys_rejected": true,
+    "fixed_certified_input_path": true,
+    "schema_valid": true,
+    "source_provenance_valid": true
+  },
+  "validator_version": "1.1.0"
+}

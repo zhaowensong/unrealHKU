@@ -1,0 +1,1812 @@
+{
+  "checks": {
+    "certified_only": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {},
+      "passed": true
+    },
+    "connectivity": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {
+        "component_sizes": [
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c1",
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-e3631434f8e9a87e",
+            "directed_lane_count": 82,
+            "directional_lane_length_cm": 34281.414,
+            "node_count": 42,
+            "size_rank": 1,
+            "source_component_index": 49
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-0250d8f97a51bbcb",
+            "directed_lane_count": 56,
+            "directional_lane_length_cm": 30627.83,
+            "node_count": 28,
+            "size_rank": 2,
+            "source_component_index": 48
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-13c7b37d4005c5e8",
+            "directed_lane_count": 44,
+            "directional_lane_length_cm": 21520.062,
+            "node_count": 23,
+            "size_rank": 3,
+            "source_component_index": 35
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c2",
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-68eca93018b2fdc9",
+            "directed_lane_count": 50,
+            "directional_lane_length_cm": 20605.627,
+            "node_count": 26,
+            "size_rank": 4,
+            "source_component_index": 67
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c0",
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-808f95ffb5a640bf",
+            "directed_lane_count": 42,
+            "directional_lane_length_cm": 19650.044,
+            "node_count": 22,
+            "size_rank": 5,
+            "source_component_index": 33
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c1",
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-76fbd61d8125e664",
+            "directed_lane_count": 60,
+            "directional_lane_length_cm": 15323.111,
+            "node_count": 31,
+            "size_rank": 6,
+            "source_component_index": 46
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r1-c1",
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-05c457654b413adf",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 12509.345,
+            "node_count": 6,
+            "size_rank": 7,
+            "source_component_index": 57
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-ff3b1200c035a746",
+            "directed_lane_count": 16,
+            "directional_lane_length_cm": 12386.264,
+            "node_count": 9,
+            "size_rank": 8,
+            "source_component_index": 24
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-1d839b6f95f7fa82",
+            "directed_lane_count": 40,
+            "directional_lane_length_cm": 12103.412,
+            "node_count": 21,
+            "size_rank": 9,
+            "source_component_index": 64
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-25a089c7c25bb0c8",
+            "directed_lane_count": 22,
+            "directional_lane_length_cm": 9911.716,
+            "node_count": 12,
+            "size_rank": 10,
+            "source_component_index": 3
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-0ce5036ba74baf4d",
+            "directed_lane_count": 14,
+            "directional_lane_length_cm": 9168.762,
+            "node_count": 8,
+            "size_rank": 11,
+            "source_component_index": 12
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r1-c1",
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-fef1af2645fe266e",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 8374.164,
+            "node_count": 3,
+            "size_rank": 12,
+            "source_component_index": 41
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-321dab6da192e52b",
+            "directed_lane_count": 22,
+            "directional_lane_length_cm": 7601.792,
+            "node_count": 12,
+            "size_rank": 13,
+            "source_component_index": 2
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-68350d27780d8cd5",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 7538.244,
+            "node_count": 6,
+            "size_rank": 14,
+            "source_component_index": 38
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-927b80e8b8598cb7",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 7335.188,
+            "node_count": 4,
+            "size_rank": 15,
+            "source_component_index": 19
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-3b5b8f816c636e28",
+            "directed_lane_count": 16,
+            "directional_lane_length_cm": 6926.159,
+            "node_count": 9,
+            "size_rank": 16,
+            "source_component_index": 32
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c0",
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-131e3a62a36b83dd",
+            "directed_lane_count": 24,
+            "directional_lane_length_cm": 6205.507,
+            "node_count": 13,
+            "size_rank": 17,
+            "source_component_index": 34
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c1",
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-0bd31e74032eae5a",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 6021.46,
+            "node_count": 6,
+            "size_rank": 18,
+            "source_component_index": 47
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-a0bf80aaf7e51f2f",
+            "directed_lane_count": 14,
+            "directional_lane_length_cm": 5905.405,
+            "node_count": 8,
+            "size_rank": 19,
+            "source_component_index": 28
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-e16ee4ed7669e0b4",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 5882.074,
+            "node_count": 3,
+            "size_rank": 20,
+            "source_component_index": 42
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-21cbf8d2f2a479ff",
+            "directed_lane_count": 14,
+            "directional_lane_length_cm": 5657.857,
+            "node_count": 8,
+            "size_rank": 21,
+            "source_component_index": 36
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-e5157ec4716e482e",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 5067.653,
+            "node_count": 6,
+            "size_rank": 22,
+            "source_component_index": 7
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-34a0a19bd89e7132",
+            "directed_lane_count": 16,
+            "directional_lane_length_cm": 5003.977,
+            "node_count": 9,
+            "size_rank": 23,
+            "source_component_index": 1
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-39f23819b1a8a14e",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 4929.065,
+            "node_count": 5,
+            "size_rank": 24,
+            "source_component_index": 6
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-b4f932639ca129e3",
+            "directed_lane_count": 16,
+            "directional_lane_length_cm": 4882.495,
+            "node_count": 9,
+            "size_rank": 25,
+            "source_component_index": 30
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c2"
+            ],
+            "component_id": "certified-component-702a95ac00c9dd54",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 4611.549,
+            "node_count": 5,
+            "size_rank": 26,
+            "source_component_index": 58
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-0dce2db24a22e65b",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 4454.649,
+            "node_count": 5,
+            "size_rank": 27,
+            "source_component_index": 26
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-7d13f53e0a5460ee",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 4449.679,
+            "node_count": 5,
+            "size_rank": 28,
+            "source_component_index": 39
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-db55fd71dd8d31c3",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 3778.442,
+            "node_count": 6,
+            "size_rank": 29,
+            "source_component_index": 59
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-d7271ec2579ddfa6",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 3603.277,
+            "node_count": 2,
+            "size_rank": 30,
+            "source_component_index": 63
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-3d400108377a9731",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 3547.085,
+            "node_count": 3,
+            "size_rank": 31,
+            "source_component_index": 43
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-046cb37b30441e25",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 3454.284,
+            "node_count": 4,
+            "size_rank": 32,
+            "source_component_index": 66
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-5f7090c681f2d9f0",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 3340.511,
+            "node_count": 6,
+            "size_rank": 33,
+            "source_component_index": 17
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-d9a1300e908354cf",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 3306.135,
+            "node_count": 6,
+            "size_rank": 34,
+            "source_component_index": 53
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-a8f94afdb7e831b8",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 3204.269,
+            "node_count": 4,
+            "size_rank": 35,
+            "source_component_index": 55
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-1d957fc25f7207e4",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 2679.391,
+            "node_count": 4,
+            "size_rank": 36,
+            "source_component_index": 37
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-2b871e5fb7e5e274",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 2663.934,
+            "node_count": 6,
+            "size_rank": 37,
+            "source_component_index": 52
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-7cf3165840dfa5b4",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 2595.713,
+            "node_count": 2,
+            "size_rank": 38,
+            "source_component_index": 22
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-eb38f4c91b8777c1",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 2444.871,
+            "node_count": 2,
+            "size_rank": 39,
+            "source_component_index": 40
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-3c02e3bc870812ce",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 2308.887,
+            "node_count": 3,
+            "size_rank": 40,
+            "source_component_index": 50
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-5f7d5a577d6cacd9",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 2276.227,
+            "node_count": 4,
+            "size_rank": 41,
+            "source_component_index": 27
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-4464623043becfe2",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 2182.322,
+            "node_count": 4,
+            "size_rank": 42,
+            "source_component_index": 0
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-68f42bb16ff4f0b8",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 2171.878,
+            "node_count": 3,
+            "size_rank": 43,
+            "source_component_index": 4
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-99620063812fb5db",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 2120.82,
+            "node_count": 6,
+            "size_rank": 44,
+            "source_component_index": 31
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-f05412b8d5d6d4f8",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 2113.557,
+            "node_count": 6,
+            "size_rank": 45,
+            "source_component_index": 16
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-23e09718ee73fa7c",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 2037.333,
+            "node_count": 3,
+            "size_rank": 46,
+            "source_component_index": 56
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-bc3f454dec3bd716",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 1991.185,
+            "node_count": 5,
+            "size_rank": 47,
+            "source_component_index": 29
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-60bbbcf470221c87",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1960.403,
+            "node_count": 2,
+            "size_rank": 48,
+            "source_component_index": 61
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-2775ab76df4fd087",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 1902.66,
+            "node_count": 3,
+            "size_rank": 49,
+            "source_component_index": 51
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-02cc7fca243c64f8",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 1777.309,
+            "node_count": 5,
+            "size_rank": 50,
+            "source_component_index": 45
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-b273c27e3d9f78ea",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 1774.054,
+            "node_count": 5,
+            "size_rank": 51,
+            "source_component_index": 54
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-c7a8586feefc74f0",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 1742.339,
+            "node_count": 3,
+            "size_rank": 52,
+            "source_component_index": 10
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c2",
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-40e1c931323258ca",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1470.263,
+            "node_count": 2,
+            "size_rank": 53,
+            "source_component_index": 62
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c2"
+            ],
+            "component_id": "certified-component-4b5bc21fdb611a66",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1322.756,
+            "node_count": 2,
+            "size_rank": 54,
+            "source_component_index": 44
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-e414004394662e57",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1317.57,
+            "node_count": 2,
+            "size_rank": 55,
+            "source_component_index": 23
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-903d37b49e5af440",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 1217.648,
+            "node_count": 3,
+            "size_rank": 56,
+            "source_component_index": 14
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-b3fb39870ca81d7e",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1039.731,
+            "node_count": 2,
+            "size_rank": 57,
+            "source_component_index": 13
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-721ed11b73fb876e",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 1016.354,
+            "node_count": 3,
+            "size_rank": 58,
+            "source_component_index": 18
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-b31dfbd0aa879970",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 957.239,
+            "node_count": 3,
+            "size_rank": 59,
+            "source_component_index": 15
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-0c25c0838654330a",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 916.309,
+            "node_count": 2,
+            "size_rank": 60,
+            "source_component_index": 9
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-136b253f8ce69511",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 880.522,
+            "node_count": 2,
+            "size_rank": 61,
+            "source_component_index": 65
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-9a1b022715137bbc",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 834.7,
+            "node_count": 2,
+            "size_rank": 62,
+            "source_component_index": 5
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-20480095f18e7c37",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 829.366,
+            "node_count": 2,
+            "size_rank": 63,
+            "source_component_index": 21
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-cbc1c5351b982ce0",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 665.464,
+            "node_count": 2,
+            "size_rank": 64,
+            "source_component_index": 11
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-bcf793798ff92cc8",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 515.279,
+            "node_count": 2,
+            "size_rank": 65,
+            "source_component_index": 20
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-0acd1a18fbdf8429",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 355.885,
+            "node_count": 2,
+            "size_rank": 66,
+            "source_component_index": 8
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-6a8267e88ee7e18f",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 294.998,
+            "node_count": 2,
+            "size_rank": 67,
+            "source_component_index": 25
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-a7ee2f0bb2d5cbb3",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 76.037,
+            "node_count": 2,
+            "size_rank": 68,
+            "source_component_index": 60
+          }
+        ],
+        "largest_component": {
+          "cell_count": 2,
+          "cell_ids": [
+            "central-r0-c1",
+            "central-r1-c1"
+          ],
+          "component_id": "certified-component-e3631434f8e9a87e",
+          "directed_lane_count": 82,
+          "directional_lane_length_cm": 34281.414,
+          "node_count": 42,
+          "size_rank": 1,
+          "source_component_index": 49
+        },
+        "strong_component_count": 68,
+        "weak_component_count": 68
+      },
+      "passed": true
+    },
+    "coverage": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {
+        "cell_count": 6,
+        "certified_geographic_block_count": 6,
+        "directional_lane_count": 818,
+        "directional_lane_length_cm": 373621.512,
+        "directional_lane_length_km": 3.736215,
+        "independent_cycle_count": 1,
+        "junction_count": 38,
+        "street_block_count": 1
+      },
+      "passed": true
+    },
+    "evidence": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {
+        "cell_evidence_records": 6,
+        "ground_sample_count": 38250
+      },
+      "passed": true
+    },
+    "hashes": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {
+        "canonicalization": "sorted-compact-utf8-json-v1",
+        "cell_hashes_verified": 6
+      },
+      "passed": true
+    },
+    "node_references": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {},
+      "passed": true
+    },
+    "population": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {
+        "configured_population": 300
+      },
+      "passed": true
+    },
+    "portals": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {},
+      "passed": true
+    },
+    "reverse_lanes": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {},
+      "passed": true
+    },
+    "schema": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {
+        "violation_count": 0
+      },
+      "passed": true
+    },
+    "source_provenance": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {
+        "certified_component_sizes": [
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c1",
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-e3631434f8e9a87e",
+            "directed_lane_count": 82,
+            "directional_lane_length_cm": 34281.414,
+            "node_count": 42,
+            "size_rank": 1,
+            "source_component_index": 49
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-0250d8f97a51bbcb",
+            "directed_lane_count": 56,
+            "directional_lane_length_cm": 30627.83,
+            "node_count": 28,
+            "size_rank": 2,
+            "source_component_index": 48
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-13c7b37d4005c5e8",
+            "directed_lane_count": 44,
+            "directional_lane_length_cm": 21520.062,
+            "node_count": 23,
+            "size_rank": 3,
+            "source_component_index": 35
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c2",
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-68eca93018b2fdc9",
+            "directed_lane_count": 50,
+            "directional_lane_length_cm": 20605.627,
+            "node_count": 26,
+            "size_rank": 4,
+            "source_component_index": 67
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c0",
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-808f95ffb5a640bf",
+            "directed_lane_count": 42,
+            "directional_lane_length_cm": 19650.044,
+            "node_count": 22,
+            "size_rank": 5,
+            "source_component_index": 33
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c1",
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-76fbd61d8125e664",
+            "directed_lane_count": 60,
+            "directional_lane_length_cm": 15323.111,
+            "node_count": 31,
+            "size_rank": 6,
+            "source_component_index": 46
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r1-c1",
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-05c457654b413adf",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 12509.345,
+            "node_count": 6,
+            "size_rank": 7,
+            "source_component_index": 57
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-ff3b1200c035a746",
+            "directed_lane_count": 16,
+            "directional_lane_length_cm": 12386.264,
+            "node_count": 9,
+            "size_rank": 8,
+            "source_component_index": 24
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-1d839b6f95f7fa82",
+            "directed_lane_count": 40,
+            "directional_lane_length_cm": 12103.412,
+            "node_count": 21,
+            "size_rank": 9,
+            "source_component_index": 64
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-25a089c7c25bb0c8",
+            "directed_lane_count": 22,
+            "directional_lane_length_cm": 9911.716,
+            "node_count": 12,
+            "size_rank": 10,
+            "source_component_index": 3
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-0ce5036ba74baf4d",
+            "directed_lane_count": 14,
+            "directional_lane_length_cm": 9168.762,
+            "node_count": 8,
+            "size_rank": 11,
+            "source_component_index": 12
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r1-c1",
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-fef1af2645fe266e",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 8374.164,
+            "node_count": 3,
+            "size_rank": 12,
+            "source_component_index": 41
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-321dab6da192e52b",
+            "directed_lane_count": 22,
+            "directional_lane_length_cm": 7601.792,
+            "node_count": 12,
+            "size_rank": 13,
+            "source_component_index": 2
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-68350d27780d8cd5",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 7538.244,
+            "node_count": 6,
+            "size_rank": 14,
+            "source_component_index": 38
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-927b80e8b8598cb7",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 7335.188,
+            "node_count": 4,
+            "size_rank": 15,
+            "source_component_index": 19
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-3b5b8f816c636e28",
+            "directed_lane_count": 16,
+            "directional_lane_length_cm": 6926.159,
+            "node_count": 9,
+            "size_rank": 16,
+            "source_component_index": 32
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c0",
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-131e3a62a36b83dd",
+            "directed_lane_count": 24,
+            "directional_lane_length_cm": 6205.507,
+            "node_count": 13,
+            "size_rank": 17,
+            "source_component_index": 34
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c1",
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-0bd31e74032eae5a",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 6021.46,
+            "node_count": 6,
+            "size_rank": 18,
+            "source_component_index": 47
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-a0bf80aaf7e51f2f",
+            "directed_lane_count": 14,
+            "directional_lane_length_cm": 5905.405,
+            "node_count": 8,
+            "size_rank": 19,
+            "source_component_index": 28
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-e16ee4ed7669e0b4",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 5882.074,
+            "node_count": 3,
+            "size_rank": 20,
+            "source_component_index": 42
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-21cbf8d2f2a479ff",
+            "directed_lane_count": 14,
+            "directional_lane_length_cm": 5657.857,
+            "node_count": 8,
+            "size_rank": 21,
+            "source_component_index": 36
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-e5157ec4716e482e",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 5067.653,
+            "node_count": 6,
+            "size_rank": 22,
+            "source_component_index": 7
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-34a0a19bd89e7132",
+            "directed_lane_count": 16,
+            "directional_lane_length_cm": 5003.977,
+            "node_count": 9,
+            "size_rank": 23,
+            "source_component_index": 1
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-39f23819b1a8a14e",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 4929.065,
+            "node_count": 5,
+            "size_rank": 24,
+            "source_component_index": 6
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-b4f932639ca129e3",
+            "directed_lane_count": 16,
+            "directional_lane_length_cm": 4882.495,
+            "node_count": 9,
+            "size_rank": 25,
+            "source_component_index": 30
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c2"
+            ],
+            "component_id": "certified-component-702a95ac00c9dd54",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 4611.549,
+            "node_count": 5,
+            "size_rank": 26,
+            "source_component_index": 58
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-0dce2db24a22e65b",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 4454.649,
+            "node_count": 5,
+            "size_rank": 27,
+            "source_component_index": 26
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-7d13f53e0a5460ee",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 4449.679,
+            "node_count": 5,
+            "size_rank": 28,
+            "source_component_index": 39
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-db55fd71dd8d31c3",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 3778.442,
+            "node_count": 6,
+            "size_rank": 29,
+            "source_component_index": 59
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-d7271ec2579ddfa6",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 3603.277,
+            "node_count": 2,
+            "size_rank": 30,
+            "source_component_index": 63
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-3d400108377a9731",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 3547.085,
+            "node_count": 3,
+            "size_rank": 31,
+            "source_component_index": 43
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-046cb37b30441e25",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 3454.284,
+            "node_count": 4,
+            "size_rank": 32,
+            "source_component_index": 66
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-5f7090c681f2d9f0",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 3340.511,
+            "node_count": 6,
+            "size_rank": 33,
+            "source_component_index": 17
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-d9a1300e908354cf",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 3306.135,
+            "node_count": 6,
+            "size_rank": 34,
+            "source_component_index": 53
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-a8f94afdb7e831b8",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 3204.269,
+            "node_count": 4,
+            "size_rank": 35,
+            "source_component_index": 55
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-1d957fc25f7207e4",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 2679.391,
+            "node_count": 4,
+            "size_rank": 36,
+            "source_component_index": 37
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-2b871e5fb7e5e274",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 2663.934,
+            "node_count": 6,
+            "size_rank": 37,
+            "source_component_index": 52
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-7cf3165840dfa5b4",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 2595.713,
+            "node_count": 2,
+            "size_rank": 38,
+            "source_component_index": 22
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-eb38f4c91b8777c1",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 2444.871,
+            "node_count": 2,
+            "size_rank": 39,
+            "source_component_index": 40
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-3c02e3bc870812ce",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 2308.887,
+            "node_count": 3,
+            "size_rank": 40,
+            "source_component_index": 50
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-5f7d5a577d6cacd9",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 2276.227,
+            "node_count": 4,
+            "size_rank": 41,
+            "source_component_index": 27
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-4464623043becfe2",
+            "directed_lane_count": 6,
+            "directional_lane_length_cm": 2182.322,
+            "node_count": 4,
+            "size_rank": 42,
+            "source_component_index": 0
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-68f42bb16ff4f0b8",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 2171.878,
+            "node_count": 3,
+            "size_rank": 43,
+            "source_component_index": 4
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-99620063812fb5db",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 2120.82,
+            "node_count": 6,
+            "size_rank": 44,
+            "source_component_index": 31
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-f05412b8d5d6d4f8",
+            "directed_lane_count": 10,
+            "directional_lane_length_cm": 2113.557,
+            "node_count": 6,
+            "size_rank": 45,
+            "source_component_index": 16
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-23e09718ee73fa7c",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 2037.333,
+            "node_count": 3,
+            "size_rank": 46,
+            "source_component_index": 56
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-bc3f454dec3bd716",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 1991.185,
+            "node_count": 5,
+            "size_rank": 47,
+            "source_component_index": 29
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c0"
+            ],
+            "component_id": "certified-component-60bbbcf470221c87",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1960.403,
+            "node_count": 2,
+            "size_rank": 48,
+            "source_component_index": 61
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-2775ab76df4fd087",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 1902.66,
+            "node_count": 3,
+            "size_rank": 49,
+            "source_component_index": 51
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-02cc7fca243c64f8",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 1777.309,
+            "node_count": 5,
+            "size_rank": 50,
+            "source_component_index": 45
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-b273c27e3d9f78ea",
+            "directed_lane_count": 8,
+            "directional_lane_length_cm": 1774.054,
+            "node_count": 5,
+            "size_rank": 51,
+            "source_component_index": 54
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-c7a8586feefc74f0",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 1742.339,
+            "node_count": 3,
+            "size_rank": 52,
+            "source_component_index": 10
+          },
+          {
+            "cell_count": 2,
+            "cell_ids": [
+              "central-r0-c2",
+              "central-r1-c2"
+            ],
+            "component_id": "certified-component-40e1c931323258ca",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1470.263,
+            "node_count": 2,
+            "size_rank": 53,
+            "source_component_index": 62
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c2"
+            ],
+            "component_id": "certified-component-4b5bc21fdb611a66",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1322.756,
+            "node_count": 2,
+            "size_rank": 54,
+            "source_component_index": 44
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-e414004394662e57",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1317.57,
+            "node_count": 2,
+            "size_rank": 55,
+            "source_component_index": 23
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-903d37b49e5af440",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 1217.648,
+            "node_count": 3,
+            "size_rank": 56,
+            "source_component_index": 14
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-b3fb39870ca81d7e",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 1039.731,
+            "node_count": 2,
+            "size_rank": 57,
+            "source_component_index": 13
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-721ed11b73fb876e",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 1016.354,
+            "node_count": 3,
+            "size_rank": 58,
+            "source_component_index": 18
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-b31dfbd0aa879970",
+            "directed_lane_count": 4,
+            "directional_lane_length_cm": 957.239,
+            "node_count": 3,
+            "size_rank": 59,
+            "source_component_index": 15
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-0c25c0838654330a",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 916.309,
+            "node_count": 2,
+            "size_rank": 60,
+            "source_component_index": 9
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r1-c1"
+            ],
+            "component_id": "certified-component-136b253f8ce69511",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 880.522,
+            "node_count": 2,
+            "size_rank": 61,
+            "source_component_index": 65
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-9a1b022715137bbc",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 834.7,
+            "node_count": 2,
+            "size_rank": 62,
+            "source_component_index": 5
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-20480095f18e7c37",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 829.366,
+            "node_count": 2,
+            "size_rank": 63,
+            "source_component_index": 21
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-cbc1c5351b982ce0",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 665.464,
+            "node_count": 2,
+            "size_rank": 64,
+            "source_component_index": 11
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-bcf793798ff92cc8",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 515.279,
+            "node_count": 2,
+            "size_rank": 65,
+            "source_component_index": 20
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-0acd1a18fbdf8429",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 355.885,
+            "node_count": 2,
+            "size_rank": 66,
+            "source_component_index": 8
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c1"
+            ],
+            "component_id": "certified-component-6a8267e88ee7e18f",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 294.998,
+            "node_count": 2,
+            "size_rank": 67,
+            "source_component_index": 25
+          },
+          {
+            "cell_count": 1,
+            "cell_ids": [
+              "central-r0-c0"
+            ],
+            "component_id": "certified-component-a7ee2f0bb2d5cbb3",
+            "directed_lane_count": 2,
+            "directional_lane_length_cm": 76.037,
+            "node_count": 2,
+            "size_rank": 68,
+            "source_component_index": 60
+          }
+        ],
+        "certified_largest_component": {
+          "cell_count": 2,
+          "cell_ids": [
+            "central-r0-c1",
+            "central-r1-c1"
+          ],
+          "component_id": "certified-component-e3631434f8e9a87e",
+          "directed_lane_count": 82,
+          "directional_lane_length_cm": 34281.414,
+          "node_count": 42,
+          "size_rank": 1,
+          "source_component_index": 49
+        },
+        "source_document_checked": true
+      },
+      "passed": true
+    },
+    "spawn_districts": {
+      "executed": true,
+      "issue_count": 0,
+      "metrics": {
+        "component_local_spawn_district_count": 6,
+        "district_component_count": 6
+      },
+      "passed": true
+    }
+  },
+  "generated_at_utc": "2026-07-18T18:11:27.757699+00:00",
+  "input": {
+    "cache_path": "C:\\Users\\15958\\OneDrive\\xwechat_files\\wxid_0sjqfnxov0rv22_2017\\msg\\file\\2026-07\\TelecomTwin\\Scripts\\OpenMassCrowd\\CentralNetwork\\Data\\central_network_certified.pending.json",
+    "cache_sha256": "d923fdc3305f4fc9d966477bf4c8dc783dbcc8eefe9f7df9ff2ccc9f753df3d5",
+    "schema_path": "C:\\Users\\15958\\OneDrive\\xwechat_files\\wxid_0sjqfnxov0rv22_2017\\msg\\file\\2026-07\\TelecomTwin\\Scripts\\OpenMassCrowd\\CentralNetwork\\central_network_certified.schema.json",
+    "source_path": "C:\\Users\\15958\\OneDrive\\xwechat_files\\wxid_0sjqfnxov0rv22_2017\\msg\\file\\2026-07\\TelecomTwin\\Scripts\\OpenMassCrowd\\CentralNetwork\\Data\\central_pedestrian_source.json"
+  },
+  "issues": [],
+  "overall_passed": true,
+  "schema_version": 1,
+  "summary": {
+    "failed_check_count": 0,
+    "issue_count": 0,
+    "passed_check_count": 12,
+    "required_check_count": 12,
+    "unexecuted_check_count": 0
+  },
+  "thresholds": {
+    "minimum_cells": 6,
+    "minimum_certified_geographic_blocks": 4,
+    "minimum_component_local_spawn_districts": 6,
+    "minimum_directional_lane_length_cm": 300000.0,
+    "minimum_junctions": 8,
+    "target_population": 300
+  },
+  "verifier": {
+    "name": "verify_central_network_cache",
+    "version": "1.1.0"
+  }
+}

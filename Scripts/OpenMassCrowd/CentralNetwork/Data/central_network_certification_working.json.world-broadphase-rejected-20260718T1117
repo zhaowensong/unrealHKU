@@ -1,0 +1,3507 @@
+{
+  "compatibility": {
+    "collision_settings_sha256": "78f338e8c48b39e9f652e1cf42e4a056f369ba4d2c60da12d9edabb190c4bf50",
+    "georeference_sha256": "c954a46104715d693ba2d048a1c244a5124ab3bf5e35a5b4f562d114c8652fd8",
+    "manual_corrections_sha256": "84e8fd868b2185e612ea06950278272fd45f0ad4aa7be47630e91c3b7c4eb662",
+    "projected_combined_sha256": "d34e5d41f1cd09d449afb73e019c1778f7f575ed2c42c704e521852d1017dca6",
+    "projected_document_sha256": "7a436fbf1b22ffd71f6b64bf44119ef518a7a05f34a38d0d329d30a7d58d72f3",
+    "settings_sha256": "cc88fb88d2252a918275a6b4061b33f642f19642490bd6b4d17fa18e87e51954",
+    "tileset_sha256": "730b980cb51da953c436ff15d631a39dce5a2a639849d33aead2a95a259940e9"
+  },
+  "complete": false,
+  "generator_version": "1.0.0",
+  "network_id": "hk-central-signal-core-v1",
+  "results": {
+    "candidate-osm-way-107361328-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-107361328-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361328-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-107361328-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361335-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-107361335-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s004": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s005": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s005",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107361336-central-r0-c1-part-001-s006": {
+      "candidate_id": "candidate-osm-way-107361336-central-r0-c1-part-001-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-107497683-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-107497683-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861606-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861606-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861606-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861606-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861607-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861607-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861608-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861608-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861609-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861609-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861610-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861610-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861611-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861611-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861612-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861612-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861612-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861612-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861619-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861619-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861621-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861621-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861621-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861621-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861622-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1112861622-central-r0-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861622-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861622-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861622-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861622-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861623-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861623-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861623-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861623-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861625-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861625-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861625-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861625-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861625-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112861625-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861626-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1112861626-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s005",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861628-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1112861628-central-r0-c0-part-000-s006",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861629-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112861629-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861629-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112861629-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861629-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112861629-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112861629-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1112861629-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112863862-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1112863862-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112863862-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1112863862-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1112863862-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1112863862-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819994-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819994-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819994-central-r0-c2-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1118819994-central-r0-c2-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819994-central-r0-c2-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1118819994-central-r0-c2-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819995-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819995-central-r0-c2-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819996-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819996-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819996-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1118819996-central-r0-c2-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819996-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1118819996-central-r0-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819996-central-r0-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1118819996-central-r0-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819997-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819997-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1118819998-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1118819998-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-114127527-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-114127527-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-124000461-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-124000461-central-r1-c1-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892477-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892477-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892477-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892477-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892478-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892478-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892478-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892478-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892479-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892479-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892480-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892480-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892480-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892480-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892480-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892480-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892481-central-r0-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1265892481-central-r0-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892482-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892482-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892482-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892482-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892482-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892482-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892482-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265892482-central-r0-c0-part-000-s003",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892483-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892483-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892484-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892484-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892485-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892485-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892486-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892486-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892487-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892487-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892487-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892487-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892487-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892487-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s005",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892488-central-r0-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1265892488-central-r0-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892491-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892491-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892492-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892492-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892493-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892493-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892494-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892494-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892494-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892494-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892494-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892494-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892495-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892495-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892495-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892495-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892496-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892496-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892497-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892497-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892497-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892497-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892498-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892498-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892499-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892499-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892502-central-r0-c0-part-000-s008": {
+      "candidate_id": "candidate-osm-way-1265892502-central-r0-c0-part-000-s008",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892503-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892503-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892503-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892503-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892505-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892505-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892506-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892506-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892510-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892510-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892510-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892510-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892511-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265892511-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265892511-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265892511-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929165-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265929165-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929165-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265929165-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929165-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265929165-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929165-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265929165-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s005",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s008": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s008",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s009": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s009",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s010": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s010",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s011": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s011",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s012": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s012",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929166-central-r0-c1-part-000-s013": {
+      "candidate_id": "candidate-osm-way-1265929166-central-r0-c1-part-000-s013",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265929167-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265929167-central-r0-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931454-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931454-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931454-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931454-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931457-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931457-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c0-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c0-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c0-part-001-s002": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c0-part-001-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931458-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931458-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931459-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931459-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931459-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931459-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931460-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931460-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931460-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931460-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931461-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931461-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931461-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931461-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931462-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931462-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931462-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931462-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931462-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931462-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931463-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931463-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931463-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931463-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931463-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931463-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931463-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265931463-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931464-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1265931464-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931465-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931465-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931465-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931465-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931465-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931465-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931465-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1265931465-central-r0-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931466-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931466-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931466-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931466-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931467-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931467-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931467-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931467-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931468-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1265931468-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931468-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1265931468-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931468-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1265931468-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1265931468-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1265931468-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073882-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073882-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073883-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073883-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073884-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073884-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073884-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073884-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073891-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073891-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073892-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073892-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073892-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073892-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073892-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266073892-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073893-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073893-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073893-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073893-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073893-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266073893-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073894-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073894-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073894-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073894-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s006",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s008": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s008",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s009": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s009",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073895-central-r0-c0-part-000-s010": {
+      "candidate_id": "candidate-osm-way-1266073895-central-r0-c0-part-000-s010",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s004": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s005": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s006": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s007": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s008": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s008",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s009": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s009",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s010": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s010",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s011": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s011",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s012": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s012",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s013": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s013",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s014": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s014",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s015": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s015",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s016": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s016",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s017": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s017",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s018": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s018",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s019": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s019",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s020": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s020",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s021": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s021",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266073896-central-r0-c1-part-001-s022": {
+      "candidate_id": "candidate-osm-way-1266073896-central-r0-c1-part-001-s022",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266315076-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266315076-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266315076-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266315076-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266315076-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266315076-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266315076-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266315076-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320583-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320583-central-r0-c0-part-000-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320583-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320583-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320583-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320583-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320583-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266320583-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r0-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r0-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320584-central-r1-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266320584-central-r1-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s007": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s008": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s008",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s009": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s009",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320585-central-r1-c0-part-000-s010": {
+      "candidate_id": "candidate-osm-way-1266320585-central-r1-c0-part-000-s010",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320586-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266320586-central-r0-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320586-central-r0-c0-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1266320586-central-r0-c0-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320586-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320586-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320586-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320586-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320587-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320587-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320587-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320587-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320587-central-r1-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266320587-central-r1-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r0-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r0-c0-part-001-s001": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r0-c0-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r0-c0-part-001-s002": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r0-c0-part-001-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320588-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320588-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320589-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320589-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320589-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320589-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320589-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320589-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320590-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320590-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320590-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320590-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320591-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320591-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320591-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320591-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320592-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320592-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320592-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320592-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320592-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320592-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320592-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1266320592-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320593-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1266320593-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320593-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1266320593-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1266320593-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1266320593-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767624-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767624-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767624-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1267767624-central-r0-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767625-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767625-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767625-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1267767625-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767625-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1267767625-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767626-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767626-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767627-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767627-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767628-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767628-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767628-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1267767628-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767628-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1267767628-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1267767634-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1267767634-central-r0-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1268073825-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1268073825-central-r0-c1-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1309901651-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1309901651-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1309901651-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1309901651-central-r0-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1309901651-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1309901651-central-r0-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s004": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s005": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1338017194-central-r0-c2-part-000-s006": {
+      "candidate_id": "candidate-osm-way-1338017194-central-r0-c2-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1442100549-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1442100549-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1442100549-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1442100549-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1442100549-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-1442100549-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1442100549-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-1442100549-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509652216-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509652216-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509652223-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509652223-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509761021-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509761021-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509761022-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509761022-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509776255-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509776255-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509776256-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1509776256-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1509776256-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-1509776256-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-1513982995-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-1513982995-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s006": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445708-central-r1-c1-part-000-s007": {
+      "candidate_id": "candidate-osm-way-179445708-central-r1-c1-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-179445710-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-179445710-central-r1-c1-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113680-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-242113680-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113680-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-242113680-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113699-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-242113699-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113699-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-242113699-central-r1-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113699-central-r1-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-242113699-central-r1-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-242113699-central-r1-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-242113699-central-r1-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-247781149-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-247781149-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-271668517-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-271668517-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-311799411-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-311799411-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-363213310-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-363213310-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s004": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s005": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c1-part-001-s006": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c1-part-001-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c2-part-002-s000": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c2-part-002-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-363213310-central-r1-c2-part-002-s001": {
+      "candidate_id": "candidate-osm-way-363213310-central-r1-c2-part-002-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-364755219-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-364755219-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-364755219-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-364755219-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-364755219-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-364755219-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-364755219-central-r0-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-364755219-central-r0-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-392192441-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-392192441-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-392192441-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-392192441-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-392192441-central-r0-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-392192441-central-r0-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-392192785-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-392192785-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-484758188-central-r0-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-484758188-central-r1-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r1-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-484758188-central-r1-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r1-c2-part-002-s000": {
+      "candidate_id": "candidate-osm-way-484758188-central-r1-c2-part-002-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-484758188-central-r1-c2-part-002-s001": {
+      "candidate_id": "candidate-osm-way-484758188-central-r1-c2-part-002-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s006": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s007": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s008": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s008",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s009": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s009",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s010": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s010",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-491359457-central-r1-c1-part-000-s011": {
+      "candidate_id": "candidate-osm-way-491359457-central-r1-c1-part-000-s011",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-505306995-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-505306995-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-505306995-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-505306995-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-519414518-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-519414518-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-519414518-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-519414518-central-r0-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-519414518-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-519414518-central-r0-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-529601750-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-529601750-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-529601750-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-529601750-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-548044631-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-548044631-central-r0-c2-part-000-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-563873335-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s000": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s001": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s002": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s003": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-001-s004": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-001-s004",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-563873335-central-r1-c2-part-002-s000": {
+      "candidate_id": "candidate-osm-way-563873335-central-r1-c2-part-002-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931465-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-581931465-central-r1-c1-part-001-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931465-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931465-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931468-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931468-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931468-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931468-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931468-central-r1-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-581931468-central-r1-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931472-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931472-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931472-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931472-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931486-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931486-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931486-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931486-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931486-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-581931486-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931486-central-r1-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-581931486-central-r1-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c1-part-001-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931489-central-r1-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-581931489-central-r1-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c0-part-001-s000": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c0-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c0-part-001-s001": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c0-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931491-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-581931491-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931493-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-581931493-central-r0-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931493-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-581931493-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-581931493-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-581931493-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-586393628-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-586393628-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764838-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-690764838-central-r1-c0-part-000-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764838-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-690764838-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764838-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-690764838-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s004": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s005": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-690764846-central-r1-c0-part-000-s006": {
+      "candidate_id": "candidate-osm-way-690764846-central-r1-c0-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-731944546-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-731944546-central-r0-c0-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-731944546-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-731944546-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-731944548-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-731944548-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-731944549-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-731944549-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-758689529-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-758689529-central-r1-c1-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-768584604-central-r1-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-768584604-central-r1-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-768584604-central-r1-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-768584604-central-r1-c0-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-768584604-central-r1-c0-part-000-s002": {
+      "candidate_id": "candidate-osm-way-768584604-central-r1-c0-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-768584604-central-r1-c0-part-000-s003": {
+      "candidate_id": "candidate-osm-way-768584604-central-r1-c0-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c1-part-001-s000",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c1-part-001-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s004": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s005": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s006": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s007": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s008": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s008",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s009": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s009",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s010": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s010",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s011": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s011",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s012": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s012",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s013": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s013",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s014": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s014",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s015": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s015",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-857153149-central-r0-c2-part-000-s016": {
+      "candidate_id": "candidate-osm-way-857153149-central-r0-c2-part-000-s016",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333897-central-r0-c0-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333897-central-r0-c0-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333897-central-r0-c0-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333897-central-r0-c0-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c0-part-002-s000": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c0-part-002-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c0-part-002-s001": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c0-part-002-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c1-part-001-s001",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c1-part-001-s002",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-918333898-central-r0-c1-part-001-s003",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333898-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333898-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333904-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333904-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333904-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333904-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333904-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333904-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333904-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333904-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333911-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-918333911-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333912-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333912-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333913-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333913-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333913-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333913-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333913-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333913-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333913-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333913-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333914-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333914-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333914-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333914-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333915-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333915-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333915-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333915-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333915-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333915-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333915-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333915-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333916-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-918333916-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333917-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-918333917-central-r1-c1-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333918-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333918-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333918-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333918-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333918-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333918-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333919-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333919-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333920-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918333920-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333920-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918333920-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918333920-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918333920-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s005",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s006": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s006",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s007": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s007",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s008": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s008",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s009": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s009",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s010": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s010",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-918523923-central-r1-c1-part-000-s011": {
+      "candidate_id": "candidate-osm-way-918523923-central-r1-c1-part-000-s011",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983546-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983546-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983547-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983547-central-r1-c2-part-000-s000",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983547-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983547-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983547-central-r1-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-963983547-central-r1-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983549-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983549-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s000": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s001": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s002": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s003": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r0-c1-part-001-s004": {
+      "candidate_id": "candidate-osm-way-963983553-central-r0-c1-part-001-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983553-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983553-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983554-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983554-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983555-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983555-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983556-central-r1-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983556-central-r1-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r0-c2-part-001-s000": {
+      "candidate_id": "candidate-osm-way-963983557-central-r0-c2-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983557-central-r1-c2-part-000-s004": {
+      "candidate_id": "candidate-osm-way-963983557-central-r1-c2-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s001",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s002": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s002",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s003": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s004": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c1-part-000-s005": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c1-part-000-s005",
+      "detail": "no raw collision blocker at exact XY",
+      "reason": "missing_support",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983558-central-r0-c2-part-001-s000": {
+      "candidate_id": "candidate-osm-way-963983558-central-r0-c2-part-001-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983559-central-r1-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983559-central-r1-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983559-central-r1-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983559-central-r1-c2-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s000": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s000",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s001": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s001",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s002": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s002",
+      "detail": "Cesium first blocker is not walkable",
+      "reason": "slope",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s003": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s003",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    },
+    "candidate-osm-way-963983564-central-r0-c2-part-000-s004": {
+      "candidate_id": "candidate-osm-way-963983564-central-r0-c2-part-000-s004",
+      "detail": "Cesium support is unavailable to the WorldStatic object trace",
+      "reason": "capsule_clearance",
+      "status": "rejected"
+    }
+  },
+  "schema_version": 1,
+  "started_at_utc": "2026-07-18T11:17:37.393748+00:00",
+  "streaming_cells": {
+    "central-r0-c0": {
+      "component_count": 72,
+      "component_signature_sha256": "43e873281c5475a9b697bfb93a36f216ac1f4452beebe7a33a6467b5ee7a3794",
+      "stabilized_at_utc": "2026-07-18T11:17:48.080415+00:00"
+    },
+    "central-r0-c1": {
+      "component_count": 62,
+      "component_signature_sha256": "875f1345877f0c87add8640e28ce0ed0539d0fa0da622d5b26506c2576510aed",
+      "stabilized_at_utc": "2026-07-18T11:17:40.280875+00:00"
+    },
+    "central-r0-c2": {
+      "component_count": 59,
+      "component_signature_sha256": "7d8c1fd257a846706414edb3c3950cbdcf9f7baebd7fd5ba9c13f1ab6ba16e39",
+      "stabilized_at_utc": "2026-07-18T11:17:49.611606+00:00"
+    },
+    "central-r1-c0": {
+      "component_count": 61,
+      "component_signature_sha256": "1ae120202754c309b25a0374e89a2f1a7289c49bf9dc44128def0d5ec463a56f",
+      "stabilized_at_utc": "2026-07-18T11:17:43.880939+00:00"
+    },
+    "central-r1-c1": {
+      "component_count": 80,
+      "component_signature_sha256": "3a3a6e24da12c46d3d71c73c5d1ca6f55b8213e6e863a8ea01a27e423e2e518d",
+      "stabilized_at_utc": "2026-07-18T11:17:42.713287+00:00"
+    },
+    "central-r1-c2": {
+      "component_count": 72,
+      "component_signature_sha256": "850a3fffcc00a6309fe67fa2dd7a67f202b5c47eaa3915b0dbb3ba6a46dd209a",
+      "stabilized_at_utc": "2026-07-18T11:17:50.625851+00:00"
+    }
+  },
+  "updated_at_utc": "2026-07-18T11:17:50.625851+00:00"
+}

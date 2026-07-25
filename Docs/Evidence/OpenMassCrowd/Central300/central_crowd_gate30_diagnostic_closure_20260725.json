@@ -1,0 +1,93 @@
+{
+  "schema_id": "open_mass_central_gate30_diagnostic_closure",
+  "schema_version": 1,
+  "generated_local_date": "2026-07-25",
+  "status": "FAIL",
+  "gate30_completed": false,
+  "formal_acceptance_claimed": false,
+  "source_state": {
+    "retained": [
+      "Conflict wait age remains stable until the entity actually leaves the resource.",
+      "Severe-overlap telemetry records lane IDs, progress, matching resources, intervals, and positions."
+    ],
+    "reverted": [
+      "Next-lane reservation experiments.",
+      "Post-movement transform rollback below 20 cm.",
+      "Negative semantic-recovery lane left-track selection."
+    ],
+    "clean_rebuild_after_revert": "Succeeded"
+  },
+  "bounded_trials": [
+    {
+      "name": "next_lane_reservation_wrong_progress_field",
+      "source_change_retained": false,
+      "moving": 23,
+      "stuck_gt5s": 7,
+      "peak_severe_overlap_pairs": 1,
+      "minimum_observed_center_distance_cm": 14.55,
+      "maximum_conflict_wait_seconds": 204.88,
+      "result": "Failed both liveness and the hard overlap gate; reverted."
+    },
+    {
+      "name": "next_lane_reservation_distance_along_lane",
+      "source_change_retained": false,
+      "engine_frame_window_seconds": 60.0,
+      "peak_severe_overlap_pairs": 1,
+      "minimum_observed_center_distance_cm": 11.4875,
+      "maximum_conflict_wait_seconds": 2.0,
+      "frame_p95_ms": 86.0,
+      "result": "Corrected the progress field but still failed overlap and performance; reverted."
+    },
+    {
+      "name": "post_movement_overlap_rollback",
+      "source_change_retained": false,
+      "engine_frame_window_seconds": 59.991283416748,
+      "simulated": 30,
+      "represented": 30,
+      "moving": 0,
+      "stuck_gt5s": 30,
+      "peak_severe_overlap_pairs": 0,
+      "minimum_observed_center_distance_cm": 20.0002155303955,
+      "post_movement_overlap_rollbacks": 10030,
+      "frame_p95_ms": 24.9114971160889,
+      "unsupported_visuals": 0,
+      "evidence_json": "central_crowd_evidence_gate30_post_movement_rollback_fail_20260725.json",
+      "evidence_png": "central_crowd_evidence_gate30_post_movement_rollback_fail_20260725.png",
+      "result": "Prevented overlap by repeatedly undoing motion, then deadlocked all 30 entities; rejected as nonphysical and reverted."
+    },
+    {
+      "name": "certified_track_side_selection",
+      "source_change_retained": false,
+      "engine_frame_window_seconds": 59.9948959350586,
+      "simulated": 30,
+      "represented": 30,
+      "moving_at_capture": 2,
+      "stuck_gt5s_at_capture": 28,
+      "peak_severe_overlap_pairs": 1,
+      "severe_overlap_pair_observations": 5,
+      "minimum_observed_center_distance_cm": 0.00015944879851303995,
+      "maximum_conflict_wait_seconds_from_60s_log": 2.902,
+      "frame_p95_ms": 44.8009986877441,
+      "unsupported_visuals": 0,
+      "evidence_json": "central_crowd_evidence_gate30_certified_track_sides_fail_20260725.json",
+      "evidence_png": "central_crowd_evidence_gate30_certified_track_sides_fail_20260725.png",
+      "result": "Used real Cesium-certified support tracks but still produced an overlap, poor frame time, and late-session liveness collapse; reverted."
+    }
+  ],
+  "localized_geometry_diagnosis": {
+    "first_lane_index": 502,
+    "first_lane_id": "lane-candidate-semantic-chain-candidate-osm-way-1266320586-central-r0-c0-part-001-s000-m020-start-osm-node-11762476674-segment-007-ab",
+    "second_lane_index": 504,
+    "second_lane_id": "lane-candidate-semantic-chain-candidate-osm-way-1266320586-central-r0-c0-part-001-s000-m020-start-osm-way-1266320586-split-72575c283428-segment-000-ab",
+    "interpretation": "The cache contains geometrically reverse-overlapping semantic-recovery candidates that are not declared direct reverse lanes. Right-track runtime points can therefore be only a few centimetres apart even though both lanes individually carry valid Cesium support evidence.",
+    "measured_center_track_minimum_separation_cm": 0.0,
+    "measured_right_track_minimum_separation_cm": 4.78,
+    "measured_left_track_minimum_separation_cm": 20.324
+  },
+  "formal_blockers": {
+    "openspec_3_4": "The published cache still contains 68 components, only one connected street block, and a maximum connected component of about 342.8 m; it is not the required four-block connected Central network.",
+    "openspec_4_5": "No retained build has simultaneously passed 60-second liveness, zero overlap below 20 cm, zero unsupported visuals, and P95 below 33 ms.",
+    "promotion": "Gate100, Gate200, and Gate300 remain intentionally unstarted because Gate30 did not pass."
+  },
+  "formal_conclusion": "OpenSpec 3.4 and 4.5 remain incomplete. The diagnostic loop is closed without retaining a regressive workaround or claiming a false pass."
+}

@@ -14,12 +14,17 @@ import json
 import socket
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 13377
 DEFAULT_TIMEOUT_SECONDS = 120.0
+# UnrealMCP's protocol has no message framing or multi-packet command
+# reassembly. Keep JSON commands below its 64 KiB receive buffer. Local files
+# are always executed through a tiny runpy bootstrap instead of being copied
+# into the socket payload.
+MAX_SAFE_COMMAND_BYTES = 60 * 1024
 
 
 def receive_json(sock: socket.socket) -> dict[str, Any]:
@@ -50,11 +55,61 @@ def execute_python(
         "params": {"code": code},
     }
     encoded_command = json.dumps(command).encode("utf-8")
+    if len(encoded_command) > MAX_SAFE_COMMAND_BYTES:
+        raise RuntimeError(
+            "UnrealMCP command is {} bytes, above the safe {}-byte socket "
+            "limit; put large code in a local --file so the runner can use "
+            "its runpy bootstrap".format(
+                len(encoded_command), MAX_SAFE_COMMAND_BYTES
+            )
+        )
 
     with socket.create_connection((host, port), timeout=timeout_seconds) as sock:
         sock.settimeout(timeout_seconds)
         sock.sendall(encoded_command)
         return receive_json(sock)
+
+
+def _runpy_bootstrap(source_path: Path, script_args: Sequence[str]) -> str:
+    """Build a small bootstrap that preserves Unreal Editor's ``sys.argv``."""
+    resolved_path = source_path.resolve()
+    unreal_safe_path = str(resolved_path).replace("\\", "/")
+    forwarded_argv = [unreal_safe_path, *(str(value) for value in script_args)]
+    return (
+        "import runpy, sys\n"
+        "_open_mass_previous_argv = sys.argv\n"
+        f"sys.argv = {forwarded_argv!r}\n"
+        "try:\n"
+        "    try:\n"
+        f"        runpy.run_path({unreal_safe_path!r}, run_name='__main__')\n"
+        "    except SystemExit as _open_mass_exit:\n"
+        "        _open_mass_exit_code = _open_mass_exit.code\n"
+        "        if _open_mass_exit_code not in (None, 0):\n"
+        "            raise RuntimeError(\n"
+        "                'target script exited with status {!r}'.format(\n"
+        "                    _open_mass_exit_code\n"
+        "                )\n"
+        "            ) from _open_mass_exit\n"
+        "finally:\n"
+        "    sys.argv = _open_mass_previous_argv\n"
+    )
+
+
+def code_for_local_file(
+    source_path: Path, script_args: Sequence[str] = ()
+) -> str:
+    """Return a small on-disk bootstrap for a readable local Python file.
+
+    Besides avoiding the socket limit, this prevents the UnrealMCP handler's
+    triple-quoted wrapper from corrupting source containing quote delimiters.
+    The target receives a deterministic ``sys.argv`` without permanently
+    changing the editor's process arguments.
+    """
+    resolved_path = source_path.resolve()
+    # Decode once on the caller so missing/non-UTF-8 files fail before opening
+    # a socket, while execution itself remains inside the Editor process.
+    resolved_path.read_text(encoding="utf-8")
+    return _runpy_bootstrap(resolved_path, script_args)
 
 
 def parse_args() -> argparse.Namespace:
@@ -67,14 +122,26 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--host", default=DEFAULT_HOST)
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
     parser.add_argument("--timeout", type=float, default=DEFAULT_TIMEOUT_SECONDS)
-    return parser.parse_args()
+    parser.add_argument(
+        "--script-arg",
+        action="append",
+        default=[],
+        help=(
+            "Argument forwarded to a --file script. Repeat for multiple "
+            "arguments; use --script-arg=VALUE when VALUE begins with '-'."
+        ),
+    )
+    args = parser.parse_args()
+    if args.script_arg and args.file is None:
+        parser.error("--script-arg requires --file")
+    return args
 
 
 def main() -> int:
     args = parse_args()
     code = args.code
     if args.file is not None:
-        code = args.file.resolve().read_text(encoding="utf-8")
+        code = code_for_local_file(args.file, args.script_arg)
 
     try:
         response = execute_python(

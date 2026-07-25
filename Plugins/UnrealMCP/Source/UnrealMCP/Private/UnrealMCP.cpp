@@ -239,6 +239,16 @@ void FUnrealMCPModule::ExtendLevelEditorToolbar()
     }
     
     bToolbarExtended = true;
+
+    // TelecomTwin's repeatable demo and verification scripts connect to the
+    // local MCP socket immediately after the editor finishes loading.  Start
+    // it here, after engine initialization, so a clean editor restart does
+    // not require a manual toolbar click before the project can be verified.
+    if (!IsServerRunning())
+    {
+        MCP_LOG_INFO("Auto-starting MCP Server after engine initialization");
+        StartServer();
+    }
 }
 
 // Legacy toolbar extension method - no longer used
