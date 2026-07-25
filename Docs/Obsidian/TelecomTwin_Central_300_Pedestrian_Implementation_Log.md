@@ -13,6 +13,9 @@ tags:
 status: runtime-candidate-verified
 baseline_commit: 8995709926658414e695f8d804bd5c4d9c43c465
 working_branch: feature/central-300-crowd
+runtime_candidate_commit: 6e01ab2f6d73b84f37f116dc440b94c9948052e5
+runtime_candidate_tag: checkpoint/central-300-runtime-candidate-2026-07-25
+remote_branch: origin/feature/central-300-crowd
 ---
 
 # TelecomTwin 中环 300 人群集 Demo 实施与验证记录
@@ -92,7 +95,10 @@ python Scripts/OpenMassCrowd/run_unreal_python_via_mcp.py --file `
 
 然后按 `Alt+P`。回滚点仍是
 `checkpoint/citysample-30-nav-complete-2026-07-18` → `8995709926658414e695f8d804bd5c4d9c43c465`；
-本轮没有移动或重写该 tag。
+本轮没有移动或重写该 tag。新的运行候选版另存为提交
+`6e01ab2f6d73b84f37f116dc440b94c9948052e5` 和 annotated tag
+`checkpoint/central-300-runtime-candidate-2026-07-25`，二者均已推送到
+`origin/feature/central-300-crowd`，可独立回滚，不影响旧 30 人 checkpoint。
 
 ### 0.5 尚未完成、不得扩大表述的事项
 
