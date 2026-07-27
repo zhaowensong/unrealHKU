@@ -1,0 +1,144 @@
+{
+  "captured_at_utc": "2026-07-27T15:35:34.031419+00:00",
+  "checks": {
+    "click_profile_glass_ui": true,
+    "far_vat_animation": true,
+    "ground_only_300": true,
+    "long_out_and_back_motion": true,
+    "no_severe_overlap": true,
+    "telecom_scene_unchanged": true
+  },
+  "first": {
+    "ground_and_clearance": {
+      "admission_violations": 0,
+      "invalid_positions": 0,
+      "minimum_observed_center_cm": 20.000019073486328,
+      "overlap_agents": 0,
+      "overlap_pairs": 0,
+      "unsupported": 0
+    },
+    "motion": {
+      "completed_path_legs": 374,
+      "expected_moving": 300,
+      "moving": 300,
+      "route_assignments": 1136,
+      "stuck": 0
+    },
+    "population": {
+      "admitted": 300,
+      "represented": 300,
+      "simulated": 300,
+      "target": 300
+    },
+    "profile": {
+      "completed_round_trips": 0,
+      "district": "district-central-r1-c2",
+      "favorite_software": "QGIS",
+      "glass_panel_visible": true,
+      "name": "谢文轩",
+      "occupation": "游戏开发者",
+      "person_id": "HK-C-138",
+      "round_trip_m": 106.921,
+      "route_leg": "return",
+      "stable_index": 137,
+      "valid": true
+    },
+    "telecom_regression": {
+      "color_geometry_counts": {
+        "Green": 480,
+        "Orange": 480,
+        "Red": 480,
+        "Yellow": 480
+      },
+      "ray_actor_count": 1920,
+      "ray_geometry_count": 1920,
+      "source_actor_count": 30,
+      "unique_ray_label_count": 1920,
+      "unique_source_label_count": 30
+    },
+    "vat": {
+      "animation_active": true,
+      "current_frame": 20.466797,
+      "distance_m": 886.145,
+      "end_frame": 98.0,
+      "person_id": "HK-C-132",
+      "play_rate": 1.04,
+      "representation": "VAT",
+      "stable_index": 131,
+      "start_frame": 0.0,
+      "time_offset": 1.74147,
+      "valid": true,
+      "world_time_seconds": 433.626069
+    },
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
+  },
+  "map_or_mass_entities_modified": false,
+  "passed": true,
+  "sample_delay_seconds": 2.0,
+  "schema": "telecomtwin-central-crowd-experience-runtime-v1",
+  "second": {
+    "ground_and_clearance": {
+      "admission_violations": 0,
+      "invalid_positions": 0,
+      "minimum_observed_center_cm": 20.000019073486328,
+      "overlap_agents": 0,
+      "overlap_pairs": 0,
+      "unsupported": 0
+    },
+    "motion": {
+      "completed_path_legs": 374,
+      "expected_moving": 300,
+      "moving": 300,
+      "route_assignments": 1138,
+      "stuck": 0
+    },
+    "population": {
+      "admitted": 300,
+      "represented": 300,
+      "simulated": 300,
+      "target": 300
+    },
+    "profile": {
+      "completed_round_trips": 0,
+      "district": "district-central-r1-c2",
+      "favorite_software": "QGIS",
+      "glass_panel_visible": true,
+      "name": "谢文轩",
+      "occupation": "游戏开发者",
+      "person_id": "HK-C-138",
+      "round_trip_m": 106.921,
+      "route_leg": "return",
+      "stable_index": 137,
+      "valid": true
+    },
+    "telecom_regression": {
+      "color_geometry_counts": {
+        "Green": 480,
+        "Orange": 480,
+        "Red": 480,
+        "Yellow": 480
+      },
+      "ray_actor_count": 1920,
+      "ray_geometry_count": 1920,
+      "source_actor_count": 30,
+      "unique_ray_label_count": 1920,
+      "unique_source_label_count": 30
+    },
+    "vat": {
+      "animation_active": true,
+      "current_frame": 85.893555,
+      "distance_m": 886.145,
+      "end_frame": 98.0,
+      "person_id": "HK-C-132",
+      "play_rate": 1.04,
+      "representation": "VAT",
+      "stable_index": 131,
+      "start_frame": 0.0,
+      "time_offset": 1.74147,
+      "valid": true,
+      "world_time_seconds": 435.723079
+    },
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
+  },
+  "vat_frame_advance": 65.426758
+}

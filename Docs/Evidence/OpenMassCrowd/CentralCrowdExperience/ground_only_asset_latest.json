@@ -1,0 +1,18 @@
+{
+  "asset_path": "/Game/OpenMassCrowd/Central/DA_CentralNetwork_Certified",
+  "cell_count": 6,
+  "component_count": 49,
+  "excluded_source_feature_count": 29,
+  "fail_closed_runtime_ready": true,
+  "ground_only_eligible_lane_count": 562,
+  "ground_only_network": true,
+  "ground_only_policy_sha256": "6502a12cbec4bd33c631e1135e097d9cd70e444f0f25af0111658c124060ff44",
+  "ineligible_lane_ids": [],
+  "lane_count": 562,
+  "network_id": "central-hong-kong-ground-only",
+  "parent_certified_sha256": "d923fdc3305f4fc9d966477bf4c8dc783dbcc8eefe9f7df9ff2ccc9f753df3d5",
+  "schema_version": 3,
+  "spawn_district_count": 6,
+  "status": "ok",
+  "target_population": 300
+}

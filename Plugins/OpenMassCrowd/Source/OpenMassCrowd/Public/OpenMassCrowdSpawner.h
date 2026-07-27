@@ -16,6 +16,7 @@ class AZoneGraphData;
 class UMassEntityTraitBase;
 class UPrimitiveComponent;
 class USceneComponent;
+class SWidget;
 struct FMassVelocityFragment;
 struct FMassZoneGraphLaneLocationFragment;
 struct FTransformFragment;
@@ -368,6 +369,21 @@ public:
     UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Evidence")
     FString GetCentralLODEvidenceSnapshot() const;
 
+    /** Selects one of the stable HK-C-001..300 people and opens its glass card. */
+    UFUNCTION(BlueprintCallable, Category = "Open Mass Crowd|Central|Profile")
+    bool ShowCentralProfileByStableIndex(int32 StableEntityIndex);
+
+    UFUNCTION(BlueprintCallable, Category = "Open Mass Crowd|Central|Profile")
+    void HideCentralProfile();
+
+    /** JSON proof for the farthest currently rendered VAT pedestrian. */
+    UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Evidence")
+    FString GetCentralVATAnimationEvidenceSnapshot() const;
+
+    /** JSON proof for the currently selected stable person/profile. */
+    UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Evidence")
+    FString GetCentralProfileEvidenceSnapshot() const;
+
     UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Telemetry")
     float GetCentralFrameTimeP50Ms() const { return CentralFrameTimeP50Ms; }
 
@@ -466,20 +482,34 @@ private:
     struct FEntityRouteState
     {
         TArray<FZoneGraphLaneHandle> LanePath;
+        /** Exact reverse-lane return core, preceded by the current end-lane anchor. */
+        TArray<FZoneGraphLaneHandle> ReturnLanePath;
         TArray<int32> RecentLaneIndices;
         TArray<int32> RecentDestinationLaneIndices;
         int32 CurrentPathIndex = INDEX_NONE;
         float DestinationDistance = 0.0f;
+        float ReturnDestinationDistance = 0.0f;
+        float PlannedOutboundDistanceCm = 0.0f;
+        float PlannedRoundTripDistanceCm = 0.0f;
         int32 CompletedTrips = 0;
+        int32 CompletedRoundTrips = 0;
         int32 LastObservedLaneIndex = INDEX_NONE;
         int32 PlannedAvailabilityRevision = 0;
+        bool bOnReturnLeg = false;
+        bool bSmallComponentFallback = false;
         bool bWaitingForAvailableCell = false;
 
         void Reset()
         {
             LanePath.Reset();
+            ReturnLanePath.Reset();
             CurrentPathIndex = INDEX_NONE;
             DestinationDistance = 0.0f;
+            ReturnDestinationDistance = 0.0f;
+            PlannedOutboundDistanceCm = 0.0f;
+            PlannedRoundTripDistanceCm = 0.0f;
+            bOnReturnLeg = false;
+            bSmallComponentFallback = false;
             bWaitingForAvailableCell = false;
         }
     };
@@ -567,6 +597,7 @@ private:
     bool PlanNewCentralDestination(
         int32 EntityIndex,
         const TSet<int32>* ForbiddenLaneIndices = nullptr);
+    bool ActivateCentralReturnRoute(int32 EntityIndex);
     bool RequestNextPath(int32 EntityIndex);
     bool HoldCentralEntityAtCertifiedPosition(int32 EntityIndex, const TCHAR* Reason);
     void RecordCentralCellGroundGuard(
@@ -601,6 +632,7 @@ private:
     void RefreshCompletedPaths();
     void CorrectMassGrounding();
     void SyncVisualActorsToMass();
+    void UpdateCentralProfileInteraction();
     void ScheduleCentralSpawnRetry(const TCHAR* Reason);
     void RetrySpawn();
     void DestroyRuntimePopulation();
@@ -796,6 +828,11 @@ private:
     int32 CentralAvailabilityRevision = 0;
     int32 CentralGroundGuardBucketCursor = 0;
     int32 LastLoggedCentralRepresentedCount = INDEX_NONE;
+    int32 SelectedCentralProfileEntityIndex = INDEX_NONE;
+    bool bCentralProfileInputConfigured = false;
+    bool bCentralProfileHasPreviousControlRotation = false;
+    FRotator CentralProfilePreviousControlRotation = FRotator::ZeroRotator;
+    TSharedPtr<SWidget> CentralProfileViewportWidget;
     int32 GroundRetryCount = 0;
     float PathRefreshAccumulator = 0.0f;
     float GroundCorrectionAccumulator = 0.0f;

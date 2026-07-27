@@ -1,0 +1,52 @@
+{
+  "asset_class": "OpenMassCrowdCentralNetworkDataAsset",
+  "asset_path": "/Game/OpenMassCrowd/Central/DA_CentralNetwork_Certified",
+  "build_id": "de4c7be0-6d5d-590c-8924-3ad77ab6eca7",
+  "counts": {
+    "cell_count": 6,
+    "component_count": 49,
+    "ground_sample_count": 26530,
+    "lane_count": 562,
+    "node_count": 330,
+    "portal_count": 40,
+    "spawn_district_count": 6,
+    "target_population": 300
+  },
+  "ground_only": {
+    "active_source_feature_count": 69,
+    "excluded_directional_lane_count": 256,
+    "excluded_source_feature_count": 29,
+    "parent_file_sha256": "d923fdc3305f4fc9d966477bf4c8dc783dbcc8eefe9f7df9ff2ccc9f753df3d5",
+    "policy_id": "central-ground-only-v1",
+    "policy_sha256": "6502a12cbec4bd33c631e1135e097d9cd70e444f0f25af0111658c124060ff44"
+  },
+  "hashes": {
+    "algorithm": "SHA-256",
+    "cell_content_sha256": "68ace1286ee4539f555ff811346c6caaaa84b78adf8e3b1fe771d6fd26b5b237",
+    "collision_settings_sha256": "33067acde063cd414c8b76d9cdac7f6ef6ce6ae1f9ff36a2e44d35e0544d8801",
+    "combined_sha256": "3ac5aa9537363ed9e22f8599215117f6446b44533b8000702e582458d9614943",
+    "georeference_sha256": "c954a46104715d693ba2d048a1c244a5124ab3bf5e35a5b4f562d114c8652fd8",
+    "tileset_sha256": "730b980cb51da953c436ff15d631a39dce5a2a639849d33aead2a95a259940e9",
+    "topology_sha256": "e3f0cf8265b8623f7db956bc69aed8147c7b4c49f65866c2dbc3066b6085a2d0"
+  },
+  "importer_version": "1.2.0",
+  "input_document_sha256": "ad2b3ec80d1582349e0fc14a905bb902b6cd1002c2607be37b5bb183fc285b82",
+  "input_file_sha256": "c886efc71ab829c06c85e3a5f77d954d03aa986d426f7ad784b30b97b5f8fe59",
+  "input_path": "Scripts/OpenMassCrowd/CentralNetwork/Data/central_network_ground_only.json",
+  "network_id": "central-hong-kong-ground-only",
+  "schema_file_sha256": "4a642a07c3cecd2348259cf576be6d810f431ab92d836a143e37e58c8ef97d96",
+  "schema_path": "Scripts/OpenMassCrowd/CentralNetwork/central_network_certified.schema.json",
+  "schema_version": 1,
+  "strict_gates": {
+    "candidate_source_cannot_create_asset": true,
+    "canonical_hashes_valid": true,
+    "certified_only": true,
+    "duplicate_keys_rejected": true,
+    "fixed_certified_input_path": true,
+    "ground_only_valid": true,
+    "schema_valid": true,
+    "source_provenance_valid": true,
+    "zero_elevated_source_lanes": true
+  },
+  "validator_version": "1.1.0"
+}

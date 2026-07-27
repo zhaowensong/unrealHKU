@@ -80,7 +80,7 @@ int32 UOpenMassCrowdCentralNetworkDataAsset::GetCertifiedDirectionalLaneCount() 
 
         for (const FOpenMassCrowdCentralDirectedLane& Lane : Cell.DirectedLanes)
         {
-            Count += Lane.bCertified ? 1 : 0;
+            Count += Lane.bCertified && Lane.bGroundOnlyEligible ? 1 : 0;
         }
     }
     return Count;
@@ -98,7 +98,7 @@ double UOpenMassCrowdCentralNetworkDataAsset::GetCertifiedDirectionalLaneLengthM
 
         for (const FOpenMassCrowdCentralDirectedLane& Lane : Cell.DirectedLanes)
         {
-            if (Lane.bCertified)
+            if (Lane.bCertified && Lane.bGroundOnlyEligible)
             {
                 LengthCm += Lane.LengthCm;
             }

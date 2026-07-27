@@ -86,3 +86,13 @@ git switch -c rollback/pre-city-navigation checkpoint/pre-city-navigation-2026-0
 
 `HongKongStreetCrowd-runtime.png` 与 `MassNavMesh-UE57-runtime.png` 是更早的原型
 调研证据，也不代表本次最终实现。
+
+## 2026-07-27：Central 300 人四项体验升级
+
+- [完整实施与验收记录](../../Obsidian/TelecomTwin_Central_300_Ground_Navigation_Profile_UI_2026-07-27.md)
+- [`central_crowd_experience_runtime_latest.json`](central_crowd_experience_runtime_latest.json)：Ground-Only、长距离往返、远景 VAT 动画、点击档案和电信场景联合 PASS。
+- [`CentralCrowdExperience/ground_only_asset_latest.json`](CentralCrowdExperience/ground_only_asset_latest.json)：562 条 Ground-Only lane、49 个分量、6 个生成区、300 目标人口。
+- [`CentralCrowdExperience/excluded_files_latest.json`](CentralCrowdExperience/excluded_files_latest.json)：7 个用户原有文件的大小与 SHA-256 全部保持不变。
+- [`11_central_profile_glass_ui.png`](11_central_profile_glass_ui.png)：右侧半透明人物档案的最终运行截图。
+
+联合报告同时证明原电信场景仍为 30 个信源、1920 条射线，绿、黄、橙、红各 480 条。

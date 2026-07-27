@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "baseline": "C:\\Users\\15958\\OneDrive\\xwechat_files\\wxid_0sjqfnxov0rv22_2017\\msg\\file\\2026-07\\TelecomTwin\\Docs\\Evidence\\OpenMassCrowd\\central_crowd_excluded_files_baseline.json",
+  "passed": true,
+  "checked_count": 7,
+  "files": [
+    {
+      "path": "Content/__ExternalActors__/Maps/shanghai/3/KA/TSKFE0M5K1LQSAFTIVI7R4.uasset",
+      "exists": true,
+      "expected_size": 27547,
+      "actual_size": 27547,
+      "expected_sha256": "47a232c0f7b37b9e8c9df66a8cce45727b67c5e945580f48aece71e40ec7d1d1",
+      "actual_sha256": "47a232c0f7b37b9e8c9df66a8cce45727b67c5e945580f48aece71e40ec7d1d1",
+      "unchanged": true
+    },
+    {
+      "path": "Docs/Evidence/OpenMassCrowd/08_lod_low_30.png",
+      "exists": true,
+      "expected_size": 2473444,
+      "actual_size": 2473444,
+      "expected_sha256": "dbb7a42c56112587fb76645025aa4c695d9b70103fd9f027a261de72819c3e32",
+      "actual_sha256": "dbb7a42c56112587fb76645025aa4c695d9b70103fd9f027a261de72819c3e32",
+      "unchanged": true
+    },
+    {
+      "path": "Docs/Evidence/OpenMassCrowd/09_lod_high_30.png",
+      "exists": true,
+      "expected_size": 1860291,
+      "actual_size": 1860291,
+      "expected_sha256": "0dce68aa11f0d479644cbdf3efeb6608e1fb28df481bbc66894b35cd8b1880a0",
+      "actual_sha256": "0dce68aa11f0d479644cbdf3efeb6608e1fb28df481bbc66894b35cd8b1880a0",
+      "unchanged": true
+    },
+    {
+      "path": "Docs/Evidence/OpenMassCrowd/10_lod_low_30_return.png",
+      "exists": true,
+      "expected_size": 2512215,
+      "actual_size": 2512215,
+      "expected_sha256": "aabb5e758e7ab50b6d0bd62f0ffe3c7e9e3af3905b14bdceedbce8c32826c708",
+      "actual_sha256": "aabb5e758e7ab50b6d0bd62f0ffe3c7e9e3af3905b14bdceedbce8c32826c708",
+      "unchanged": true
+    },
+    {
+      "path": "Docs/Evidence/OpenMassCrowd/open_mass_city_navigation_runtime_latest.json",
+      "exists": true,
+      "expected_size": 154043,
+      "actual_size": 154043,
+      "expected_sha256": "f898eb804c3fac078fe4b44b220e3ef605dcf44b42442e84258d6fc5bf8c40b0",
+      "actual_sha256": "f898eb804c3fac078fe4b44b220e3ef605dcf44b42442e84258d6fc5bf8c40b0",
+      "unchanged": true
+    },
+    {
+      "path": "Docs/Evidence/OpenMassCrowd/open_mass_city_sample_runtime_latest.json",
+      "exists": true,
+      "expected_size": 75984,
+      "actual_size": 75984,
+      "expected_sha256": "fbafd79a4a8773b7ebc3e5313a97f87ccefa76bedf75e675b76ec14aa21858b0",
+      "actual_sha256": "fbafd79a4a8773b7ebc3e5313a97f87ccefa76bedf75e675b76ec14aa21858b0",
+      "unchanged": true
+    },
+    {
+      "path": "Docs/Evidence/OpenMassCrowd/open_mass_lod_transition_runtime_latest.json",
+      "exists": true,
+      "expected_size": 3369,
+      "actual_size": 3369,
+      "expected_sha256": "42166427e6dfc5e393cb2c5cc2d826ece1b709a5a6d017533a482b9420ee3b5a",
+      "actual_sha256": "42166427e6dfc5e393cb2c5cc2d826ece1b709a5a6d017533a482b9420ee3b5a",
+      "unchanged": true
+    }
+  ]
+}

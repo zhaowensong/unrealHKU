@@ -19,7 +19,8 @@ struct OPENMASSCROWD_API FOpenMassCrowdCentralNetworkCustomVersion
         BeforeCustomVersionWasAdded = 0,
         InitialVersion = 1,
         CertifiedComponentPartitions = 2,
-        LatestVersion = CertifiedComponentPartitions
+        GroundOnlyEligibility = 3,
+        LatestVersion = GroundOnlyEligibility
     };
 };
 
@@ -309,6 +310,10 @@ struct OPENMASSCROWD_API FOpenMassCrowdCentralDirectedLane
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central|Lane")
     bool bCertified = false;
 
+    /** Explicit semantic provenance gate; false lanes must never enter Ground-Only runtime pools. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central|Lane")
+    bool bGroundOnlyEligible = false;
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central|Lane")
     TArray<FOpenMassCrowdCentralGroundSample> GroundSamples;
 };
@@ -357,7 +362,7 @@ struct OPENMASSCROWD_API FOpenMassCrowdCentralCell
 {
     GENERATED_BODY()
 
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Open Mass Crowd|Central|Cell")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central|Cell")
     int32 SchemaVersion = FOpenMassCrowdCentralNetworkCustomVersion::LatestVersion;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central|Cell")
@@ -471,7 +476,7 @@ public:
 
     virtual void Serialize(FArchive& Ar) override;
 
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Open Mass Crowd|Central")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central")
     int32 SchemaVersion = CurrentSchemaVersion;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central")
@@ -483,6 +488,19 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central")
     FString GeneratorVersion;
+
+    /** Identifies an asset derived by the reviewed Ground-Only policy. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central|Ground Only")
+    bool bGroundOnlyNetwork = false;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central|Ground Only")
+    FString ParentCertifiedSha256;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central|Ground Only")
+    FString GroundOnlyPolicySha256;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central|Ground Only")
+    int32 GroundOnlyExcludedSourceFeatureCount = 0;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Central")
     FBox WorldBounds = FBox(EForceInit::ForceInit);

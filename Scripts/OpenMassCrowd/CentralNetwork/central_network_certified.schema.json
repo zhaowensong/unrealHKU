@@ -25,6 +25,7 @@
     "world_bounds": { "$ref": "#/$defs/bounds" },
     "hashes": { "$ref": "#/$defs/hashes" },
     "source_provenance": { "$ref": "#/$defs/sourceProvenance" },
+    "ground_only_filter": { "$ref": "#/$defs/groundOnlyFilter" },
     "cells": {
       "type": "array",
       "minItems": 1,
@@ -111,6 +112,72 @@
         "source_path": { "type": "string", "minLength": 1 },
         "topology_sha256": { "$ref": "#/$defs/sha256" },
         "document_sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "groundOnlyExcludedFeature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_feature_id",
+        "parent_feature_id",
+        "reasons",
+        "directional_lane_count",
+        "directional_lane_length_cm"
+      ],
+      "properties": {
+        "source_feature_id": { "$ref": "#/$defs/stableId" },
+        "parent_feature_id": { "$ref": "#/$defs/stableId" },
+        "reasons": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonEmptyString" }
+        },
+        "directional_lane_count": { "type": "integer", "minimum": 1 },
+        "directional_lane_length_cm": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "groundOnlyFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_id",
+        "policy_sha256",
+        "parent_path",
+        "parent_file_sha256",
+        "parent_build_id",
+        "parent_combined_sha256",
+        "source_document_sha256",
+        "included_source_feature_ids",
+        "excluded_source_features",
+        "included_directional_lane_count",
+        "excluded_directional_lane_count",
+        "included_directional_lane_length_cm",
+        "excluded_directional_lane_length_cm"
+      ],
+      "properties": {
+        "policy_id": { "$ref": "#/$defs/stableId" },
+        "policy_sha256": { "$ref": "#/$defs/sha256" },
+        "parent_path": { "$ref": "#/$defs/nonEmptyString" },
+        "parent_file_sha256": { "$ref": "#/$defs/sha256" },
+        "parent_build_id": { "$ref": "#/$defs/uuid" },
+        "parent_combined_sha256": { "$ref": "#/$defs/sha256" },
+        "source_document_sha256": { "$ref": "#/$defs/sha256" },
+        "included_source_feature_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/stableId" }
+        },
+        "excluded_source_features": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/groundOnlyExcludedFeature" }
+        },
+        "included_directional_lane_count": { "type": "integer", "minimum": 1 },
+        "excluded_directional_lane_count": { "type": "integer", "minimum": 1 },
+        "included_directional_lane_length_cm": { "type": "number", "exclusiveMinimum": 0 },
+        "excluded_directional_lane_length_cm": { "type": "number", "exclusiveMinimum": 0 }
       }
     },
     "evidence": {
@@ -258,6 +325,7 @@
         "width_cm": { "type": "number", "exclusiveMinimum": 0 },
         "length_cm": { "type": "number", "exclusiveMinimum": 0 },
         "certified": { "const": true },
+        "ground_only_eligible": { "type": "boolean" },
         "ground_samples": {
           "type": "array",
           "minItems": 2,

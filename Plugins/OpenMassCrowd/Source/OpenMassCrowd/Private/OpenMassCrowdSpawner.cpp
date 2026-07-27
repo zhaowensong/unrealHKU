@@ -12,8 +12,16 @@
 #include "Avoidance/MassNavigationObstacleTrait.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/SceneComponent.h"
+#include "Camera/PlayerCameraManager.h"
+#include "DrawDebugHelpers.h"
+#include "Engine/Engine.h"
+#include "Engine/GameViewportClient.h"
 #include "Engine/World.h"
 #include "Engine/StaticMesh.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PlayerController.h"
+#include "InputCoreTypes.h"
+#include "Kismet/GameplayStatics.h"
 #include "MassActorSubsystem.h"
 #include "MassCommonFragments.h"
 #include "MassCrowdFragments.h"
@@ -38,8 +46,17 @@
 #include "Misc/ScopeLock.h"
 #include "SmoothOrientation/MassSmoothOrientationTrait.h"
 #include "Steering/MassSteeringTrait.h"
+#include "Styling/CoreStyle.h"
 #include "TimerManager.h"
 #include "UObject/UObjectIterator.h"
+#include "Widgets/Input/SButton.h"
+#include "Widgets/Layout/SBorder.h"
+#include "Widgets/Layout/SBox.h"
+#include "Widgets/Layout/SSeparator.h"
+#include "Widgets/SBoxPanel.h"
+#include "Widgets/SOverlay.h"
+#include "Widgets/SWeakWidget.h"
+#include "Widgets/Text/STextBlock.h"
 #include "ZoneGraphAStar.h"
 #include "ZoneGraphData.h"
 #include "ZoneGraphQuery.h"
@@ -71,19 +88,25 @@ constexpr float CentralPedestrianRadius = 27.0f;
 constexpr float CentralPedestrianSafetyGapCm = 1.0f;
 constexpr float CentralMinimumCenterClearanceCm =
     CentralPedestrianRadius * 2.0f + CentralPedestrianSafetyGapCm;
+// Certified samples are stored as floats after Cesium/world transforms. Permit
+// one millimetre of representation error at the 55 cm boundary; this is not a
+// smaller body model and all telemetry continues to report the measured value.
+constexpr float CentralClearanceComparisonToleranceCm = 0.1f;
+constexpr float CentralMinimumAcceptedCenterClearanceCm =
+    CentralMinimumCenterClearanceCm - CentralClearanceComparisonToleranceCm;
 constexpr int32 RequiredCentralSpawnDistrictCount = 6;
 constexpr int32 FullCentralPopulation = 300;
 constexpr int32 CentralLaneHistoryLimit = 8;
 constexpr int32 CentralDestinationHistoryLimit = 4;
-// The certified cache currently contains almost exclusively tree components.
-// Random A* trips on a bidirectional tree inevitably send pedestrians into the
-// same dead ends and eventually form head-on queues.  Until a visually reviewed
-// street-block network is certified, keep every pedestrian on the smallest
-// physically proven circulation unit: one directed lane and its certified
-// reverse.  This changes routing only; every position still comes from the
-// cached Cesium support tracks and the live ground guard remains authoritative.
-constexpr bool bUseCentralCertifiedEdgeCirculation = true;
-constexpr int32 CentralMaximumPedestriansPerEdgeCirculation = 2;
+// Ground-Only routing uses deterministic component-aware shuttles. The legacy
+// one-edge circulation remains compiled as an emergency diagnostic path but is
+// intentionally disabled for the experience mode.
+constexpr bool bUseCentralCertifiedEdgeCirculation = false;
+constexpr int32 CentralMaximumPedestriansPerEdgeCirculation = 6;
+constexpr float CentralPreferredOutboundMinimumCm = 6000.0f;
+constexpr float CentralPreferredOutboundMaximumCm = 15000.0f;
+constexpr float CentralRouteEndpointInsetCm = 1.0f;
+constexpr float CentralPreferredSpawnComponentDirectionalMinimumCm = 9000.0f;
 constexpr float CentralCesiumComponentGridSizeCm = 5000.0f;
 constexpr double CentralCesiumComponentCacheRefreshSeconds = 1.0;
 constexpr int64 CentralCesiumMaximumBucketsPerComponent = 256;
@@ -122,6 +145,106 @@ constexpr double CentralFrameTimeRetentionWindowSeconds = 60.0;
 // upper bound on evidence memory if frame pacing is accidentally disabled.
 constexpr int32 CentralMaximumFrameTimeSamples = 20000;
 constexpr int32 CentralFrameTimeCompactionThreshold = 512;
+
+FString GetCentralPersonId(const int32 StableEntityIndex)
+{
+    return FString::Printf(TEXT("HK-C-%03d"), StableEntityIndex + 1);
+}
+
+FString GetCentralPersonName(const int32 StableEntityIndex)
+{
+    static const TCHAR* Surnames[] = {
+        TEXT("陈"), TEXT("李"), TEXT("张"), TEXT("黄"), TEXT("梁"),
+        TEXT("王"), TEXT("吴"), TEXT("刘"), TEXT("林"), TEXT("杨"),
+        TEXT("何"), TEXT("郑"), TEXT("罗"), TEXT("谢"), TEXT("郭"),
+        TEXT("邓"), TEXT("冯"), TEXT("曾"), TEXT("萧"), TEXT("许"),
+        TEXT("周"), TEXT("叶"), TEXT("苏"), TEXT("马"), TEXT("谭"),
+        TEXT("潘"), TEXT("钟"), TEXT("卢"), TEXT("蔡"), TEXT("杜")};
+    static const TCHAR* GivenNames[] = {
+        TEXT("嘉怡"), TEXT("俊杰"), TEXT("思颖"), TEXT("子轩"), TEXT("咏晴"),
+        TEXT("浩然"), TEXT("芷晴"), TEXT("文轩"), TEXT("凯琳"), TEXT("乐天")};
+    const int32 SafeIndex = FMath::Max(StableEntityIndex, 0);
+    return FString(Surnames[(SafeIndex / UE_ARRAY_COUNT(GivenNames)) %
+        UE_ARRAY_COUNT(Surnames)]) +
+        GivenNames[SafeIndex % UE_ARRAY_COUNT(GivenNames)];
+}
+
+FString GetCentralPersonOccupation(const int32 StableEntityIndex)
+{
+    static const TCHAR* Occupations[] = {
+        TEXT("数字孪生研究员"), TEXT("城市规划师"), TEXT("通信工程师"),
+        TEXT("GIS 工程师"), TEXT("建筑师"), TEXT("交通分析师"),
+        TEXT("软件工程师"), TEXT("数据科学家"), TEXT("产品设计师"),
+        TEXT("测绘工程师"), TEXT("可视化设计师"), TEXT("网络运维工程师"),
+        TEXT("环境顾问"), TEXT("高校研究助理"), TEXT("项目经理"),
+        TEXT("金融科技分析师"), TEXT("公共空间设计师"), TEXT("游戏开发者"),
+        TEXT("BIM 工程师"), TEXT("媒体制作人")};
+    return Occupations[FMath::Max(StableEntityIndex, 0) %
+        UE_ARRAY_COUNT(Occupations)];
+}
+
+FString GetCentralPersonSoftware(const int32 StableEntityIndex)
+{
+    static const TCHAR* Software[] = {
+        TEXT("Unreal Engine 5"), TEXT("ArcGIS Pro"), TEXT("QGIS"),
+        TEXT("Python"), TEXT("Blender"), TEXT("MATLAB"), TEXT("VS Code"),
+        TEXT("Figma"), TEXT("Rhino"), TEXT("AutoCAD"), TEXT("Revit"),
+        TEXT("SketchUp"), TEXT("Obsidian"), TEXT("Notion"), TEXT("Tableau"),
+        TEXT("Power BI"), TEXT("Docker"), TEXT("Git"), TEXT("Cesium"),
+        TEXT("DaVinci Resolve")};
+    return Software[(FMath::Max(StableEntityIndex, 0) * 7 + 3) %
+        UE_ARRAY_COUNT(Software)];
+}
+
+TSharedRef<SWidget> MakeCentralProfileRow(
+    const FString& Label,
+    const FString& Value,
+    const FLinearColor& Accent)
+{
+    return SNew(SBorder)
+        .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
+        .BorderBackgroundColor(FLinearColor(0.035f, 0.065f, 0.09f, 0.72f))
+        .Padding(FMargin(13.0f, 10.0f))
+        [
+            SNew(SHorizontalBox)
+            + SHorizontalBox::Slot()
+            .AutoWidth()
+            .VAlign(VAlign_Center)
+            [
+                SNew(SBox)
+                .WidthOverride(3.0f)
+                .HeightOverride(34.0f)
+                [
+                    SNew(SBorder)
+                    .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
+                    .BorderBackgroundColor(Accent)
+                ]
+            ]
+            + SHorizontalBox::Slot()
+            .FillWidth(1.0f)
+            .Padding(12.0f, 0.0f, 0.0f, 0.0f)
+            [
+                SNew(SVerticalBox)
+                + SVerticalBox::Slot()
+                .AutoHeight()
+                [
+                    SNew(STextBlock)
+                    .Text(FText::FromString(Label.ToUpper()))
+                    .Font(FCoreStyle::GetDefaultFontStyle("Regular", 9))
+                    .ColorAndOpacity(FLinearColor(0.45f, 0.65f, 0.72f, 1.0f))
+                ]
+                + SVerticalBox::Slot()
+                .AutoHeight()
+                .Padding(0.0f, 2.0f, 0.0f, 0.0f)
+                [
+                    SNew(STextBlock)
+                    .Text(FText::FromString(Value))
+                    .Font(FCoreStyle::GetDefaultFontStyle("Bold", 15))
+                    .ColorAndOpacity(FLinearColor(0.92f, 0.98f, 1.0f, 1.0f))
+                ]
+            ]
+        ];
+}
 // MassZoneGraphNavigation caches at most five lane points and encodes lane
 // distances at 10 cm precision.  Central intentionally retains every
 // collision-certified ground sample, so a long request can extend beyond the
@@ -730,6 +853,7 @@ void AOpenMassCrowdSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
     GetWorldTimerManager().ClearTimer(SpawnRetryTimer);
     GetWorldTimerManager().ClearTimer(CentralAdmissionTimer);
+    HideCentralProfile();
     DestroyRuntimePopulation();
     Super::EndPlay(EndPlayReason);
 }
@@ -799,6 +923,7 @@ void AOpenMassCrowdSpawner::Tick(const float DeltaSeconds)
     if (NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache)
     {
         RecordCentralTelemetry();
+        UpdateCentralProfileInteraction();
     }
 }
 
@@ -1976,6 +2101,10 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
     if (!IsStrictCentralStableId(Asset.NetworkId) ||
         !Asset.BuildId.IsValid() ||
         Asset.GeneratorVersion.IsEmpty() ||
+        !Asset.bGroundOnlyNetwork ||
+        !IsStrictCentralSha256(Asset.ParentCertifiedSha256) ||
+        !IsStrictCentralSha256(Asset.GroundOnlyPolicySha256) ||
+        Asset.GroundOnlyExcludedSourceFeatureCount <= 0 ||
         !IsFiniteCentralBox(Asset.WorldBounds) ||
         Asset.Cells.IsEmpty() ||
         Asset.Components.IsEmpty())
@@ -2098,6 +2227,7 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
         for (const FOpenMassCrowdCentralDirectedLane& Lane : Cell.DirectedLanes)
         {
             if (!Lane.bCertified ||
+                !Lane.bGroundOnlyEligible ||
                 !IsStrictCentralStableId(Lane.LaneId) ||
                 Lane.CellId != Cell.CellId ||
                 !ComponentsById.Contains(Lane.ComponentId) ||
@@ -3738,17 +3868,18 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
         RuntimeDistrict.CellIds = District->CellIds;
         RuntimeDistrict.ComponentId = District->ComponentId;
         RuntimeDistrict.TargetPopulation = District->TargetPopulation;
-        // The declared SpawnLaneIds/component identify the district seed, while
-        // the certified cell is its normal geographic boundary. Use every lane
-        // in that cell. If the cell has fewer than six independent certified
-        // components, include its orthogonally adjacent Central cells in the
-        // admission pool. A sparse edge cell otherwise funnels every staged
-        // prefix into one tiny component when Cesium rejects its two alternate
-        // components at runtime. This remains inside the six-cell Central
-        // network, and every chosen point still has to pass the normal live
-        // Cesium support probe before admission. Each entity derives A*
-        // destinations from its actual spawn-lane component, so no artificial
-        // connectivity is introduced between cells or components.
+        // Districts are population/telemetry quotas, not collision boundaries.
+        // Build each quota from the same complete certified Central ground
+        // network. Restricting a quota to its declared seed cell (or one-hop
+        // neighbours) made nested admission pools compete for the same scarce
+        // 55 cm-safe points: the smaller r0-c1 pool necessarily exhausted the
+        // only viable part of r1-c1. A shared network-wide candidate pool lets
+        // the existing global clearance/opposing-lane checks distribute all
+        // 300 slots physically, while the stable six-district quotas remain
+        // exact. Every candidate still comes from a collision-certified sample
+        // and must pass the normal live Cesium support probe. Each pedestrian's
+        // A* route remains confined to its actual spawn-lane component, so this
+        // does not invent connectivity between cells or components.
         TSet<FName> SpawnPoolCellIds;
         for (const FName CellId : District->CellIds)
         {
@@ -3765,33 +3896,11 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
                     RuntimeCentralLaneComponentIds[LaneIndex]);
             }
         }
-        // Gate30 admits five people per district. Require one additional
-        // component of resilience so a single live Cesium rejection cannot
-        // force two staged pedestrians into the same short funnel.
-        const bool bExpandedToAdjacentCells = PrimaryComponentIds.Num() < 6;
-        if (bExpandedToAdjacentCells)
+        const bool bExpandedToNetworkPool =
+            SpawnPoolCellIds.Num() < Asset.Cells.Num();
+        for (const FOpenMassCrowdCentralCell& CandidateCell : Asset.Cells)
         {
-            for (const FName PrimaryCellId : District->CellIds)
-            {
-                const FOpenMassCrowdCentralCell* const* PrimaryCell =
-                    CellsById.Find(PrimaryCellId);
-                if (!PrimaryCell || !*PrimaryCell)
-                {
-                    return RejectCache(FString::Printf(
-                        TEXT("district_missing_primary_cell district=%s cell=%s"),
-                        *District->DistrictId.ToString(),
-                        *PrimaryCellId.ToString()));
-                }
-                for (const FOpenMassCrowdCentralCell& CandidateCell : Asset.Cells)
-                {
-                    const FIntPoint Delta =
-                        CandidateCell.GridCoordinate - (*PrimaryCell)->GridCoordinate;
-                    if (FMath::Abs(Delta.X) + FMath::Abs(Delta.Y) == 1)
-                    {
-                        SpawnPoolCellIds.Add(CandidateCell.CellId);
-                    }
-                }
-            }
+            SpawnPoolCellIds.Add(CandidateCell.CellId);
         }
         RuntimeDistrict.SpawnLaneIndices.Reserve(CertifiedLanes.Num());
         for (int32 LaneIndex = 0;
@@ -3807,14 +3916,14 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
         UE_LOG(
             LogTemp,
             Log,
-            TEXT("OPEN_MASS_CROWD_CENTRAL_DISTRICT_LANES district=%s declared=%d lane_pool=%d primary_cells=%d admission_cells=%d primary_components=%d adjacent_expansion=%s seed_component=%s route_component=actual_spawn_lane live_support_required=true"),
+            TEXT("OPEN_MASS_CROWD_CENTRAL_DISTRICT_LANES district=%s declared=%d lane_pool=%d primary_cells=%d admission_cells=%d primary_components=%d network_pool_expansion=%s seed_component=%s route_component=actual_spawn_lane live_support_required=true"),
             *RuntimeDistrict.DistrictId.ToString(),
             District->SpawnLaneIds.Num(),
             RuntimeDistrict.SpawnLaneIndices.Num(),
             RuntimeDistrict.CellIds.Num(),
             SpawnPoolCellIds.Num(),
             PrimaryComponentIds.Num(),
-            bExpandedToAdjacentCells ? TEXT("true") : TEXT("false"),
+            bExpandedToNetworkPool ? TEXT("true") : TEXT("false"),
             *RuntimeDistrict.ComponentId.ToString());
     }
 
@@ -4977,16 +5086,178 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
     // short chord between two samples. Greedy farthest-point selection prevents
     // the golden-ratio aliases that previously placed different entities only
     // millimetres apart at Gate200/Gate300.
+    TMap<FName, float> ComponentDirectionalLengthsCm;
+    for (int32 LaneIndex = 0;
+         LaneIndex < RuntimeLaneHandles.Num();
+         ++LaneIndex)
+    {
+        float LaneLengthCm = 0.0f;
+        if (!RuntimeCentralLaneComponentIds.IsValidIndex(LaneIndex) ||
+            !ZoneGraphSubsystem->GetLaneLength(
+                RuntimeLaneHandles[LaneIndex],
+                LaneLengthCm) ||
+            LaneLengthCm <= 0.0f)
+        {
+            return false;
+        }
+        ComponentDirectionalLengthsCm.FindOrAdd(
+            RuntimeCentralLaneComponentIds[LaneIndex]) += LaneLengthCm;
+    }
+
+    // District admission pools overlap when a sparse edge cell borrows its
+    // orthogonal neighbours. A raw lane-count sort is insufficient: r1-c2 is
+    // numerically smaller than r1-c1, but it consumes lanes that r1-c1 shares
+    // with three other districts. Allocate strict subsets first, then the
+    // pools with the greatest normalized sharing pressure. This is a stable,
+    // data-derived scarcity order; it does not weaken the 55 cm whole-plan
+    // clearance requirement or hard-code a district name.
+    TArray<int32> SpawnPlanningDistrictIndices;
+    SpawnPlanningDistrictIndices.Reserve(RuntimeCentralDistricts.Num());
     for (int32 DistrictIndex = 0;
          DistrictIndex < RuntimeCentralDistricts.Num();
          ++DistrictIndex)
     {
+        SpawnPlanningDistrictIndices.Add(DistrictIndex);
+    }
+    TArray<TSet<int32>> PreferredSpawnLaneSets;
+    PreferredSpawnLaneSets.SetNum(RuntimeCentralDistricts.Num());
+    for (int32 DistrictIndex = 0;
+         DistrictIndex < RuntimeCentralDistricts.Num();
+         ++DistrictIndex)
+    {
+        for (const int32 LaneIndex :
+             RuntimeCentralDistricts[DistrictIndex].SpawnLaneIndices)
+        {
+            if (!RuntimeCentralLaneComponentIds.IsValidIndex(LaneIndex))
+            {
+                continue;
+            }
+            const float* ComponentDirectionalLengthCm =
+                ComponentDirectionalLengthsCm.Find(
+                    RuntimeCentralLaneComponentIds[LaneIndex]);
+            if (ComponentDirectionalLengthCm &&
+                *ComponentDirectionalLengthCm >=
+                    CentralPreferredSpawnComponentDirectionalMinimumCm)
+            {
+                PreferredSpawnLaneSets[DistrictIndex].Add(LaneIndex);
+            }
+        }
+    }
+    TArray<int32> PreferredSpawnContainmentCounts;
+    TArray<int32> PreferredSpawnOverlapPressures;
+    PreferredSpawnContainmentCounts.SetNumZeroed(
+        RuntimeCentralDistricts.Num());
+    PreferredSpawnOverlapPressures.SetNumZeroed(
+        RuntimeCentralDistricts.Num());
+    for (int32 DistrictIndex = 0;
+         DistrictIndex < RuntimeCentralDistricts.Num();
+         ++DistrictIndex)
+    {
+        const TSet<int32>& DistrictLaneSet =
+            PreferredSpawnLaneSets[DistrictIndex];
+        for (int32 OtherDistrictIndex = 0;
+             OtherDistrictIndex < RuntimeCentralDistricts.Num();
+             ++OtherDistrictIndex)
+        {
+            if (OtherDistrictIndex == DistrictIndex)
+            {
+                continue;
+            }
+            const TSet<int32>& OtherLaneSet =
+                PreferredSpawnLaneSets[OtherDistrictIndex];
+            bool bStrictSubset = DistrictLaneSet.Num() < OtherLaneSet.Num();
+            int32 SharedLaneCount = 0;
+            for (const int32 LaneIndex : DistrictLaneSet)
+            {
+                if (OtherLaneSet.Contains(LaneIndex))
+                {
+                    ++SharedLaneCount;
+                }
+                else
+                {
+                    bStrictSubset = false;
+                }
+            }
+            PreferredSpawnOverlapPressures[DistrictIndex] +=
+                SharedLaneCount;
+            PreferredSpawnContainmentCounts[DistrictIndex] +=
+                bStrictSubset ? 1 : 0;
+        }
+    }
+    const auto GetPreferredSpawnLaneCapacity =
+        [&PreferredSpawnLaneSets](const int32 DistrictIndex)
+    {
+        return PreferredSpawnLaneSets[DistrictIndex].Num();
+    };
+    SpawnPlanningDistrictIndices.Sort(
+        [this,
+         &FullPlanDistrictQuotas,
+         &GetPreferredSpawnLaneCapacity,
+         &PreferredSpawnContainmentCounts,
+         &PreferredSpawnOverlapPressures](
+            const int32 LeftDistrictIndex,
+            const int32 RightDistrictIndex)
+        {
+            const int32 LeftContainmentCount =
+                PreferredSpawnContainmentCounts[LeftDistrictIndex];
+            const int32 RightContainmentCount =
+                PreferredSpawnContainmentCounts[RightDistrictIndex];
+            if (LeftContainmentCount != RightContainmentCount)
+            {
+                return LeftContainmentCount > RightContainmentCount;
+            }
+            const int64 LeftCapacity =
+                GetPreferredSpawnLaneCapacity(LeftDistrictIndex);
+            const int64 RightCapacity =
+                GetPreferredSpawnLaneCapacity(RightDistrictIndex);
+            const int64 LeftPressure =
+                PreferredSpawnOverlapPressures[LeftDistrictIndex];
+            const int64 RightPressure =
+                PreferredSpawnOverlapPressures[RightDistrictIndex];
+            const int64 LeftScaledPressure = LeftPressure * RightCapacity;
+            const int64 RightScaledPressure = RightPressure * LeftCapacity;
+            if (LeftScaledPressure != RightScaledPressure)
+            {
+                return LeftScaledPressure > RightScaledPressure;
+            }
+            const int64 LeftQuota = FullPlanDistrictQuotas[
+                LeftDistrictIndex];
+            const int64 RightQuota = FullPlanDistrictQuotas[
+                RightDistrictIndex];
+            const int64 LeftScaledCapacity = LeftCapacity * RightQuota;
+            const int64 RightScaledCapacity = RightCapacity * LeftQuota;
+            if (LeftScaledCapacity != RightScaledCapacity)
+            {
+                return LeftScaledCapacity < RightScaledCapacity;
+            }
+            return RuntimeCentralDistricts[LeftDistrictIndex].DistrictId
+                .LexicalLess(
+                    RuntimeCentralDistricts[RightDistrictIndex].DistrictId);
+        });
+
+    for (int32 PlanningOrderIndex = 0;
+         PlanningOrderIndex < SpawnPlanningDistrictIndices.Num();
+         ++PlanningOrderIndex)
+    {
+        const int32 DistrictIndex =
+            SpawnPlanningDistrictIndices[PlanningOrderIndex];
         const FRuntimeCentralDistrict& District =
             RuntimeCentralDistricts[DistrictIndex];
         const int32 RequiredDistrictSlots =
             FullPlanDistrictQuotas[DistrictIndex];
         TArray<FCentralSpawnSlot>& Candidates =
             DistrictCandidateSlots[DistrictIndex];
+        UE_LOG(
+            LogTemp,
+            Log,
+            TEXT("OPEN_MASS_CROWD_CENTRAL_SPAWN_PLANNING_ORDER order=%d district=%s lane_pool=%d preferred_lane_pool=%d containment=%d overlap_pressure=%d quota=%d scarcity_first=true"),
+            PlanningOrderIndex,
+            *District.DistrictId.ToString(),
+            District.SpawnLaneIndices.Num(),
+            GetPreferredSpawnLaneCapacity(DistrictIndex),
+            PreferredSpawnContainmentCounts[DistrictIndex],
+            PreferredSpawnOverlapPressures[DistrictIndex],
+            RequiredDistrictSlots);
         for (const int32 LaneIndex : District.SpawnLaneIndices)
         {
             if (!RuntimeLaneHandles.IsValidIndex(LaneIndex) ||
@@ -4995,6 +5266,20 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
                     LaneIndex))
             {
                 return false;
+            }
+            const float* ComponentDirectionalLengthCm =
+                ComponentDirectionalLengthsCm.Find(
+                    RuntimeCentralLaneComponentIds[LaneIndex]);
+            if (!ComponentDirectionalLengthCm ||
+                *ComponentDirectionalLengthCm <
+                    CentralPreferredSpawnComponentDirectionalMinimumCm)
+            {
+                // Prefer the eight substantial ground components (at least
+                // 90 m summed directional / about 45 m physical length).
+                // The six 60 m-capable components remain the route planner's
+                // first choice; the two capacity components keep every
+                // district able to admit its complete 300-person quota.
+                continue;
             }
             const FZoneGraphLaneHandle LaneHandle = RuntimeLaneHandles[LaneIndex];
             if (!RuntimeStorage.Lanes.IsValidIndex(LaneHandle.Index))
@@ -5083,7 +5368,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
         float BestRejectedMinimumDistanceSquared = -1.0f;
         int32 BestRejectedSeed = INDEX_NONE;
         const float RequiredDistanceSquared =
-            FMath::Square(CentralMinimumCenterClearanceCm);
+            FMath::Square(CentralMinimumAcceptedCenterClearanceCm);
         TBitArray<> bGloballyOpposingForbidden(false, Candidates.Num());
         for (int32 CandidateIndex = 0;
              CandidateIndex < Candidates.Num();
@@ -5988,7 +6273,7 @@ bool AOpenMassCrowdSpawner::AdmitNextCentralBatch()
         }
     }
     const float RequiredSpawnClearanceSquared =
-        FMath::Square(CentralMinimumCenterClearanceCm);
+        FMath::Square(CentralMinimumAcceptedCenterClearanceCm);
     int32 RemainingLiveProbeBudget =
         CentralAdmissionLiveProbeBudgetPerPass;
     TArray<FCentralStagedAdmissionSlot> StagedSlots;
@@ -7448,8 +7733,17 @@ bool AOpenMassCrowdSpawner::PlanNewCentralDestination(
     float SelectedDestinationDistance = 0.0f;
     int32 SelectedDestinationLaneIndex = INDEX_NONE;
     double SelectedScore = TNumericLimits<double>::Max();
+    float SelectedOutboundDistanceCm = 0.0f;
+    float LongestReachableOutboundDistanceCm = 0.0f;
+    bool bSelectedPreferredDistance = false;
     int32 SelectedCrossingLaneCount = 0;
     bool bUsedFullDestinationFallback = false;
+    const float PreferredOutboundTargetCm =
+        CentralPreferredOutboundMinimumCm + static_cast<float>(
+            (static_cast<uint64>(EntityIndex) * 7919ULL) %
+            static_cast<uint64>(
+                CentralPreferredOutboundMaximumCm -
+                CentralPreferredOutboundMinimumCm + 1.0f));
     const int32 FirstDestinationLaneIndex =
         RouteRandomStream.RandRange(0, RuntimeLaneHandles.Num() - 1);
     const FName CurrentComponentId =
@@ -7487,8 +7781,13 @@ bool AOpenMassCrowdSpawner::PlanNewCentralDestination(
         {
             return false;
         }
-        const float DestinationDistance = DestinationLaneLength *
-            RouteRandomStream.FRandRange(0.35f, 0.85f);
+        // Finish at the certified lane endpoint (with a one-centimetre
+        // numerical inset). The return leg can then enter the certified
+        // reverse lane at the real graph node and retrace the outbound route
+        // without a teleport or a mid-lane U-turn.
+        const float DestinationDistance = FMath::Max(
+            CentralRouteEndpointInsetCm,
+            DestinationLaneLength - CentralRouteEndpointInsetCm);
         FZoneGraphLaneLocation EndLocation;
         if (!ZoneGraphSubsystem->CalculateLocationAlongLane(
                 RuntimeLaneHandles[DestinationLaneIndex],
@@ -7522,20 +7821,61 @@ bool AOpenMassCrowdSpawner::PlanNewCentralDestination(
             return false;
         }
 
-        double CandidateScore = RouteRandomStream.FRandRange(0.0f, 50.0f);
+        float CandidateOutboundDistanceCm = 0.0f;
+        double CongestionCost = 0.0;
         int32 CrossingLaneCount = 0;
-        for (const int32 LaneIndex : CandidatePath)
+        for (int32 PathIndex = 0;
+             PathIndex < CandidatePath.Num();
+             ++PathIndex)
         {
+            const int32 LaneIndex = CandidatePath[PathIndex];
             float LaneLength = 0.0f;
-            UE::ZoneGraph::Query::GetLaneLength(Storage, LaneIndex, LaneLength);
+            if (!RuntimeLaneHandles.IsValidIndex(LaneIndex) ||
+                !ZoneGraphSubsystem->GetLaneLength(
+                    RuntimeLaneHandles[LaneIndex],
+                    LaneLength) ||
+                LaneLength <= 0.0f)
+            {
+                return false;
+            }
+            if (PathIndex == 0)
+            {
+                CandidateOutboundDistanceCm += FMath::Max(
+                    0.0f,
+                    LaneLength - CurrentLane.DistanceAlongLane);
+            }
+            else if (PathIndex == CandidatePath.Num() - 1)
+            {
+                CandidateOutboundDistanceCm += DestinationDistance;
+            }
+            else
+            {
+                CandidateOutboundDistanceCm += LaneLength;
+            }
             const float Capacity = FMath::Max(1.0f, LaneLength / 140.0f);
             const float Density = CorridorOccupancies.IsValidIndex(LaneIndex)
                 ? static_cast<float>(CorridorOccupancies[LaneIndex]) / Capacity
                 : 0.0f;
-            CandidateScore += LaneLength *
+            CongestionCost += LaneLength *
                 (1.0 + FMath::Clamp(Density, 0.0f, 4.0f) * 0.65f);
             CrossingLaneCount += RuntimeCentralCrossingFlags[LaneIndex] != 0 ? 1 : 0;
         }
+        LongestReachableOutboundDistanceCm = FMath::Max(
+            LongestReachableOutboundDistanceCm,
+            CandidateOutboundDistanceCm);
+        const bool bCandidatePreferredDistance =
+            CandidateOutboundDistanceCm >= CentralPreferredOutboundMinimumCm;
+        double CandidateScore = FMath::Abs(
+            CandidateOutboundDistanceCm - PreferredOutboundTargetCm);
+        if (CandidateOutboundDistanceCm > CentralPreferredOutboundMaximumCm)
+        {
+            CandidateScore +=
+                (CandidateOutboundDistanceCm -
+                 CentralPreferredOutboundMaximumCm) * 2.0;
+        }
+        CandidateScore += CongestionCost * 0.05;
+        CandidateScore += static_cast<double>(CrossingLaneCount) * 200.0;
+        CandidateScore += RouteRandomStream.FRandRange(0.0f, 25.0f);
         const int32 RecentDestinationIndex =
             RouteState.RecentDestinationLaneIndices.FindLast(DestinationLaneIndex);
         if (RecentDestinationIndex != INDEX_NONE)
@@ -7544,15 +7884,24 @@ bool AOpenMassCrowdSpawner::PlanNewCentralDestination(
         }
 
         ++SuccessfulCandidates;
-        if (CandidateScore < SelectedScore)
+        const bool bShouldSelect =
+            (bCandidatePreferredDistance && !bSelectedPreferredDistance) ||
+            (bCandidatePreferredDistance == bSelectedPreferredDistance &&
+             (bCandidatePreferredDistance
+                  ? CandidateScore < SelectedScore
+                  : CandidateOutboundDistanceCm >
+                        SelectedOutboundDistanceCm + KINDA_SMALL_NUMBER));
+        if (bShouldSelect)
         {
             SelectedScore = CandidateScore;
             SelectedPath = MoveTemp(CandidatePath);
             SelectedDestinationDistance = DestinationDistance;
             SelectedDestinationLaneIndex = DestinationLaneIndex;
+            SelectedOutboundDistanceCm = CandidateOutboundDistanceCm;
+            bSelectedPreferredDistance = bCandidatePreferredDistance;
             SelectedCrossingLaneCount = CrossingLaneCount;
         }
-        return SuccessfulCandidates >= 8;
+        return false;
     };
 
     // The bounded pass keeps normal route planning predictable. If that
@@ -7560,8 +7909,7 @@ bool AOpenMassCrowdSpawner::PlanNewCentralDestination(
     // reachable cross-cell destination), perform one deterministic full scan
     // before failing closed. This cannot miss a valid destination merely
     // because stable lane IDs clustered the first 128 lanes by cell.
-    const int32 BoundedDestinationAttemptCount =
-        FMath::Min(RuntimeLaneHandles.Num(), 128);
+    const int32 BoundedDestinationAttemptCount = RuntimeLaneHandles.Num();
     for (int32 Attempt = 0;
          Attempt < BoundedDestinationAttemptCount;
          ++Attempt)
@@ -7573,27 +7921,14 @@ bool AOpenMassCrowdSpawner::PlanNewCentralDestination(
             break;
         }
     }
-    if (SelectedDestinationLaneIndex == INDEX_NONE &&
-        BoundedDestinationAttemptCount < RuntimeLaneHandles.Num())
-    {
-        bUsedFullDestinationFallback = true;
-        for (int32 Attempt = BoundedDestinationAttemptCount;
-             Attempt < RuntimeLaneHandles.Num();
-             ++Attempt)
-        {
-            const int32 DestinationLaneIndex =
-                (FirstDestinationLaneIndex + Attempt) % RuntimeLaneHandles.Num();
-            if (TryDestinationLane(DestinationLaneIndex, true))
-            {
-                break;
-            }
-        }
-    }
+    bUsedFullDestinationFallback = true;
 
     // A fully certified component may be contained in one cell. If it has no
     // cross-cell destination, retry within the same component only; never ask
     // A* to search across a certified gap.
-    if (SelectedDestinationLaneIndex == INDEX_NONE)
+    // Also evaluate same-cell destinations. Ground components are the safety
+    // boundary; a useful 60 m path may stay within one Central grid cell.
+    // Preserve any better cross-cell candidate already selected above.
     {
         AttemptedDestinationLanes.Init(0, RuntimeLaneHandles.Num());
         for (int32 Attempt = 0; Attempt < RuntimeLaneHandles.Num(); ++Attempt)
@@ -7627,7 +7962,55 @@ bool AOpenMassCrowdSpawner::PlanNewCentralDestination(
     }
     RouteState.CurrentPathIndex = 0;
     RouteState.DestinationDistance = SelectedDestinationDistance;
+    RouteState.PlannedOutboundDistanceCm = SelectedOutboundDistanceCm;
+    RouteState.PlannedRoundTripDistanceCm =
+        SelectedOutboundDistanceCm * 2.0f;
+    RouteState.bSmallComponentFallback = !bSelectedPreferredDistance;
+    RouteState.bOnReturnLeg = false;
     RouteState.PlannedAvailabilityRevision = CentralAvailabilityRevision;
+
+    // Keep the destination lane as a zero/one-centimetre anchor so the next
+    // short-path request transitions from the actual current lane into its
+    // certified reverse. The remaining lanes are the exact reverse mapping of
+    // the outbound path in reverse order.
+    RouteState.ReturnLanePath.Reserve(SelectedPath.Num() + 1);
+    RouteState.ReturnLanePath.Emplace(
+        SelectedDestinationLaneIndex,
+        Storage.DataHandle);
+    for (int32 PathIndex = SelectedPath.Num() - 1;
+         PathIndex >= 0;
+         --PathIndex)
+    {
+        const int32 OutboundLaneIndex = SelectedPath[PathIndex];
+        const int32 ReverseLaneIndex =
+            RuntimeCentralReverseLaneIndices.IsValidIndex(OutboundLaneIndex)
+            ? RuntimeCentralReverseLaneIndices[OutboundLaneIndex]
+            : INDEX_NONE;
+        if (!RuntimeLaneHandles.IsValidIndex(ReverseLaneIndex) ||
+            !IsCentralRuntimeLaneAvailable(ReverseLaneIndex) ||
+            (ForbiddenLaneIndices &&
+             ForbiddenLaneIndices->Contains(ReverseLaneIndex)))
+        {
+            RouteState.Reset();
+            return false;
+        }
+        RouteState.ReturnLanePath.Emplace(
+            ReverseLaneIndex,
+            Storage.DataHandle);
+    }
+    float StartLaneLength = 0.0f;
+    if (!ZoneGraphSubsystem->GetLaneLength(
+            CurrentLane.LaneHandle,
+            StartLaneLength) ||
+        StartLaneLength <= CentralRouteEndpointInsetCm * 2.0f)
+    {
+        RouteState.Reset();
+        return false;
+    }
+    RouteState.ReturnDestinationDistance = FMath::Clamp(
+        StartLaneLength - CurrentLane.DistanceAlongLane,
+        CentralRouteEndpointInsetCm,
+        StartLaneLength - CentralRouteEndpointInsetCm);
     RouteState.RecentDestinationLaneIndices.Add(SelectedDestinationLaneIndex);
     if (RouteState.RecentDestinationLaneIndices.Num() > CentralDestinationHistoryLimit)
     {
@@ -7641,18 +8024,93 @@ bool AOpenMassCrowdSpawner::PlanNewCentralDestination(
     UE_LOG(
         LogTemp,
         Log,
-        TEXT("OPEN_MASS_CROWD_CENTRAL_ROUTE entity=%d trip=%d start_lane=%d destination_lane=%d path_lanes=%d crossings=%d conflict_occupancy_destination=%d score=%.1f availability_revision=%d forbidden_lanes=%d full_fallback=%s"),
+        TEXT("OPEN_MASS_CROWD_CENTRAL_ROUTE entity=%d trip=%d start_lane=%d destination_lane=%d path_lanes=%d return_lanes=%d outbound_m=%.2f round_trip_m=%.2f preferred_target_m=%.2f small_component_fallback=%s longest_reachable_m=%.2f reverse_core_exact=true crossings=%d conflict_occupancy_destination=%d score=%.1f availability_revision=%d forbidden_lanes=%d full_scan=%s"),
         EntityIndex,
         RouteState.CompletedTrips + 1,
         CurrentLaneIndex,
         SelectedDestinationLaneIndex,
         RouteState.LanePath.Num(),
+        RouteState.ReturnLanePath.Num(),
+        RouteState.PlannedOutboundDistanceCm / 100.0f,
+        RouteState.PlannedRoundTripDistanceCm / 100.0f,
+        PreferredOutboundTargetCm / 100.0f,
+        RouteState.bSmallComponentFallback ? TEXT("true") : TEXT("false"),
+        LongestReachableOutboundDistanceCm / 100.0f,
         SelectedCrossingLaneCount,
         CorridorOccupancies[SelectedDestinationLaneIndex],
         SelectedScore,
         CentralAvailabilityRevision,
         ForbiddenLaneIndices ? ForbiddenLaneIndices->Num() : 0,
         bUsedFullDestinationFallback ? TEXT("true") : TEXT("false"));
+    return true;
+}
+
+bool AOpenMassCrowdSpawner::ActivateCentralReturnRoute(
+    const int32 EntityIndex)
+{
+    UMassSpawnerSubsystem* SpawnerSubsystem =
+        UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
+    if (!SpawnerSubsystem ||
+        !SpawnedEntities.IsValidIndex(EntityIndex) ||
+        !EntityRouteStates.IsValidIndex(EntityIndex))
+    {
+        return false;
+    }
+
+    FMassEntityManager& EntityManager =
+        SpawnerSubsystem->GetEntityManagerChecked();
+    const FMassEntityHandle Entity = SpawnedEntities[EntityIndex];
+    if (!EntityManager.IsEntityValid(Entity))
+    {
+        return false;
+    }
+    const FMassZoneGraphLaneLocationFragment& CurrentLane =
+        EntityManager.GetFragmentDataChecked<
+            FMassZoneGraphLaneLocationFragment>(Entity);
+    FEntityRouteState& RouteState = EntityRouteStates[EntityIndex];
+    if (RouteState.bOnReturnLeg ||
+        RouteState.ReturnLanePath.Num() < 3 ||
+        RouteState.ReturnLanePath[0] != CurrentLane.LaneHandle ||
+        RouteState.ReturnDestinationDistance <= 0.0f)
+    {
+        return false;
+    }
+    for (const FZoneGraphLaneHandle LaneHandle : RouteState.ReturnLanePath)
+    {
+        if (!RuntimeLaneHandles.IsValidIndex(LaneHandle.Index) ||
+            !IsCentralRuntimeLaneAvailable(LaneHandle.Index))
+        {
+            return false;
+        }
+    }
+
+    RouteState.LanePath = RouteState.ReturnLanePath;
+    RouteState.CurrentPathIndex = 0;
+    RouteState.DestinationDistance = RouteState.ReturnDestinationDistance;
+    RouteState.bOnReturnLeg = true;
+    RouteState.bWaitingForAvailableCell = false;
+    RouteState.PlannedAvailabilityRevision = CentralAvailabilityRevision;
+    RouteState.RecentDestinationLaneIndices.Add(
+        RouteState.LanePath.Last().Index);
+    if (RouteState.RecentDestinationLaneIndices.Num() >
+        CentralDestinationHistoryLimit)
+    {
+        RouteState.RecentDestinationLaneIndices.RemoveAt(
+            0,
+            RouteState.RecentDestinationLaneIndices.Num() -
+                CentralDestinationHistoryLimit);
+    }
+    ++RouteAssignmentCount;
+    UE_LOG(
+        LogTemp,
+        Log,
+        TEXT("OPEN_MASS_CROWD_CENTRAL_RETURN entity=%d trip=%d start_lane=%d destination_lane=%d path_lanes=%d outbound_m=%.2f reverse_core_exact=true"),
+        EntityIndex,
+        RouteState.CompletedTrips + 1,
+        CurrentLane.LaneHandle.Index,
+        RouteState.LanePath.Last().Index,
+        RouteState.LanePath.Num(),
+        RouteState.PlannedOutboundDistanceCm / 100.0f);
     return true;
 }
 
@@ -7776,8 +8234,30 @@ bool AOpenMassCrowdSpawner::RequestNextPath(const int32 EntityIndex)
         // but roll it back if a new destination cannot be created. This avoids
         // counting the same finished path again on a later retry.
         ++RouteState.CompletedTrips;
-        if (!PlanNewDestination(EntityIndex))
+        const bool bCompletedReturnLeg =
+            NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache &&
+            RouteState.bOnReturnLeg;
+        bool bPlannedNextLeg = false;
+        if (NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache &&
+            !RouteState.bOnReturnLeg &&
+            !RouteState.ReturnLanePath.IsEmpty())
         {
+            bPlannedNextLeg = ActivateCentralReturnRoute(EntityIndex);
+        }
+        else
+        {
+            if (bCompletedReturnLeg)
+            {
+                ++RouteState.CompletedRoundTrips;
+            }
+            bPlannedNextLeg = PlanNewDestination(EntityIndex);
+        }
+        if (!bPlannedNextLeg)
+        {
+            if (bCompletedReturnLeg)
+            {
+                --RouteState.CompletedRoundTrips;
+            }
             --RouteState.CompletedTrips;
             return NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache
                 ? HoldCentralEntityAtCertifiedPosition(
@@ -7789,9 +8269,11 @@ bool AOpenMassCrowdSpawner::RequestNextPath(const int32 EntityIndex)
         UE_LOG(
             LogTemp,
             Warning,
-            TEXT("OPEN_MASS_CROWD_DESTINATION_REACHED entity=%d trips=%d total_completed=%d lane=%d"),
+            TEXT("OPEN_MASS_CROWD_DESTINATION_REACHED entity=%d trips=%d round_trips=%d completed_leg=%s total_completed=%d lane=%d"),
             EntityIndex,
             RouteState.CompletedTrips,
+            RouteState.CompletedRoundTrips,
+            bCompletedReturnLeg ? TEXT("return") : TEXT("outbound"),
             CompletedTripCount,
             static_cast<int32>(LaneLocation.LaneHandle.Index));
         CurrentRouteIndex = 0;
@@ -8555,7 +9037,7 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
                 }
             }
 
-            if (bUseCentralCertifiedEdgeCirculation && !bMoved &&
+            if (!bMoved &&
                 PreviousStationarySeconds <=
                     CentralEdgePathRefreshThresholdSeconds &&
                 CentralTelemetryStationarySeconds[EntityIndex] >
@@ -8689,7 +9171,7 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
         UE_LOG(
             LogTemp,
             Verbose,
-            TEXT("OPEN_MASS_CROWD_CENTRAL_EDGE_PATH_RENEW entity=%d refreshed=%s threshold_s=%.2f policy=exact_route_no_teleport"),
+            TEXT("OPEN_MASS_CROWD_CENTRAL_PATH_RENEW entity=%d refreshed=%s threshold_s=%.2f policy=exact_route_no_teleport"),
             EntityIndex,
             bRefreshed ? TEXT("true") : TEXT("false"),
             CentralEdgePathRefreshThresholdSeconds);
@@ -8700,8 +9182,7 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
     // boundary, reissue that exact route from the entity's certified current
     // lane. This neither teleports the pedestrian nor selects a new street; it
     // only closes the UE short-path hand-off gap seen at lane-pair endpoints.
-    if (bUseCentralCertifiedEdgeCirculation &&
-        !StuckRecoveryCandidates.IsEmpty())
+    if (!StuckRecoveryCandidates.IsEmpty())
     {
         for (const FCentralStuckRecoveryCandidate& RecoveryCandidate :
              StuckRecoveryCandidates)
@@ -8722,7 +9203,7 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
             UE_LOG(
                 LogTemp,
                 Warning,
-                TEXT("OPEN_MASS_CROWD_CENTRAL_EDGE_PATH_REFRESH entity=%d lane=%d stationary_s=%.2f refreshed=%s policy=exact_route_no_teleport"),
+                TEXT("OPEN_MASS_CROWD_CENTRAL_PATH_REFRESH entity=%d lane=%d stationary_s=%.2f refreshed=%s policy=exact_route_no_teleport"),
                 RecoveryCandidate.EntityIndex,
                 RecoveryCandidate.CurrentLaneIndex,
                 RecoveryCandidate.StationarySeconds,
@@ -9825,6 +10306,507 @@ void AOpenMassCrowdSpawner::SyncVisualActorsToMass()
     }
 }
 
+bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
+    const int32 StableEntityIndex)
+{
+    if (NetworkMode != EOpenMassCrowdNetworkMode::CentralCertifiedCache ||
+        !SpawnedEntities.IsValidIndex(StableEntityIndex) ||
+        !GEngine || !GEngine->GameViewport)
+    {
+        return false;
+    }
+
+    UMassSpawnerSubsystem* SpawnerSubsystem =
+        UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
+    if (!SpawnerSubsystem)
+    {
+        return false;
+    }
+    FMassEntityManager& EntityManager =
+        SpawnerSubsystem->GetEntityManagerChecked();
+    if (!EntityManager.IsEntityValid(SpawnedEntities[StableEntityIndex]))
+    {
+        return false;
+    }
+
+    HideCentralProfile();
+    SelectedCentralProfileEntityIndex = StableEntityIndex;
+
+    const FString PersonId = GetCentralPersonId(StableEntityIndex);
+    const FString PersonName = GetCentralPersonName(StableEntityIndex);
+    const FString Occupation = GetCentralPersonOccupation(StableEntityIndex);
+    const FString Software = GetCentralPersonSoftware(StableEntityIndex);
+    FString DistrictName = TEXT("CENTRAL");
+    if (CentralSpawnDistrictPlan.IsValidIndex(StableEntityIndex))
+    {
+        const int32 DistrictIndex = CentralSpawnDistrictPlan[StableEntityIndex];
+        if (RuntimeCentralDistricts.IsValidIndex(DistrictIndex))
+        {
+            DistrictName = RuntimeCentralDistricts[DistrictIndex].DistrictId.ToString();
+        }
+    }
+
+    FString RouteStatus = TEXT("路径准备中");
+    FString RouteDistance = TEXT("正在建立认证路线");
+    if (EntityRouteStates.IsValidIndex(StableEntityIndex))
+    {
+        const FEntityRouteState& Route = EntityRouteStates[StableEntityIndex];
+        RouteStatus = Route.bOnReturnLeg ? TEXT("返程中 · RETURN") :
+            TEXT("去程中 · OUTBOUND");
+        if (Route.PlannedRoundTripDistanceCm > 0.0f)
+        {
+            RouteDistance = FString::Printf(
+                TEXT("%.1f m 往返 · 已完成 %d 轮"),
+                Route.PlannedRoundTripDistanceCm / 100.0f,
+                Route.CompletedRoundTrips);
+        }
+    }
+
+    const FLinearColor Cyan(0.04f, 0.78f, 0.88f, 1.0f);
+    const FLinearColor Amber(1.0f, 0.68f, 0.16f, 1.0f);
+    const FLinearColor Green(0.25f, 0.94f, 0.63f, 1.0f);
+    const TWeakObjectPtr<AOpenMassCrowdSpawner> WeakThis(this);
+
+    TSharedRef<SWidget> ProfilePanel =
+        SNew(SOverlay)
+        + SOverlay::Slot()
+        .HAlign(HAlign_Right)
+        .VAlign(VAlign_Center)
+        .Padding(FMargin(0.0f, 0.0f, 36.0f, 0.0f))
+        [
+            SNew(SBox)
+            .WidthOverride(410.0f)
+            [
+                SNew(SBorder)
+                .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
+                .BorderBackgroundColor(FLinearColor(0.012f, 0.026f, 0.042f, 0.91f))
+                .Padding(0.0f)
+                [
+                    SNew(SVerticalBox)
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    [
+                        SNew(SBorder)
+                        .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
+                        .BorderBackgroundColor(FLinearColor(0.025f, 0.22f, 0.28f, 0.96f))
+                        .Padding(FMargin(20.0f, 12.0f))
+                        [
+                            SNew(SHorizontalBox)
+                            + SHorizontalBox::Slot()
+                            .FillWidth(1.0f)
+                            .VAlign(VAlign_Center)
+                            [
+                                SNew(SVerticalBox)
+                                + SVerticalBox::Slot()
+                                .AutoHeight()
+                                [
+                                    SNew(STextBlock)
+                                    .Text(FText::FromString(TEXT("CENTRAL DIGITAL TWIN")))
+                                    .Font(FCoreStyle::GetDefaultFontStyle("Bold", 12))
+                                    .ColorAndOpacity(Cyan)
+                                ]
+                                + SVerticalBox::Slot()
+                                .AutoHeight()
+                                .Padding(0.0f, 2.0f, 0.0f, 0.0f)
+                                [
+                                    SNew(STextBlock)
+                                    .Text(FText::FromString(TEXT("PEDESTRIAN PROFILE / 行人档案")))
+                                    .Font(FCoreStyle::GetDefaultFontStyle("Regular", 9))
+                                    .ColorAndOpacity(FLinearColor(0.65f, 0.82f, 0.86f, 1.0f))
+                                ]
+                            ]
+                            + SHorizontalBox::Slot()
+                            .AutoWidth()
+                            .VAlign(VAlign_Center)
+                            [
+                                SNew(SButton)
+                                .ButtonColorAndOpacity(FLinearColor(0.08f, 0.12f, 0.15f, 0.8f))
+                                .ContentPadding(FMargin(10.0f, 5.0f))
+                                .OnClicked_Lambda([WeakThis]()
+                                {
+                                    if (WeakThis.IsValid())
+                                    {
+                                        WeakThis->HideCentralProfile();
+                                    }
+                                    return FReply::Handled();
+                                })
+                                [
+                                    SNew(STextBlock)
+                                    .Text(FText::FromString(TEXT("关闭  ×")))
+                                    .Font(FCoreStyle::GetDefaultFontStyle("Bold", 10))
+                                    .ColorAndOpacity(FLinearColor::White)
+                                ]
+                            ]
+                        ]
+                    ]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    .Padding(FMargin(22.0f, 20.0f, 22.0f, 8.0f))
+                    [
+                        SNew(SVerticalBox)
+                        + SVerticalBox::Slot()
+                        .AutoHeight()
+                        [
+                            SNew(STextBlock)
+                            .Text(FText::FromString(PersonId))
+                            .Font(FCoreStyle::GetDefaultFontStyle("Bold", 11))
+                            .ColorAndOpacity(Amber)
+                        ]
+                        + SVerticalBox::Slot()
+                        .AutoHeight()
+                        .Padding(0.0f, 3.0f, 0.0f, 0.0f)
+                        [
+                            SNew(STextBlock)
+                            .Text(FText::FromString(PersonName))
+                            .Font(FCoreStyle::GetDefaultFontStyle("Bold", 30))
+                            .ColorAndOpacity(FLinearColor(0.96f, 0.99f, 1.0f, 1.0f))
+                        ]
+                        + SVerticalBox::Slot()
+                        .AutoHeight()
+                        .Padding(0.0f, 10.0f, 0.0f, 0.0f)
+                        [
+                            SNew(SBorder)
+                            .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
+                            .BorderBackgroundColor(FLinearColor(0.06f, 0.23f, 0.19f, 0.82f))
+                            .Padding(FMargin(10.0f, 6.0f))
+                            [
+                                SNew(STextBlock)
+                                .Text(FText::FromString(TEXT("●  ACTIVE · GROUND ROUTE VERIFIED")))
+                                .Font(FCoreStyle::GetDefaultFontStyle("Bold", 10))
+                                .ColorAndOpacity(Green)
+                            ]
+                        ]
+                    ]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    .Padding(FMargin(22.0f, 4.0f))
+                    [MakeCentralProfileRow(TEXT("职业 / OCCUPATION"), Occupation, Cyan)]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    .Padding(FMargin(22.0f, 4.0f))
+                    [MakeCentralProfileRow(TEXT("喜欢的软件 / FAVORITE SOFTWARE"), Software, Amber)]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    .Padding(FMargin(22.0f, 4.0f))
+                    [MakeCentralProfileRow(TEXT("所在区域 / DISTRICT"), DistrictName, Cyan)]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    .Padding(FMargin(22.0f, 4.0f))
+                    [MakeCentralProfileRow(TEXT("当前行程 / ROUTE"), RouteStatus, Green)]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    .Padding(FMargin(22.0f, 4.0f, 22.0f, 20.0f))
+                    [MakeCentralProfileRow(TEXT("往返里程 / ROUND TRIP"), RouteDistance, Amber)]
+                ]
+            ]
+        ];
+
+    CentralProfileViewportWidget = ProfilePanel;
+    GEngine->GameViewport->AddViewportWidgetContent(ProfilePanel, 1000);
+    UE_LOG(
+        LogTemp,
+        Warning,
+        TEXT("OPEN_MASS_CROWD_CENTRAL_PROFILE_SELECTED stable_index=%d person_id=%s name=%s occupation=%s software=%s district=%s route=%s"),
+        StableEntityIndex,
+        *PersonId,
+        *PersonName,
+        *Occupation,
+        *Software,
+        *DistrictName,
+        *RouteStatus);
+    return true;
+}
+
+void AOpenMassCrowdSpawner::HideCentralProfile()
+{
+    if (CentralProfileViewportWidget.IsValid() &&
+        GEngine && GEngine->GameViewport)
+    {
+        GEngine->GameViewport->RemoveViewportWidgetContent(
+            CentralProfileViewportWidget.ToSharedRef());
+    }
+    CentralProfileViewportWidget.Reset();
+    SelectedCentralProfileEntityIndex = INDEX_NONE;
+}
+
+void AOpenMassCrowdSpawner::UpdateCentralProfileInteraction()
+{
+    if (!bCentralAdmissionReleased || !GetWorld())
+    {
+        return;
+    }
+
+    APlayerController* PlayerController =
+        UGameplayStatics::GetPlayerController(this, 0);
+    if (!PlayerController)
+    {
+        return;
+    }
+    if (!bCentralProfileInputConfigured)
+    {
+        PlayerController->bShowMouseCursor = true;
+        PlayerController->bEnableClickEvents = true;
+        PlayerController->bEnableMouseOverEvents = true;
+        FInputModeGameAndUI InputMode;
+        InputMode.SetHideCursorDuringCapture(false);
+        InputMode.SetLockMouseToViewportBehavior(
+            EMouseLockMode::LockOnCapture);
+        PlayerController->SetInputMode(InputMode);
+        bCentralProfileInputConfigured = true;
+        UE_LOG(
+            LogTemp,
+            Warning,
+            TEXT("OPEN_MASS_CROWD_CENTRAL_PROFILE_INPUT_READY stable_profiles=300 selection=cross_lod_screen_space"));
+    }
+
+    UMassSpawnerSubsystem* SpawnerSubsystem =
+        UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
+    if (SelectedCentralProfileEntityIndex != INDEX_NONE && SpawnerSubsystem &&
+        SpawnedEntities.IsValidIndex(SelectedCentralProfileEntityIndex))
+    {
+        FMassEntityManager& EntityManager =
+            SpawnerSubsystem->GetEntityManagerChecked();
+        const FMassEntityHandle SelectedEntity =
+            SpawnedEntities[SelectedCentralProfileEntityIndex];
+        if (EntityManager.IsEntityValid(SelectedEntity))
+        {
+            if (const FTransformFragment* Transform =
+                EntityManager.GetFragmentDataPtr<FTransformFragment>(SelectedEntity))
+            {
+                const FVector MarkerLocation =
+                    Transform->GetTransform().GetLocation() + FVector(0.0, 0.0, 105.0);
+                DrawDebugSphere(
+                    GetWorld(),
+                    MarkerLocation,
+                    28.0f,
+                    16,
+                    FColor(25, 225, 245),
+                    false,
+                    -1.0f,
+                    0,
+                    2.5f);
+            }
+        }
+    }
+
+    const bool bSelectionClick =
+        PlayerController->WasInputKeyJustPressed(EKeys::LeftMouseButton);
+    if (!bSelectionClick || !SpawnerSubsystem)
+    {
+        CentralProfilePreviousControlRotation =
+            PlayerController->GetControlRotation();
+        bCentralProfileHasPreviousControlRotation = true;
+        return;
+    }
+
+    float MouseX = 0.0f;
+    float MouseY = 0.0f;
+    if (!PlayerController->GetMousePosition(MouseX, MouseY))
+    {
+        return;
+    }
+    int32 ViewportWidth = 0;
+    int32 ViewportHeight = 0;
+    PlayerController->GetViewportSize(ViewportWidth, ViewportHeight);
+    if (CentralProfileViewportWidget.IsValid() &&
+        MouseX >= static_cast<float>(ViewportWidth) - 470.0f)
+    {
+        return;
+    }
+
+    FMassEntityManager& EntityManager =
+        SpawnerSubsystem->GetEntityManagerChecked();
+    int32 BestStableIndex = INDEX_NONE;
+    float BestScreenDistanceSquared = FMath::Square(42.0f);
+    float BestCameraDistanceSquared = TNumericLimits<float>::Max();
+    const FVector CameraLocation = PlayerController->PlayerCameraManager
+        ? PlayerController->PlayerCameraManager->GetCameraLocation()
+        : FVector::ZeroVector;
+    for (int32 StableIndex = 0;
+         StableIndex < SpawnedEntities.Num();
+         ++StableIndex)
+    {
+        const FMassEntityHandle Entity = SpawnedEntities[StableIndex];
+        if (!EntityManager.IsEntityValid(Entity))
+        {
+            continue;
+        }
+        const FTransformFragment* Transform =
+            EntityManager.GetFragmentDataPtr<FTransformFragment>(Entity);
+        if (!Transform)
+        {
+            continue;
+        }
+        const FVector WorldLocation =
+            Transform->GetTransform().GetLocation() + FVector(0.0, 0.0, 85.0);
+        FVector2D ScreenLocation;
+        if (!PlayerController->ProjectWorldLocationToScreen(
+                WorldLocation,
+                ScreenLocation,
+                true))
+        {
+            continue;
+        }
+        const float ScreenDistanceSquared = FVector2D::DistSquared(
+            ScreenLocation,
+            FVector2D(MouseX, MouseY));
+        const float CameraDistanceSquared = FVector::DistSquared(
+            CameraLocation,
+            WorldLocation);
+        if (ScreenDistanceSquared < BestScreenDistanceSquared ||
+            (FMath::IsNearlyEqual(
+                 ScreenDistanceSquared,
+                 BestScreenDistanceSquared,
+                 0.25f) &&
+             CameraDistanceSquared < BestCameraDistanceSquared))
+        {
+            BestStableIndex = StableIndex;
+            BestScreenDistanceSquared = ScreenDistanceSquared;
+            BestCameraDistanceSquared = CameraDistanceSquared;
+        }
+    }
+
+    if (BestStableIndex != INDEX_NONE)
+    {
+        ShowCentralProfileByStableIndex(BestStableIndex);
+        if (bCentralProfileHasPreviousControlRotation)
+        {
+            PlayerController->SetControlRotation(
+                CentralProfilePreviousControlRotation);
+            if (APawn* Pawn = PlayerController->GetPawn())
+            {
+                FRotator PawnRotation = Pawn->GetActorRotation();
+                PawnRotation.Pitch = CentralProfilePreviousControlRotation.Pitch;
+                PawnRotation.Yaw = CentralProfilePreviousControlRotation.Yaw;
+                Pawn->SetActorRotation(PawnRotation);
+            }
+        }
+    }
+    CentralProfilePreviousControlRotation = PlayerController->GetControlRotation();
+    bCentralProfileHasPreviousControlRotation = true;
+}
+
+FString AOpenMassCrowdSpawner::GetCentralProfileEvidenceSnapshot() const
+{
+    const int32 StableIndex = SelectedCentralProfileEntityIndex;
+    if (!SpawnedEntities.IsValidIndex(StableIndex))
+    {
+        return TEXT("{\"valid\":false,\"reason\":\"no_profile_selected\"}");
+    }
+
+    FString DistrictName = TEXT("CENTRAL");
+    if (CentralSpawnDistrictPlan.IsValidIndex(StableIndex))
+    {
+        const int32 DistrictIndex = CentralSpawnDistrictPlan[StableIndex];
+        if (RuntimeCentralDistricts.IsValidIndex(DistrictIndex))
+        {
+            DistrictName = RuntimeCentralDistricts[DistrictIndex].DistrictId.ToString();
+        }
+    }
+    const FEntityRouteState* Route = EntityRouteStates.IsValidIndex(StableIndex)
+        ? &EntityRouteStates[StableIndex]
+        : nullptr;
+    return FString::Printf(
+        TEXT("{\"valid\":true,\"stable_index\":%d,\"person_id\":\"%s\",\"name\":\"%s\",\"occupation\":\"%s\",\"favorite_software\":\"%s\",\"district\":\"%s\",\"route_leg\":\"%s\",\"round_trip_m\":%.3f,\"completed_round_trips\":%d,\"glass_panel_visible\":%s}"),
+        StableIndex,
+        *GetCentralPersonId(StableIndex),
+        *GetCentralPersonName(StableIndex),
+        *GetCentralPersonOccupation(StableIndex),
+        *GetCentralPersonSoftware(StableIndex),
+        *DistrictName,
+        Route && Route->bOnReturnLeg ? TEXT("return") : TEXT("outbound"),
+        Route ? Route->PlannedRoundTripDistanceCm / 100.0f : 0.0f,
+        Route ? Route->CompletedRoundTrips : 0,
+        CentralProfileViewportWidget.IsValid() ? TEXT("true") : TEXT("false"));
+}
+
+FString AOpenMassCrowdSpawner::GetCentralVATAnimationEvidenceSnapshot() const
+{
+    if (NetworkMode != EOpenMassCrowdNetworkMode::CentralCertifiedCache ||
+        SpawnedEntities.IsEmpty() || !GetWorld())
+    {
+        return TEXT("{\"valid\":false,\"reason\":\"central_population_unavailable\"}");
+    }
+    UMassSpawnerSubsystem* SpawnerSubsystem =
+        UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
+    const APlayerController* PlayerController =
+        UGameplayStatics::GetPlayerController(this, 0);
+    if (!SpawnerSubsystem || !PlayerController ||
+        !PlayerController->PlayerCameraManager)
+    {
+        return TEXT("{\"valid\":false,\"reason\":\"camera_or_mass_unavailable\"}");
+    }
+
+    FMassEntityManager& EntityManager =
+        SpawnerSubsystem->GetEntityManagerChecked();
+    const FVector CameraLocation =
+        PlayerController->PlayerCameraManager->GetCameraLocation();
+    int32 SelectedIndex = INDEX_NONE;
+    float SelectedDistanceSquared = -1.0f;
+    const FTransformFragment* SelectedTransform = nullptr;
+    const FOpenMassCrowdVATPlaybackFragment* SelectedPlayback = nullptr;
+    for (int32 StableIndex = 0;
+         StableIndex < SpawnedEntities.Num();
+         ++StableIndex)
+    {
+        const FMassEntityHandle Entity = SpawnedEntities[StableIndex];
+        if (!EntityManager.IsEntityValid(Entity))
+        {
+            continue;
+        }
+        const FMassRepresentationFragment* Representation =
+            EntityManager.GetFragmentDataPtr<FMassRepresentationFragment>(Entity);
+        const FTransformFragment* Transform =
+            EntityManager.GetFragmentDataPtr<FTransformFragment>(Entity);
+        const FOpenMassCrowdVATPlaybackFragment* Playback =
+            EntityManager.GetFragmentDataPtr<FOpenMassCrowdVATPlaybackFragment>(Entity);
+        if (!Representation || !Transform || !Playback ||
+            Representation->CurrentRepresentation !=
+                EMassRepresentationType::StaticMeshInstance)
+        {
+            continue;
+        }
+        const float DistanceSquared = FVector::DistSquared(
+            CameraLocation,
+            Transform->GetTransform().GetLocation());
+        if (DistanceSquared > SelectedDistanceSquared)
+        {
+            SelectedIndex = StableIndex;
+            SelectedDistanceSquared = DistanceSquared;
+            SelectedTransform = Transform;
+            SelectedPlayback = Playback;
+        }
+    }
+    if (SelectedIndex == INDEX_NONE || !SelectedTransform || !SelectedPlayback)
+    {
+        return TEXT("{\"valid\":false,\"reason\":\"vat_entity_unavailable\"}");
+    }
+
+    const float CurrentFrame =
+        UAnimToTextureInstancePlaybackLibrary::GetFrame(
+            GetWorld()->GetTimeSeconds(),
+            SelectedPlayback->StartFrame,
+            SelectedPlayback->EndFrame,
+            SelectedPlayback->TimeOffset,
+            SelectedPlayback->PlayRate,
+            30.0f);
+    const bool bAnimationActive =
+        SelectedPlayback->PlayRate > KINDA_SMALL_NUMBER &&
+        SelectedPlayback->EndFrame > SelectedPlayback->StartFrame;
+    return FString::Printf(
+        TEXT("{\"valid\":true,\"stable_index\":%d,\"person_id\":\"%s\",\"representation\":\"VAT\",\"distance_m\":%.3f,\"animation_active\":%s,\"time_offset\":%.6f,\"play_rate\":%.6f,\"start_frame\":%.3f,\"end_frame\":%.3f,\"current_frame\":%.6f,\"world_time_seconds\":%.6f}"),
+        SelectedIndex,
+        *GetCentralPersonId(SelectedIndex),
+        FMath::Sqrt(SelectedDistanceSquared) / 100.0f,
+        bAnimationActive ? TEXT("true") : TEXT("false"),
+        SelectedPlayback->TimeOffset,
+        SelectedPlayback->PlayRate,
+        SelectedPlayback->StartFrame,
+        SelectedPlayback->EndFrame,
+        CurrentFrame,
+        GetWorld()->GetTimeSeconds());
+}
+
 FString AOpenMassCrowdSpawner::GetCentralLODEvidenceSnapshot() const
 {
     constexpr int32 EvidenceEntityIndex = 0;
@@ -9982,6 +10964,9 @@ FString AOpenMassCrowdSpawner::GetCentralLODEvidenceSnapshot() const
 void AOpenMassCrowdSpawner::DestroyRuntimePopulation()
 {
     GetWorldTimerManager().ClearTimer(CentralAdmissionTimer);
+    HideCentralProfile();
+    bCentralProfileInputConfigured = false;
+    bCentralProfileHasPreviousControlRotation = false;
     if (UMassSpawnerSubsystem* SpawnerSubsystem =
         UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld()))
     {

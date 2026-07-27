@@ -24,7 +24,10 @@ public class OpenMassCrowd : ModuleRules
             "MassRepresentation",
             "MassLOD",
             "MassActors",
-            "ZoneGraph"
+            "ZoneGraph",
+            "InputCore",
+            "Slate",
+            "SlateCore"
         });
     }
 }

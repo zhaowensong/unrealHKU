@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "policy_id": "central-ground-only-v1",
+  "description": "Admit only collision-certified Central routes whose source semantics do not declare elevated, stepped, or tunnel pedestrian infrastructure.",
+  "excluded_bridge_values": "all values except no, false, and 0",
+  "exclude_nonzero_layer": true,
+  "excluded_highway_values": [
+    "steps"
+  ],
+  "excluded_tunnel_values": "all values except no, false, and 0",
+  "manual_deny_source_ids": []
+}

@@ -1,4 +1,4 @@
-"""Strictly import the certified Central JSON mirror into its UE DataAsset.
+"""Strictly import the Ground-Only certified Central JSON into its UE DataAsset.
 
 Run this file inside the open TelecomTwin editor through
 ``run_unreal_python_via_mcp.py``.  The input path is intentionally fixed: a
@@ -17,9 +17,9 @@ from pathlib import Path
 import unreal
 
 
-IMPORTER_VERSION = "1.1.0"
+IMPORTER_VERSION = "1.2.0"
 CERTIFIED_RELATIVE_PATH = Path(
-    "Scripts/OpenMassCrowd/CentralNetwork/Data/central_network_certified.json"
+    "Scripts/OpenMassCrowd/CentralNetwork/Data/central_network_ground_only.json"
 )
 SCHEMA_RELATIVE_PATH = Path(
     "Scripts/OpenMassCrowd/CentralNetwork/central_network_certified.schema.json"
@@ -27,8 +27,14 @@ SCHEMA_RELATIVE_PATH = Path(
 SOURCE_RELATIVE_PATH = Path(
     "Scripts/OpenMassCrowd/CentralNetwork/Data/central_pedestrian_source.json"
 )
+PARENT_RELATIVE_PATH = Path(
+    "Scripts/OpenMassCrowd/CentralNetwork/Data/central_network_certified.json"
+)
+POLICY_RELATIVE_PATH = Path(
+    "Scripts/OpenMassCrowd/CentralNetwork/central_ground_only_policy.json"
+)
 AUDIT_RELATIVE_PATH = Path(
-    "Scripts/OpenMassCrowd/CentralNetwork/Data/central_network_asset_import.audit.json"
+    "Scripts/OpenMassCrowd/CentralNetwork/Data/central_network_ground_only_asset_import.audit.json"
 )
 ASSET_DIRECTORY = "/Game/OpenMassCrowd/Central"
 ASSET_NAME = "DA_CentralNetwork_Certified"
@@ -39,13 +45,14 @@ def project_root():
     return Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir()))
 
 
-def load_common_module(root):
+def load_validation_modules(root):
     module_dir = root / "Scripts/OpenMassCrowd/CentralNetwork"
     if str(module_dir) not in sys.path:
         sys.path.insert(0, str(module_dir))
     import central_certified_import_common as common
+    import verify_central_ground_only_network as ground_only_verify
 
-    return common
+    return common, ground_only_verify
 
 
 def require_unreal_type(name):
@@ -246,6 +253,7 @@ def make_lane(data):
     result.set_editor_property("width_cm", float(data["width_cm"]))
     result.set_editor_property("length_cm", float(data["length_cm"]))
     result.set_editor_property("certified", True)
+    result.set_editor_property("ground_only_eligible", data["ground_only_eligible"] is True)
     samples = sorted(data["ground_samples"], key=lambda sample: sample["sample_index"])
     result.set_editor_property("ground_samples", [make_ground_sample(sample) for sample in samples])
     return result
@@ -341,10 +349,18 @@ def validate_source_provenance(document, source):
 
 def build_asset_payload(document):
     # Construct every reflected value before touching an existing asset.
+    ground_only = document["ground_only_filter"]
     return {
+        "schema_version": 3,
         "network_id": name_value(document["network_id"]),
         "build_id": guid(document["build_id"]),
         "generator_version": str(document["generator_version"]),
+        "ground_only_network": True,
+        "parent_certified_sha256": ground_only["parent_file_sha256"],
+        "ground_only_policy_sha256": ground_only["policy_sha256"],
+        "ground_only_excluded_source_feature_count": len(
+            ground_only["excluded_source_features"]
+        ),
         "world_bounds": box(document["world_bounds"]),
         "hashes": make_hashes(document["hashes"]),
         "cells": [
@@ -411,7 +427,19 @@ def write_audit(path, common, document, schema_path, certified_path, metrics):
             "canonical_hashes_valid": metrics["hashes_valid"],
             "certified_only": metrics["certified_only"],
             "source_provenance_valid": metrics["source_provenance_valid"],
+            "ground_only_valid": metrics["ground_only_valid"],
+            "zero_elevated_source_lanes": metrics["zero_elevated_source_lanes"],
             "candidate_source_cannot_create_asset": True,
+        },
+        "ground_only": {
+            "policy_id": metrics["policy_id"],
+            "policy_sha256": metrics["policy_sha256"],
+            "parent_file_sha256": metrics["parent_file_sha256"],
+            "active_source_feature_count": metrics["active_source_feature_count"],
+            "excluded_source_feature_count": metrics["excluded_source_feature_count"],
+            "excluded_directional_lane_count": metrics[
+                "excluded_directional_lane_count"
+            ],
         },
         "counts": {
             key: metrics[key]
@@ -438,17 +466,29 @@ def write_audit(path, common, document, schema_path, certified_path, metrics):
 
 def main():
     root = project_root()
-    common = load_common_module(root)
+    common, ground_only_verify = load_validation_modules(root)
     certified_path = root / CERTIFIED_RELATIVE_PATH
     schema_path = root / SCHEMA_RELATIVE_PATH
     source_path = root / SOURCE_RELATIVE_PATH
+    parent_path = root / PARENT_RELATIVE_PATH
+    policy_path = root / POLICY_RELATIVE_PATH
     audit_path = root / AUDIT_RELATIVE_PATH
-    if certified_path.name != "central_network_certified.json":
+    if certified_path.name != "central_network_ground_only.json":
         raise RuntimeError("certified importer input path invariant was modified")
     document = common.load_json_strict(certified_path)
     schema = common.load_json_strict(schema_path)
     source = common.load_json_strict(source_path)
-    metrics = common.validate_certified_document(document, schema)
+    parent = common.load_json_strict(parent_path)
+    policy = common.load_json_strict(policy_path)
+    metrics = ground_only_verify.validate_ground_only_document(
+        document,
+        parent,
+        source,
+        policy,
+        parent_path,
+        policy_path,
+        schema,
+    )
     validate_source_provenance(document, source)
 
     asset_class = require_unreal_type("OpenMassCrowdCentralNetworkDataAsset")
