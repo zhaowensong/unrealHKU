@@ -28,7 +28,18 @@ DEFAULT_OUTPUT = (
 MARKER = "OPEN_MASS_CROWD_EXPERIENCE_SNAPSHOT="
 
 
-def unreal_snapshot(show_profile: bool, profile_index: int) -> dict[str, Any]:
+def unreal_snapshot(
+    show_profile: bool,
+    profile_index: int,
+    vat_stable_index: int | None = None,
+) -> dict[str, Any]:
+    vat_snapshot_call = (
+        "spawner.get_central_vat_animation_evidence_snapshot()"
+        if vat_stable_index is None
+        else "spawner.get_central_vat_animation_evidence_snapshot_for_stable_index({})".format(
+            int(vat_stable_index)
+        )
+    )
     code = f"""
 import json
 import re
@@ -110,7 +121,7 @@ payload = {{
             spawner.get_central_minimum_observed_entity_center_distance_cm()
         ),
     }},
-    "vat": json.loads(spawner.get_central_vat_animation_evidence_snapshot()),
+    "vat": json.loads({vat_snapshot_call}),
     "profile": json.loads(spawner.get_central_profile_evidence_snapshot()),
     "telecom_regression": {{
         "source_actor_count": len(source_labels),
@@ -136,13 +147,17 @@ print({MARKER!r} + json.dumps(payload, ensure_ascii=False, sort_keys=True))
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument("--profile-index", type=int, default=137)
+    parser.add_argument("--profile-index", type=int, default=37)
     parser.add_argument("--sample-delay", type=float, default=2.0)
     args = parser.parse_args()
 
     first = unreal_snapshot(True, args.profile_index)
     time.sleep(max(args.sample_delay, 0.5))
-    second = unreal_snapshot(False, args.profile_index)
+    second = unreal_snapshot(
+        False,
+        args.profile_index,
+        int(first["vat"].get("stable_index", -1)),
+    )
 
     first_vat = first["vat"]
     second_vat = second["vat"]
@@ -162,17 +177,17 @@ def main() -> int:
     telecom = second["telecom_regression"]
 
     checks = {
-        "ground_only_300": (
-            population["target"] == 300
-            and population["admitted"] == 300
-            and population["simulated"] == 300
-            and population["represented"] == 300
+        "ground_only_100": (
+            population["target"] == 100
+            and population["admitted"] == 100
+            and population["simulated"] == 100
+            and population["represented"] == 100
             and ground["unsupported"] == 0
             and ground["invalid_positions"] == 0
             and ground["admission_violations"] == 0
         ),
         "long_out_and_back_motion": (
-            motion["moving"] == motion["expected_moving"] == 300
+            motion["moving"] == motion["expected_moving"] == 100
             and motion["stuck"] == 0
             and motion["completed_path_legs"] > 0
             and float(profile.get("round_trip_m", 0.0)) >= 40.0
@@ -182,7 +197,7 @@ def main() -> int:
             and bool(second_vat.get("valid"))
             and bool(first_vat.get("animation_active"))
             and first_vat.get("stable_index") == second_vat.get("stable_index")
-            and float(first_vat.get("distance_m", 0.0)) >= 40.0
+            and float(first_vat.get("distance_m", 0.0)) >= 60.0
             and frame_advance >= 1.0
         ),
         "click_profile_glass_ui": (

@@ -70,7 +70,7 @@ public:
     /** Central admits only one of the staged evidence-gate populations. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Network|Admission")
     EOpenMassCrowdCentralPopulationGate CentralPopulationGate =
-        EOpenMassCrowdCentralPopulationGate::Gate300;
+        EOpenMassCrowdCentralPopulationGate::Gate100;
 
     /** Maximum number of Central Mass entities created in one admission batch. */
     UPROPERTY(
@@ -369,16 +369,21 @@ public:
     UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Evidence")
     FString GetCentralLODEvidenceSnapshot() const;
 
-    /** Selects one of the stable HK-C-001..300 people and opens its glass card. */
+    /** Selects one of the active stable HK-C-001..100 people and opens its glass card. */
     UFUNCTION(BlueprintCallable, Category = "Open Mass Crowd|Central|Profile")
     bool ShowCentralProfileByStableIndex(int32 StableEntityIndex);
 
     UFUNCTION(BlueprintCallable, Category = "Open Mass Crowd|Central|Profile")
     void HideCentralProfile();
 
-    /** JSON proof for the farthest currently rendered VAT pedestrian. */
+    /** JSON proof for a currently moving, far-rendered VAT pedestrian. */
     UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Evidence")
     FString GetCentralVATAnimationEvidenceSnapshot() const;
+
+    /** JSON proof for one explicit stable person, used for paired frame checks. */
+    UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Evidence")
+    FString GetCentralVATAnimationEvidenceSnapshotForStableIndex(
+        int32 StableEntityIndex) const;
 
     /** JSON proof for the currently selected stable person/profile. */
     UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Evidence")

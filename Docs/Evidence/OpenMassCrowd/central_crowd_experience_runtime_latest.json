@@ -1,9 +1,9 @@
 {
-  "captured_at_utc": "2026-07-27T15:35:34.031419+00:00",
+  "captured_at_utc": "2026-07-29T17:02:12.255597+00:00",
   "checks": {
     "click_profile_glass_ui": true,
     "far_vat_animation": true,
-    "ground_only_300": true,
+    "ground_only_100": true,
     "long_out_and_back_motion": true,
     "no_severe_overlap": true,
     "telecom_scene_unchanged": true
@@ -12,35 +12,35 @@
     "ground_and_clearance": {
       "admission_violations": 0,
       "invalid_positions": 0,
-      "minimum_observed_center_cm": 20.000019073486328,
+      "minimum_observed_center_cm": 20.000022888183594,
       "overlap_agents": 0,
       "overlap_pairs": 0,
       "unsupported": 0
     },
     "motion": {
-      "completed_path_legs": 374,
-      "expected_moving": 300,
-      "moving": 300,
-      "route_assignments": 1136,
+      "completed_path_legs": 48,
+      "expected_moving": 100,
+      "moving": 100,
+      "route_assignments": 257,
       "stuck": 0
     },
     "population": {
-      "admitted": 300,
-      "represented": 300,
-      "simulated": 300,
-      "target": 300
+      "admitted": 100,
+      "represented": 100,
+      "simulated": 100,
+      "target": 100
     },
     "profile": {
       "completed_round_trips": 0,
-      "district": "district-central-r1-c2",
+      "district": "district-central-r0-c1",
       "favorite_software": "QGIS",
       "glass_panel_visible": true,
-      "name": "谢文轩",
+      "name": "黄文轩",
       "occupation": "游戏开发者",
-      "person_id": "HK-C-138",
-      "round_trip_m": 106.921,
-      "route_leg": "return",
-      "stable_index": 137,
+      "person_id": "HK-C-038",
+      "round_trip_m": 167.736,
+      "route_leg": "outbound",
+      "stable_index": 37,
       "valid": true
     },
     "telecom_regression": {
@@ -58,17 +58,23 @@
     },
     "vat": {
       "animation_active": true,
-      "current_frame": 20.466797,
-      "distance_m": 886.145,
-      "end_frame": 98.0,
-      "person_id": "HK-C-132",
-      "play_rate": 1.04,
+      "current_frame": 21.769531,
+      "distance_m": 401.142,
+      "end_frame": 97.0,
+      "location": {
+        "x": -175709.991,
+        "y": 261818.924,
+        "z": 317.852
+      },
+      "person_id": "HK-C-078",
+      "play_rate": 1.35,
       "representation": "VAT",
-      "stable_index": 131,
+      "speed_cm_s": 80.759,
+      "stable_index": 77,
       "start_frame": 0.0,
-      "time_offset": 1.74147,
+      "time_offset": 0.619961,
       "valid": true,
-      "world_time_seconds": 433.626069
+      "world_time_seconds": 55.571875
     },
     "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
   },
@@ -80,35 +86,35 @@
     "ground_and_clearance": {
       "admission_violations": 0,
       "invalid_positions": 0,
-      "minimum_observed_center_cm": 20.000019073486328,
+      "minimum_observed_center_cm": 20.000022888183594,
       "overlap_agents": 0,
       "overlap_pairs": 0,
       "unsupported": 0
     },
     "motion": {
-      "completed_path_legs": 374,
-      "expected_moving": 300,
-      "moving": 300,
-      "route_assignments": 1138,
+      "completed_path_legs": 52,
+      "expected_moving": 100,
+      "moving": 100,
+      "route_assignments": 267,
       "stuck": 0
     },
     "population": {
-      "admitted": 300,
-      "represented": 300,
-      "simulated": 300,
-      "target": 300
+      "admitted": 100,
+      "represented": 100,
+      "simulated": 100,
+      "target": 100
     },
     "profile": {
       "completed_round_trips": 0,
-      "district": "district-central-r1-c2",
+      "district": "district-central-r0-c1",
       "favorite_software": "QGIS",
       "glass_panel_visible": true,
-      "name": "谢文轩",
+      "name": "黄文轩",
       "occupation": "游戏开发者",
-      "person_id": "HK-C-138",
-      "round_trip_m": 106.921,
-      "route_leg": "return",
-      "stable_index": 137,
+      "person_id": "HK-C-038",
+      "round_trip_m": 167.736,
+      "route_leg": "outbound",
+      "stable_index": 37,
       "valid": true
     },
     "telecom_regression": {
@@ -126,19 +132,25 @@
     },
     "vat": {
       "animation_active": true,
-      "current_frame": 85.893555,
-      "distance_m": 886.145,
-      "end_frame": 98.0,
-      "person_id": "HK-C-132",
-      "play_rate": 1.04,
+      "current_frame": 12.555176,
+      "distance_m": 400.398,
+      "end_frame": 97.0,
+      "location": {
+        "x": -175613.037,
+        "y": 261830.503,
+        "z": 316.03
+      },
+      "person_id": "HK-C-078",
+      "play_rate": 1.35,
       "representation": "VAT",
-      "stable_index": 131,
+      "speed_cm_s": 42.94,
+      "stable_index": 77,
       "start_frame": 0.0,
-      "time_offset": 1.74147,
+      "time_offset": 0.619961,
       "valid": true,
-      "world_time_seconds": 435.723079
+      "world_time_seconds": 57.764118
     },
     "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
   },
-  "vat_frame_advance": 65.426758
+  "vat_frame_advance": 87.785645
 }

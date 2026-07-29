@@ -15,7 +15,8 @@ from typing import Any
 import central_certified_import_common as common
 
 
-SCRIPT_VERSION = "1.0.0"
+SCRIPT_VERSION = "1.1.0"
+TARGET_POPULATION = 100
 DATA_DIR = Path(__file__).resolve().parent / "Data"
 DEFAULT_PARENT = DATA_DIR / "central_network_certified.json"
 DEFAULT_SOURCE = DATA_DIR / "central_pedestrian_source.json"
@@ -265,6 +266,7 @@ def derive(parent: dict[str, Any], source: dict[str, Any], policy: dict[str, Any
             for node in cell["nodes"]
             if node["component_id"] == chosen
         )
+        district_index = len(districts)
         districts.append({
             "district_id": "district-" + cell_id,
             "component_id": chosen,
@@ -272,7 +274,10 @@ def derive(parent: dict[str, Any], source: dict[str, Any], policy: dict[str, Any
             "spawn_node_ids": chosen_nodes,
             "spawn_lane_ids": spawn_lanes,
             "world_bounds": cell["world_bounds"],
-            "target_population": 50,
+            "target_population": (
+                TARGET_POPULATION // 6
+                + (1 if district_index < TARGET_POPULATION % 6 else 0)
+            ),
             "selection_weight": 1.0,
             "enabled": True,
         })
@@ -314,7 +319,11 @@ def derive(parent: dict[str, Any], source: dict[str, Any], policy: dict[str, Any
         "$schema": parent.get("$schema", ""),
         "schema_version": parent["schema_version"],
         "network_id": "central-hong-kong-ground-only",
-        "build_id": str(uuid.uuid5(uuid.NAMESPACE_URL, parent_hash + ":" + policy_hash)),
+        "build_id": str(uuid.uuid5(
+            uuid.NAMESPACE_URL,
+            parent_hash + ":" + policy_hash + ":" + SCRIPT_VERSION
+            + ":" + str(TARGET_POPULATION),
+        )),
         "generator_version": "central-ground-only-" + SCRIPT_VERSION,
         "world_bounds": parent["world_bounds"],
         "hashes": copy.deepcopy(parent["hashes"]),

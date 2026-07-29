@@ -3083,7 +3083,7 @@ void UOpenMassCrowdVATCustomDataProcessor::ConfigureQueries(
     const TSharedRef<FMassEntityManager>& EntityManager)
 {
     EntityQuery.AddTagRequirement<FOpenMassCrowdTag>(EMassFragmentPresence::All);
-    EntityQuery.AddRequirement<FOpenMassCrowdVATPlaybackFragment>(EMassFragmentAccess::ReadOnly);
+    EntityQuery.AddRequirement<FOpenMassCrowdVATPlaybackFragment>(EMassFragmentAccess::ReadWrite);
     EntityQuery.AddRequirement<FMassRepresentationFragment>(EMassFragmentAccess::ReadOnly);
     EntityQuery.AddRequirement<FMassRepresentationLODFragment>(EMassFragmentAccess::ReadOnly);
     EntityQuery.AddChunkRequirement<FMassVisualizationChunkFragment>(EMassFragmentAccess::ReadOnly);
@@ -3105,8 +3105,8 @@ void UOpenMassCrowdVATCustomDataProcessor::Execute(
 
         FMassInstancedStaticMeshInfoArrayView ISMInfos =
             RepresentationSubsystem->GetMutableInstancedStaticMeshInfos();
-        const TConstArrayView<FOpenMassCrowdVATPlaybackFragment> PlaybackList =
-            Context.GetFragmentView<FOpenMassCrowdVATPlaybackFragment>();
+        const TArrayView<FOpenMassCrowdVATPlaybackFragment> PlaybackList =
+            Context.GetMutableFragmentView<FOpenMassCrowdVATPlaybackFragment>();
         const TConstArrayView<FMassRepresentationFragment> RepresentationList =
             Context.GetFragmentView<FMassRepresentationFragment>();
         const TConstArrayView<FMassRepresentationLODFragment> RepresentationLODList =
@@ -3131,7 +3131,14 @@ void UOpenMassCrowdVATCustomDataProcessor::Execute(
                 continue;
             }
 
-            const FOpenMassCrowdVATPlaybackFragment& Playback = PlaybackList[EntityIt];
+            FOpenMassCrowdVATPlaybackFragment& Playback = PlaybackList[EntityIt];
+            // The previous fixed 0.9..1.1 rate made a 98-frame walk clip read
+            // as a nearly rigid sliding silhouette at medium/far distances.
+            // Keep one phase-continuous rate: changing PlayRate against the
+            // shader's absolute world time causes visible frame jumps. 1.35x
+            // keeps the gait legible at the 60-120 m demo view without that
+            // discontinuity.
+            Playback.PlayRate = 1.35f;
             FAnimToTextureAutoPlayData AutoPlayData;
             AutoPlayData.TimeOffset = Playback.TimeOffset;
             AutoPlayData.PlayRate = Playback.PlayRate;

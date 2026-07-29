@@ -1,7 +1,7 @@
 {
   "asset_class": "OpenMassCrowdCentralNetworkDataAsset",
   "asset_path": "/Game/OpenMassCrowd/Central/DA_CentralNetwork_Certified",
-  "build_id": "de4c7be0-6d5d-590c-8924-3ad77ab6eca7",
+  "build_id": "499f5bee-b1c7-58e9-bbfe-69ff9faad232",
   "counts": {
     "cell_count": 6,
     "component_count": 49,
@@ -10,7 +10,7 @@
     "node_count": 330,
     "portal_count": 40,
     "spawn_district_count": 6,
-    "target_population": 300
+    "target_population": 100
   },
   "ground_only": {
     "active_source_feature_count": 69,
@@ -30,8 +30,8 @@
     "topology_sha256": "e3f0cf8265b8623f7db956bc69aed8147c7b4c49f65866c2dbc3066b6085a2d0"
   },
   "importer_version": "1.2.0",
-  "input_document_sha256": "ad2b3ec80d1582349e0fc14a905bb902b6cd1002c2607be37b5bb183fc285b82",
-  "input_file_sha256": "c886efc71ab829c06c85e3a5f77d954d03aa986d426f7ad784b30b97b5f8fe59",
+  "input_document_sha256": "991907566ac22d93e2f4c8f9090799a44073a42d96909b21c306ae82090b36ee",
+  "input_file_sha256": "d26e110aa1971e5d5ce357688ced6aad08a966da94cf6b1af4b601843c5b1ef3",
   "input_path": "Scripts/OpenMassCrowd/CentralNetwork/Data/central_network_ground_only.json",
   "network_id": "central-hong-kong-ground-only",
   "schema_file_sha256": "4a642a07c3cecd2348259cf576be6d810f431ab92d836a143e37e58c8ef97d96",

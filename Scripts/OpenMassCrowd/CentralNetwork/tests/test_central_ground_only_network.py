@@ -42,8 +42,9 @@ class CentralGroundOnlyTests(unittest.TestCase):
         parent_path = CENTRAL / "Data/central_network_certified.json"
         source_path = CENTRAL / "Data/central_pedestrian_source.json"
         policy_path = CENTRAL / "central_ground_only_policy.json"
+        document = common.load_json_strict(cache_path)
         metrics = verify.validate_ground_only_document(
-            common.load_json_strict(cache_path),
+            document,
             common.load_json_strict(parent_path),
             common.load_json_strict(source_path),
             common.load_json_strict(policy_path),
@@ -53,7 +54,11 @@ class CentralGroundOnlyTests(unittest.TestCase):
         )
         self.assertEqual(metrics["lane_count"], 562)
         self.assertEqual(metrics["component_count"], 49)
-        self.assertEqual(metrics["target_population"], 300)
+        self.assertEqual(metrics["target_population"], 100)
+        self.assertEqual(
+            [row["target_population"] for row in document["spawn_districts"]],
+            [17, 17, 17, 17, 16, 16],
+        )
         self.assertEqual(metrics["excluded_directional_lane_count"], 256)
         self.assertTrue(metrics["zero_elevated_source_lanes"])
 

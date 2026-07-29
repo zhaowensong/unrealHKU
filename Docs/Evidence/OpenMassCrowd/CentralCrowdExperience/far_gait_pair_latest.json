@@ -1,0 +1,60 @@
+{
+  "camera_distance_gate_m": 60.0,
+  "camera_fov_degrees": 35.0,
+  "captured_at_utc": "2026-07-29T17:01:28.756664+00:00",
+  "first": {
+    "camera_target_person_id": "HK-C-058",
+    "camera_target_stable_index": 57,
+    "screenshot": "C:/Users/15958/OneDrive/xwechat_files/wxid_0sjqfnxov0rv22_2017/msg/file/2026-07/TelecomTwin/Docs/Evidence/OpenMassCrowd/CentralCrowdExperience/12_central_100_far_gait_a.png",
+    "snapshot": {
+      "animation_active": true,
+      "current_frame": 13.344238,
+      "distance_m": 82.301,
+      "end_frame": 97.0,
+      "location": {
+        "x": -150333.933,
+        "y": 240118.838,
+        "z": 305.176
+      },
+      "person_id": "HK-C-058",
+      "play_rate": 1.35,
+      "representation": "VAT",
+      "speed_cm_s": 119.999,
+      "stable_index": 57,
+      "start_frame": 0.0,
+      "time_offset": 2.537922,
+      "valid": true,
+      "world_time_seconds": 14.729838
+    }
+  },
+  "frame_advance": 36.721131,
+  "map_or_mass_entities_modified": false,
+  "passed": true,
+  "same_stable_person": true,
+  "schema": "telecomtwin-central-100-far-gait-pair-v1",
+  "second": {
+    "camera_target_person_id": "HK-C-058",
+    "camera_target_stable_index": 57,
+    "screenshot": "C:/Users/15958/OneDrive/xwechat_files/wxid_0sjqfnxov0rv22_2017/msg/file/2026-07/TelecomTwin/Docs/Evidence/OpenMassCrowd/CentralCrowdExperience/13_central_100_far_gait_b.png",
+    "snapshot": {
+      "animation_active": true,
+      "current_frame": 50.065369,
+      "distance_m": 82.51,
+      "end_frame": 97.0,
+      "location": {
+        "x": -150351.577,
+        "y": 240195.901,
+        "z": 306.815
+      },
+      "person_id": "HK-C-058",
+      "play_rate": 1.35,
+      "representation": "VAT",
+      "speed_cm_s": 65.605,
+      "stable_index": 57,
+      "start_frame": 0.0,
+      "time_offset": 2.537922,
+      "valid": true,
+      "world_time_seconds": 15.636533
+    }
+  }
+}

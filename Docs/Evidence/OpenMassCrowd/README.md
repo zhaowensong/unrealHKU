@@ -96,3 +96,11 @@ git switch -c rollback/pre-city-navigation checkpoint/pre-city-navigation-2026-0
 - [`11_central_profile_glass_ui.png`](11_central_profile_glass_ui.png)：右侧半透明人物档案的最终运行截图。
 
 联合报告同时证明原电信场景仍为 30 个信源、1920 条射线，绿、黄、橙、红各 480 条。
+
+## 2026-07-30：Central 100 人与远距步态优化
+
+- [完整实施与验收记录](../../Obsidian/TelecomTwin_Central_100_Far_Gait_Refinement_2026-07-30.md)
+- [`CentralCrowdExperience/12_central_100_far_gait_a.png`](CentralCrowdExperience/12_central_100_far_gait_a.png) 与 [`13_central_100_far_gait_b.png`](CentralCrowdExperience/13_central_100_far_gait_b.png)：约 82 米物理距离、35° 长焦下的成对步态截图。
+- [`CentralCrowdExperience/far_gait_pair_latest.json`](CentralCrowdExperience/far_gait_pair_latest.json)：同一 `HK-C-058` 的 VAT 帧 13.344 → 50.065，固定播放速率 1.35，`passed=true`。
+- [`central_crowd_experience_runtime_latest.json`](central_crowd_experience_runtime_latest.json)：100 人全部 admitted / simulated / represented / moving，0 stuck、0 unsupported、0 severe overlap；30 信源、1920 射线、四色各 480 条仍通过。
+- Ground-Only 路网保持 562 条 lane 与 49 个连通分量，六区人口配额改为 17、17、17、17、16、16。

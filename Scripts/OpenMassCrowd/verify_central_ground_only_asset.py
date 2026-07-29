@@ -77,7 +77,7 @@ def main():
             and not ineligible
             and len(components) == 49
             and len(districts) == 6
-            and population == 300
+            and population == 100
         ),
     }
     if not report["fail_closed_runtime_ready"]:

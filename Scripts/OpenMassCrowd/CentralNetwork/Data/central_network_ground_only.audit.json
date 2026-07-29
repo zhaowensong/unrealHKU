@@ -1,5 +1,5 @@
 {
-  "build_id": "de4c7be0-6d5d-590c-8924-3ad77ab6eca7",
+  "build_id": "499f5bee-b1c7-58e9-bbfe-69ff9faad232",
   "cell_count": 6,
   "component_count": 49,
   "component_directional_lengths_cm_desc": [
@@ -61,12 +61,12 @@
     "highway": 4,
     "layer": 29
   },
-  "generator_version": "1.0.0",
+  "generator_version": "1.1.0",
   "included_directional_lane_count": 562,
   "included_directional_lane_length_cm": 259311.0092,
   "included_source_feature_count": 69,
   "network_id": "central-hong-kong-ground-only",
-  "output_file_sha256": "c886efc71ab829c06c85e3a5f77d954d03aa986d426f7ad784b30b97b5f8fe59",
+  "output_file_sha256": "d26e110aa1971e5d5ce357688ced6aad08a966da94cf6b1af4b601843c5b1ef3",
   "parent_build_id": "39a05fbd-08b4-5654-8994-63b2dda2c916",
   "parent_combined_sha256": "10437d68a5b4f8d86bdd6072d36e2802d6d70d6ff4f305565e96f1802f3cfa87",
   "parent_file_sha256": "d923fdc3305f4fc9d966477bf4c8dc783dbcc8eefe9f7df9ff2ccc9f753df3d5",
@@ -75,5 +75,5 @@
   "schema_version": 1,
   "spawn_district_count": 6,
   "status": "ok",
-  "target_population": 300
+  "target_population": 100
 }

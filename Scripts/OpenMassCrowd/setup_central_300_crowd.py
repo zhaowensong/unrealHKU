@@ -274,7 +274,7 @@ def main():
     network_asset = load_asset(NETWORK_ASSET_PATH)
     map_file, map_read_only_cleared = ensure_map_file_writable()
 
-    with unreal.ScopedEditorTransaction("Configure Central 300 Mass crowd"):
+    with unreal.ScopedEditorTransaction("Configure Central 100 Mass crowd"):
         spawner, previous_spawner_count = find_or_create_single_spawner()
         spawner.set_editor_property(
             "network_mode",
@@ -285,9 +285,9 @@ def main():
         spawner.set_editor_property("central_network_asset", network_asset)
         spawner.set_editor_property(
             "central_population_gate",
-            enum_value("OpenMassCrowdCentralPopulationGate", "GATE30"),
+            enum_value("OpenMassCrowdCentralPopulationGate", "GATE100"),
         )
-        spawner.set_editor_property("population_count", 30)
+        spawner.set_editor_property("population_count", 100)
         spawner.set_editor_property("central_admission_batch_size", 25)
         spawner.set_editor_property("central_admission_batch_interval", 0.1)
         spawner.set_editor_property("draw_central_network_overlay", False)
@@ -310,7 +310,7 @@ def main():
         "spawner": spawner.get_path_name(),
         "previous_spawner_count": previous_spawner_count,
         "final_spawner_count": final_spawner_count,
-        "saved_gate": 30,
+        "saved_gate": 100,
         "network_asset": NETWORK_ASSET_PATH,
         "manifest": str(manifest_path),
         "manifest_sha256": sha256_file(manifest_path),
@@ -320,7 +320,7 @@ def main():
         "lod_budget_limits": {
             "high_actor_maximum": 24,
             "low_actor_maximum": 72,
-            "gate300_minimum_vat_remainder": 204,
+            "gate100_vat_capacity": 100,
             "these_are_configuration_limits_not_runtime_counts": True,
             "runtime_counts_require_gate_verifier": True,
         },

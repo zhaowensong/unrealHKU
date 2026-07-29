@@ -95,7 +95,7 @@ constexpr float CentralClearanceComparisonToleranceCm = 0.1f;
 constexpr float CentralMinimumAcceptedCenterClearanceCm =
     CentralMinimumCenterClearanceCm - CentralClearanceComparisonToleranceCm;
 constexpr int32 RequiredCentralSpawnDistrictCount = 6;
-constexpr int32 FullCentralPopulation = 300;
+constexpr int32 FullCentralPopulation = 100;
 constexpr int32 CentralLaneHistoryLimit = 8;
 constexpr int32 CentralDestinationHistoryLimit = 4;
 // Ground-Only routing uses deterministic component-aware shuttles. The legacy
@@ -111,7 +111,7 @@ constexpr float CentralCesiumComponentGridSizeCm = 5000.0f;
 constexpr double CentralCesiumComponentCacheRefreshSeconds = 1.0;
 constexpr int64 CentralCesiumMaximumBucketsPerComponent = 256;
 constexpr int32 CentralGroundGuardsPerTick = 24;
-// One admission pass may validate a full configured 50-person batch plus a
+// One admission pass may validate a full configured 17-person district plus a
 // small deterministic reserve search, but can never fan out across thousands
 // of certified samples in one frame.
 constexpr int32 CentralAdmissionLiveProbeBudgetPerPass = 64;
@@ -340,19 +340,36 @@ bool IsCesiumQueryComponent(
 
 int32 GetCentralGatePopulation(const EOpenMassCrowdCentralPopulationGate Gate)
 {
+    int32 RequestedPopulation = 0;
     switch (Gate)
     {
     case EOpenMassCrowdCentralPopulationGate::Gate30:
-        return 30;
+        RequestedPopulation = 30;
+        break;
     case EOpenMassCrowdCentralPopulationGate::Gate100:
-        return 100;
+        RequestedPopulation = 100;
+        break;
     case EOpenMassCrowdCentralPopulationGate::Gate200:
-        return 200;
+        RequestedPopulation = 200;
+        break;
     case EOpenMassCrowdCentralPopulationGate::Gate300:
-        return 300;
+        RequestedPopulation = 300;
+        break;
     default:
         return 0;
     }
+    // Gate200/Gate300 remain readable for old saved actors, but the current
+    // experience contract deliberately caps the active population at 100.
+    return FMath::Min(RequestedPopulation, FullCentralPopulation);
+}
+
+int32 GetCentralFullDistrictPopulation(const int32 DistrictIndex)
+{
+    return FullCentralPopulation / RequiredCentralSpawnDistrictCount +
+        (DistrictIndex <
+            FullCentralPopulation % RequiredCentralSpawnDistrictCount
+            ? 1
+            : 0);
 }
 
 /**
@@ -2727,8 +2744,12 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
             Asset.GetConfiguredPopulation()));
     }
     TSet<FName> DistrictIds;
-    for (const FOpenMassCrowdCentralSpawnDistrict& District : Asset.SpawnDistricts)
+    for (int32 DistrictIndex = 0;
+         DistrictIndex < Asset.SpawnDistricts.Num();
+         ++DistrictIndex)
     {
+        const FOpenMassCrowdCentralSpawnDistrict& District =
+            Asset.SpawnDistricts[DistrictIndex];
         if (!District.bEnabled ||
             !IsStrictCentralStableId(District.DistrictId) ||
             !ComponentsById.Contains(District.ComponentId) ||
@@ -2738,7 +2759,7 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
             District.SpawnLaneIds.IsEmpty() ||
             !IsFiniteCentralBox(District.WorldBounds) ||
             District.TargetPopulation !=
-                FullCentralPopulation / RequiredCentralSpawnDistrictCount ||
+                GetCentralFullDistrictPopulation(DistrictIndex) ||
             !FMath::IsFinite(District.SelectionWeight) ||
             District.SelectionWeight <= 0.0f)
         {
@@ -3875,7 +3896,7 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
         // 55 cm-safe points: the smaller r0-c1 pool necessarily exhausted the
         // only viable part of r1-c1. A shared network-wide candidate pool lets
         // the existing global clearance/opposing-lane checks distribute all
-        // 300 slots physically, while the stable six-district quotas remain
+        // 100 slots physically, while the stable six-district quotas remain
         // exact. Every candidate still comes from a collision-certified sample
         // and must pass the normal live Cesium support probe. Each pedestrian's
         // A* route remains confined to its actual spawn-lane component, so this
@@ -4956,7 +4977,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
     CentralSpawnLivePositionValid.Reset(CentralAdmissionTargetCount);
     TArray<int32> DistrictQuotas;
     DistrictQuotas.SetNumZeroed(RuntimeCentralDistricts.Num());
-    const TArray<int32> FullPlanDistrictQuotas = {51, 51, 47, 51, 50, 50};
+    const TArray<int32> FullPlanDistrictQuotas = {17, 17, 17, 17, 16, 16};
     if (FullPlanDistrictQuotas.Num() != RuntimeCentralDistricts.Num())
     {
         return false;
@@ -4967,7 +4988,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
     {
         FRuntimeCentralDistrict& District = RuntimeCentralDistricts[DistrictIndex];
         if (District.TargetPopulation !=
-                FullCentralPopulation / RequiredCentralSpawnDistrictCount ||
+                GetCentralFullDistrictPopulation(DistrictIndex) ||
             District.SpawnLaneIndices.IsEmpty())
         {
             return false;
@@ -5077,7 +5098,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
         return false;
     };
 
-    // Build the complete 300-person slot sequence even at a lower gate.  Every
+    // Build the complete 100-person slot sequence even at a lower gate.  Every
     // staged gate is therefore a stable prefix of the exact same deterministic
     // plan. Candidates are only the direction-specific discrete LanePoints
     // copied from collision-certified RightTrackPosition samples.  Do not use
@@ -5085,7 +5106,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
     // Cesium support at each stored sample XY, not at an arbitrary point on the
     // short chord between two samples. Greedy farthest-point selection prevents
     // the golden-ratio aliases that previously placed different entities only
-    // millimetres apart at Gate200/Gate300.
+    // millimetres apart at the capped legacy higher-gate values.
     TMap<FName, float> ComponentDirectionalLengthsCm;
     for (int32 LaneIndex = 0;
          LaneIndex < RuntimeLaneHandles.Num();
@@ -5278,7 +5299,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
                 // 90 m summed directional / about 45 m physical length).
                 // The six 60 m-capable components remain the route planner's
                 // first choice; the two capacity components keep every
-                // district able to admit its complete 300-person quota.
+                // district able to admit its complete 100-person quota.
                 continue;
             }
             const FZoneGraphLaneHandle LaneHandle = RuntimeLaneHandles[LaneIndex];
@@ -5415,7 +5436,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
         // Seed zero exactly preserves the original deterministic plan when it
         // already passes.  Otherwise scan stable candidate indices and accept
         // the first complete quota-sized farthest-point plan above 55 cm, with
-        // every whole-track opposing direction excluded from the full 300-slot
+        // every whole-track opposing direction excluded from the full 100-slot
         // plan before any bounded admission begins.
         for (int32 SeedCandidateIndex = 0;
              SeedCandidateIndex < Candidates.Num();
@@ -5618,7 +5639,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
             CentralMinimumCenterClearanceCm);
     }
 
-    // Farthest-point selection proves clearance for the complete 300-person
+    // Farthest-point selection proves clearance for the complete 100-person
     // set, but its order can cluster the small staged gates in one connected
     // component.  That made all five Gate30 pedestrians in r1-c2 enter the
     // same ten-lane funnel even though two other certified components were
@@ -5677,7 +5698,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
     }
 
     // Build the complete stable round-robin ordering first. Gate30, Gate100 and
-    // Gate200 are literal prefixes of this exact Gate300 plan, including the
+    // lower gates are literal prefixes of this exact 100-person plan, including
     // asymmetric final 51,51,47,51,50,50 district quotas.
     TArray<FCentralSpawnSlot> FullOrderedSlots;
     TArray<int32> FullOrderedDistricts;
@@ -6072,7 +6093,7 @@ bool AOpenMassCrowdSpawner::AdmitNextCentralBatch()
         // Admission is frozen until every entity has committed. Use the exact
         // live-certified transaction records as occupancy authority instead of
         // a Mass transform that initialization processors may have adjusted by
-        // a few centimetres. The complete 300-slot plan already validates these
+        // a few centimetres. The complete 100-slot plan already validates these
         // same positions together, so both the structural and dynamic checks
         // now evaluate one coordinate system.
         if (!CentralSpawnLivePositionPlan.IsValidIndex(ExistingEntityIndex) ||
@@ -6982,7 +7003,7 @@ bool AOpenMassCrowdSpawner::AdmitNextCentralBatch()
     }
     // Admission is a placement transaction, not part of pedestrian motion.
     // Keep every earlier batch stationary on its independently certified spawn
-    // point so later batches are checked against the exact 300-slot plan. Once
+    // point so later batches are checked against the exact 100-slot plan. Once
     // the final batch commits, release the complete population together. This
     // prevents moving pedestrians from indefinitely occupying every reserve
     // candidate while admission is still in progress.
@@ -8824,7 +8845,7 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
     const bool bPeriodicHealthSample =
         CentralTelemetrySampleAccumulator >=
         CentralTelemetrySampleIntervalSeconds;
-    // 300 entities produce only 44,850 unordered pairs. Scan clearance every
+    // 100 entities produce only 4,950 unordered pairs. Scan clearance every
     // tick so a sub-second violation can never disappear between the one-second
     // movement/LOD samples. Logging remains periodic/forced below.
     const bool bCollisionHealthSample = true;
@@ -10556,7 +10577,7 @@ void AOpenMassCrowdSpawner::UpdateCentralProfileInteraction()
         UE_LOG(
             LogTemp,
             Warning,
-            TEXT("OPEN_MASS_CROWD_CENTRAL_PROFILE_INPUT_READY stable_profiles=300 selection=cross_lod_screen_space"));
+            TEXT("OPEN_MASS_CROWD_CENTRAL_PROFILE_INPUT_READY stable_profiles=100 selection=mass_screen_space"));
     }
 
     UMassSpawnerSubsystem* SpawnerSubsystem =
@@ -10743,8 +10764,6 @@ FString AOpenMassCrowdSpawner::GetCentralVATAnimationEvidenceSnapshot() const
         PlayerController->PlayerCameraManager->GetCameraLocation();
     int32 SelectedIndex = INDEX_NONE;
     float SelectedDistanceSquared = -1.0f;
-    const FTransformFragment* SelectedTransform = nullptr;
-    const FOpenMassCrowdVATPlaybackFragment* SelectedPlayback = nullptr;
     for (int32 StableIndex = 0;
          StableIndex < SpawnedEntities.Num();
          ++StableIndex)
@@ -10760,9 +10779,19 @@ FString AOpenMassCrowdSpawner::GetCentralVATAnimationEvidenceSnapshot() const
             EntityManager.GetFragmentDataPtr<FTransformFragment>(Entity);
         const FOpenMassCrowdVATPlaybackFragment* Playback =
             EntityManager.GetFragmentDataPtr<FOpenMassCrowdVATPlaybackFragment>(Entity);
-        if (!Representation || !Transform || !Playback ||
+        const FMassVelocityFragment* Velocity =
+            EntityManager.GetFragmentDataPtr<FMassVelocityFragment>(Entity);
+        if (!Representation || !Transform || !Playback || !Velocity ||
             Representation->CurrentRepresentation !=
                 EMassRepresentationType::StaticMeshInstance)
+        {
+            continue;
+        }
+        // A stopped VAT instance is valid runtime state, but it cannot prove
+        // that the distant silhouette is walking instead of sliding. Prefer a
+        // genuinely moving Mass entity for the visual gait evidence target.
+        if (Velocity->Value.SizeSquared2D() < FMath::Square(10.0f) ||
+            Playback->PlayRate <= KINDA_SMALL_NUMBER)
         {
             continue;
         }
@@ -10773,13 +10802,54 @@ FString AOpenMassCrowdSpawner::GetCentralVATAnimationEvidenceSnapshot() const
         {
             SelectedIndex = StableIndex;
             SelectedDistanceSquared = DistanceSquared;
-            SelectedTransform = Transform;
-            SelectedPlayback = Playback;
         }
     }
-    if (SelectedIndex == INDEX_NONE || !SelectedTransform || !SelectedPlayback)
+    if (SelectedIndex == INDEX_NONE)
     {
         return TEXT("{\"valid\":false,\"reason\":\"vat_entity_unavailable\"}");
+    }
+
+    return GetCentralVATAnimationEvidenceSnapshotForStableIndex(SelectedIndex);
+}
+
+FString AOpenMassCrowdSpawner::GetCentralVATAnimationEvidenceSnapshotForStableIndex(
+    const int32 StableEntityIndex) const
+{
+    if (NetworkMode != EOpenMassCrowdNetworkMode::CentralCertifiedCache ||
+        !SpawnedEntities.IsValidIndex(StableEntityIndex) || !GetWorld())
+    {
+        return TEXT("{\"valid\":false,\"reason\":\"central_entity_unavailable\"}");
+    }
+    UMassSpawnerSubsystem* SpawnerSubsystem =
+        UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
+    const APlayerController* PlayerController =
+        UGameplayStatics::GetPlayerController(this, 0);
+    if (!SpawnerSubsystem || !PlayerController ||
+        !PlayerController->PlayerCameraManager)
+    {
+        return TEXT("{\"valid\":false,\"reason\":\"camera_or_mass_unavailable\"}");
+    }
+
+    FMassEntityManager& EntityManager =
+        SpawnerSubsystem->GetEntityManagerChecked();
+    const FMassEntityHandle Entity = SpawnedEntities[StableEntityIndex];
+    if (!EntityManager.IsEntityValid(Entity))
+    {
+        return TEXT("{\"valid\":false,\"reason\":\"entity_invalid\"}");
+    }
+    const FMassRepresentationFragment* Representation =
+        EntityManager.GetFragmentDataPtr<FMassRepresentationFragment>(Entity);
+    const FTransformFragment* SelectedTransform =
+        EntityManager.GetFragmentDataPtr<FTransformFragment>(Entity);
+    const FOpenMassCrowdVATPlaybackFragment* SelectedPlayback =
+        EntityManager.GetFragmentDataPtr<FOpenMassCrowdVATPlaybackFragment>(Entity);
+    const FMassVelocityFragment* SelectedVelocity =
+        EntityManager.GetFragmentDataPtr<FMassVelocityFragment>(Entity);
+    if (!Representation || !SelectedTransform || !SelectedPlayback ||
+        !SelectedVelocity || Representation->CurrentRepresentation !=
+            EMassRepresentationType::StaticMeshInstance)
+    {
+        return TEXT("{\"valid\":false,\"reason\":\"stable_entity_not_vat\"}");
     }
 
     const float CurrentFrame =
@@ -10793,10 +10863,19 @@ FString AOpenMassCrowdSpawner::GetCentralVATAnimationEvidenceSnapshot() const
     const bool bAnimationActive =
         SelectedPlayback->PlayRate > KINDA_SMALL_NUMBER &&
         SelectedPlayback->EndFrame > SelectedPlayback->StartFrame;
+    const FVector SelectedLocation =
+        SelectedTransform->GetTransform().GetLocation();
+    const float SelectedDistanceSquared = FVector::DistSquared(
+        PlayerController->PlayerCameraManager->GetCameraLocation(),
+        SelectedLocation);
     return FString::Printf(
-        TEXT("{\"valid\":true,\"stable_index\":%d,\"person_id\":\"%s\",\"representation\":\"VAT\",\"distance_m\":%.3f,\"animation_active\":%s,\"time_offset\":%.6f,\"play_rate\":%.6f,\"start_frame\":%.3f,\"end_frame\":%.3f,\"current_frame\":%.6f,\"world_time_seconds\":%.6f}"),
-        SelectedIndex,
-        *GetCentralPersonId(SelectedIndex),
+        TEXT("{\"valid\":true,\"stable_index\":%d,\"person_id\":\"%s\",\"representation\":\"VAT\",\"location\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"speed_cm_s\":%.3f,\"distance_m\":%.3f,\"animation_active\":%s,\"time_offset\":%.6f,\"play_rate\":%.6f,\"start_frame\":%.3f,\"end_frame\":%.3f,\"current_frame\":%.6f,\"world_time_seconds\":%.6f}"),
+        StableEntityIndex,
+        *GetCentralPersonId(StableEntityIndex),
+        SelectedLocation.X,
+        SelectedLocation.Y,
+        SelectedLocation.Z,
+        SelectedVelocity->Value.Size2D(),
         FMath::Sqrt(SelectedDistanceSquared) / 100.0f,
         bAnimationActive ? TEXT("true") : TEXT("false"),
         SelectedPlayback->TimeOffset,

@@ -29,7 +29,8 @@ FULL_GROUND_EVIDENCE_MASK = 63
 EXPECTED_SCHEMA_VERSION = 2
 EXPECTED_CELL_COUNT = 6
 EXPECTED_DISTRICT_COUNT = 6
-EXPECTED_POPULATION = 300
+EXPECTED_PARENT_POPULATION = 300
+EXPECTED_GROUND_ONLY_POPULATION = 100
 TRUSTED_TOPOLOGY_ORIGINS = {"openstreetmap", "osm-semantic-recovery"}
 
 
@@ -452,9 +453,14 @@ def validate_certified_only(document: dict[str, Any]) -> None:
                 f"district crosses component gap: {district['district_id']}"
             )
         population += int(district["target_population"])
-    if population != EXPECTED_POPULATION:
+    expected_population = (
+        EXPECTED_GROUND_ONLY_POPULATION
+        if isinstance(document.get("ground_only_filter"), dict)
+        else EXPECTED_PARENT_POPULATION
+    )
+    if population != expected_population:
         raise CertifiedImportError(
-            f"certified districts allocate {population}, expected {EXPECTED_POPULATION}"
+            f"certified districts allocate {population}, expected {expected_population}"
         )
 
     provenance = document.get("source_provenance")
