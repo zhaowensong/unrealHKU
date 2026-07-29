@@ -34,6 +34,7 @@ UENUM(BlueprintType)
 enum class EOpenMassCrowdCentralPopulationGate : uint8
 {
     Gate30 UMETA(DisplayName = "30 People"),
+    Gate50 UMETA(DisplayName = "50 People"),
     Gate100 UMETA(DisplayName = "100 People"),
     Gate200 UMETA(DisplayName = "200 People"),
     Gate300 UMETA(DisplayName = "300 People")
@@ -71,6 +72,26 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Network|Admission")
     EOpenMassCrowdCentralPopulationGate CentralPopulationGate =
         EOpenMassCrowdCentralPopulationGate::Gate100;
+
+    /** Investor-facing delivery mode; keeps the certified 100-person dataset intact. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Open Mass Crowd|Investor Demo")
+    bool bInvestorDeliveryDemoEnabled = true;
+
+    /** Exact active population while investor delivery mode is enabled. */
+    UPROPERTY(
+        EditAnywhere,
+        BlueprintReadWrite,
+        Category = "Open Mass Crowd|Investor Demo",
+        meta = (ClampMin = "1", ClampMax = "100"))
+    int32 InvestorDeliveryPopulation = 50;
+
+    /** Maximum number of faint aggregate links; selected-person link is additional. */
+    UPROPERTY(
+        EditAnywhere,
+        BlueprintReadWrite,
+        Category = "Open Mass Crowd|Investor Demo|Visual",
+        meta = (ClampMin = "0", ClampMax = "30"))
+    int32 InvestorAssociationVisualBudget = 12;
 
     /** Maximum number of Central Mass entities created in one admission batch. */
     UPROPERTY(
@@ -389,6 +410,10 @@ public:
     UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Evidence")
     FString GetCentralProfileEvidenceSnapshot() const;
 
+    /** Complete delivery-mode truth for runtime acceptance and investor demo diagnostics. */
+    UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Investor Demo|Evidence")
+    FString GetInvestorDemoEvidenceSnapshot() const;
+
     UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Telemetry")
     float GetCentralFrameTimeP50Ms() const { return CentralFrameTimeP50Ms; }
 
@@ -571,6 +596,42 @@ private:
         float FrameTimeMilliseconds = 0.0f;
     };
 
+    enum class EInvestorPersonLocationState : uint8
+    {
+        Outdoor,
+        Entering,
+        Indoor,
+        Exiting
+    };
+
+    struct FInvestorStationRuntime
+    {
+        FName StationId = NAME_None;
+        FVector ConfiguredRoofPoint = FVector::ZeroVector;
+        FVector ValidatedRoofPoint = FVector::ZeroVector;
+        float CoverageRadiusCm = 0.0f;
+        FColor DisplayColor = FColor::White;
+        /** Physical presentation base offset above the latest live roof hit. */
+        float RoofErrorCm = -1.0f;
+        /** Cesium LOD drift from the stored Z hint; diagnostic, not mount error. */
+        float ConfiguredAnchorAdjustmentCm = 0.0f;
+        int32 ValidationAttempts = 0;
+        int32 ConsecutiveValidationMisses = 0;
+        bool bRoofValidated = false;
+    };
+
+    struct FInvestorPersonRuntime
+    {
+        EInvestorPersonLocationState LocationState =
+            EInvestorPersonLocationState::Outdoor;
+        int32 ServingStationIndex = INDEX_NONE;
+        float SignalQualityPercent = 0.0f;
+        float TransitionRemainingSeconds = 0.0f;
+        float EntryCooldownRemainingSeconds = 0.0f;
+        float VisibilityAlpha = 1.0f;
+        int32 CurrentApplicationIndex = 0;
+    };
+
     enum class ECesiumGroundProjectionResult : uint8
     {
         Accepted,
@@ -638,6 +699,23 @@ private:
     void CorrectMassGrounding();
     void SyncVisualActorsToMass();
     void UpdateCentralProfileInteraction();
+    int32 GetRequestedCentralPopulation() const;
+    void EnsureInvestorDemoInitialized();
+    void UpdateInvestorDemo(float DeltaSeconds);
+    void UpdateInvestorPersonStates(float DeltaSeconds);
+    void DrawInvestorDemoVisuals() const;
+    bool ValidateInvestorStationRoof(FInvestorStationRuntime& Station);
+    void SuppressLegacySignalActors();
+    void RestoreLegacySignalActors();
+    void ShowInvestorKPI();
+    void HideInvestorKPI();
+    FString GetInvestorPersonLocationLabel(int32 StableEntityIndex) const;
+    FString GetInvestorPersonStationLabel(int32 StableEntityIndex) const;
+    FString GetInvestorPersonSignalLabel(int32 StableEntityIndex) const;
+    FString GetInvestorPersonApplication(int32 StableEntityIndex) const;
+    int32 GetInvestorConnectedCount() const;
+    int32 GetInvestorIndoorCount() const;
+    int32 GetInvestorValidatedStationCount() const;
     void ScheduleCentralSpawnRetry(const TCHAR* Reason);
     void RetrySpawn();
     void DestroyRuntimePopulation();
@@ -838,6 +916,21 @@ private:
     bool bCentralProfileHasPreviousControlRotation = false;
     FRotator CentralProfilePreviousControlRotation = FRotator::ZeroRotator;
     TSharedPtr<SWidget> CentralProfileViewportWidget;
+    TSharedPtr<SWidget> InvestorKPIViewportWidget;
+    TArray<FInvestorStationRuntime> InvestorStations;
+    TArray<FInvestorPersonRuntime> InvestorPeople;
+    FVector InvestorBuildingPortalLocation = FVector::ZeroVector;
+    TArray<TWeakObjectPtr<AActor>> InvestorSuppressedSignalActors;
+    TArray<uint8> InvestorSuppressedSignalPreviousHidden;
+    float InvestorNetworkUpdateAccumulator = 0.0f;
+    float InvestorRoofValidationAccumulator = 0.0f;
+    float InvestorProfileRefreshAccumulator = 0.0f;
+    float InvestorElapsedSeconds = 0.0f;
+    int32 InvestorBuildingEntryCount = 0;
+    int32 InvestorBuildingExitCount = 0;
+    int32 InvestorStationReacquisitionCount = 0;
+    bool bInvestorDemoInitialized = false;
+    bool bInvestorAutoProfileOpened = false;
     int32 GroundRetryCount = 0;
     float PathRefreshAccumulator = 0.0f;
     float GroundCorrectionAccumulator = 0.0f;

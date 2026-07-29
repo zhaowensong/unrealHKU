@@ -1,0 +1,294 @@
+{
+  "acceptance_video_created": false,
+  "captured_at_utc": "2026-07-29T19:11:19.736191+00:00",
+  "checks": {
+    "building_disconnect_and_reacquire": true,
+    "exact_50_ground_route_people": true,
+    "far_walk_animation_active": true,
+    "investor_profile_complete": true,
+    "legacy_signal_preserved_but_suppressed": true,
+    "live_person_station_association": true,
+    "no_severe_overlap": true,
+    "two_real_rooftop_stations": true,
+    "video_excluded": true
+  },
+  "first": {
+    "delivery": {
+      "building": {
+        "entering": 0,
+        "entry_events": 1,
+        "exit_events": 1,
+        "exiting": 0,
+        "indoor": 0,
+        "outdoor": 50,
+        "portal": {
+          "x": -150990.252,
+          "y": 243043.761,
+          "z": 330.943
+        },
+        "portal_grounded": true,
+        "station_reacquisitions": 1
+      },
+      "legacy_signal": {
+        "restorable": true,
+        "suppressed_actor_count": 3486
+      },
+      "mode_enabled": true,
+      "network": {
+        "association_visual_budget": 12,
+        "connected": 50,
+        "uncovered": 0
+      },
+      "passed": true,
+      "population": {
+        "admitted": 50,
+        "configured": 50,
+        "moving": 50,
+        "represented": 50,
+        "spawned": 50,
+        "vat_far_walking": 50
+      },
+      "profile": {
+        "anchor": "lower_left",
+        "required_fields_present": true,
+        "selected_index": 0,
+        "visible": true
+      },
+      "schema": "telecomtwin-investor-delivery-v1",
+      "stations": {
+        "items": [
+          {
+            "configured_anchor_lod_adjustment_cm": 3.714,
+            "configured_roof": {
+              "x": -160000.0,
+              "y": 247000.0,
+              "z": 12735.574
+            },
+            "consecutive_validation_misses": 0,
+            "coverage_radius_m": 230.0,
+            "roof_validated": true,
+            "station_id": "CENTRAL-ROOF-01",
+            "station_to_live_roof_offset_cm": 4.0,
+            "validated_roof": {
+              "x": -160000.0,
+              "y": 247000.0,
+              "z": 12739.288
+            },
+            "validation_attempts": 75
+          },
+          {
+            "configured_anchor_lod_adjustment_cm": 16.615,
+            "configured_roof": {
+              "x": -169000.0,
+              "y": 247000.0,
+              "z": 12382.011
+            },
+            "consecutive_validation_misses": 0,
+            "coverage_radius_m": 205.0,
+            "roof_validated": true,
+            "station_id": "CENTRAL-WEST-ROOF-02",
+            "station_to_live_roof_offset_cm": 4.0,
+            "validated_roof": {
+              "x": -169000.0,
+              "y": 247000.0,
+              "z": 12365.396
+            },
+            "validation_attempts": 75
+          }
+        ],
+        "maximum_roof_error_cm": 4.0,
+        "required": 2,
+        "validated": 2
+      },
+      "video_required": false
+    },
+    "ground": {
+      "invalid_positions": 0,
+      "overlap_agents": 0,
+      "overlap_pairs": 0,
+      "unsupported": 0
+    },
+    "profile": {
+      "age": 29,
+      "completed_round_trips": 0,
+      "current_app": "WhatsApp",
+      "district": "district-central-r0-c0",
+      "favorite_software": "Python",
+      "gender": "女  ♀",
+      "glass_panel_visible": true,
+      "location_state": "OUTDOOR · CENTRAL STREET",
+      "name": "陈嘉怡",
+      "occupation": "数字孪生研究员",
+      "panel_anchor": "lower_left",
+      "person_id": "HK-C-001",
+      "round_trip_m": 108.429,
+      "route_leg": "outbound",
+      "serving_station": "CENTRAL-ROOF-01",
+      "signal_quality": "50% · GOOD",
+      "stable_index": 0,
+      "valid": true
+    },
+    "vat": {
+      "animation_active": true,
+      "current_frame": 81.702393,
+      "distance_m": 366.38,
+      "end_frame": 98.0,
+      "location": {
+        "x": -175677.938,
+        "y": 261816.115,
+        "z": 340.645
+      },
+      "person_id": "HK-C-042",
+      "play_rate": 1.35,
+      "representation": "VAT",
+      "speed_cm_s": 122.0,
+      "stable_index": 41,
+      "start_frame": 0.0,
+      "time_offset": 2.872284,
+      "valid": true,
+      "world_time_seconds": 43.145058
+    },
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
+  },
+  "map_modified": false,
+  "passed": true,
+  "schema": "telecomtwin-investor-delivery-acceptance-v1",
+  "second": {
+    "delivery": {
+      "building": {
+        "entering": 0,
+        "entry_events": 2,
+        "exit_events": 1,
+        "exiting": 0,
+        "indoor": 1,
+        "outdoor": 49,
+        "portal": {
+          "x": -150990.252,
+          "y": 243043.761,
+          "z": 330.943
+        },
+        "portal_grounded": true,
+        "station_reacquisitions": 1
+      },
+      "legacy_signal": {
+        "restorable": true,
+        "suppressed_actor_count": 3486
+      },
+      "mode_enabled": true,
+      "network": {
+        "association_visual_budget": 12,
+        "connected": 49,
+        "uncovered": 0
+      },
+      "passed": true,
+      "population": {
+        "admitted": 50,
+        "configured": 50,
+        "moving": 50,
+        "represented": 50,
+        "spawned": 50,
+        "vat_far_walking": 50
+      },
+      "profile": {
+        "anchor": "lower_left",
+        "required_fields_present": true,
+        "selected_index": 0,
+        "visible": true
+      },
+      "schema": "telecomtwin-investor-delivery-v1",
+      "stations": {
+        "items": [
+          {
+            "configured_anchor_lod_adjustment_cm": 3.714,
+            "configured_roof": {
+              "x": -160000.0,
+              "y": 247000.0,
+              "z": 12735.574
+            },
+            "consecutive_validation_misses": 0,
+            "coverage_radius_m": 230.0,
+            "roof_validated": true,
+            "station_id": "CENTRAL-ROOF-01",
+            "station_to_live_roof_offset_cm": 4.0,
+            "validated_roof": {
+              "x": -160000.0,
+              "y": 247000.0,
+              "z": 12739.288
+            },
+            "validation_attempts": 103
+          },
+          {
+            "configured_anchor_lod_adjustment_cm": 16.615,
+            "configured_roof": {
+              "x": -169000.0,
+              "y": 247000.0,
+              "z": 12382.011
+            },
+            "consecutive_validation_misses": 0,
+            "coverage_radius_m": 205.0,
+            "roof_validated": true,
+            "station_id": "CENTRAL-WEST-ROOF-02",
+            "station_to_live_roof_offset_cm": 4.0,
+            "validated_roof": {
+              "x": -169000.0,
+              "y": 247000.0,
+              "z": 12365.396
+            },
+            "validation_attempts": 103
+          }
+        ],
+        "maximum_roof_error_cm": 4.0,
+        "required": 2,
+        "validated": 2
+      },
+      "video_required": false
+    },
+    "ground": {
+      "invalid_positions": 0,
+      "overlap_agents": 0,
+      "overlap_pairs": 0,
+      "unsupported": 0
+    },
+    "profile": {
+      "age": 29,
+      "completed_round_trips": 0,
+      "current_app": "Microsoft Teams · INDOOR",
+      "district": "district-central-r0-c0",
+      "favorite_software": "Python",
+      "gender": "女  ♀",
+      "glass_panel_visible": true,
+      "location_state": "INDOOR · 室内（外部基站已断开）",
+      "name": "陈嘉怡",
+      "occupation": "数字孪生研究员",
+      "panel_anchor": "lower_left",
+      "person_id": "HK-C-001",
+      "round_trip_m": 108.429,
+      "route_leg": "return",
+      "serving_station": "DISCONNECTED",
+      "signal_quality": "0% · NO EXTERNAL SIGNAL",
+      "stable_index": 0,
+      "valid": true
+    },
+    "vat": {
+      "animation_active": true,
+      "current_frame": 60.101074,
+      "distance_m": 374.012,
+      "end_frame": 97.0,
+      "location": {
+        "x": -175823.951,
+        "y": 262851.047,
+        "z": 301.246
+      },
+      "person_id": "HK-C-032",
+      "play_rate": 1.35,
+      "representation": "VAT",
+      "speed_cm_s": 46.586,
+      "stable_index": 31,
+      "start_frame": 0.0,
+      "time_offset": 2.331264,
+      "valid": true,
+      "world_time_seconds": 57.226785
+    },
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
+  }
+}

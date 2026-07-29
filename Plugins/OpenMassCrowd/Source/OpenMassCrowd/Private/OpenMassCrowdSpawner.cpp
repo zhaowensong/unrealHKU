@@ -16,8 +16,10 @@
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
 #include "Engine/GameViewportClient.h"
+#include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
 #include "Engine/StaticMesh.h"
+#include "EngineUtils.h"
 #include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
 #include "InputCoreTypes.h"
@@ -52,6 +54,7 @@
 #include "Widgets/Input/SButton.h"
 #include "Widgets/Layout/SBorder.h"
 #include "Widgets/Layout/SBox.h"
+#include "Widgets/Layout/SConstraintCanvas.h"
 #include "Widgets/Layout/SSeparator.h"
 #include "Widgets/SBoxPanel.h"
 #include "Widgets/SOverlay.h"
@@ -196,6 +199,18 @@ FString GetCentralPersonSoftware(const int32 StableEntityIndex)
         UE_ARRAY_COUNT(Software)];
 }
 
+FString GetCentralPersonGender(const int32 StableEntityIndex)
+{
+    return (FMath::Max(StableEntityIndex, 0) % 2) == 0
+        ? TEXT("女  ♀")
+        : TEXT("男  ♂");
+}
+
+int32 GetCentralPersonAge(const int32 StableEntityIndex)
+{
+    return 22 + (FMath::Max(StableEntityIndex, 0) * 11 + 7) % 39;
+}
+
 TSharedRef<SWidget> MakeCentralProfileRow(
     const FString& Label,
     const FString& Value,
@@ -204,7 +219,7 @@ TSharedRef<SWidget> MakeCentralProfileRow(
     return SNew(SBorder)
         .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
         .BorderBackgroundColor(FLinearColor(0.035f, 0.065f, 0.09f, 0.72f))
-        .Padding(FMargin(13.0f, 10.0f))
+        .Padding(FMargin(11.0f, 7.0f))
         [
             SNew(SHorizontalBox)
             + SHorizontalBox::Slot()
@@ -213,7 +228,7 @@ TSharedRef<SWidget> MakeCentralProfileRow(
             [
                 SNew(SBox)
                 .WidthOverride(3.0f)
-                .HeightOverride(34.0f)
+                .HeightOverride(28.0f)
                 [
                     SNew(SBorder)
                     .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
@@ -222,7 +237,7 @@ TSharedRef<SWidget> MakeCentralProfileRow(
             ]
             + SHorizontalBox::Slot()
             .FillWidth(1.0f)
-            .Padding(12.0f, 0.0f, 0.0f, 0.0f)
+            .Padding(9.0f, 0.0f, 0.0f, 0.0f)
             [
                 SNew(SVerticalBox)
                 + SVerticalBox::Slot()
@@ -230,16 +245,16 @@ TSharedRef<SWidget> MakeCentralProfileRow(
                 [
                     SNew(STextBlock)
                     .Text(FText::FromString(Label.ToUpper()))
-                    .Font(FCoreStyle::GetDefaultFontStyle("Regular", 9))
+                    .Font(FCoreStyle::GetDefaultFontStyle("Regular", 8))
                     .ColorAndOpacity(FLinearColor(0.45f, 0.65f, 0.72f, 1.0f))
                 ]
                 + SVerticalBox::Slot()
                 .AutoHeight()
-                .Padding(0.0f, 2.0f, 0.0f, 0.0f)
+                .Padding(0.0f, 1.0f, 0.0f, 0.0f)
                 [
                     SNew(STextBlock)
                     .Text(FText::FromString(Value))
-                    .Font(FCoreStyle::GetDefaultFontStyle("Bold", 15))
+                    .Font(FCoreStyle::GetDefaultFontStyle("Bold", 13))
                     .ColorAndOpacity(FLinearColor(0.92f, 0.98f, 1.0f, 1.0f))
                 ]
             ]
@@ -345,6 +360,9 @@ int32 GetCentralGatePopulation(const EOpenMassCrowdCentralPopulationGate Gate)
     {
     case EOpenMassCrowdCentralPopulationGate::Gate30:
         RequestedPopulation = 30;
+        break;
+    case EOpenMassCrowdCentralPopulationGate::Gate50:
+        RequestedPopulation = 50;
         break;
     case EOpenMassCrowdCentralPopulationGate::Gate100:
         RequestedPopulation = 100;
@@ -822,6 +840,18 @@ AOpenMassCrowdSpawner::AOpenMassCrowdSpawner()
     Tags.Add(TEXT("HK_OpenMass_Crowd_Demo"));
 }
 
+int32 AOpenMassCrowdSpawner::GetRequestedCentralPopulation() const
+{
+    if (bInvestorDeliveryDemoEnabled)
+    {
+        return FMath::Clamp(
+            InvestorDeliveryPopulation,
+            1,
+            FullCentralPopulation);
+    }
+    return GetCentralGatePopulation(CentralPopulationGate);
+}
+
 void AOpenMassCrowdSpawner::ConfigureOfficialCitySampleVisual()
 {
     VisualVariants.Reset();
@@ -871,6 +901,8 @@ void AOpenMassCrowdSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason)
     GetWorldTimerManager().ClearTimer(SpawnRetryTimer);
     GetWorldTimerManager().ClearTimer(CentralAdmissionTimer);
     HideCentralProfile();
+    HideInvestorKPI();
+    RestoreLegacySignalActors();
     DestroyRuntimePopulation();
     Super::EndPlay(EndPlayReason);
 }
@@ -878,6 +910,15 @@ void AOpenMassCrowdSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason)
 void AOpenMassCrowdSpawner::Tick(const float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
+
+    if (!bInvestorDeliveryDemoEnabled && bInvestorDemoInitialized)
+    {
+        HideInvestorKPI();
+        RestoreLegacySignalActors();
+        bInvestorDemoInitialized = false;
+        InvestorPeople.Reset();
+        InvestorStations.Reset();
+    }
 
     if (SpawnedEntities.IsEmpty())
     {
@@ -929,6 +970,13 @@ void AOpenMassCrowdSpawner::Tick(const float DeltaSeconds)
     {
         GroundCorrectionAccumulator = 0.0f;
         CorrectMassGrounding();
+    }
+
+    if (NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache &&
+        bInvestorDeliveryDemoEnabled && bCentralAdmissionReleased)
+    {
+        EnsureInvestorDemoInitialized();
+        UpdateInvestorDemo(DeltaSeconds);
     }
 
     // Spawned actor representations are positioned when Mass creates or swaps
@@ -4626,7 +4674,7 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
     const bool bCentralAdmission =
         NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache;
     const int32 RequestedPopulation = bCentralAdmission
-        ? GetCentralGatePopulation(CentralPopulationGate)
+        ? GetRequestedCentralPopulation()
         : PopulationCount;
     if (RequestedPopulation <= 0)
     {
@@ -4958,7 +5006,7 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
 
 bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
 {
-    CentralAdmissionTargetCount = GetCentralGatePopulation(CentralPopulationGate);
+    CentralAdmissionTargetCount = GetRequestedCentralPopulation();
     if (CentralAdmissionTargetCount <= 0 ||
         RuntimeCentralDistricts.Num() != RequiredCentralSpawnDistrictCount ||
         CentralRuntimeTemplateIds.IsEmpty() ||
@@ -10327,6 +10375,771 @@ void AOpenMassCrowdSpawner::SyncVisualActorsToMass()
     }
 }
 
+void AOpenMassCrowdSpawner::EnsureInvestorDemoInitialized()
+{
+    if (bInvestorDemoInitialized || SpawnedEntities.IsEmpty() ||
+        !bCentralAdmissionReleased)
+    {
+        return;
+    }
+
+    InvestorStations.Reset();
+    FInvestorStationRuntime& Hero = InvestorStations.AddDefaulted_GetRef();
+    Hero.StationId = TEXT("CENTRAL-ROOF-01");
+    Hero.ConfiguredRoofPoint = FVector(-160000.0, 247000.0, 12735.574);
+    Hero.CoverageRadiusCm = 23000.0f;
+    Hero.DisplayColor = FColor(25, 225, 245);
+
+    FInvestorStationRuntime& Support = InvestorStations.AddDefaulted_GetRef();
+    Support.StationId = TEXT("CENTRAL-WEST-ROOF-02");
+    Support.ConfiguredRoofPoint = FVector(-169000.0, 247000.0, 12382.011);
+    Support.CoverageRadiusCm = 20500.0f;
+    Support.DisplayColor = FColor(255, 174, 42);
+
+    InvestorPeople.Reset();
+    InvestorPeople.SetNum(SpawnedEntities.Num());
+    for (int32 StableIndex = 0; StableIndex < InvestorPeople.Num(); ++StableIndex)
+    {
+        InvestorPeople[StableIndex].CurrentApplicationIndex =
+            (StableIndex * 7 + 3) % 8;
+    }
+    if (!CentralSpawnPositionPlan.IsEmpty())
+    {
+        InvestorBuildingPortalLocation = CentralSpawnPositionPlan[0];
+    }
+
+    SuppressLegacySignalActors();
+    ShowInvestorKPI();
+    InvestorNetworkUpdateAccumulator = 0.0f;
+    InvestorRoofValidationAccumulator = 0.0f;
+    InvestorProfileRefreshAccumulator = 0.0f;
+    InvestorElapsedSeconds = 0.0f;
+    InvestorBuildingEntryCount = 0;
+    InvestorBuildingExitCount = 0;
+    InvestorStationReacquisitionCount = 0;
+    bInvestorAutoProfileOpened = false;
+    bInvestorDemoInitialized = true;
+
+    UE_LOG(
+        LogTemp,
+        Warning,
+        TEXT("INVESTOR_TELECOM_DEMO_INITIALIZED people=%d stations=%d portal=(%.1f,%.1f,%.1f) legacy_signal_hidden=%d"),
+        InvestorPeople.Num(),
+        InvestorStations.Num(),
+        InvestorBuildingPortalLocation.X,
+        InvestorBuildingPortalLocation.Y,
+        InvestorBuildingPortalLocation.Z,
+        InvestorSuppressedSignalActors.Num());
+}
+
+bool AOpenMassCrowdSpawner::ValidateInvestorStationRoof(
+    FInvestorStationRuntime& Station)
+{
+    ++Station.ValidationAttempts;
+    TArray<UPrimitiveComponent*> Components;
+    GatherSpatiallyRelevantCesiumComponents(
+        Station.ConfiguredRoofPoint,
+        Components);
+    const auto RecordMiss = [&Station]()
+    {
+        ++Station.ConsecutiveValidationMisses;
+        if (Station.ConsecutiveValidationMisses >= 4)
+        {
+            Station.bRoofValidated = false;
+        }
+        return false;
+    };
+    if (Components.IsEmpty())
+    {
+        return RecordMiss();
+    }
+
+    const FVector Start =
+        Station.ConfiguredRoofPoint + FVector(0.0, 0.0, 5000.0);
+    const FVector End =
+        Station.ConfiguredRoofPoint - FVector(0.0, 0.0, 5000.0);
+    FCollisionQueryParams Params(
+        SCENE_QUERY_STAT(InvestorTelecomRoof),
+        true,
+        this);
+    Params.AddIgnoredActor(this);
+    float HighestRoofZ = -TNumericLimits<float>::Max();
+    FHitResult BestHit;
+    bool bFound = false;
+    for (UPrimitiveComponent* Component : Components)
+    {
+        if (!IsCesiumQueryComponent(Component, GetWorld()))
+        {
+            continue;
+        }
+        FHitResult Hit;
+        if (Component->LineTraceComponent(Hit, Start, End, Params) &&
+            Hit.ImpactNormal.Z >= 0.7f &&
+            Hit.ImpactPoint.Z >= 5000.0f)
+        {
+            // Cesium replaces photogrammetry tiles as LOD changes. The stored
+            // Z is only a search hint; using the highest current walkable hit
+            // at the configured XY keeps the node on the real visible roof.
+            if (Hit.ImpactPoint.Z > HighestRoofZ)
+            {
+                HighestRoofZ = Hit.ImpactPoint.Z;
+                BestHit = Hit;
+                bFound = true;
+            }
+        }
+    }
+
+    if (!bFound)
+    {
+        return RecordMiss();
+    }
+
+    const bool bWasValidated = Station.bRoofValidated;
+    const float PreviousRoofZ = Station.ValidatedRoofPoint.Z;
+    Station.ValidatedRoofPoint = BestHit.ImpactPoint;
+    constexpr float PresentationBaseOffsetCm = 4.0f;
+    Station.RoofErrorCm = PresentationBaseOffsetCm;
+    Station.ConfiguredAnchorAdjustmentCm = FMath::Abs(
+        BestHit.ImpactPoint.Z - Station.ConfiguredRoofPoint.Z);
+    Station.ConsecutiveValidationMisses = 0;
+    Station.bRoofValidated = true;
+    if (!bWasValidated ||
+        FMath::Abs(PreviousRoofZ - Station.ValidatedRoofPoint.Z) > 50.0f)
+    {
+        UE_LOG(
+            LogTemp,
+            Warning,
+            TEXT("INVESTOR_TELECOM_ROOF_VALIDATED station=%s attempts=%d mount_offset_cm=%.2f lod_adjustment_cm=%.2f point=(%.1f,%.1f,%.1f) component=%s live_revalidation=true"),
+            *Station.StationId.ToString(),
+            Station.ValidationAttempts,
+            Station.RoofErrorCm,
+            Station.ConfiguredAnchorAdjustmentCm,
+            Station.ValidatedRoofPoint.X,
+            Station.ValidatedRoofPoint.Y,
+            Station.ValidatedRoofPoint.Z,
+            *GetNameSafe(BestHit.GetComponent()));
+    }
+    return true;
+}
+
+void AOpenMassCrowdSpawner::UpdateInvestorDemo(const float DeltaSeconds)
+{
+    if (!bInvestorDemoInitialized || !GetWorld())
+    {
+        return;
+    }
+
+    InvestorElapsedSeconds += FMath::Max(DeltaSeconds, 0.0f);
+    InvestorRoofValidationAccumulator += DeltaSeconds;
+    if (InvestorRoofValidationAccumulator >= 0.5f)
+    {
+        InvestorRoofValidationAccumulator = 0.0f;
+        for (FInvestorStationRuntime& Station : InvestorStations)
+        {
+            ValidateInvestorStationRoof(Station);
+        }
+    }
+
+    InvestorNetworkUpdateAccumulator += DeltaSeconds;
+    if (InvestorNetworkUpdateAccumulator >= 0.2f)
+    {
+        const float StepSeconds = InvestorNetworkUpdateAccumulator;
+        InvestorNetworkUpdateAccumulator = 0.0f;
+        UpdateInvestorPersonStates(StepSeconds);
+    }
+
+    InvestorProfileRefreshAccumulator += DeltaSeconds;
+    if (!bInvestorAutoProfileOpened && InvestorElapsedSeconds >= 3.0f &&
+        SpawnedEntities.IsValidIndex(0))
+    {
+        bInvestorAutoProfileOpened = ShowCentralProfileByStableIndex(0);
+        InvestorProfileRefreshAccumulator = 0.0f;
+    }
+    else if (SelectedCentralProfileEntityIndex != INDEX_NONE &&
+        InvestorProfileRefreshAccumulator >= 0.75f)
+    {
+        const int32 StableIndex = SelectedCentralProfileEntityIndex;
+        InvestorProfileRefreshAccumulator = 0.0f;
+        ShowCentralProfileByStableIndex(StableIndex);
+    }
+
+    DrawInvestorDemoVisuals();
+}
+
+void AOpenMassCrowdSpawner::UpdateInvestorPersonStates(const float DeltaSeconds)
+{
+    UMassSpawnerSubsystem* SpawnerSubsystem =
+        UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
+    if (!SpawnerSubsystem || InvestorPeople.Num() != SpawnedEntities.Num())
+    {
+        return;
+    }
+    FMassEntityManager& EntityManager =
+        SpawnerSubsystem->GetEntityManagerChecked();
+
+    for (int32 StableIndex = 0;
+         StableIndex < InvestorPeople.Num();
+         ++StableIndex)
+    {
+        const FMassEntityHandle Entity = SpawnedEntities[StableIndex];
+        if (!EntityManager.IsEntityValid(Entity))
+        {
+            continue;
+        }
+        FTransformFragment* Transform =
+            EntityManager.GetFragmentDataPtr<FTransformFragment>(Entity);
+        if (!Transform)
+        {
+            continue;
+        }
+
+        FInvestorPersonRuntime& Person = InvestorPeople[StableIndex];
+        const FVector PersonLocation = Transform->GetTransform().GetLocation();
+        Person.EntryCooldownRemainingSeconds = FMath::Max(
+            0.0f,
+            Person.EntryCooldownRemainingSeconds - DeltaSeconds);
+
+        // Stable person zero is the repeatable building-boundary story target.
+        // Its portal is its certified route spawn, so entry never fabricates a
+        // roof/bridge path and remains on the proven ground network.
+        if (StableIndex == 0 &&
+            Person.LocationState == EInvestorPersonLocationState::Outdoor &&
+            InvestorElapsedSeconds >= 6.0f &&
+            Person.EntryCooldownRemainingSeconds <= 0.0f &&
+            FVector::DistSquared2D(
+                PersonLocation,
+                InvestorBuildingPortalLocation) <= FMath::Square(1500.0f))
+        {
+            Person.LocationState = EInvestorPersonLocationState::Entering;
+            Person.TransitionRemainingSeconds = 1.25f;
+            Person.ServingStationIndex = INDEX_NONE;
+            Person.SignalQualityPercent = 0.0f;
+            ++InvestorBuildingEntryCount;
+            UE_LOG(
+                LogTemp,
+                Warning,
+                TEXT("INVESTOR_TELECOM_BUILDING_ENTER person=%s portal=(%.1f,%.1f,%.1f)"),
+                *GetCentralPersonId(StableIndex),
+                InvestorBuildingPortalLocation.X,
+                InvestorBuildingPortalLocation.Y,
+                InvestorBuildingPortalLocation.Z);
+        }
+
+        switch (Person.LocationState)
+        {
+        case EInvestorPersonLocationState::Entering:
+            Person.TransitionRemainingSeconds -= DeltaSeconds;
+            Person.VisibilityAlpha = FMath::Clamp(
+                Person.TransitionRemainingSeconds / 1.25f,
+                0.0f,
+                1.0f);
+            if (Person.TransitionRemainingSeconds <= 0.0f)
+            {
+                Person.LocationState = EInvestorPersonLocationState::Indoor;
+                Person.TransitionRemainingSeconds = 5.0f;
+                Person.VisibilityAlpha = 0.0f;
+            }
+            break;
+        case EInvestorPersonLocationState::Indoor:
+            Person.TransitionRemainingSeconds -= DeltaSeconds;
+            Person.VisibilityAlpha = 0.0f;
+            if (Person.TransitionRemainingSeconds <= 0.0f)
+            {
+                Person.LocationState = EInvestorPersonLocationState::Exiting;
+                Person.TransitionRemainingSeconds = 1.25f;
+            }
+            break;
+        case EInvestorPersonLocationState::Exiting:
+            Person.TransitionRemainingSeconds -= DeltaSeconds;
+            Person.VisibilityAlpha = FMath::Clamp(
+                1.0f - Person.TransitionRemainingSeconds / 1.25f,
+                0.0f,
+                1.0f);
+            if (Person.TransitionRemainingSeconds <= 0.0f)
+            {
+                Person.LocationState = EInvestorPersonLocationState::Outdoor;
+                Person.EntryCooldownRemainingSeconds = 24.0f;
+                Person.VisibilityAlpha = 1.0f;
+                ++InvestorBuildingExitCount;
+                ++InvestorStationReacquisitionCount;
+                UE_LOG(
+                    LogTemp,
+                    Warning,
+                    TEXT("INVESTOR_TELECOM_BUILDING_EXIT person=%s rescan=nearest_station"),
+                    *GetCentralPersonId(StableIndex));
+            }
+            break;
+        case EInvestorPersonLocationState::Outdoor:
+        default:
+            Person.VisibilityAlpha = 1.0f;
+            break;
+        }
+
+        if (Person.LocationState == EInvestorPersonLocationState::Outdoor)
+        {
+            int32 BestStationIndex = INDEX_NONE;
+            float BestDistanceCm = TNumericLimits<float>::Max();
+            for (int32 StationIndex = 0;
+                 StationIndex < InvestorStations.Num();
+                 ++StationIndex)
+            {
+                const FInvestorStationRuntime& Station =
+                    InvestorStations[StationIndex];
+                if (!Station.bRoofValidated)
+                {
+                    continue;
+                }
+                const float DistanceCm = FVector::Dist2D(
+                    PersonLocation,
+                    Station.ValidatedRoofPoint);
+                if (DistanceCm <= Station.CoverageRadiusCm &&
+                    DistanceCm < BestDistanceCm)
+                {
+                    BestDistanceCm = DistanceCm;
+                    BestStationIndex = StationIndex;
+                }
+            }
+
+            constexpr float HandoverHysteresisCm = 1800.0f;
+            if (InvestorStations.IsValidIndex(Person.ServingStationIndex))
+            {
+                const FInvestorStationRuntime& Current =
+                    InvestorStations[Person.ServingStationIndex];
+                const float CurrentDistanceCm = FVector::Dist2D(
+                    PersonLocation,
+                    Current.ValidatedRoofPoint);
+                if (Current.bRoofValidated &&
+                    CurrentDistanceCm <= Current.CoverageRadiusCm &&
+                    (BestStationIndex == INDEX_NONE ||
+                     CurrentDistanceCm <=
+                        BestDistanceCm + HandoverHysteresisCm))
+                {
+                    BestStationIndex = Person.ServingStationIndex;
+                    BestDistanceCm = CurrentDistanceCm;
+                }
+            }
+
+            Person.ServingStationIndex = BestStationIndex;
+            if (InvestorStations.IsValidIndex(BestStationIndex))
+            {
+                const float Radius =
+                    InvestorStations[BestStationIndex].CoverageRadiusCm;
+                Person.SignalQualityPercent = FMath::Clamp(
+                    (1.0f - BestDistanceCm / Radius) * 100.0f,
+                    8.0f,
+                    100.0f);
+            }
+            else
+            {
+                Person.SignalQualityPercent = 0.0f;
+            }
+        }
+        else
+        {
+            Person.ServingStationIndex = INDEX_NONE;
+            Person.SignalQualityPercent = 0.0f;
+        }
+
+        FTransform VisibleTransform = Transform->GetTransform();
+        const float VisibleScale = FMath::Max(Person.VisibilityAlpha, 0.001f);
+        VisibleTransform.SetScale3D(FVector(VisibleScale));
+        Transform->SetTransform(VisibleTransform);
+    }
+}
+
+void AOpenMassCrowdSpawner::DrawInvestorDemoVisuals() const
+{
+    UWorld* World = GetWorld();
+    if (!World || !bInvestorDemoInitialized)
+    {
+        return;
+    }
+
+    const float Pulse = 0.5f + 0.5f *
+        FMath::Sin(InvestorElapsedSeconds * 2.2f);
+    const float GroundPlaneZ = InvestorBuildingPortalLocation.Z + 20.0f;
+    for (const FInvestorStationRuntime& Station : InvestorStations)
+    {
+        if (!Station.bRoofValidated)
+        {
+            continue;
+        }
+        const FVector Roof = Station.ValidatedRoofPoint + FVector(0.0, 0.0, 4.0);
+        const FVector Node = Roof + FVector(0.0, 0.0, 760.0);
+        const FVector Beacon = Roof + FVector(0.0, 0.0, 3600.0);
+        DrawDebugLine(World, Roof, Node, Station.DisplayColor, false, -1.0f, 0, 7.0f);
+        DrawDebugLine(World, Roof + FVector(-180.0, 0.0, 0.0),
+            Node, Station.DisplayColor, false, -1.0f, 0, 2.0f);
+        DrawDebugLine(World, Roof + FVector(180.0, 0.0, 0.0),
+            Node, Station.DisplayColor, false, -1.0f, 0, 2.0f);
+        DrawDebugSphere(World, Node, 110.0f + 30.0f * Pulse, 18,
+            Station.DisplayColor, false, -1.0f, 0, 4.0f);
+        DrawDebugLine(World, Node, Beacon, Station.DisplayColor,
+            false, -1.0f, 0, 1.5f);
+        for (int32 RingIndex = 0; RingIndex < 3; ++RingIndex)
+        {
+            const float RingRadius = 320.0f +
+                FMath::Fmod(
+                    InvestorElapsedSeconds * 380.0f + RingIndex * 480.0f,
+                    1440.0f);
+            DrawDebugCircle(World, Roof + FVector(0.0, 0.0, 12.0),
+                RingRadius, 48, Station.DisplayColor, false, -1.0f, 0,
+                2.0f, FVector(0.0, 1.0, 0.0), FVector(0.0, 0.0, 1.0), false);
+        }
+        DrawDebugCircle(World,
+            FVector(Station.ValidatedRoofPoint.X,
+                Station.ValidatedRoofPoint.Y, GroundPlaneZ),
+            Station.CoverageRadiusCm,
+            96,
+            Station.DisplayColor,
+            false,
+            -1.0f,
+            0,
+            1.25f,
+            FVector(0.0, 1.0, 0.0),
+            FVector(0.0, 0.0, 1.0),
+            false);
+        DrawDebugString(World, Node + FVector(0.0, 0.0, 230.0),
+            FString::Printf(TEXT("%s  |  ROOFTOP ONLINE"),
+                *Station.StationId.ToString()),
+            nullptr, Station.DisplayColor, 0.0f, true, 1.15f);
+    }
+
+    const FColor PortalColor = GetInvestorIndoorCount() > 0
+        ? FColor(255, 174, 42)
+        : FColor(65, 240, 165);
+    const FVector PortalBase = InvestorBuildingPortalLocation +
+        FVector(0.0, 0.0, 8.0);
+    DrawDebugLine(World, PortalBase + FVector(-120.0, 0.0, 0.0),
+        PortalBase + FVector(-120.0, 0.0, 240.0), PortalColor,
+        false, -1.0f, 0, 4.0f);
+    DrawDebugLine(World, PortalBase + FVector(120.0, 0.0, 0.0),
+        PortalBase + FVector(120.0, 0.0, 240.0), PortalColor,
+        false, -1.0f, 0, 4.0f);
+    DrawDebugLine(World, PortalBase + FVector(-120.0, 0.0, 240.0),
+        PortalBase + FVector(120.0, 0.0, 240.0), PortalColor,
+        false, -1.0f, 0, 4.0f);
+    DrawDebugCircle(World, PortalBase,
+        170.0f + Pulse * 80.0f, 32, PortalColor,
+        false, -1.0f, 0, 2.5f,
+        FVector(0.0, 1.0, 0.0), FVector(0.0, 0.0, 1.0), false);
+    DrawDebugString(World, PortalBase + FVector(0.0, 0.0, 285.0),
+        TEXT("BUILDING BOUNDARY  |  INDOOR TRANSITION"),
+        nullptr, PortalColor, 0.0f, true, 1.0f);
+
+    UMassSpawnerSubsystem* SpawnerSubsystem =
+        UWorld::GetSubsystem<UMassSpawnerSubsystem>(World);
+    if (!SpawnerSubsystem)
+    {
+        return;
+    }
+    FMassEntityManager& EntityManager =
+        SpawnerSubsystem->GetEntityManagerChecked();
+    const int32 VisualStride = FMath::Max(
+        1,
+        FMath::CeilToInt(
+            static_cast<float>(InvestorPeople.Num()) /
+            static_cast<float>(FMath::Max(InvestorAssociationVisualBudget, 1))));
+    const int32 VisualPhase = static_cast<int32>(InvestorElapsedSeconds * 0.5f) %
+        VisualStride;
+    for (int32 StableIndex = 0;
+         StableIndex < InvestorPeople.Num();
+         ++StableIndex)
+    {
+        const FInvestorPersonRuntime& Person = InvestorPeople[StableIndex];
+        if (!InvestorStations.IsValidIndex(Person.ServingStationIndex) ||
+            !SpawnedEntities.IsValidIndex(StableIndex))
+        {
+            continue;
+        }
+        const FMassEntityHandle Entity = SpawnedEntities[StableIndex];
+        if (!EntityManager.IsEntityValid(Entity))
+        {
+            continue;
+        }
+        const FTransformFragment* Transform =
+            EntityManager.GetFragmentDataPtr<FTransformFragment>(Entity);
+        if (!Transform)
+        {
+            continue;
+        }
+        const bool bSelected = StableIndex == SelectedCentralProfileEntityIndex;
+        if (!bSelected &&
+            (InvestorAssociationVisualBudget <= 0 ||
+             StableIndex % VisualStride != VisualPhase))
+        {
+            continue;
+        }
+        const FInvestorStationRuntime& Station =
+            InvestorStations[Person.ServingStationIndex];
+        const FVector PersonPoint =
+            Transform->GetTransform().GetLocation() + FVector(0.0, 0.0, 100.0);
+        const FVector StationPoint =
+            Station.ValidatedRoofPoint + FVector(0.0, 0.0, 780.0);
+        const FColor LinkColor = bSelected
+            ? FColor(245, 255, 255)
+            : FColor(
+                Station.DisplayColor.R / 2,
+                Station.DisplayColor.G / 2,
+                Station.DisplayColor.B / 2,
+                150);
+        DrawDebugLine(World, PersonPoint, StationPoint, LinkColor,
+            false, -1.0f, 0, bSelected ? 4.5f : 0.75f);
+        if (bSelected)
+        {
+            DrawDebugCircle(World,
+                Transform->GetTransform().GetLocation() + FVector(0.0, 0.0, 5.0),
+                65.0f + Pulse * 24.0f, 28, FColor(245, 255, 255),
+                false, -1.0f, 0, 3.0f,
+                FVector(0.0, 1.0, 0.0), FVector(0.0, 0.0, 1.0), false);
+        }
+    }
+}
+
+void AOpenMassCrowdSpawner::SuppressLegacySignalActors()
+{
+    InvestorSuppressedSignalActors.Reset();
+    InvestorSuppressedSignalPreviousHidden.Reset();
+    if (!GetWorld())
+    {
+        return;
+    }
+    for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+    {
+        AActor* Actor = *It;
+        FString Identity = Actor->GetName();
+#if WITH_EDITOR
+        Identity += TEXT(" ") + Actor->GetActorLabel();
+#endif
+        if (!Identity.Contains(TEXT("SIG_Ray_")) &&
+            !Identity.Contains(TEXT("SIG_RaySegment_")) &&
+            !Identity.Contains(TEXT("SIG_Source_")))
+        {
+            continue;
+        }
+        InvestorSuppressedSignalActors.Add(Actor);
+        InvestorSuppressedSignalPreviousHidden.Add(Actor->IsHidden() ? 1 : 0);
+        Actor->SetActorHiddenInGame(true);
+    }
+}
+
+void AOpenMassCrowdSpawner::RestoreLegacySignalActors()
+{
+    for (int32 Index = 0;
+         Index < InvestorSuppressedSignalActors.Num();
+         ++Index)
+    {
+        if (AActor* Actor = InvestorSuppressedSignalActors[Index].Get())
+        {
+            const bool bWasHidden =
+                InvestorSuppressedSignalPreviousHidden.IsValidIndex(Index) &&
+                InvestorSuppressedSignalPreviousHidden[Index] != 0;
+            Actor->SetActorHiddenInGame(bWasHidden);
+        }
+    }
+    InvestorSuppressedSignalActors.Reset();
+    InvestorSuppressedSignalPreviousHidden.Reset();
+}
+
+int32 AOpenMassCrowdSpawner::GetInvestorConnectedCount() const
+{
+    int32 Count = 0;
+    for (const FInvestorPersonRuntime& Person : InvestorPeople)
+    {
+        Count += Person.ServingStationIndex != INDEX_NONE ? 1 : 0;
+    }
+    return Count;
+}
+
+int32 AOpenMassCrowdSpawner::GetInvestorIndoorCount() const
+{
+    int32 Count = 0;
+    for (const FInvestorPersonRuntime& Person : InvestorPeople)
+    {
+        Count += Person.LocationState != EInvestorPersonLocationState::Outdoor
+            ? 1
+            : 0;
+    }
+    return Count;
+}
+
+int32 AOpenMassCrowdSpawner::GetInvestorValidatedStationCount() const
+{
+    int32 Count = 0;
+    for (const FInvestorStationRuntime& Station : InvestorStations)
+    {
+        Count += Station.bRoofValidated ? 1 : 0;
+    }
+    return Count;
+}
+
+FString AOpenMassCrowdSpawner::GetInvestorPersonLocationLabel(
+    const int32 StableEntityIndex) const
+{
+    if (!InvestorPeople.IsValidIndex(StableEntityIndex))
+    {
+        return TEXT("OUTDOOR · INITIALIZING");
+    }
+    switch (InvestorPeople[StableEntityIndex].LocationState)
+    {
+    case EInvestorPersonLocationState::Entering:
+        return TEXT("ENTERING BUILDING · 正在进入");
+    case EInvestorPersonLocationState::Indoor:
+        return TEXT("INDOOR · 室内（外部基站已断开）");
+    case EInvestorPersonLocationState::Exiting:
+        return TEXT("EXITING BUILDING · 正在离开");
+    case EInvestorPersonLocationState::Outdoor:
+    default:
+        return TEXT("OUTDOOR · CENTRAL STREET");
+    }
+}
+
+FString AOpenMassCrowdSpawner::GetInvestorPersonStationLabel(
+    const int32 StableEntityIndex) const
+{
+    if (!InvestorPeople.IsValidIndex(StableEntityIndex))
+    {
+        return TEXT("SCANNING");
+    }
+    const int32 StationIndex =
+        InvestorPeople[StableEntityIndex].ServingStationIndex;
+    return InvestorStations.IsValidIndex(StationIndex)
+        ? InvestorStations[StationIndex].StationId.ToString()
+        : TEXT("DISCONNECTED");
+}
+
+FString AOpenMassCrowdSpawner::GetInvestorPersonSignalLabel(
+    const int32 StableEntityIndex) const
+{
+    if (!InvestorPeople.IsValidIndex(StableEntityIndex) ||
+        InvestorPeople[StableEntityIndex].ServingStationIndex == INDEX_NONE)
+    {
+        return TEXT("0% · NO EXTERNAL SIGNAL");
+    }
+    const float Quality =
+        InvestorPeople[StableEntityIndex].SignalQualityPercent;
+    const TCHAR* QualityLabel = Quality >= 70.0f
+        ? TEXT("EXCELLENT")
+        : (Quality >= 40.0f ? TEXT("GOOD") : TEXT("EDGE"));
+    return FString::Printf(TEXT("%.0f%% · %s"), Quality, QualityLabel);
+}
+
+FString AOpenMassCrowdSpawner::GetInvestorPersonApplication(
+    const int32 StableEntityIndex) const
+{
+    static const TCHAR* Apps[] = {
+        TEXT("Octopus 八达通"), TEXT("MTR Mobile"), TEXT("Citymapper"),
+        TEXT("WhatsApp"), TEXT("WeChat"), TEXT("Microsoft Teams"),
+        TEXT("ArcGIS Field Maps"), TEXT("HK Observatory")};
+    if (!InvestorPeople.IsValidIndex(StableEntityIndex))
+    {
+        return TEXT("INITIALIZING");
+    }
+    const FInvestorPersonRuntime& Person = InvestorPeople[StableEntityIndex];
+    if (Person.LocationState == EInvestorPersonLocationState::Indoor)
+    {
+        return TEXT("Microsoft Teams · INDOOR");
+    }
+    const int32 BaseIndex = Person.CurrentApplicationIndex;
+    const int32 StationOffset = FMath::Max(Person.ServingStationIndex, 0);
+    return Apps[(BaseIndex + StationOffset) % UE_ARRAY_COUNT(Apps)];
+}
+
+void AOpenMassCrowdSpawner::ShowInvestorKPI()
+{
+    if (InvestorKPIViewportWidget.IsValid() ||
+        !GEngine || !GEngine->GameViewport)
+    {
+        return;
+    }
+    const TWeakObjectPtr<AOpenMassCrowdSpawner> WeakThis(this);
+    TSharedRef<SWidget> KPI =
+        SNew(SConstraintCanvas)
+        + SConstraintCanvas::Slot()
+        .Anchors(FAnchors(1.0f, 0.0f))
+        .Alignment(FVector2D::ZeroVector)
+        .Offset(FMargin(-1050.0f, 28.0f, 620.0f, 90.0f))
+        .AutoSize(false)
+        [
+            SNew(SBorder)
+            .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
+            .BorderBackgroundColor(FLinearColor(0.008f, 0.025f, 0.045f, 0.86f))
+            .Padding(FMargin(18.0f, 11.0f))
+            [
+                SNew(SVerticalBox)
+                + SVerticalBox::Slot()
+                .AutoHeight()
+                [
+                    SNew(STextBlock)
+                    .Text(FText::FromString(TEXT("CENTRAL LIVE DIGITAL TWIN")))
+                    .Font(FCoreStyle::GetDefaultFontStyle("Bold", 12))
+                    .ColorAndOpacity(FLinearColor(0.10f, 0.88f, 0.96f, 1.0f))
+                ]
+                + SVerticalBox::Slot()
+                .AutoHeight()
+                .Padding(0.0f, 5.0f, 0.0f, 0.0f)
+                [
+                    SNew(STextBlock)
+                    .Text_Lambda([WeakThis]()
+                    {
+                        if (!WeakThis.IsValid())
+                        {
+                            return FText::GetEmpty();
+                        }
+                        return FText::FromString(FString::Printf(
+                            TEXT("PEOPLE  %d   |   CONNECTED  %d   |   INDOOR  %d   |   ROOFTOP NODES  %d/2"),
+                            WeakThis->InvestorPeople.Num(),
+                            WeakThis->GetInvestorConnectedCount(),
+                            WeakThis->GetInvestorIndoorCount(),
+                            WeakThis->GetInvestorValidatedStationCount()));
+                    })
+                    .Font(FCoreStyle::GetDefaultFontStyle("Bold", 10))
+                    .ColorAndOpacity(FLinearColor(0.88f, 0.96f, 1.0f, 1.0f))
+                ]
+            ]
+        ];
+    InvestorKPIViewportWidget = KPI;
+    APlayerController* PlayerController =
+        UGameplayStatics::GetPlayerController(this, 0);
+    if (ULocalPlayer* LocalPlayer = PlayerController
+            ? PlayerController->GetLocalPlayer()
+            : nullptr)
+    {
+        GEngine->GameViewport->AddViewportWidgetForPlayer(
+            LocalPlayer,
+            KPI,
+            900);
+    }
+    else
+    {
+        GEngine->GameViewport->AddViewportWidgetContent(KPI, 900);
+    }
+}
+
+void AOpenMassCrowdSpawner::HideInvestorKPI()
+{
+    if (InvestorKPIViewportWidget.IsValid() &&
+        GEngine && GEngine->GameViewport)
+    {
+        APlayerController* PlayerController =
+            UGameplayStatics::GetPlayerController(this, 0);
+        if (ULocalPlayer* LocalPlayer = PlayerController
+                ? PlayerController->GetLocalPlayer()
+                : nullptr)
+        {
+            GEngine->GameViewport->RemoveViewportWidgetForPlayer(
+                LocalPlayer,
+                InvestorKPIViewportWidget.ToSharedRef());
+        }
+        else
+        {
+            GEngine->GameViewport->RemoveViewportWidgetContent(
+                InvestorKPIViewportWidget.ToSharedRef());
+        }
+    }
+    InvestorKPIViewportWidget.Reset();
+}
+
 bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
     const int32 StableEntityIndex)
 {
@@ -10357,6 +11170,18 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
     const FString PersonName = GetCentralPersonName(StableEntityIndex);
     const FString Occupation = GetCentralPersonOccupation(StableEntityIndex);
     const FString Software = GetCentralPersonSoftware(StableEntityIndex);
+    const FString GenderAge = FString::Printf(
+        TEXT("%s    %d 岁"),
+        *GetCentralPersonGender(StableEntityIndex),
+        GetCentralPersonAge(StableEntityIndex));
+    const FString CurrentApplication =
+        GetInvestorPersonApplication(StableEntityIndex);
+    const FString LocationState =
+        GetInvestorPersonLocationLabel(StableEntityIndex);
+    const FString ServingStation =
+        GetInvestorPersonStationLabel(StableEntityIndex);
+    const FString SignalQuality =
+        GetInvestorPersonSignalLabel(StableEntityIndex);
     FString DistrictName = TEXT("CENTRAL");
     if (CentralSpawnDistrictPlan.IsValidIndex(StableEntityIndex))
     {
@@ -10386,17 +11211,30 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
     const FLinearColor Cyan(0.04f, 0.78f, 0.88f, 1.0f);
     const FLinearColor Amber(1.0f, 0.68f, 0.16f, 1.0f);
     const FLinearColor Green(0.25f, 0.94f, 0.63f, 1.0f);
+    const bool bConnected = InvestorPeople.IsValidIndex(StableEntityIndex) &&
+        InvestorPeople[StableEntityIndex].ServingStationIndex != INDEX_NONE;
+    const bool bIndoor = InvestorPeople.IsValidIndex(StableEntityIndex) &&
+        InvestorPeople[StableEntityIndex].LocationState !=
+            EInvestorPersonLocationState::Outdoor;
+    const FLinearColor LiveColor = bIndoor ? Amber : (bConnected ? Cyan :
+        FLinearColor(1.0f, 0.34f, 0.28f, 1.0f));
+    const FString LiveStatus = bIndoor
+        ? TEXT("●  INDOOR · EXTERNAL LINK DISCONNECTED")
+        : (bConnected
+            ? TEXT("●  LIVE · NETWORK ASSOCIATION ACTIVE")
+            : TEXT("●  OUTDOOR · SEARCHING FOR NETWORK"));
     const TWeakObjectPtr<AOpenMassCrowdSpawner> WeakThis(this);
 
     TSharedRef<SWidget> ProfilePanel =
-        SNew(SOverlay)
-        + SOverlay::Slot()
-        .HAlign(HAlign_Right)
-        .VAlign(VAlign_Center)
-        .Padding(FMargin(0.0f, 0.0f, 36.0f, 0.0f))
+        SNew(SConstraintCanvas)
+        + SConstraintCanvas::Slot()
+        .Anchors(FAnchors(0.0f, 1.0f))
+        .Alignment(FVector2D::ZeroVector)
+        .Offset(FMargin(36.0f, -700.0f, 480.0f, 660.0f))
+        .AutoSize(false)
         [
             SNew(SBox)
-            .WidthOverride(410.0f)
+            .WidthOverride(440.0f)
             [
                 SNew(SBorder)
                 .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
@@ -10422,7 +11260,7 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
                                 .AutoHeight()
                                 [
                                     SNew(STextBlock)
-                                    .Text(FText::FromString(TEXT("CENTRAL DIGITAL TWIN")))
+                                    .Text(FText::FromString(TEXT("TELECOMTWIN · CENTRAL LIVE")))
                                     .Font(FCoreStyle::GetDefaultFontStyle("Bold", 12))
                                     .ColorAndOpacity(Cyan)
                                 ]
@@ -10431,7 +11269,7 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
                                 .Padding(0.0f, 2.0f, 0.0f, 0.0f)
                                 [
                                     SNew(STextBlock)
-                                    .Text(FText::FromString(TEXT("PEDESTRIAN PROFILE / 行人档案")))
+                                    .Text(FText::FromString(TEXT("SELECTED PERSON / 实时人物档案")))
                                     .Font(FCoreStyle::GetDefaultFontStyle("Regular", 9))
                                     .ColorAndOpacity(FLinearColor(0.65f, 0.82f, 0.86f, 1.0f))
                                 ]
@@ -10462,7 +11300,7 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
                     ]
                     + SVerticalBox::Slot()
                     .AutoHeight()
-                    .Padding(FMargin(22.0f, 20.0f, 22.0f, 8.0f))
+                    .Padding(FMargin(22.0f, 14.0f, 22.0f, 6.0f))
                     [
                         SNew(SVerticalBox)
                         + SVerticalBox::Slot()
@@ -10488,53 +11326,79 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
                         [
                             SNew(SBorder)
                             .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
-                            .BorderBackgroundColor(FLinearColor(0.06f, 0.23f, 0.19f, 0.82f))
+                            .BorderBackgroundColor(FLinearColor(
+                                LiveColor.R * 0.13f,
+                                LiveColor.G * 0.13f,
+                                LiveColor.B * 0.13f,
+                                0.88f))
                             .Padding(FMargin(10.0f, 6.0f))
                             [
                                 SNew(STextBlock)
-                                .Text(FText::FromString(TEXT("●  ACTIVE · GROUND ROUTE VERIFIED")))
+                                .Text(FText::FromString(LiveStatus))
                                 .Font(FCoreStyle::GetDefaultFontStyle("Bold", 10))
-                                .ColorAndOpacity(Green)
+                                .ColorAndOpacity(LiveColor)
                             ]
                         ]
                     ]
                     + SVerticalBox::Slot()
                     .AutoHeight()
-                    .Padding(FMargin(22.0f, 4.0f))
-                    [MakeCentralProfileRow(TEXT("职业 / OCCUPATION"), Occupation, Cyan)]
+                    .Padding(FMargin(22.0f, 2.0f))
+                    [MakeCentralProfileRow(TEXT("◈  职业 / OCCUPATION"), Occupation, Cyan)]
                     + SVerticalBox::Slot()
                     .AutoHeight()
-                    .Padding(FMargin(22.0f, 4.0f))
-                    [MakeCentralProfileRow(TEXT("喜欢的软件 / FAVORITE SOFTWARE"), Software, Amber)]
+                    .Padding(FMargin(22.0f, 2.0f))
+                    [MakeCentralProfileRow(TEXT("♀  性别与年龄 / GENDER & AGE"), GenderAge, Amber)]
                     + SVerticalBox::Slot()
                     .AutoHeight()
-                    .Padding(FMargin(22.0f, 4.0f))
-                    [MakeCentralProfileRow(TEXT("所在区域 / DISTRICT"), DistrictName, Cyan)]
+                    .Padding(FMargin(22.0f, 2.0f))
+                    [MakeCentralProfileRow(TEXT("◉  当前应用 / LIVE APP"), CurrentApplication, Cyan)]
                     + SVerticalBox::Slot()
                     .AutoHeight()
-                    .Padding(FMargin(22.0f, 4.0f))
-                    [MakeCentralProfileRow(TEXT("当前行程 / ROUTE"), RouteStatus, Green)]
+                    .Padding(FMargin(22.0f, 2.0f))
+                    [MakeCentralProfileRow(TEXT("⌂  空间状态 / LOCATION"), LocationState, Green)]
                     + SVerticalBox::Slot()
                     .AutoHeight()
-                    .Padding(FMargin(22.0f, 4.0f, 22.0f, 20.0f))
-                    [MakeCentralProfileRow(TEXT("往返里程 / ROUND TRIP"), RouteDistance, Amber)]
+                    .Padding(FMargin(22.0f, 2.0f))
+                    [MakeCentralProfileRow(TEXT("⌁  服务基站 / SERVING NODE"), ServingStation, Cyan)]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    .Padding(FMargin(22.0f, 2.0f, 22.0f, 14.0f))
+                    [MakeCentralProfileRow(TEXT("▮▮▮  信号质量 / SIGNAL"), SignalQuality, Amber)]
                 ]
             ]
         ];
 
     CentralProfileViewportWidget = ProfilePanel;
-    GEngine->GameViewport->AddViewportWidgetContent(ProfilePanel, 1000);
+    APlayerController* PlayerController =
+        UGameplayStatics::GetPlayerController(this, 0);
+    if (ULocalPlayer* LocalPlayer = PlayerController
+            ? PlayerController->GetLocalPlayer()
+            : nullptr)
+    {
+        GEngine->GameViewport->AddViewportWidgetForPlayer(
+            LocalPlayer,
+            ProfilePanel,
+            1000);
+    }
+    else
+    {
+        GEngine->GameViewport->AddViewportWidgetContent(ProfilePanel, 1000);
+    }
     UE_LOG(
         LogTemp,
         Warning,
-        TEXT("OPEN_MASS_CROWD_CENTRAL_PROFILE_SELECTED stable_index=%d person_id=%s name=%s occupation=%s software=%s district=%s route=%s"),
+        TEXT("OPEN_MASS_CROWD_CENTRAL_PROFILE_SELECTED stable_index=%d person_id=%s name=%s occupation=%s software=%s district=%s route=%s location=%s station=%s signal=%s app=%s"),
         StableEntityIndex,
         *PersonId,
         *PersonName,
         *Occupation,
         *Software,
         *DistrictName,
-        *RouteStatus);
+        *RouteStatus,
+        *LocationState,
+        *ServingStation,
+        *SignalQuality,
+        *CurrentApplication);
     return true;
 }
 
@@ -10543,8 +11407,21 @@ void AOpenMassCrowdSpawner::HideCentralProfile()
     if (CentralProfileViewportWidget.IsValid() &&
         GEngine && GEngine->GameViewport)
     {
-        GEngine->GameViewport->RemoveViewportWidgetContent(
-            CentralProfileViewportWidget.ToSharedRef());
+        APlayerController* PlayerController =
+            UGameplayStatics::GetPlayerController(this, 0);
+        if (ULocalPlayer* LocalPlayer = PlayerController
+                ? PlayerController->GetLocalPlayer()
+                : nullptr)
+        {
+            GEngine->GameViewport->RemoveViewportWidgetForPlayer(
+                LocalPlayer,
+                CentralProfileViewportWidget.ToSharedRef());
+        }
+        else
+        {
+            GEngine->GameViewport->RemoveViewportWidgetContent(
+                CentralProfileViewportWidget.ToSharedRef());
+        }
     }
     CentralProfileViewportWidget.Reset();
     SelectedCentralProfileEntityIndex = INDEX_NONE;
@@ -10577,7 +11454,8 @@ void AOpenMassCrowdSpawner::UpdateCentralProfileInteraction()
         UE_LOG(
             LogTemp,
             Warning,
-            TEXT("OPEN_MASS_CROWD_CENTRAL_PROFILE_INPUT_READY stable_profiles=100 selection=mass_screen_space"));
+            TEXT("OPEN_MASS_CROWD_CENTRAL_PROFILE_INPUT_READY stable_profiles=%d selection=mass_screen_space investor_lower_left=true"),
+            SpawnedEntities.Num());
     }
 
     UMassSpawnerSubsystem* SpawnerSubsystem =
@@ -10630,7 +11508,8 @@ void AOpenMassCrowdSpawner::UpdateCentralProfileInteraction()
     int32 ViewportHeight = 0;
     PlayerController->GetViewportSize(ViewportWidth, ViewportHeight);
     if (CentralProfileViewportWidget.IsValid() &&
-        MouseX >= static_cast<float>(ViewportWidth) - 470.0f)
+        MouseX <= 500.0f &&
+        MouseY >= static_cast<float>(ViewportHeight) - 680.0f)
     {
         return;
     }
@@ -10728,17 +11607,128 @@ FString AOpenMassCrowdSpawner::GetCentralProfileEvidenceSnapshot() const
         ? &EntityRouteStates[StableIndex]
         : nullptr;
     return FString::Printf(
-        TEXT("{\"valid\":true,\"stable_index\":%d,\"person_id\":\"%s\",\"name\":\"%s\",\"occupation\":\"%s\",\"favorite_software\":\"%s\",\"district\":\"%s\",\"route_leg\":\"%s\",\"round_trip_m\":%.3f,\"completed_round_trips\":%d,\"glass_panel_visible\":%s}"),
+        TEXT("{\"valid\":true,\"stable_index\":%d,\"person_id\":\"%s\",\"name\":\"%s\",\"occupation\":\"%s\",\"gender\":\"%s\",\"age\":%d,\"favorite_software\":\"%s\",\"current_app\":\"%s\",\"district\":\"%s\",\"location_state\":\"%s\",\"serving_station\":\"%s\",\"signal_quality\":\"%s\",\"route_leg\":\"%s\",\"round_trip_m\":%.3f,\"completed_round_trips\":%d,\"glass_panel_visible\":%s,\"panel_anchor\":\"lower_left\"}"),
         StableIndex,
         *GetCentralPersonId(StableIndex),
         *GetCentralPersonName(StableIndex),
         *GetCentralPersonOccupation(StableIndex),
+        *GetCentralPersonGender(StableIndex),
+        GetCentralPersonAge(StableIndex),
         *GetCentralPersonSoftware(StableIndex),
+        *GetInvestorPersonApplication(StableIndex),
         *DistrictName,
+        *GetInvestorPersonLocationLabel(StableIndex),
+        *GetInvestorPersonStationLabel(StableIndex),
+        *GetInvestorPersonSignalLabel(StableIndex),
         Route && Route->bOnReturnLeg ? TEXT("return") : TEXT("outbound"),
         Route ? Route->PlannedRoundTripDistanceCm / 100.0f : 0.0f,
         Route ? Route->CompletedRoundTrips : 0,
         CentralProfileViewportWidget.IsValid() ? TEXT("true") : TEXT("false"));
+}
+
+FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
+{
+    FString StationJson;
+    float MaximumRoofErrorCm = 0.0f;
+    for (int32 Index = 0; Index < InvestorStations.Num(); ++Index)
+    {
+        const FInvestorStationRuntime& Station = InvestorStations[Index];
+        if (!StationJson.IsEmpty())
+        {
+            StationJson += TEXT(",");
+        }
+        MaximumRoofErrorCm = FMath::Max(
+            MaximumRoofErrorCm,
+            FMath::Max(Station.RoofErrorCm, 0.0f));
+        StationJson += FString::Printf(
+            TEXT("{\"station_id\":\"%s\",\"roof_validated\":%s,\"validation_attempts\":%d,\"consecutive_validation_misses\":%d,\"station_to_live_roof_offset_cm\":%.3f,\"configured_anchor_lod_adjustment_cm\":%.3f,\"configured_roof\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"validated_roof\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"coverage_radius_m\":%.1f}"),
+            *Station.StationId.ToString(),
+            Station.bRoofValidated ? TEXT("true") : TEXT("false"),
+            Station.ValidationAttempts,
+            Station.ConsecutiveValidationMisses,
+            Station.RoofErrorCm,
+            Station.ConfiguredAnchorAdjustmentCm,
+            Station.ConfiguredRoofPoint.X,
+            Station.ConfiguredRoofPoint.Y,
+            Station.ConfiguredRoofPoint.Z,
+            Station.ValidatedRoofPoint.X,
+            Station.ValidatedRoofPoint.Y,
+            Station.ValidatedRoofPoint.Z,
+            Station.CoverageRadiusCm / 100.0f);
+    }
+
+    int32 EnteringCount = 0;
+    int32 IndoorCount = 0;
+    int32 ExitingCount = 0;
+    int32 OutdoorCount = 0;
+    for (const FInvestorPersonRuntime& Person : InvestorPeople)
+    {
+        switch (Person.LocationState)
+        {
+        case EInvestorPersonLocationState::Entering:
+            ++EnteringCount;
+            break;
+        case EInvestorPersonLocationState::Indoor:
+            ++IndoorCount;
+            break;
+        case EInvestorPersonLocationState::Exiting:
+            ++ExitingCount;
+            break;
+        case EInvestorPersonLocationState::Outdoor:
+        default:
+            ++OutdoorCount;
+            break;
+        }
+    }
+
+    const int32 ValidStationCount = GetInvestorValidatedStationCount();
+    const int32 ConnectedCount = GetInvestorConnectedCount();
+    const bool bProfileComplete =
+        SelectedCentralProfileEntityIndex != INDEX_NONE &&
+        CentralProfileViewportWidget.IsValid();
+    const bool bPassed =
+        bInvestorDeliveryDemoEnabled &&
+        InvestorPeople.Num() == 50 &&
+        SpawnedEntities.Num() == 50 &&
+        CentralMovingEntityCount == 50 &&
+        ValidStationCount == 2 &&
+        ConnectedCount > 0 &&
+        InvestorBuildingEntryCount > 0 &&
+        InvestorBuildingExitCount > 0 &&
+        InvestorStationReacquisitionCount > 0 &&
+        bProfileComplete;
+    return FString::Printf(
+        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v1\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true},\"video_required\":false}"),
+        bInvestorDeliveryDemoEnabled ? TEXT("true") : TEXT("false"),
+        bPassed ? TEXT("true") : TEXT("false"),
+        InvestorDeliveryPopulation,
+        SpawnedEntities.Num(),
+        CentralAdmittedEntityCount,
+        CentralMovingEntityCount,
+        CentralRepresentedEntityCount,
+        CentralVATRepresentationCount,
+        ValidStationCount,
+        MaximumRoofErrorCm,
+        *StationJson,
+        ConnectedCount,
+        FMath::Max(InvestorPeople.Num() - ConnectedCount -
+            EnteringCount - IndoorCount - ExitingCount, 0),
+        InvestorAssociationVisualBudget,
+        !InvestorBuildingPortalLocation.IsNearlyZero() ? TEXT("true") : TEXT("false"),
+        InvestorBuildingPortalLocation.X,
+        InvestorBuildingPortalLocation.Y,
+        InvestorBuildingPortalLocation.Z,
+        OutdoorCount,
+        EnteringCount,
+        IndoorCount,
+        ExitingCount,
+        InvestorBuildingEntryCount,
+        InvestorBuildingExitCount,
+        InvestorStationReacquisitionCount,
+        SelectedCentralProfileEntityIndex,
+        CentralProfileViewportWidget.IsValid() ? TEXT("true") : TEXT("false"),
+        bProfileComplete ? TEXT("true") : TEXT("false"),
+        InvestorSuppressedSignalActors.Num());
 }
 
 FString AOpenMassCrowdSpawner::GetCentralVATAnimationEvidenceSnapshot() const
@@ -11044,6 +12034,12 @@ void AOpenMassCrowdSpawner::DestroyRuntimePopulation()
 {
     GetWorldTimerManager().ClearTimer(CentralAdmissionTimer);
     HideCentralProfile();
+    HideInvestorKPI();
+    RestoreLegacySignalActors();
+    InvestorStations.Reset();
+    InvestorPeople.Reset();
+    bInvestorDemoInitialized = false;
+    bInvestorAutoProfileOpened = false;
     bCentralProfileInputConfigured = false;
     bCentralProfileHasPreviousControlRotation = false;
     if (UMassSpawnerSubsystem* SpawnerSubsystem =

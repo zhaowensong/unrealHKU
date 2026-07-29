@@ -1,0 +1,50 @@
+{
+  "schema": "telecomtwin-investor-delivery-config-v1",
+  "mode": "CentralInvestorDelivery",
+  "enabled": true,
+  "population": 50,
+  "association_visual_budget": 12,
+  "stations": [
+    {
+      "station_id": "CENTRAL-ROOF-01",
+      "role": "hero",
+      "configured_roof_world_cm": [-160000.0, 247000.0, 12735.574],
+      "source_collision_record": "source_13",
+      "coverage_radius_m": 230.0,
+      "color": "cyan"
+    },
+    {
+      "station_id": "CENTRAL-WEST-ROOF-02",
+      "role": "support",
+      "configured_roof_world_cm": [-169000.0, 247000.0, 12382.011],
+      "source_collision_record": "source_22",
+      "coverage_radius_m": 205.0,
+      "color": "amber"
+    }
+  ],
+  "roof_validation": {
+    "source": "live CesiumGltfPrimitiveComponent highest walkable roof hit at configured XY",
+    "configured_z_role": "search hint; live Cesium LOD roof Z is authoritative",
+    "station_to_live_roof_offset_cm": 4.0,
+    "revalidation_interval_seconds": 0.5,
+    "hide_after_consecutive_misses": 4,
+    "reject_unvalidated_station": true
+  },
+  "building_boundary": {
+    "portal_strategy": "stable person 0 certified ground-route spawn",
+    "eligible_stable_index": 0,
+    "entry_radius_m": 15.0,
+    "fade_seconds": 1.25,
+    "indoor_dwell_seconds": 5.0,
+    "repeat_cooldown_seconds": 24.0
+  },
+  "handover": {
+    "selection": "nearest in-range validated station",
+    "hysteresis_m": 18.0,
+    "signal_metric": "normalized 2D distance for demo presentation; not RF prediction"
+  },
+  "delivery": {
+    "final_video_required": false,
+    "reason": "excluded by user direction"
+  }
+}

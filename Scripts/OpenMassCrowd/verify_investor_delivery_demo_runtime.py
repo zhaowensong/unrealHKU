@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+"""Verify the investor delivery loop against live PIE without editing the map."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+from run_unreal_python_via_mcp import execute_python
+
+
+ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_OUTPUT = (
+    ROOT
+    / "Docs"
+    / "Evidence"
+    / "InvestorDelivery"
+    / "investor_delivery_runtime_latest.json"
+)
+MARKER = "INVESTOR_DELIVERY_RUNTIME="
+
+
+def snapshot(profile_index: int = 0) -> dict[str, Any]:
+    code = f"""
+import json
+import unreal
+
+world = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_game_world()
+if world is None or "UEDPIE_" not in world.get_path_name().upper():
+    raise RuntimeError("active PIE world required")
+spawners = unreal.GameplayStatics.get_all_actors_of_class(
+    world, unreal.OpenMassCrowdSpawner
+)
+if len(spawners) != 1:
+    raise RuntimeError("expected one OpenMassCrowdSpawner, found {{}}".format(len(spawners)))
+spawner = spawners[0]
+spawner.show_central_profile_by_stable_index({int(profile_index)})
+payload = {{
+    "world": world.get_path_name(),
+    "delivery": json.loads(spawner.get_investor_demo_evidence_snapshot()),
+    "profile": json.loads(spawner.get_central_profile_evidence_snapshot()),
+    "vat": json.loads(spawner.get_central_vat_animation_evidence_snapshot()),
+    "ground": {{
+        "unsupported": int(spawner.get_current_unsupported_visual_count()),
+        "invalid_positions": int(spawner.get_central_invalid_position_observation_count()),
+        "overlap_pairs": int(spawner.get_central_severe_overlap_pair_count()),
+        "overlap_agents": int(spawner.get_central_severe_overlap_agent_count()),
+    }},
+}}
+print({MARKER!r} + json.dumps(payload, ensure_ascii=False, sort_keys=True))
+"""
+    response = execute_python(code, timeout_seconds=30.0)
+    if response.get("status") != "success":
+        raise RuntimeError(response.get("message") or "runtime snapshot failed")
+    output = str((response.get("result") or {}).get("output") or "")
+    for line in reversed(output.splitlines()):
+        if line.startswith(MARKER):
+            return json.loads(line[len(MARKER) :])
+    raise RuntimeError("snapshot marker missing: {!r}".format(output))
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--transition-wait", type=float, default=14.0)
+    args = parser.parse_args()
+
+    first = snapshot()
+    time.sleep(max(args.transition_wait, 1.0))
+    second = snapshot()
+    delivery = second["delivery"]
+    population = delivery["population"]
+    stations = delivery["stations"]
+    building = delivery["building"]
+    profile = second["profile"]
+    vat = second["vat"]
+    ground = second["ground"]
+    checks = {
+        "exact_50_ground_route_people": (
+            population["configured"] == 50
+            and population["spawned"] == 50
+            and population["admitted"] == 50
+            and population["moving"] == 50
+            and population["represented"] == 50
+            and ground["unsupported"] == 0
+            and ground["invalid_positions"] == 0
+        ),
+        "far_walk_animation_active": (
+            bool(vat.get("valid"))
+            and bool(vat.get("animation_active"))
+            and float(vat.get("distance_m", 0.0)) >= 60.0
+            and float(vat.get("play_rate", 0.0)) > 0.0
+        ),
+        "two_real_rooftop_stations": (
+            stations["validated"] == stations["required"] == 2
+            and all(item["roof_validated"] for item in stations["items"])
+            and float(stations["maximum_roof_error_cm"]) <= 4.01
+            and all(
+                float(item["station_to_live_roof_offset_cm"]) <= 4.01
+                and int(item["consecutive_validation_misses"]) == 0
+                for item in stations["items"]
+            )
+        ),
+        "live_person_station_association": (
+            delivery["network"]["connected"] > 0
+            and delivery["network"]["association_visual_budget"] == 12
+        ),
+        "building_disconnect_and_reacquire": (
+            building["portal_grounded"]
+            and building["entry_events"] > 0
+            and building["exit_events"] > 0
+            and building["station_reacquisitions"] > 0
+        ),
+        "investor_profile_complete": (
+            profile.get("valid")
+            and profile.get("glass_panel_visible")
+            and profile.get("panel_anchor") == "lower_left"
+            and bool(profile.get("name"))
+            and bool(profile.get("occupation"))
+            and bool(profile.get("gender"))
+            and int(profile.get("age", 0)) > 0
+            and bool(profile.get("current_app"))
+            and bool(profile.get("location_state"))
+            and bool(profile.get("serving_station"))
+            and bool(profile.get("signal_quality"))
+        ),
+        "no_severe_overlap": (
+            ground["overlap_pairs"] == 0 and ground["overlap_agents"] == 0
+        ),
+        "legacy_signal_preserved_but_suppressed": (
+            delivery["legacy_signal"]["suppressed_actor_count"] >= 3486
+            and delivery["legacy_signal"]["restorable"]
+        ),
+        "video_excluded": delivery["video_required"] is False,
+    }
+    report = {
+        "schema": "telecomtwin-investor-delivery-acceptance-v1",
+        "captured_at_utc": datetime.now(timezone.utc).isoformat(),
+        "checks": checks,
+        "passed": all(checks.values()),
+        "first": first,
+        "second": second,
+        "map_modified": False,
+        "acceptance_video_created": False,
+    }
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
+    return 0 if report["passed"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
