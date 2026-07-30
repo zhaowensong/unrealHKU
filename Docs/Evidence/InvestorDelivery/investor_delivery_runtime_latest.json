@@ -1,8 +1,12 @@
 {
   "acceptance_video_created": false,
-  "captured_at_utc": "2026-07-29T19:11:19.736191+00:00",
+  "baseline_frame_p50_ms": 333.3336,
+  "captured_at_utc": "2026-07-30T18:21:02.843948+00:00",
   "checks": {
+    "bounded_distant_skeletal_walk": true,
+    "bounded_investor_runtime_work": true,
     "building_disconnect_and_reacquire": true,
+    "crowd_spread_across_supported_bands": true,
     "exact_50_ground_route_people": true,
     "far_walk_animation_active": true,
     "investor_profile_complete": true,
@@ -31,7 +35,7 @@
       },
       "legacy_signal": {
         "restorable": true,
-        "suppressed_actor_count": 3486
+        "suppressed_actor_count": 3060
       },
       "mode_enabled": true,
       "network": {
@@ -40,6 +44,17 @@
         "uncovered": 0
       },
       "passed": true,
+      "performance": {
+        "debug_refresh_hz": 10.0,
+        "frame_maximum_ms": 39.509,
+        "frame_p50_ms": 18.088,
+        "frame_p95_ms": 22.844,
+        "frame_samples": 1444,
+        "ground_guards_per_pass": 4,
+        "network_refresh_hz": 3.03,
+        "telemetry_interval_s": 1.0,
+        "validated_roof_refresh_s": 2.0
+      },
       "population": {
         "admitted": 50,
         "configured": 50,
@@ -48,17 +63,32 @@
         "spawned": 50,
         "vat_far_walking": 50
       },
+      "presentation": {
+        "certified_center_fallback_people": 2,
+        "configured_bands": 7,
+        "high_actor_budget": 6,
+        "high_actors": 0,
+        "largest_active_lane_population": 4,
+        "low_actor_budget": 24,
+        "low_actors": 0,
+        "maximum_lateral_offset_cm": 135.0,
+        "occupied_supported_bands": 7,
+        "offset_supported_people": 48,
+        "skeletal_walk_distance_m": 200.0,
+        "unique_active_lanes": 31,
+        "vat_actors": 50
+      },
       "profile": {
         "anchor": "lower_left",
         "required_fields_present": true,
         "selected_index": 0,
         "visible": true
       },
-      "schema": "telecomtwin-investor-delivery-v1",
+      "schema": "telecomtwin-investor-delivery-v2",
       "stations": {
         "items": [
           {
-            "configured_anchor_lod_adjustment_cm": 3.714,
+            "configured_anchor_lod_adjustment_cm": 762.106,
             "configured_roof": {
               "x": -160000.0,
               "y": 247000.0,
@@ -72,12 +102,12 @@
             "validated_roof": {
               "x": -160000.0,
               "y": 247000.0,
-              "z": 12739.288
+              "z": 11973.468
             },
-            "validation_attempts": 75
+            "validation_attempts": 14
           },
           {
-            "configured_anchor_lod_adjustment_cm": 16.615,
+            "configured_anchor_lod_adjustment_cm": 4077.832,
             "configured_roof": {
               "x": -169000.0,
               "y": 247000.0,
@@ -91,9 +121,9 @@
             "validated_roof": {
               "x": -169000.0,
               "y": 247000.0,
-              "z": 12365.396
+              "z": 8304.179
             },
-            "validation_attempts": 75
+            "validation_attempts": 14
           }
         ],
         "maximum_roof_error_cm": 4.0,
@@ -121,38 +151,38 @@
       "occupation": "数字孪生研究员",
       "panel_anchor": "lower_left",
       "person_id": "HK-C-001",
-      "round_trip_m": 108.429,
+      "round_trip_m": 107.699,
       "route_leg": "outbound",
       "serving_station": "CENTRAL-ROOF-01",
-      "signal_quality": "50% · GOOD",
+      "signal_quality": "58% · GOOD",
       "stable_index": 0,
       "valid": true
     },
     "vat": {
       "animation_active": true,
-      "current_frame": 81.702393,
-      "distance_m": 366.38,
+      "current_frame": 79.61731,
+      "distance_m": 886.231,
       "end_frame": 98.0,
       "location": {
-        "x": -175677.938,
-        "y": 261816.115,
-        "z": 340.645
+        "x": -176392.71,
+        "y": 263340.131,
+        "z": 308.601
       },
-      "person_id": "HK-C-042",
+      "person_id": "HK-C-028",
       "play_rate": 1.35,
       "representation": "VAT",
-      "speed_cm_s": 122.0,
-      "stable_index": 41,
+      "speed_cm_s": 24.799,
+      "stable_index": 27,
       "start_frame": 0.0,
-      "time_offset": 2.872284,
+      "time_offset": 0.914858,
       "valid": true,
-      "world_time_seconds": 43.145058
+      "world_time_seconds": 32.828782
     },
     "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
   },
   "map_modified": false,
   "passed": true,
-  "schema": "telecomtwin-investor-delivery-acceptance-v1",
+  "schema": "telecomtwin-investor-delivery-acceptance-v2",
   "second": {
     "delivery": {
       "building": {
@@ -172,7 +202,7 @@
       },
       "legacy_signal": {
         "restorable": true,
-        "suppressed_actor_count": 3486
+        "suppressed_actor_count": 3060
       },
       "mode_enabled": true,
       "network": {
@@ -181,6 +211,17 @@
         "uncovered": 0
       },
       "passed": true,
+      "performance": {
+        "debug_refresh_hz": 10.0,
+        "frame_maximum_ms": 39.509,
+        "frame_p50_ms": 17.824,
+        "frame_p95_ms": 22.121,
+        "frame_samples": 2230,
+        "ground_guards_per_pass": 4,
+        "network_refresh_hz": 3.03,
+        "telemetry_interval_s": 1.0,
+        "validated_roof_refresh_s": 2.0
+      },
       "population": {
         "admitted": 50,
         "configured": 50,
@@ -189,17 +230,32 @@
         "spawned": 50,
         "vat_far_walking": 50
       },
+      "presentation": {
+        "certified_center_fallback_people": 1,
+        "configured_bands": 7,
+        "high_actor_budget": 6,
+        "high_actors": 0,
+        "largest_active_lane_population": 4,
+        "low_actor_budget": 24,
+        "low_actors": 0,
+        "maximum_lateral_offset_cm": 135.0,
+        "occupied_supported_bands": 7,
+        "offset_supported_people": 49,
+        "skeletal_walk_distance_m": 200.0,
+        "unique_active_lanes": 34,
+        "vat_actors": 50
+      },
       "profile": {
         "anchor": "lower_left",
         "required_fields_present": true,
         "selected_index": 0,
         "visible": true
       },
-      "schema": "telecomtwin-investor-delivery-v1",
+      "schema": "telecomtwin-investor-delivery-v2",
       "stations": {
         "items": [
           {
-            "configured_anchor_lod_adjustment_cm": 3.714,
+            "configured_anchor_lod_adjustment_cm": 762.106,
             "configured_roof": {
               "x": -160000.0,
               "y": 247000.0,
@@ -213,12 +269,12 @@
             "validated_roof": {
               "x": -160000.0,
               "y": 247000.0,
-              "z": 12739.288
+              "z": 11973.468
             },
-            "validation_attempts": 103
+            "validation_attempts": 21
           },
           {
-            "configured_anchor_lod_adjustment_cm": 16.615,
+            "configured_anchor_lod_adjustment_cm": 4077.832,
             "configured_roof": {
               "x": -169000.0,
               "y": 247000.0,
@@ -232,9 +288,9 @@
             "validated_roof": {
               "x": -169000.0,
               "y": 247000.0,
-              "z": 12365.396
+              "z": 8304.179
             },
-            "validation_attempts": 103
+            "validation_attempts": 21
           }
         ],
         "maximum_roof_error_cm": 4.0,
@@ -262,8 +318,8 @@
       "occupation": "数字孪生研究员",
       "panel_anchor": "lower_left",
       "person_id": "HK-C-001",
-      "round_trip_m": 108.429,
-      "route_leg": "return",
+      "round_trip_m": 107.699,
+      "route_leg": "outbound",
       "serving_station": "DISCONNECTED",
       "signal_quality": "0% · NO EXTERNAL SIGNAL",
       "stable_index": 0,
@@ -271,23 +327,23 @@
     },
     "vat": {
       "animation_active": true,
-      "current_frame": 60.101074,
-      "distance_m": 374.012,
+      "current_frame": 36.427002,
+      "distance_m": 877.245,
       "end_frame": 97.0,
       "location": {
-        "x": -175823.951,
-        "y": 262851.047,
-        "z": 301.246
+        "x": -176247.073,
+        "y": 261741.65,
+        "z": 297.783
       },
-      "person_id": "HK-C-032",
+      "person_id": "HK-C-011",
       "play_rate": 1.35,
       "representation": "VAT",
-      "speed_cm_s": 46.586,
-      "stable_index": 31,
+      "speed_cm_s": 96.543,
+      "stable_index": 10,
       "start_frame": 0.0,
-      "time_offset": 2.331264,
+      "time_offset": 2.395123,
       "valid": true,
-      "world_time_seconds": 57.226785
+      "world_time_seconds": 46.899374
     },
     "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
   }

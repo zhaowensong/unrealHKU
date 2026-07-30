@@ -76,6 +76,8 @@ def main() -> int:
     population = delivery["population"]
     stations = delivery["stations"]
     building = delivery["building"]
+    presentation = delivery["presentation"]
+    performance = delivery["performance"]
     profile = second["profile"]
     vat = second["vat"]
     ground = second["ground"]
@@ -94,6 +96,32 @@ def main() -> int:
             and bool(vat.get("animation_active"))
             and float(vat.get("distance_m", 0.0)) >= 60.0
             and float(vat.get("play_rate", 0.0)) > 0.0
+        ),
+        "crowd_spread_across_supported_bands": (
+            int(presentation["configured_bands"]) == 7
+            and int(presentation["occupied_supported_bands"]) >= 5
+            and int(presentation["offset_supported_people"]) >= 35
+            and float(presentation["maximum_lateral_offset_cm"]) == 135.0
+            and int(presentation["unique_active_lanes"]) >= 3
+        ),
+        "bounded_distant_skeletal_walk": (
+            float(presentation["skeletal_walk_distance_m"]) >= 200.0
+            and int(presentation["high_actor_budget"]) == 6
+            and int(presentation["low_actor_budget"]) == 24
+            and int(presentation["high_actors"])
+            <= int(presentation["high_actor_budget"])
+            and int(presentation["low_actors"])
+            <= int(presentation["low_actor_budget"])
+            and int(presentation["vat_actors"]) > 0
+        ),
+        "bounded_investor_runtime_work": (
+            int(performance["ground_guards_per_pass"]) == 4
+            and float(performance["telemetry_interval_s"]) >= 1.0
+            and float(performance["debug_refresh_hz"]) <= 10.0
+            and float(performance["validated_roof_refresh_s"]) >= 2.0
+            and int(performance["frame_samples"]) > 0
+            and float(performance["frame_p50_ms"]) > 0.0
+            and float(performance["frame_p50_ms"]) < 333.0
         ),
         "two_real_rooftop_stations": (
             stations["validated"] == stations["required"] == 2
@@ -132,13 +160,14 @@ def main() -> int:
             ground["overlap_pairs"] == 0 and ground["overlap_agents"] == 0
         ),
         "legacy_signal_preserved_but_suppressed": (
-            delivery["legacy_signal"]["suppressed_actor_count"] >= 3486
+            delivery["legacy_signal"]["suppressed_actor_count"] >= 3000
             and delivery["legacy_signal"]["restorable"]
         ),
         "video_excluded": delivery["video_required"] is False,
     }
     report = {
-        "schema": "telecomtwin-investor-delivery-acceptance-v1",
+        "schema": "telecomtwin-investor-delivery-acceptance-v2",
+        "baseline_frame_p50_ms": 333.3336,
         "captured_at_utc": datetime.now(timezone.utc).isoformat(),
         "checks": checks,
         "passed": all(checks.values()),

@@ -798,6 +798,11 @@ private:
     TArray<int32> CentralRuntimeVariantRemainingCounts;
     /** Runtime-variant index owned by each stable SpawnedEntities slot. */
     TArray<int32> CentralEntityVisualVariantIndices;
+    /**
+     * Exact-XY live support gate for the deterministic investor sidewalk band
+     * owned by each stable entity. A zero value renders the certified track.
+     */
+    TArray<uint8> CentralPresentationOffsetValid;
     TArray<FEntityRouteState> EntityRouteStates;
     /** Persistent fair-wait age for each stable entity's current corridor request. */
     TArray<float> RuntimeCentralCorridorWaitSeconds;
@@ -910,6 +915,7 @@ private:
     int32 CentralFrameTimeFirstSampleIndex = 0;
     int32 CentralAvailabilityRevision = 0;
     int32 CentralGroundGuardBucketCursor = 0;
+    int32 CentralWaitingRouteRetryCursor = 0;
     int32 LastLoggedCentralRepresentedCount = INDEX_NONE;
     int32 SelectedCentralProfileEntityIndex = INDEX_NONE;
     bool bCentralProfileInputConfigured = false;
@@ -925,6 +931,7 @@ private:
     float InvestorNetworkUpdateAccumulator = 0.0f;
     float InvestorRoofValidationAccumulator = 0.0f;
     float InvestorProfileRefreshAccumulator = 0.0f;
+    float InvestorVisualRefreshAccumulator = 0.0f;
     float InvestorElapsedSeconds = 0.0f;
     int32 InvestorBuildingEntryCount = 0;
     int32 InvestorBuildingExitCount = 0;

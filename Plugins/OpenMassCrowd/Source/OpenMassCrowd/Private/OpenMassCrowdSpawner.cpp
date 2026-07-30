@@ -148,6 +148,54 @@ constexpr double CentralFrameTimeRetentionWindowSeconds = 60.0;
 // upper bound on evidence memory if frame pacing is accidentally disabled.
 constexpr int32 CentralMaximumFrameTimeSamples = 20000;
 constexpr int32 CentralFrameTimeCompactionThreshold = 512;
+constexpr int32 InvestorPresentationBandCount = 7;
+constexpr float InvestorPresentationBandSpacingCm = 45.0f;
+constexpr int32 InvestorPresentationPhaseCount = 5;
+constexpr float InvestorPresentationPhaseSpacingCm = 60.0f;
+constexpr int32 InvestorGroundGuardsPerPass = 4;
+constexpr float InvestorNetworkRefreshSeconds = 0.33f;
+constexpr float InvestorDebugRefreshSeconds = 0.1f;
+constexpr float InvestorDebugLifetimeSeconds = 0.12f;
+constexpr float InvestorValidatedRoofRefreshSeconds = 2.0f;
+constexpr float InvestorSkeletalWalkDistanceCm = 20000.0f;
+constexpr int32 InvestorHighActorBudget = 6;
+constexpr int32 InvestorLowActorBudget = 24;
+
+int32 GetInvestorPresentationBandIndex(const int32 StableEntityIndex)
+{
+    const int32 SafeIndex = FMath::Max(StableEntityIndex, 0);
+    // Three is coprime to seven, so neighbours do not form a left-to-right
+    // staircase while every seven stable identities still occupy every band.
+    return (SafeIndex * 3) % InvestorPresentationBandCount;
+}
+
+float GetInvestorPresentationOffsetCm(const int32 StableEntityIndex)
+{
+    return static_cast<float>(
+        GetInvestorPresentationBandIndex(StableEntityIndex) -
+        InvestorPresentationBandCount / 2) *
+        InvestorPresentationBandSpacingCm;
+}
+
+float GetInvestorPresentationPhaseOffsetCm(const int32 StableEntityIndex)
+{
+    const int32 SafeIndex = FMath::Max(StableEntityIndex, 0);
+    return static_cast<float>(
+        (SafeIndex * 2) % InvestorPresentationPhaseCount -
+        InvestorPresentationPhaseCount / 2) *
+        InvestorPresentationPhaseSpacingCm;
+}
+
+FVector GetInvestorPresentationPosition(
+    const FZoneGraphLaneLocation& CertifiedLocation,
+    const int32 StableEntityIndex)
+{
+    const FVector Tangent =
+        CertifiedLocation.Tangent.GetSafeNormal2D();
+    const FVector Side(-Tangent.Y, Tangent.X, 0.0f);
+    return CertifiedLocation.Position +
+        Side * GetInvestorPresentationOffsetCm(StableEntityIndex);
+}
 
 FString GetCentralPersonId(const int32 StableEntityIndex)
 {
@@ -963,9 +1011,11 @@ void AOpenMassCrowdSpawner::Tick(const float DeltaSeconds)
     // Live traces are a bounded streaming-validity guard.  Visual transforms
     // already follow the cached 10 cm certified lane every frame above, so
     // guard staggering cannot introduce actor stutter or speculative VAT poses.
-    const float EffectiveGroundCorrectionInterval = FMath::Min(
-        GroundCorrectionInterval,
-        0.05f);
+    const float EffectiveGroundCorrectionInterval =
+        bInvestorDeliveryDemoEnabled &&
+            NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache
+        ? 0.05f
+        : FMath::Min(GroundCorrectionInterval, 0.05f);
     if (GroundCorrectionAccumulator >= EffectiveGroundCorrectionInterval)
     {
         GroundCorrectionAccumulator = 0.0f;
@@ -3827,6 +3877,7 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
     RuntimeCentralCellRecoveryGuardCounts.Reset();
     RuntimeCentralCellFailedGuardEntities.Reset();
     CentralAvailabilityRevision = 0;
+    CentralWaitingRouteRetryCursor = 0;
     for (const TPair<FName, const FOpenMassCrowdCentralCell*>& CellPair : CellsById)
     {
         RuntimeKnownCentralCellIds.Add(CellPair.Key);
@@ -4751,8 +4802,14 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         // with equal parameters.  These are therefore global Central limits,
         // not per-appearance quotas; dividing by six would cap the entire
         // crowd at 4/12/50 after shared-fragment deduplication.
-        const int32 HighBudget = bCentralAdmission ? 24 : 500;
-        const int32 MediumBudget = bCentralAdmission ? 72 : 500;
+        const bool bInvestorPresentation =
+            bCentralAdmission && bInvestorDeliveryDemoEnabled;
+        const int32 HighBudget = bInvestorPresentation
+            ? InvestorHighActorBudget
+            : (bCentralAdmission ? 24 : 500);
+        const int32 MediumBudget = bInvestorPresentation
+            ? InvestorLowActorBudget
+            : (bCentralAdmission ? 72 : 500);
         const int32 LowBudget = bCentralAdmission ? RequestedPopulation : 500;
         VisualizationTrait->LODParams.LODMaxCount[EMassLOD::High] =
             HighBudget;
@@ -4766,11 +4823,13 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         // 30 pedestrians represented across the normal Hong Kong editor views.
         VisualizationTrait->LODParams.BaseLODDistance[EMassLOD::High] = 0.0f;
         VisualizationTrait->LODParams.BaseLODDistance[EMassLOD::Medium] = 1200.0f;
-        VisualizationTrait->LODParams.BaseLODDistance[EMassLOD::Low] = 3500.0f;
+        VisualizationTrait->LODParams.BaseLODDistance[EMassLOD::Low] =
+            bInvestorPresentation ? InvestorSkeletalWalkDistanceCm : 3500.0f;
         VisualizationTrait->LODParams.BaseLODDistance[EMassLOD::Off] = 100000.0f;
         VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::High] = 0.0f;
         VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::Medium] = 1200.0f;
-        VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::Low] = 3500.0f;
+        VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::Low] =
+            bInvestorPresentation ? InvestorSkeletalWalkDistanceCm : 3500.0f;
         VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::Off] = 100000.0f;
 
         if (Resolved.bHasVAT)
@@ -6042,6 +6101,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
         CentralAdmissionLiveProbeBudgetPerPass);
     EntityRouteStates.Reset();
     EntityRouteStates.SetNum(CentralAdmissionTargetCount);
+    CentralPresentationOffsetValid.Init(0, CentralAdmissionTargetCount);
     LastValidGroundStates.Reset();
     LastValidGroundStates.SetNum(CentralAdmissionTargetCount);
     CentralAdmittedEntityCount = 0;
@@ -8352,8 +8412,27 @@ bool AOpenMassCrowdSpawner::RequestNextPath(const int32 EntityIndex)
         CurrentRouteIndex + 1 < RouteState.LanePath.Num();
 
     FZoneGraphShortPathRequest PathRequest;
-    PathRequest.StartPosition =
-        EntityManager.GetFragmentDataChecked<FTransformFragment>(Entity).GetTransform().GetLocation();
+    PathRequest.StartPosition = EntityManager.GetFragmentDataChecked<
+        FTransformFragment>(Entity).GetTransform().GetLocation();
+    if (NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache)
+    {
+        // Investor presentation bands intentionally move the rendered Mass
+        // transform sideways from the certified ZoneGraph centreline.  The
+        // short-path builder must still start on the authoritative lane
+        // position; feeding it the presentation offset makes the coverage
+        // clamp correctly reject an otherwise valid route.
+        FZoneGraphLaneLocation CertifiedPathStart;
+        if (!ZoneGraphSubsystem->CalculateLocationAlongLane(
+                LaneLocation.LaneHandle,
+                LaneLocation.DistanceAlongLane,
+                CertifiedPathStart))
+        {
+            return HoldCentralEntityAtCertifiedPosition(
+                EntityIndex,
+                TEXT("certified_path_start_unavailable"));
+        }
+        PathRequest.StartPosition = CertifiedPathStart.Position;
+    }
     PathRequest.TargetDistance = bHasNextLane
         ? LaneLocation.LaneLength
         : RouteState.DestinationDistance;
@@ -8511,6 +8590,16 @@ void AOpenMassCrowdSpawner::RecordCentralCellGroundGuard(
     if (!bSupported)
     {
         RuntimeCentralCellRecoveryGuardCounts.Remove(CellId);
+        if (bInvestorDeliveryDemoEnabled)
+        {
+            // Investor mode already fail-closes the exact unsupported entity
+            // at its last live Cesium point.  Do not let one temporarily
+            // unloaded far-tile probe freeze every independently supported
+            // pedestrian in the same 150 m cell.  Engineering modes retain
+            // the stricter cell-wide closure below.
+            RuntimeCentralCellFailedGuardEntities.Remove(CellId);
+            return;
+        }
         RuntimeCentralCellFailedGuardEntities.FindOrAdd(CellId).Add(EntityIndex);
         SetCentralCellRuntimeAvailable(CellId, false);
         return;
@@ -8634,15 +8723,36 @@ void AOpenMassCrowdSpawner::RefreshCentralUnavailableRoutes()
     {
         return;
     }
-    for (int32 EntityIndex = 0;
-         EntityIndex < SpawnedEntities.Num() &&
-             EntityIndex < EntityRouteStates.Num();
-         ++EntityIndex)
+    const int32 EntityCount = FMath::Min(
+        SpawnedEntities.Num(),
+        EntityRouteStates.Num());
+    if (EntityCount <= 0)
     {
+        return;
+    }
+    bool bRetriedWaitingRoute = false;
+    for (int32 Offset = 0; Offset < EntityCount; ++Offset)
+    {
+        const int32 EntityIndex =
+            (CentralWaitingRouteRetryCursor + Offset) % EntityCount;
         FEntityRouteState& RouteState = EntityRouteStates[EntityIndex];
         bool bNeedsAvailabilityReplan =
             RouteState.bWaitingForAvailableCell &&
             RouteState.PlannedAvailabilityRevision != CentralAvailabilityRevision;
+        // A route can still fail to plan on the same revision while another
+        // cell is recovering.  Once all cells are live, retry one waiting
+        // identity per frame.  This closes the permanent-wait hole without
+        // creating a burst of 50 A* searches in one presentation frame.
+        if (!bNeedsAvailabilityReplan &&
+            !bRetriedWaitingRoute &&
+            RouteState.bWaitingForAvailableCell &&
+            RuntimeUnavailableCentralCellIds.IsEmpty())
+        {
+            bNeedsAvailabilityReplan = true;
+            bRetriedWaitingRoute = true;
+            CentralWaitingRouteRetryCursor =
+                (EntityIndex + 1) % FMath::Max(1, EntityCount);
+        }
         if (!bNeedsAvailabilityReplan && !RouteState.bWaitingForAvailableCell)
         {
             for (int32 PathIndex = FMath::Max(RouteState.CurrentPathIndex, 0);
@@ -8786,6 +8896,28 @@ bool AOpenMassCrowdSpawner::ConstrainCentralEntityTransform(
     // and already contain the single +2 cm clearance. Interpolate the complete
     // transform directly; do not apply LaneHeightOffset a second time.
     FVector CertifiedVisualPosition = CertifiedLocation.Position;
+    if (bInvestorDeliveryDemoEnabled &&
+        CentralPresentationOffsetValid.IsValidIndex(EntityIndex) &&
+        CentralPresentationOffsetValid[EntityIndex] != 0)
+    {
+        // The band is never speculative: CorrectMassGrounding sets this bit
+        // only after an exact-XY Cesium first-hit succeeds for the offset.
+        FZoneGraphLaneLocation PresentationLocation;
+        const float PresentationDistance = FMath::Clamp(
+            LaneLocation.DistanceAlongLane +
+                GetInvestorPresentationPhaseOffsetCm(EntityIndex),
+            0.0f,
+            LaneLength);
+        if (ZoneGraphSubsystem->CalculateLocationAlongLane(
+                LaneLocation.LaneHandle,
+                PresentationDistance,
+                PresentationLocation))
+        {
+            CertifiedVisualPosition = GetInvestorPresentationPosition(
+                PresentationLocation,
+                EntityIndex);
+        }
+    }
     if (LastValid.bValid && !LastValid.bUnsupported)
     {
         FZoneGraphLaneLocation CachedLastValidLocation;
@@ -8893,10 +9025,16 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
     const bool bPeriodicHealthSample =
         CentralTelemetrySampleAccumulator >=
         CentralTelemetrySampleIntervalSeconds;
-    // 100 entities produce only 4,950 unordered pairs. Scan clearance every
-    // tick so a sub-second violation can never disappear between the one-second
-    // movement/LOD samples. Logging remains periodic/forced below.
-    const bool bCollisionHealthSample = true;
+    // Reservation and certified-transform processors still enforce spacing on
+    // every Mass frame. Investor mode samples the diagnostic all-pairs scan at
+    // the telemetry cadence instead of rebuilding it on every presentation
+    // frame; engineering gates retain the stricter every-frame evidence path.
+    const bool bCollisionHealthSample =
+        !bInvestorDeliveryDemoEnabled || bPeriodicHealthSample || bForceLog;
+    if (!bPeriodicHealthSample && !bCollisionHealthSample)
+    {
+        return;
+    }
 
     UMassSpawnerSubsystem* SpawnerSubsystem =
         UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
@@ -9958,12 +10096,16 @@ void AOpenMassCrowdSpawner::CorrectMassGrounding()
     FMassEntityManager& EntityManager = SpawnerSubsystem->GetEntityManagerChecked();
     const bool bCentralMode =
         NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache;
+    const int32 GroundGuardsPerPass =
+        bCentralMode && bInvestorDeliveryDemoEnabled
+        ? InvestorGroundGuardsPerPass
+        : CentralGroundGuardsPerTick;
     const int32 GroundGuardBucketCount = bCentralMode
         ? FMath::Max(
             1,
             FMath::DivideAndRoundUp(
                 SpawnedEntities.Num(),
-                CentralGroundGuardsPerTick))
+                GroundGuardsPerPass))
         : 1;
     const int32 GroundGuardBucket = bCentralMode
         ? CentralGroundGuardBucketCursor % GroundGuardBucketCount
@@ -10056,16 +10198,41 @@ void AOpenMassCrowdSpawner::CorrectMassGrounding()
         }
 
         const FVector CurrentLocation = Transform.GetLocation();
+        FVector GuardQueryLocation = CurrentLocation;
+        bool bTestingPresentationOffset = false;
+        if (bCentralMode && bInvestorDeliveryDemoEnabled &&
+            CentralPresentationOffsetValid.IsValidIndex(EntityIndex) &&
+            !FMath::IsNearlyZero(
+                GetInvestorPresentationOffsetCm(EntityIndex)))
+        {
+            FZoneGraphLaneLocation PresentationLocation;
+            if (ZoneGraphSubsystem->CalculateLocationAlongLane(
+                    LaneLocation.LaneHandle,
+                    FMath::Clamp(
+                        LaneLocation.DistanceAlongLane +
+                            GetInvestorPresentationPhaseOffsetCm(EntityIndex),
+                        0.0f,
+                        LaneLocation.LaneLength),
+                    PresentationLocation))
+            {
+                GuardQueryLocation = GetInvestorPresentationPosition(
+                    PresentationLocation,
+                    EntityIndex);
+                bTestingPresentationOffset = true;
+            }
+        }
         FVector GroundPoint;
         if (bCentralMode)
         {
             ++CentralGroundGuardQueryCount;
         }
-        if (ProjectToCesiumGround(CurrentLocation, GroundPoint))
+        if (ProjectToCesiumGround(GuardQueryLocation, GroundPoint))
         {
             const FVector ValidLocation =
                 bCentralMode
-                ? CurrentLocation
+                ? (bTestingPresentationOffset
+                    ? GroundPoint + FVector(0.0, 0.0, LaneHeightOffset)
+                    : CurrentLocation)
                 : GroundPoint + FVector(0.0, 0.0, LaneHeightOffset);
             // Central's cached 10 cm polyline is already the strict
             // collision-certified ground transform. The live exact-XY query
@@ -10074,6 +10241,11 @@ void AOpenMassCrowdSpawner::CorrectMassGrounding()
             // transform processor had proved the 20 cm gate, producing a
             // repeatable 19.97 cm rendered overlap on cross-sloped tracks.
             Transform.SetLocation(ValidLocation);
+            if (bCentralMode &&
+                CentralPresentationOffsetValid.IsValidIndex(EntityIndex))
+            {
+                CentralPresentationOffsetValid[EntityIndex] = 1;
+            }
             if (LastValid)
             {
                 LastValid->Transform = Transform;
@@ -10096,6 +10268,13 @@ void AOpenMassCrowdSpawner::CorrectMassGrounding()
         }
 
         ++GroundProjectionFailureCount;
+        if (bCentralMode &&
+            CentralPresentationOffsetValid.IsValidIndex(EntityIndex))
+        {
+            // An unsupported band is presentation-only. Remove it before the
+            // existing certified-center recovery path runs below.
+            CentralPresentationOffsetValid[EntityIndex] = 0;
+        }
         if (LastValid)
         {
             ++LastValid->ConsecutiveMisses;
@@ -10413,6 +10592,7 @@ void AOpenMassCrowdSpawner::EnsureInvestorDemoInitialized()
     InvestorNetworkUpdateAccumulator = 0.0f;
     InvestorRoofValidationAccumulator = 0.0f;
     InvestorProfileRefreshAccumulator = 0.0f;
+    InvestorVisualRefreshAccumulator = 0.0f;
     InvestorElapsedSeconds = 0.0f;
     InvestorBuildingEntryCount = 0;
     InvestorBuildingExitCount = 0;
@@ -10531,7 +10711,11 @@ void AOpenMassCrowdSpawner::UpdateInvestorDemo(const float DeltaSeconds)
 
     InvestorElapsedSeconds += FMath::Max(DeltaSeconds, 0.0f);
     InvestorRoofValidationAccumulator += DeltaSeconds;
-    if (InvestorRoofValidationAccumulator >= 0.5f)
+    const float RoofRefreshSeconds =
+        GetInvestorValidatedStationCount() == InvestorStations.Num()
+        ? InvestorValidatedRoofRefreshSeconds
+        : 0.5f;
+    if (InvestorRoofValidationAccumulator >= RoofRefreshSeconds)
     {
         InvestorRoofValidationAccumulator = 0.0f;
         for (FInvestorStationRuntime& Station : InvestorStations)
@@ -10541,7 +10725,7 @@ void AOpenMassCrowdSpawner::UpdateInvestorDemo(const float DeltaSeconds)
     }
 
     InvestorNetworkUpdateAccumulator += DeltaSeconds;
-    if (InvestorNetworkUpdateAccumulator >= 0.2f)
+    if (InvestorNetworkUpdateAccumulator >= InvestorNetworkRefreshSeconds)
     {
         const float StepSeconds = InvestorNetworkUpdateAccumulator;
         InvestorNetworkUpdateAccumulator = 0.0f;
@@ -10563,7 +10747,14 @@ void AOpenMassCrowdSpawner::UpdateInvestorDemo(const float DeltaSeconds)
         ShowCentralProfileByStableIndex(StableIndex);
     }
 
-    DrawInvestorDemoVisuals();
+    InvestorVisualRefreshAccumulator += DeltaSeconds;
+    if (InvestorVisualRefreshAccumulator >= InvestorDebugRefreshSeconds)
+    {
+        InvestorVisualRefreshAccumulator = FMath::Fmod(
+            InvestorVisualRefreshAccumulator,
+            InvestorDebugRefreshSeconds);
+        DrawInvestorDemoVisuals();
+    }
 }
 
 void AOpenMassCrowdSpawner::UpdateInvestorPersonStates(const float DeltaSeconds)
@@ -10767,15 +10958,16 @@ void AOpenMassCrowdSpawner::DrawInvestorDemoVisuals() const
         const FVector Roof = Station.ValidatedRoofPoint + FVector(0.0, 0.0, 4.0);
         const FVector Node = Roof + FVector(0.0, 0.0, 760.0);
         const FVector Beacon = Roof + FVector(0.0, 0.0, 3600.0);
-        DrawDebugLine(World, Roof, Node, Station.DisplayColor, false, -1.0f, 0, 7.0f);
+        DrawDebugLine(World, Roof, Node, Station.DisplayColor, false,
+            InvestorDebugLifetimeSeconds, 0, 7.0f);
         DrawDebugLine(World, Roof + FVector(-180.0, 0.0, 0.0),
-            Node, Station.DisplayColor, false, -1.0f, 0, 2.0f);
+            Node, Station.DisplayColor, false, InvestorDebugLifetimeSeconds, 0, 2.0f);
         DrawDebugLine(World, Roof + FVector(180.0, 0.0, 0.0),
-            Node, Station.DisplayColor, false, -1.0f, 0, 2.0f);
+            Node, Station.DisplayColor, false, InvestorDebugLifetimeSeconds, 0, 2.0f);
         DrawDebugSphere(World, Node, 110.0f + 30.0f * Pulse, 18,
-            Station.DisplayColor, false, -1.0f, 0, 4.0f);
+            Station.DisplayColor, false, InvestorDebugLifetimeSeconds, 0, 4.0f);
         DrawDebugLine(World, Node, Beacon, Station.DisplayColor,
-            false, -1.0f, 0, 1.5f);
+            false, InvestorDebugLifetimeSeconds, 0, 1.5f);
         for (int32 RingIndex = 0; RingIndex < 3; ++RingIndex)
         {
             const float RingRadius = 320.0f +
@@ -10783,7 +10975,8 @@ void AOpenMassCrowdSpawner::DrawInvestorDemoVisuals() const
                     InvestorElapsedSeconds * 380.0f + RingIndex * 480.0f,
                     1440.0f);
             DrawDebugCircle(World, Roof + FVector(0.0, 0.0, 12.0),
-                RingRadius, 48, Station.DisplayColor, false, -1.0f, 0,
+                RingRadius, 48, Station.DisplayColor, false,
+                InvestorDebugLifetimeSeconds, 0,
                 2.0f, FVector(0.0, 1.0, 0.0), FVector(0.0, 0.0, 1.0), false);
         }
         DrawDebugCircle(World,
@@ -10793,7 +10986,7 @@ void AOpenMassCrowdSpawner::DrawInvestorDemoVisuals() const
             96,
             Station.DisplayColor,
             false,
-            -1.0f,
+            InvestorDebugLifetimeSeconds,
             0,
             1.25f,
             FVector(0.0, 1.0, 0.0),
@@ -10802,7 +10995,8 @@ void AOpenMassCrowdSpawner::DrawInvestorDemoVisuals() const
         DrawDebugString(World, Node + FVector(0.0, 0.0, 230.0),
             FString::Printf(TEXT("%s  |  ROOFTOP ONLINE"),
                 *Station.StationId.ToString()),
-            nullptr, Station.DisplayColor, 0.0f, true, 1.15f);
+            nullptr, Station.DisplayColor, InvestorDebugLifetimeSeconds,
+            true, 1.15f);
     }
 
     const FColor PortalColor = GetInvestorIndoorCount() > 0
@@ -10812,20 +11006,20 @@ void AOpenMassCrowdSpawner::DrawInvestorDemoVisuals() const
         FVector(0.0, 0.0, 8.0);
     DrawDebugLine(World, PortalBase + FVector(-120.0, 0.0, 0.0),
         PortalBase + FVector(-120.0, 0.0, 240.0), PortalColor,
-        false, -1.0f, 0, 4.0f);
+        false, InvestorDebugLifetimeSeconds, 0, 4.0f);
     DrawDebugLine(World, PortalBase + FVector(120.0, 0.0, 0.0),
         PortalBase + FVector(120.0, 0.0, 240.0), PortalColor,
-        false, -1.0f, 0, 4.0f);
+        false, InvestorDebugLifetimeSeconds, 0, 4.0f);
     DrawDebugLine(World, PortalBase + FVector(-120.0, 0.0, 240.0),
         PortalBase + FVector(120.0, 0.0, 240.0), PortalColor,
-        false, -1.0f, 0, 4.0f);
+        false, InvestorDebugLifetimeSeconds, 0, 4.0f);
     DrawDebugCircle(World, PortalBase,
         170.0f + Pulse * 80.0f, 32, PortalColor,
-        false, -1.0f, 0, 2.5f,
+        false, InvestorDebugLifetimeSeconds, 0, 2.5f,
         FVector(0.0, 1.0, 0.0), FVector(0.0, 0.0, 1.0), false);
     DrawDebugString(World, PortalBase + FVector(0.0, 0.0, 285.0),
         TEXT("BUILDING BOUNDARY  |  INDOOR TRANSITION"),
-        nullptr, PortalColor, 0.0f, true, 1.0f);
+        nullptr, PortalColor, InvestorDebugLifetimeSeconds, true, 1.0f);
 
     UMassSpawnerSubsystem* SpawnerSubsystem =
         UWorld::GetSubsystem<UMassSpawnerSubsystem>(World);
@@ -10884,13 +11078,14 @@ void AOpenMassCrowdSpawner::DrawInvestorDemoVisuals() const
                 Station.DisplayColor.B / 2,
                 150);
         DrawDebugLine(World, PersonPoint, StationPoint, LinkColor,
-            false, -1.0f, 0, bSelected ? 4.5f : 0.75f);
+            false, InvestorDebugLifetimeSeconds, 0,
+            bSelected ? 4.5f : 0.75f);
         if (bSelected)
         {
             DrawDebugCircle(World,
                 Transform->GetTransform().GetLocation() + FVector(0.0, 0.0, 5.0),
                 65.0f + Pulse * 24.0f, 28, FColor(245, 255, 255),
-                false, -1.0f, 0, 3.0f,
+                false, InvestorDebugLifetimeSeconds, 0, 3.0f,
                 FVector(0.0, 1.0, 0.0), FVector(0.0, 0.0, 1.0), false);
         }
     }
@@ -11683,6 +11878,55 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
 
     const int32 ValidStationCount = GetInvestorValidatedStationCount();
     const int32 ConnectedCount = GetInvestorConnectedCount();
+    TSet<int32> OccupiedPresentationBands;
+    TMap<int32, int32> ActiveLanePopulations;
+    int32 ValidatedOffsetCount = 0;
+    int32 PresentationFallbackCount = 0;
+    if (UMassSpawnerSubsystem* SpawnerSubsystem =
+            UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld()))
+    {
+        FMassEntityManager& EntityManager =
+            SpawnerSubsystem->GetEntityManagerChecked();
+        for (int32 StableIndex = 0;
+             StableIndex < SpawnedEntities.Num();
+             ++StableIndex)
+        {
+            const FMassEntityHandle Entity = SpawnedEntities[StableIndex];
+            if (!EntityManager.IsEntityValid(Entity))
+            {
+                continue;
+            }
+            const float OffsetCm =
+                GetInvestorPresentationOffsetCm(StableIndex);
+            const bool bOffsetSupported = FMath::IsNearlyZero(OffsetCm) ||
+                (CentralPresentationOffsetValid.IsValidIndex(StableIndex) &&
+                 CentralPresentationOffsetValid[StableIndex] != 0);
+            if (bOffsetSupported)
+            {
+                OccupiedPresentationBands.Add(
+                    GetInvestorPresentationBandIndex(StableIndex));
+                ++ValidatedOffsetCount;
+            }
+            else
+            {
+                ++PresentationFallbackCount;
+            }
+            if (const FMassZoneGraphLaneLocationFragment* Lane =
+                    EntityManager.GetFragmentDataPtr<
+                        FMassZoneGraphLaneLocationFragment>(Entity))
+            {
+                ++ActiveLanePopulations.FindOrAdd(
+                    Lane->LaneHandle.Index);
+            }
+        }
+    }
+    int32 LargestActiveLanePopulation = 0;
+    for (const TPair<int32, int32>& Entry : ActiveLanePopulations)
+    {
+        LargestActiveLanePopulation = FMath::Max(
+            LargestActiveLanePopulation,
+            Entry.Value);
+    }
     const bool bProfileComplete =
         SelectedCentralProfileEntityIndex != INDEX_NONE &&
         CentralProfileViewportWidget.IsValid();
@@ -11696,9 +11940,10 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         InvestorBuildingEntryCount > 0 &&
         InvestorBuildingExitCount > 0 &&
         InvestorStationReacquisitionCount > 0 &&
+        OccupiedPresentationBands.Num() >= 3 &&
         bProfileComplete;
     return FString::Printf(
-        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v1\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true},\"video_required\":false}"),
+        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v2\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true},\"video_required\":false}"),
         bInvestorDeliveryDemoEnabled ? TEXT("true") : TEXT("false"),
         bPassed ? TEXT("true") : TEXT("false"),
         InvestorDeliveryPopulation,
@@ -11707,6 +11952,29 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         CentralMovingEntityCount,
         CentralRepresentedEntityCount,
         CentralVATRepresentationCount,
+        InvestorPresentationBandCount,
+        OccupiedPresentationBands.Num(),
+        ValidatedOffsetCount,
+        PresentationFallbackCount,
+        static_cast<float>(InvestorPresentationBandCount / 2) *
+            InvestorPresentationBandSpacingCm,
+        ActiveLanePopulations.Num(),
+        LargestActiveLanePopulation,
+        InvestorSkeletalWalkDistanceCm / 100.0f,
+        InvestorHighActorBudget,
+        InvestorLowActorBudget,
+        CentralHighActorRepresentationCount,
+        CentralLowActorRepresentationCount,
+        CentralVATRepresentationCount,
+        InvestorGroundGuardsPerPass,
+        CentralTelemetrySampleIntervalSeconds,
+        1.0f / InvestorDebugRefreshSeconds,
+        InvestorValidatedRoofRefreshSeconds,
+        1.0f / InvestorNetworkRefreshSeconds,
+        CentralFrameTimeSampleCount,
+        CentralFrameTimeP50Ms,
+        CentralFrameTimeP95Ms,
+        CentralFrameTimeMaximumMs,
         ValidStationCount,
         MaximumRoofErrorCm,
         *StationJson,
@@ -12052,6 +12320,7 @@ void AOpenMassCrowdSpawner::DestroyRuntimePopulation()
     }
     SpawnedEntities.Reset();
     CentralEntityVisualVariantIndices.Reset();
+    CentralPresentationOffsetValid.Reset();
     CentralRuntimeVariantNames.Reset();
     LastValidGroundStates.Reset();
     RuntimeCentralPreviousFrameStates.Reset();
@@ -12144,6 +12413,7 @@ void AOpenMassCrowdSpawner::DestroyRuntimePopulation()
     ResetCentralRuntimeTelemetry();
     CentralAvailabilityRevision = 0;
     CentralGroundGuardBucketCursor = 0;
+    CentralWaitingRouteRetryCursor = 0;
     LastLoggedCentralRepresentedCount = INDEX_NONE;
     CesiumGroundComponentGrid.Reset();
     CesiumGroundLargeComponents.Reset();
