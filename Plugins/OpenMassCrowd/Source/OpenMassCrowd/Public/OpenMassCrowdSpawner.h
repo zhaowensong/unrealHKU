@@ -83,7 +83,7 @@ public:
         BlueprintReadWrite,
         Category = "Open Mass Crowd|Investor Demo",
         meta = (ClampMin = "1", ClampMax = "100"))
-    int32 InvestorDeliveryPopulation = 50;
+    int32 InvestorDeliveryPopulation = 100;
 
     /** Maximum number of faint aggregate links; selected-person link is additional. */
     UPROPERTY(

@@ -15,7 +15,7 @@ from pathlib import Path
 import unreal
 
 
-EXPECTED_POPULATION = 50
+EXPECTED_POPULATION = 100
 EXPECTED_LINK_BUDGET = 12
 
 
@@ -36,7 +36,11 @@ def main() -> None:
     config_path = project_root() / "Config" / "InvestorDeliveryDemo.json"
     config = json.loads(config_path.read_text(encoding="utf-8"))
     if int(config["population"]) != EXPECTED_POPULATION:
-        raise RuntimeError("delivery config must request exactly 50 people")
+        raise RuntimeError(
+            "delivery config must request exactly {} people".format(
+                EXPECTED_POPULATION
+            )
+        )
 
     actor_subsystem = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
     spawner_type = getattr(unreal, "OpenMassCrowdSpawner", None)
@@ -65,7 +69,7 @@ def main() -> None:
     try:
         spawner.set_editor_property(
             "central_population_gate",
-            unreal.OpenMassCrowdCentralPopulationGate.GATE50,
+            unreal.OpenMassCrowdCentralPopulationGate.GATE100,
         )
     except Exception:
         # InvestorDeliveryPopulation is the authoritative runtime cap. Keeping

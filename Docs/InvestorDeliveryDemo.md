@@ -1,18 +1,18 @@
-# TelecomTwin 50 人投资演示交付说明
+# TelecomTwin 100 人投资演示交付说明
 
 ## 交付结论
 
 当前 `feature/investor-delivery-demo` 分支提供一个可重启的中环数字孪生演示闭环：
 
-- 固定运行 50 名行人；50/50 生成、准入、移动和显示。
-- 50/50 远景人物继续播放 VAT 步行动画，而不是平移。
+- 固定运行 100 名行人；100/100 生成、准入、移动和显示。
+- 近景使用受限的低成本骨骼角色，远景使用 VAT；100 人都有持续步行动画，而不是平移。
 - 两座演示基站每 0.5 秒从当前可见 Cesium 碰撞组件重新寻找最高可行走屋面。
 - 基站视觉底座只高于实时屋面 4 cm；连续 4 次找不到屋面时会隐藏，拒绝假贴顶。
-- 50 人各自维护室外/入楼/室内/出楼、服务基站、信号、应用和切换状态。
+- 100 人各自维护室外/入楼/室内/出楼、服务基站、信号、应用和切换状态。
 - 一名确定性人物循环演示入楼断联、室内应用、出楼和重新驻留。
 - 左下半透明人物卡展示姓名、职业、性别年龄、当前应用、位置、服务基站和信号。
 - 右上 KPI 展示人数、已连接、室内人数和可用屋顶节点。
-- 投资模式运行时隐藏两代旧射线共 3486 个对象，结束 PIE 后恢复原状态。
+- 投资模式运行时隐藏当前已加载的 30 个信源与 1920 个旧射线对象（共 1950 个），结束 PIE 后恢复原状态。
 - 按要求没有录制最终验收视频。
 
 ![双屋顶基站和人物状态卡](Evidence/InvestorDelivery/02_real_rooftop_stations.png)
@@ -28,11 +28,11 @@
 
 3. 等待 `shanghai` 场景完成加载。
 4. 在 UE 中按 `Alt+P` 启动 Play。
-5. 等待约 30–50 秒，让 Cesium 碰撞、50 人准入和屋顶验证完成。
+5. 等待约 30–50 秒，让 Cesium 碰撞、100 人准入和屋顶验证完成。
 
-投资模式、50 人和 12 条稀疏关联线都来自 C++ 默认值与
+投资模式、100 人和 12 条稀疏关联线都来自 C++ 默认值与
 [`Config/InvestorDeliveryDemo.json`](../Config/InvestorDeliveryDemo.json)，重启后不依赖临时注入。
-地图资产仍保留历史 `Gate100` 字段；投资模式运行时明确覆盖为 50，不会改写用户地图。
+地图中的 Spawner 已保存为 `Gate100` 与 100 人；启动脚本不会再临时修改地图。
 
 ## 推荐演示顺序
 
@@ -47,25 +47,28 @@
 在 Play 正常运行时执行：
 
 ```powershell
-python .\Scripts\OpenMassCrowd\verify_investor_delivery_demo_runtime.py --transition-wait 14
+python .\Scripts\OpenMassCrowd\verify_investor_delivery_demo_runtime.py --transition-wait 14 --expected-population 100 --output .\Docs\Evidence\InvestorDelivery\investor_delivery_100_runtime_latest.json
 ```
 
-最新报告：[`investor_delivery_runtime_latest.json`](Evidence/InvestorDelivery/investor_delivery_runtime_latest.json)。
+最新报告：[`investor_delivery_100_runtime_latest.json`](Evidence/InvestorDelivery/investor_delivery_100_runtime_latest.json)。
 
-2026-07-30 最终干净重启结果：
+2026-08-01 冷启动后的稳定运行结果：
 
 | 检查 | 结果 |
 |---|---:|
-| 50 人生成/准入/移动/显示 | 50 / 50 / 50 / 50 |
-| 远景 VAT 步行 | 50 / 50 |
+| 100 人生成/准入/移动/显示 | 100 / 100 / 100 / 100 |
+| 远景步行显示 | 17 个低成本骨骼角色 + 83 个 VAT（本次采样） |
 | 不支持地面位置 | 0 |
 | 严重重叠 | 0 |
+| 60 秒持续运行 | 最少移动 100，最大卡住 0，最大静止 1.018 s |
+| 稳定帧时 | P50 20.361 ms，P95 24.126 ms |
+| 活跃认证道路 | 31–32 条 |
 | 实时屋顶节点 | 2 / 2 |
 | 节点到实时屋面偏移 | 4 cm / 4 cm |
 | 屋顶连续验证失败 | 0 / 0 |
-| 室外连接 | 50 / 50 |
+| 室外连接 | 100 / 100 |
 | 入楼/出楼/重新驻留事件 | 已全部观测 |
-| 旧射线隐藏且可恢复 | 3486 |
+| 当前加载旧信号对象隐藏且可恢复 | 1950 |
 | 最终视频 | 未创建 |
 
 ## 数据与接口
@@ -87,7 +90,7 @@ python .\Scripts\OpenMassCrowd\verify_investor_delivery_demo_runtime.py --transi
 
 ## 回滚与 Git
 
-- 本轮开始前回滚点：`checkpoint/central-100-far-gait-2026-07-30`
+- 本轮开始前回滚点：`checkpoint/investor-50-liveness-2026-08-01`
 - 实施分支：`feature/investor-delivery-demo`
 - 项目远程：`https://github.com/zhaowensong/unrealHKU.git`
-- 本轮没有修改地图资产；用户已有的地图和旧证据文件保持未暂存状态。
+- 地图中的 OpenMassCrowdSpawner 已持久化为 100 人；其他用户已有地图/旧证据改动未纳入本轮提交。

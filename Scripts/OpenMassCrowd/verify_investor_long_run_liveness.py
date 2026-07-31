@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -63,7 +64,19 @@ def main() -> int:
     parser.add_argument("--duration", type=float, default=60.0)
     parser.add_argument("--interval", type=float, default=2.0)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--expected-population", type=int)
     args = parser.parse_args()
+
+    configured_population = int(
+        json.loads(
+            (ROOT / "Config" / "InvestorDeliveryDemo.json").read_text(
+                encoding="utf-8"
+            )
+        )["population"]
+    )
+    expected_population = args.expected_population or configured_population
+    if expected_population <= 0:
+        raise ValueError("expected population must be positive")
 
     duration = max(args.duration, 10.0)
     interval = max(args.interval, 1.0)
@@ -77,7 +90,7 @@ def main() -> int:
 
     longest_stuck_streak = 0
     current_stuck_streak = 0
-    minimum_moving = 50
+    minimum_moving = expected_population
     maximum_stuck = 0
     maximum_stationary_s = 0.0
     for sample in samples:
@@ -103,10 +116,14 @@ def main() -> int:
             for sample in samples
         ),
         "population_remains_admitted": all(
-            sample["delivery"]["population"]["spawned"] == 50
-            and sample["delivery"]["population"]["admitted"] == 50
-            and sample["delivery"]["population"]["represented"] == 50
-            and sample["delivery"]["liveness"]["expected_moving"] == 50
+            sample["delivery"]["population"]["spawned"]
+            == expected_population
+            and sample["delivery"]["population"]["admitted"]
+            == expected_population
+            and sample["delivery"]["population"]["represented"]
+            == expected_population
+            and sample["delivery"]["liveness"]["expected_moving"]
+            == expected_population
             for sample in samples
         ),
         "no_unsupported_positions": all(
@@ -115,7 +132,8 @@ def main() -> int:
         "no_persistent_stall": (
             longest_stuck_streak <= 2
             and int(final_liveness["stuck"]) == 0
-            and minimum_moving >= 45
+            and maximum_stuck < max(1, math.ceil(expected_population * 0.02))
+            and minimum_moving >= math.ceil(expected_population * 0.95)
             and maximum_stationary_s < 15.0
         ),
     }
@@ -125,6 +143,7 @@ def main() -> int:
         "duration_s": duration,
         "interval_s": interval,
         "sample_count": len(samples),
+        "expected_population": expected_population,
         "minimum_moving": minimum_moving,
         "maximum_stuck": maximum_stuck,
         "maximum_stationary_s": maximum_stationary_s,

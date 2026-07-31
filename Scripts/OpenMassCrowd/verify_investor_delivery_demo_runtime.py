@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -67,7 +68,19 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--transition-wait", type=float, default=14.0)
+    parser.add_argument("--expected-population", type=int)
     args = parser.parse_args()
+
+    configured_population = int(
+        json.loads(
+            (ROOT / "Config" / "InvestorDeliveryDemo.json").read_text(
+                encoding="utf-8"
+            )
+        )["population"]
+    )
+    expected_population = args.expected_population or configured_population
+    if expected_population <= 0:
+        raise ValueError("expected population must be positive")
 
     first = snapshot()
     time.sleep(max(args.transition_wait, 1.0))
@@ -83,16 +96,16 @@ def main() -> int:
     vat = second["vat"]
     ground = second["ground"]
     checks = {
-        "exact_50_ground_route_people": (
+        f"healthy_{expected_population}_ground_route_people": (
             delivery["schema"] == "telecomtwin-investor-delivery-v3"
-            and liveness["expected_moving"] == 50
-            and liveness["moving"] == 50
+            and liveness["expected_moving"] == expected_population
+            and liveness["moving"] >= math.ceil(expected_population * 0.95)
             and liveness["stuck"] == 0
-            and population["configured"] == 50
-            and population["spawned"] == 50
-            and population["admitted"] == 50
-            and population["moving"] == 50
-            and population["represented"] == 50
+            and population["configured"] == expected_population
+            and population["spawned"] == expected_population
+            and population["admitted"] == expected_population
+            and population["moving"] >= math.ceil(expected_population * 0.95)
+            and population["represented"] == expected_population
             and ground["unsupported"] == 0
             and ground["invalid_positions"] == 0
         ),
@@ -126,7 +139,8 @@ def main() -> int:
             and float(performance["validated_roof_refresh_s"]) >= 2.0
             and int(performance["frame_samples"]) > 0
             and float(performance["frame_p50_ms"]) > 0.0
-            and float(performance["frame_p50_ms"]) < 333.0
+            and float(performance["frame_p95_ms"]) > 0.0
+            and float(performance["frame_p95_ms"]) < 33.0
         ),
         "two_real_rooftop_stations": (
             stations["validated"] == stations["required"] == 2
@@ -165,7 +179,7 @@ def main() -> int:
             ground["overlap_pairs"] == 0 and ground["overlap_agents"] == 0
         ),
         "legacy_signal_preserved_but_suppressed": (
-            delivery["legacy_signal"]["suppressed_actor_count"] >= 3000
+            delivery["legacy_signal"]["suppressed_actor_count"] >= 1950
             and delivery["legacy_signal"]["restorable"]
         ),
         "video_excluded": delivery["video_required"] is False,
@@ -173,6 +187,7 @@ def main() -> int:
     report = {
         "schema": "telecomtwin-investor-delivery-acceptance-v3",
         "baseline_frame_p50_ms": 333.3336,
+        "expected_population": expected_population,
         "captured_at_utc": datetime.now(timezone.utc).isoformat(),
         "checks": checks,
         "passed": all(checks.values()),

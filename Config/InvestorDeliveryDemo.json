@@ -2,7 +2,7 @@
   "schema": "telecomtwin-investor-delivery-config-v1",
   "mode": "CentralInvestorDelivery",
   "enabled": true,
-  "population": 50,
+  "population": 100,
   "association_visual_budget": 12,
   "stations": [
     {

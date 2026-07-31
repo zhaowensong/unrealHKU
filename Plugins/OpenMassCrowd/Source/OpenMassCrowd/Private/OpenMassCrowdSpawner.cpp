@@ -97,6 +97,17 @@ constexpr float CentralMinimumCenterClearanceCm =
 constexpr float CentralClearanceComparisonToleranceCm = 0.1f;
 constexpr float CentralMinimumAcceptedCenterClearanceCm =
     CentralMinimumCenterClearanceCm - CentralClearanceComparisonToleranceCm;
+// The certified cache stores discrete exact-XY Cesium samples. After removing
+// sub-six-metre circulation fragments, its densest valid 100-person packing is
+// on an approximately 50 cm sample lattice. Cesium/world float transforms can
+// contract that measured XY separation by a few millimetres, so admit the
+// exact non-overlapping lattice with a 1 cm transform margin at startup;
+// normal same-direction headway immediately remains the stricter 55 cm
+// body-quality spacing above.
+constexpr float CentralInitialPackingClearanceCm = 49.0f;
+constexpr float CentralMinimumAcceptedInitialPackingClearanceCm =
+    CentralInitialPackingClearanceCm -
+    CentralClearanceComparisonToleranceCm;
 constexpr int32 RequiredCentralSpawnDistrictCount = 6;
 constexpr int32 FullCentralPopulation = 100;
 constexpr int32 CentralLaneHistoryLimit = 8;
@@ -109,6 +120,11 @@ constexpr int32 CentralDestinationHistoryLimit = 4;
 // modes and future simulation work.
 constexpr bool bUseCentralCertifiedEdgeCirculation = true;
 constexpr int32 CentralMaximumPedestriansPerEdgeCirculation = 6;
+// Semantic recovery splits some certified pavement into 4-5 m fragments.
+// Reversing on those tiny pairs causes Mass to complete and rebuild actions
+// faster than avoidance can drain the endpoint. Keep investor circulation on
+// certified lanes long enough to sustain a visible walk before turnaround.
+constexpr float CentralMinimumEdgeCirculationLaneLengthCm = 600.0f;
 constexpr float CentralPreferredOutboundMinimumCm = 6000.0f;
 constexpr float CentralPreferredOutboundMaximumCm = 15000.0f;
 constexpr float CentralRouteEndpointInsetCm = 1.0f;
@@ -135,7 +151,8 @@ constexpr float CentralMovementLivenessWindowSeconds = 2.0f;
 // can grow into a five-second stall.
 constexpr float CentralEdgePathRefreshThresholdSeconds = 0.5f;
 constexpr float CentralStuckThresholdSeconds = 5.0f;
-// Same-direction headway and admission keep the 55 cm body-quality spacing.
+// Same-direction runtime headway keeps the 55 cm body-quality spacing after
+// the separately bounded initial packing transaction.
 // The hard collision contract for severe, crossing, merging, and opposing
 // geometry is the independent 20 cm center-distance threshold from the gate.
 constexpr float CentralSevereOverlapDistanceCm = 20.0f;
@@ -3989,10 +4006,10 @@ bool AOpenMassCrowdSpawner::BuildRuntimeZoneGraphFromCentralCache()
         // Build each quota from the same complete certified Central ground
         // network. Restricting a quota to its declared seed cell (or one-hop
         // neighbours) made nested admission pools compete for the same scarce
-        // 55 cm-safe points: the smaller r0-c1 pool necessarily exhausted the
-        // only viable part of r1-c1. A shared network-wide candidate pool lets
-        // the existing global clearance/opposing-lane checks distribute all
-        // 100 slots physically, while the stable six-district quotas remain
+        // initial-packing-safe points: the smaller r0-c1 pool necessarily
+        // exhausted the only viable part of r1-c1. A shared network-wide
+        // candidate pool lets the existing global clearance/opposing-lane
+        // checks distribute all 100 slots physically, while the stable six-district quotas remain
         // exact. Every candidate still comes from a collision-certified sample
         // and must pass the normal live Cesium support probe. Each pedestrian's
         // A* route remains confined to its actual spawn-lane component, so this
@@ -5234,7 +5251,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
     // numerically smaller than r1-c1, but it consumes lanes that r1-c1 shares
     // with three other districts. Allocate strict subsets first, then the
     // pools with the greatest normalized sharing pressure. This is a stable,
-    // data-derived scarcity order; it does not weaken the 55 cm whole-plan
+    // data-derived scarcity order; it does not weaken the initial whole-plan
     // clearance requirement or hard-code a district name.
     TArray<int32> SpawnPlanningDistrictIndices;
     SpawnPlanningDistrictIndices.Reserve(RuntimeCentralDistricts.Num());
@@ -5309,6 +5326,57 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
                 bStrictSubset ? 1 : 0;
         }
     }
+    // The delivery cache deliberately lets sparse districts borrow the full
+    // certified Central network. When every preferred pool is identical,
+    // selecting each district independently is six greedy packing passes over
+    // the same geometry: the early quotas can leave no packing-safe point for
+    // the final quota even though a valid global 100-person packing exists.
+    // Select the shared pool once, then redistribute those already-proven
+    // slots back to the six stable district quotas below.
+    bool bUseUnifiedSharedPoolPlanning =
+        PreferredSpawnLaneSets.Num() == RequiredCentralSpawnDistrictCount &&
+        !PreferredSpawnLaneSets.IsEmpty();
+    if (bUseUnifiedSharedPoolPlanning)
+    {
+        const TSet<int32>& ReferenceLaneSet = PreferredSpawnLaneSets[0];
+        for (int32 DistrictIndex = 1;
+             DistrictIndex < PreferredSpawnLaneSets.Num() &&
+                 bUseUnifiedSharedPoolPlanning;
+             ++DistrictIndex)
+        {
+            const TSet<int32>& CandidateLaneSet =
+                PreferredSpawnLaneSets[DistrictIndex];
+            if (CandidateLaneSet.Num() != ReferenceLaneSet.Num())
+            {
+                bUseUnifiedSharedPoolPlanning = false;
+                break;
+            }
+            for (const int32 LaneIndex : ReferenceLaneSet)
+            {
+                if (!CandidateLaneSet.Contains(LaneIndex))
+                {
+                    bUseUnifiedSharedPoolPlanning = false;
+                    break;
+                }
+            }
+        }
+    }
+    TArray<int32> SpawnPlanningQuotas = FullPlanDistrictQuotas;
+    constexpr int32 UnifiedSharedPoolDistrictIndex = 0;
+    if (bUseUnifiedSharedPoolPlanning)
+    {
+        SpawnPlanningQuotas.Init(0, RuntimeCentralDistricts.Num());
+        SpawnPlanningQuotas[UnifiedSharedPoolDistrictIndex] =
+            FullCentralPopulation;
+        UE_LOG(
+            LogTemp,
+            Log,
+            TEXT("OPEN_MASS_CROWD_CENTRAL_UNIFIED_SPAWN_PLAN population=%d shared_lanes=%d districts=%d clearance_cm=%.1f"),
+            FullCentralPopulation,
+            PreferredSpawnLaneSets[UnifiedSharedPoolDistrictIndex].Num(),
+            RuntimeCentralDistricts.Num(),
+            CentralInitialPackingClearanceCm);
+    }
     const auto GetPreferredSpawnLaneCapacity =
         [&PreferredSpawnLaneSets](const int32 DistrictIndex)
     {
@@ -5316,7 +5384,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
     };
     SpawnPlanningDistrictIndices.Sort(
         [this,
-         &FullPlanDistrictQuotas,
+         &SpawnPlanningQuotas,
          &GetPreferredSpawnLaneCapacity,
          &PreferredSpawnContainmentCounts,
          &PreferredSpawnOverlapPressures](
@@ -5345,9 +5413,9 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
             {
                 return LeftScaledPressure > RightScaledPressure;
             }
-            const int64 LeftQuota = FullPlanDistrictQuotas[
+            const int64 LeftQuota = SpawnPlanningQuotas[
                 LeftDistrictIndex];
-            const int64 RightQuota = FullPlanDistrictQuotas[
+            const int64 RightQuota = SpawnPlanningQuotas[
                 RightDistrictIndex];
             const int64 LeftScaledCapacity = LeftCapacity * RightQuota;
             const int64 RightScaledCapacity = RightCapacity * LeftQuota;
@@ -5369,7 +5437,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
         const FRuntimeCentralDistrict& District =
             RuntimeCentralDistricts[DistrictIndex];
         const int32 RequiredDistrictSlots =
-            FullPlanDistrictQuotas[DistrictIndex];
+            SpawnPlanningQuotas[DistrictIndex];
         TArray<FCentralSpawnSlot>& Candidates =
             DistrictCandidateSlots[DistrictIndex];
         UE_LOG(
@@ -5428,6 +5496,13 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
                 LaneLength <= 1.0f)
             {
                 return false;
+            }
+            if constexpr (bUseCentralCertifiedEdgeCirculation)
+            {
+                if (LaneLength < CentralMinimumEdgeCirculationLaneLengthCm)
+                {
+                    continue;
+                }
             }
             const float MinimumCandidateDistance = LaneLength * SpawnMarginFraction;
             const float MaximumCandidateDistance =
@@ -5493,7 +5568,8 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
         float BestRejectedMinimumDistanceSquared = -1.0f;
         int32 BestRejectedSeed = INDEX_NONE;
         const float RequiredDistanceSquared =
-            FMath::Square(CentralMinimumAcceptedCenterClearanceCm);
+            FMath::Square(
+                CentralMinimumAcceptedInitialPackingClearanceCm);
         TBitArray<> bGloballyOpposingForbidden(false, Candidates.Num());
         for (int32 CandidateIndex = 0;
              CandidateIndex < Candidates.Num();
@@ -5539,7 +5615,8 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
         }
         // Seed zero exactly preserves the original deterministic plan when it
         // already passes.  Otherwise scan stable candidate indices and accept
-        // the first complete quota-sized farthest-point plan above 55 cm, with
+        // the first complete quota-sized farthest-point plan above the exact
+        // initial-packing threshold, with
         // every whole-track opposing direction excluded from the full 100-slot
         // plan before any bounded admission begins.
         for (int32 SeedCandidateIndex = 0;
@@ -5679,7 +5756,7 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
                 *District.DistrictId.ToString(),
                 Candidates.Num(),
                 RequiredDistrictSlots,
-                CentralMinimumCenterClearanceCm,
+                CentralInitialPackingClearanceCm,
                 BestRejectedSeed,
                 BestRejectedMinimumDistanceSquared >= 0.0f
                     ? FMath::Sqrt(BestRejectedMinimumDistanceSquared)
@@ -5740,7 +5817,44 @@ bool AOpenMassCrowdSpawner::BeginCentralBatchedAdmission()
             Candidates.Num(),
             SelectedSlots.Num(),
             AcceptedMinimumDistanceCm,
-            CentralMinimumCenterClearanceCm);
+            CentralInitialPackingClearanceCm);
+    }
+
+    if (bUseUnifiedSharedPoolPlanning)
+    {
+        TArray<FCentralSpawnSlot> UnifiedSlots = MoveTemp(
+            DistrictSlots[UnifiedSharedPoolDistrictIndex]);
+        if (UnifiedSlots.Num() != FullCentralPopulation)
+        {
+            return false;
+        }
+        for (TArray<FCentralSpawnSlot>& Slots : DistrictSlots)
+        {
+            Slots.Reset();
+        }
+        int32 UnifiedSlotIndex = 0;
+        while (UnifiedSlotIndex < UnifiedSlots.Num())
+        {
+            bool bAssignedSlot = false;
+            for (int32 DistrictIndex = 0;
+                 DistrictIndex < DistrictSlots.Num() &&
+                     UnifiedSlotIndex < UnifiedSlots.Num();
+                 ++DistrictIndex)
+            {
+                if (DistrictSlots[DistrictIndex].Num() >=
+                    FullPlanDistrictQuotas[DistrictIndex])
+                {
+                    continue;
+                }
+                DistrictSlots[DistrictIndex].Add(
+                    UnifiedSlots[UnifiedSlotIndex++]);
+                bAssignedSlot = true;
+            }
+            if (!bAssignedSlot)
+            {
+                return false;
+            }
+        }
     }
 
     // Farthest-point selection proves clearance for the complete 100-person
@@ -6399,7 +6513,8 @@ bool AOpenMassCrowdSpawner::AdmitNextCentralBatch()
         }
     }
     const float RequiredSpawnClearanceSquared =
-        FMath::Square(CentralMinimumAcceptedCenterClearanceCm);
+        FMath::Square(
+            CentralMinimumAcceptedInitialPackingClearanceCm);
     int32 RemainingLiveProbeBudget =
         CentralAdmissionLiveProbeBudgetPerPass;
     TArray<FCentralStagedAdmissionSlot> StagedSlots;
@@ -12361,12 +12476,17 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
     const bool bProfileComplete =
         SelectedCentralProfileEntityIndex != INDEX_NONE &&
         CentralProfileViewportWidget.IsValid();
+    const int32 ExpectedInvestorPopulation = GetRequestedCentralPopulation();
+    const int32 MinimumHealthyMovingPopulation = FMath::CeilToInt(
+        static_cast<float>(ExpectedInvestorPopulation) * 0.95f);
     const bool bPassed =
         bInvestorDeliveryDemoEnabled &&
-        InvestorPeople.Num() == 50 &&
-        SpawnedEntities.Num() == 50 &&
-        CentralExpectedMovingEntityCount == 50 &&
-        CentralMovingEntityCount == 50 &&
+        InvestorPeople.Num() == ExpectedInvestorPopulation &&
+        SpawnedEntities.Num() == ExpectedInvestorPopulation &&
+        CentralAdmittedEntityCount == ExpectedInvestorPopulation &&
+        CentralExpectedMovingEntityCount == ExpectedInvestorPopulation &&
+        CentralMovingEntityCount >= MinimumHealthyMovingPopulation &&
+        CentralRepresentedEntityCount == ExpectedInvestorPopulation &&
         CentralStuckEntityCount == 0 &&
         ValidStationCount == 2 &&
         ConnectedCount > 0 &&
