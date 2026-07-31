@@ -78,12 +78,17 @@ def main() -> int:
     building = delivery["building"]
     presentation = delivery["presentation"]
     performance = delivery["performance"]
+    liveness = delivery["liveness"]
     profile = second["profile"]
     vat = second["vat"]
     ground = second["ground"]
     checks = {
         "exact_50_ground_route_people": (
-            population["configured"] == 50
+            delivery["schema"] == "telecomtwin-investor-delivery-v3"
+            and liveness["expected_moving"] == 50
+            and liveness["moving"] == 50
+            and liveness["stuck"] == 0
+            and population["configured"] == 50
             and population["spawned"] == 50
             and population["admitted"] == 50
             and population["moving"] == 50
@@ -166,7 +171,7 @@ def main() -> int:
         "video_excluded": delivery["video_required"] is False,
     }
     report = {
-        "schema": "telecomtwin-investor-delivery-acceptance-v2",
+        "schema": "telecomtwin-investor-delivery-acceptance-v3",
         "baseline_frame_p50_ms": 333.3336,
         "captured_at_utc": datetime.now(timezone.utc).isoformat(),
         "checks": checks,

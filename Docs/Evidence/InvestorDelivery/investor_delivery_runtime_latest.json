@@ -1,7 +1,7 @@
 {
   "acceptance_video_created": false,
   "baseline_frame_p50_ms": 333.3336,
-  "captured_at_utc": "2026-07-30T18:21:02.843948+00:00",
+  "captured_at_utc": "2026-07-31T16:05:35.708568+00:00",
   "checks": {
     "bounded_distant_skeletal_walk": true,
     "bounded_investor_runtime_work": true,
@@ -20,22 +20,31 @@
     "delivery": {
       "building": {
         "entering": 0,
-        "entry_events": 1,
-        "exit_events": 1,
+        "entry_events": 3,
+        "exit_events": 3,
         "exiting": 0,
         "indoor": 0,
         "outdoor": 50,
         "portal": {
-          "x": -150990.252,
-          "y": 243043.761,
-          "z": 330.943
+          "x": -150443.253,
+          "y": 240596.313,
+          "z": 315.329
         },
         "portal_grounded": true,
-        "station_reacquisitions": 1
+        "station_reacquisitions": 3
       },
       "legacy_signal": {
         "restorable": true,
         "suppressed_actor_count": 3060
+      },
+      "liveness": {
+        "cached_ground_fallbacks": 25,
+        "edge_liveness_advances": 2162,
+        "expected_moving": 50,
+        "maximum_stationary_s": 1.013,
+        "moving": 50,
+        "stall_recovery_replans": 1,
+        "stuck": 0
       },
       "mode_enabled": true,
       "network": {
@@ -46,10 +55,10 @@
       "passed": true,
       "performance": {
         "debug_refresh_hz": 10.0,
-        "frame_maximum_ms": 39.509,
-        "frame_p50_ms": 18.088,
-        "frame_p95_ms": 22.844,
-        "frame_samples": 1444,
+        "frame_maximum_ms": 48.723,
+        "frame_p50_ms": 18.451,
+        "frame_p95_ms": 21.383,
+        "frame_samples": 3182,
         "ground_guards_per_pass": 4,
         "network_refresh_hz": 3.03,
         "telemetry_interval_s": 1.0,
@@ -64,7 +73,7 @@
         "vat_far_walking": 50
       },
       "presentation": {
-        "certified_center_fallback_people": 2,
+        "certified_center_fallback_people": 0,
         "configured_bands": 7,
         "high_actor_budget": 6,
         "high_actors": 0,
@@ -73,9 +82,9 @@
         "low_actors": 0,
         "maximum_lateral_offset_cm": 135.0,
         "occupied_supported_bands": 7,
-        "offset_supported_people": 48,
+        "offset_supported_people": 50,
         "skeletal_walk_distance_m": 200.0,
-        "unique_active_lanes": 31,
+        "unique_active_lanes": 36,
         "vat_actors": 50
       },
       "profile": {
@@ -84,7 +93,7 @@
         "selected_index": 0,
         "visible": true
       },
-      "schema": "telecomtwin-investor-delivery-v2",
+      "schema": "telecomtwin-investor-delivery-v3",
       "stations": {
         "items": [
           {
@@ -104,7 +113,7 @@
               "y": 247000.0,
               "z": 11973.468
             },
-            "validation_attempts": 14
+            "validation_attempts": 46
           },
           {
             "configured_anchor_lod_adjustment_cm": 4077.832,
@@ -123,7 +132,7 @@
               "y": 247000.0,
               "z": 8304.179
             },
-            "validation_attempts": 14
+            "validation_attempts": 46
           }
         ],
         "maximum_roof_error_cm": 4.0,
@@ -151,58 +160,67 @@
       "occupation": "数字孪生研究员",
       "panel_anchor": "lower_left",
       "person_id": "HK-C-001",
-      "round_trip_m": 107.699,
+      "round_trip_m": 0.0,
       "route_leg": "outbound",
       "serving_station": "CENTRAL-ROOF-01",
-      "signal_quality": "58% · GOOD",
+      "signal_quality": "51% · GOOD",
       "stable_index": 0,
       "valid": true
     },
     "vat": {
       "animation_active": true,
-      "current_frame": 79.61731,
-      "distance_m": 886.231,
+      "current_frame": 27.266113,
+      "distance_m": 880.421,
       "end_frame": 98.0,
       "location": {
-        "x": -176392.71,
-        "y": 263340.131,
-        "z": 308.601
+        "x": -176921.953,
+        "y": 261154.121,
+        "z": 323.922
       },
-      "person_id": "HK-C-028",
+      "person_id": "HK-C-032",
       "play_rate": 1.35,
       "representation": "VAT",
-      "speed_cm_s": 24.799,
-      "stable_index": 27,
+      "speed_cm_s": 81.46,
+      "stable_index": 31,
       "start_frame": 0.0,
-      "time_offset": 0.914858,
+      "time_offset": 2.331264,
       "valid": true,
-      "world_time_seconds": 32.828782
+      "world_time_seconds": 101.008648
     },
     "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
   },
   "map_modified": false,
   "passed": true,
-  "schema": "telecomtwin-investor-delivery-acceptance-v2",
+  "schema": "telecomtwin-investor-delivery-acceptance-v3",
   "second": {
     "delivery": {
       "building": {
         "entering": 0,
-        "entry_events": 2,
-        "exit_events": 1,
-        "exiting": 0,
-        "indoor": 1,
+        "entry_events": 4,
+        "exit_events": 3,
+        "exiting": 1,
+        "indoor": 0,
         "outdoor": 49,
         "portal": {
-          "x": -150990.252,
-          "y": 243043.761,
-          "z": 330.943
+          "x": -150443.253,
+          "y": 240596.313,
+          "z": 315.329
         },
         "portal_grounded": true,
-        "station_reacquisitions": 1
+        "station_reacquisitions": 3
       },
       "legacy_signal": {
         "restorable": true,
         "suppressed_actor_count": 3060
+      },
+      "liveness": {
+        "cached_ground_fallbacks": 25,
+        "edge_liveness_advances": 2573,
+        "expected_moving": 50,
+        "maximum_stationary_s": 0.0,
+        "moving": 50,
+        "stall_recovery_replans": 2,
+        "stuck": 0
       },
       "mode_enabled": true,
       "network": {
@@ -213,10 +231,10 @@
       "passed": true,
       "performance": {
         "debug_refresh_hz": 10.0,
-        "frame_maximum_ms": 39.509,
-        "frame_p50_ms": 17.824,
-        "frame_p95_ms": 22.121,
-        "frame_samples": 2230,
+        "frame_maximum_ms": 35.001,
+        "frame_p50_ms": 18.465,
+        "frame_p95_ms": 21.27,
+        "frame_samples": 3187,
         "ground_guards_per_pass": 4,
         "network_refresh_hz": 3.03,
         "telemetry_interval_s": 1.0,
@@ -231,7 +249,7 @@
         "vat_far_walking": 50
       },
       "presentation": {
-        "certified_center_fallback_people": 1,
+        "certified_center_fallback_people": 2,
         "configured_bands": 7,
         "high_actor_budget": 6,
         "high_actors": 0,
@@ -240,9 +258,9 @@
         "low_actors": 0,
         "maximum_lateral_offset_cm": 135.0,
         "occupied_supported_bands": 7,
-        "offset_supported_people": 49,
+        "offset_supported_people": 48,
         "skeletal_walk_distance_m": 200.0,
-        "unique_active_lanes": 34,
+        "unique_active_lanes": 36,
         "vat_actors": 50
       },
       "profile": {
@@ -251,7 +269,7 @@
         "selected_index": 0,
         "visible": true
       },
-      "schema": "telecomtwin-investor-delivery-v2",
+      "schema": "telecomtwin-investor-delivery-v3",
       "stations": {
         "items": [
           {
@@ -271,7 +289,7 @@
               "y": 247000.0,
               "z": 11973.468
             },
-            "validation_attempts": 21
+            "validation_attempts": 53
           },
           {
             "configured_anchor_lod_adjustment_cm": 4077.832,
@@ -290,7 +308,7 @@
               "y": 247000.0,
               "z": 8304.179
             },
-            "validation_attempts": 21
+            "validation_attempts": 53
           }
         ],
         "maximum_roof_error_cm": 4.0,
@@ -308,17 +326,17 @@
     "profile": {
       "age": 29,
       "completed_round_trips": 0,
-      "current_app": "Microsoft Teams · INDOOR",
+      "current_app": "WhatsApp",
       "district": "district-central-r0-c0",
       "favorite_software": "Python",
       "gender": "女  ♀",
       "glass_panel_visible": true,
-      "location_state": "INDOOR · 室内（外部基站已断开）",
+      "location_state": "EXITING BUILDING · 正在离开",
       "name": "陈嘉怡",
       "occupation": "数字孪生研究员",
       "panel_anchor": "lower_left",
       "person_id": "HK-C-001",
-      "round_trip_m": 107.699,
+      "round_trip_m": 0.0,
       "route_leg": "outbound",
       "serving_station": "DISCONNECTED",
       "signal_quality": "0% · NO EXTERNAL SIGNAL",
@@ -327,23 +345,23 @@
     },
     "vat": {
       "animation_active": true,
-      "current_frame": 36.427002,
-      "distance_m": 877.245,
+      "current_frame": 54.98877,
+      "distance_m": 880.454,
       "end_frame": 97.0,
       "location": {
-        "x": -176247.073,
-        "y": 261741.65,
-        "z": 297.783
+        "x": -176919.714,
+        "y": 261165.695,
+        "z": 331.945
       },
       "person_id": "HK-C-011",
       "play_rate": 1.35,
       "representation": "VAT",
-      "speed_cm_s": 96.543,
+      "speed_cm_s": 139.287,
       "stable_index": 10,
       "start_frame": 0.0,
       "time_offset": 2.395123,
       "valid": true,
-      "world_time_seconds": 46.899374
+      "world_time_seconds": 115.110765
     },
     "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
   }

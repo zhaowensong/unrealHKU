@@ -101,10 +101,13 @@ constexpr int32 RequiredCentralSpawnDistrictCount = 6;
 constexpr int32 FullCentralPopulation = 100;
 constexpr int32 CentralLaneHistoryLimit = 8;
 constexpr int32 CentralDestinationHistoryLimit = 4;
-// Ground-Only routing uses deterministic component-aware shuttles. The legacy
-// one-edge circulation remains compiled as an emergency diagnostic path but is
-// intentionally disabled for the experience mode.
-constexpr bool bUseCentralCertifiedEdgeCirculation = false;
+// The delivery demo needs bounded, indefinitely live motion more than
+// destination variety. Certified edge circulation keeps each pedestrian on a
+// real forward/reverse road pair, preserves long visible walks, and removes
+// the multi-junction reservation cycles that can accumulate in an unattended
+// demo. The richer component-aware planner remains compiled for engineering
+// modes and future simulation work.
+constexpr bool bUseCentralCertifiedEdgeCirculation = true;
 constexpr int32 CentralMaximumPedestriansPerEdgeCirculation = 6;
 constexpr float CentralPreferredOutboundMinimumCm = 6000.0f;
 constexpr float CentralPreferredOutboundMaximumCm = 15000.0f;
@@ -996,16 +999,10 @@ void AOpenMassCrowdSpawner::Tick(const float DeltaSeconds)
     }
     RefreshCompletedPaths();
 
-    if (NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache)
-    {
-        // The Central ZoneGraph lane points are the complete 10 cm Cesium
-        // certification samples, not a simplified navigation spline.  Clamp
-        // the authoritative Mass transform to that polyline every frame so
-        // spawned actors and VAT/ISM receive the same smooth supported pose.
-        // Live collision guards below only need to detect streamed-cell loss;
-        // they no longer determine the visible update rate.
-        ConstrainCentralTransformsToCertifiedLanes();
-    }
+    // Central constraint and liveness recovery run in the certified Mass
+    // transform processor after PathFollow/ApplyMovement. Running them here in
+    // the actor tick occurs before Mass PrePhysics and lets PathFollow overwrite
+    // the recovered lane progress in the same frame.
 
     GroundCorrectionAccumulator += DeltaSeconds;
     // Live traces are a bounded streaming-validity guard.  Visual transforms
@@ -7469,7 +7466,9 @@ void AOpenMassCrowdSpawner::ProcessCentralConflictReplans()
 
     UMassSpawnerSubsystem* SpawnerSubsystem =
         UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
-    if (!SpawnerSubsystem)
+    UZoneGraphSubsystem* ZoneGraphSubsystem =
+        UWorld::GetSubsystem<UZoneGraphSubsystem>(GetWorld());
+    if (!SpawnerSubsystem || !ZoneGraphSubsystem)
     {
         return;
     }
@@ -8356,6 +8355,105 @@ bool AOpenMassCrowdSpawner::RequestNextPath(const int32 EntityIndex)
     }
 
     RouteState.CurrentPathIndex = CurrentRouteIndex;
+    if (NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache &&
+        RouteState.LanePath.IsValidIndex(CurrentRouteIndex + 1) &&
+        LaneLocation.DistanceAlongLane >=
+            LaneLocation.LaneLength - CentralRouteEndpointInsetCm)
+    {
+        const FZoneGraphLaneHandle PreviousLaneHandle =
+            LaneLocation.LaneHandle;
+        const FZoneGraphLaneHandle NextLaneHandle =
+            RouteState.LanePath[CurrentRouteIndex + 1];
+        const int32 NextLaneIndex = NextLaneHandle.Index;
+        bool bNextLaneEntranceOccupied = false;
+        const TArray<int32>* SameDirectionNextLanes =
+            RuntimeCentralSameDirectionPhysicalLaneIndices.IsValidIndex(
+                NextLaneIndex)
+            ? &RuntimeCentralSameDirectionPhysicalLaneIndices[NextLaneIndex]
+            : nullptr;
+        const float RequiredEntryProgressCm =
+            CentralMinimumCenterClearanceCm +
+            CentralShortPathCacheToleranceCm;
+        for (int32 OtherEntityIndex = 0;
+             OtherEntityIndex < SpawnedEntities.Num();
+             ++OtherEntityIndex)
+        {
+            if (OtherEntityIndex == EntityIndex)
+            {
+                continue;
+            }
+            const FMassEntityHandle OtherEntity =
+                SpawnedEntities[OtherEntityIndex];
+            if (!EntityManager.IsEntityValid(OtherEntity))
+            {
+                continue;
+            }
+            const FMassZoneGraphLaneLocationFragment* OtherLane =
+                EntityManager.GetFragmentDataPtr<
+                    FMassZoneGraphLaneLocationFragment>(OtherEntity);
+            if (!OtherLane ||
+                OtherLane->DistanceAlongLane >= RequiredEntryProgressCm ||
+                (bInvestorDeliveryDemoEnabled &&
+                 GetInvestorPresentationBandIndex(OtherEntityIndex) !=
+                     GetInvestorPresentationBandIndex(EntityIndex)))
+            {
+                continue;
+            }
+            const int32 OtherLaneIndex = OtherLane->LaneHandle.Index;
+            if (OtherLaneIndex == NextLaneIndex ||
+                (SameDirectionNextLanes &&
+                 SameDirectionNextLanes->Contains(OtherLaneIndex)))
+            {
+                bNextLaneEntranceOccupied = true;
+                break;
+            }
+        }
+
+        float NextLaneLength = 0.0f;
+        FZoneGraphLaneLocation PreviousEndpoint;
+        FZoneGraphLaneLocation NextStart;
+        UMassCrowdSubsystem* CrowdSubsystem =
+            UWorld::GetSubsystem<UMassCrowdSubsystem>(GetWorld());
+        if (!bNextLaneEntranceOccupied && CrowdSubsystem &&
+            IsCentralRuntimeLaneAvailable(NextLaneIndex) &&
+            ZoneGraphSubsystem->GetLaneLength(
+                NextLaneHandle,
+                NextLaneLength) &&
+            NextLaneLength > CentralRouteEndpointInsetCm * 2.0f &&
+            ZoneGraphSubsystem->CalculateLocationAlongLane(
+                PreviousLaneHandle,
+                LaneLocation.LaneLength,
+                PreviousEndpoint) &&
+            ZoneGraphSubsystem->CalculateLocationAlongLane(
+                NextLaneHandle,
+                0.0f,
+                NextStart))
+        {
+            FMassCrowdLaneTrackingFragment& LaneTracking =
+                EntityManager.GetFragmentDataChecked<
+                    FMassCrowdLaneTrackingFragment>(Entity);
+            CrowdSubsystem->OnEntityLaneChanged(
+                Entity,
+                PreviousLaneHandle,
+                NextLaneHandle);
+            LaneTracking.TrackedLaneHandle = NextLaneHandle;
+            LaneLocation.LaneHandle = NextLaneHandle;
+            LaneLocation.DistanceAlongLane = 0.0f;
+            LaneLocation.LaneLength = NextLaneLength;
+            ++CurrentRouteIndex;
+            RouteState.CurrentPathIndex = CurrentRouteIndex;
+            UE_LOG(
+                LogTemp,
+                Verbose,
+                TEXT("OPEN_MASS_CROWD_CENTRAL_ENDPOINT_HANDOFF entity=%d previous_lane=%d next_lane=%d node_gap_cm=%.3f policy=connected_certified_node_no_teleport"),
+                EntityIndex,
+                PreviousLaneHandle.Index,
+                NextLaneIndex,
+                FVector::Distance(
+                    PreviousEndpoint.Position,
+                    NextStart.Position));
+        }
+    }
     if (CurrentRouteIndex == RouteState.LanePath.Num() - 1 &&
         LaneLocation.DistanceAlongLane >= RouteState.DestinationDistance - 5.0f)
     {
@@ -8783,7 +8881,9 @@ void AOpenMassCrowdSpawner::ConstrainCentralTransformsToCertifiedLanes()
 
     UMassSpawnerSubsystem* SpawnerSubsystem =
         UWorld::GetSubsystem<UMassSpawnerSubsystem>(GetWorld());
-    if (!SpawnerSubsystem)
+    UZoneGraphSubsystem* ZoneGraphSubsystem =
+        UWorld::GetSubsystem<UZoneGraphSubsystem>(GetWorld());
+    if (!SpawnerSubsystem || !ZoneGraphSubsystem)
     {
         return;
     }
@@ -8805,6 +8905,203 @@ void AOpenMassCrowdSpawner::ConstrainCentralTransformsToCertifiedLanes()
             EntityManager.GetFragmentDataChecked<FMassZoneGraphLaneLocationFragment>(Entity);
         FMassVelocityFragment* Velocity =
             EntityManager.GetFragmentDataPtr<FMassVelocityFragment>(Entity);
+        FMassZoneGraphShortPathFragment* ShortPath =
+            EntityManager.GetFragmentDataPtr<
+                FMassZoneGraphShortPathFragment>(Entity);
+
+        // A forward Mass action may never move backwards on the same directed
+        // ZoneGraph lane. Short-path refreshes near a tiny edge endpoint can
+        // otherwise reconstruct progress from an older cached point, producing
+        // the observed 49 cm -> 40 cm -> 49 cm oscillation. Restore the last
+        // certified forward progress and advance the path cursor by the same
+        // amount so the next Mass frame continues from the corrected state.
+        if (bInvestorDeliveryDemoEnabled &&
+            RuntimeCentralPreviousFrameStates.IsValidIndex(EntityIndex))
+        {
+            const FLastValidGroundState& PreviousFrameState =
+                RuntimeCentralPreviousFrameStates[EntityIndex];
+            if (PreviousFrameState.bValid &&
+                PreviousFrameState.LaneHandle == LaneLocation.LaneHandle &&
+                PreviousFrameState.DistanceAlongLane >
+                    LaneLocation.DistanceAlongLane + 0.1f)
+            {
+                const float RegressedDistanceCm =
+                    PreviousFrameState.DistanceAlongLane -
+                    LaneLocation.DistanceAlongLane;
+                LaneLocation.DistanceAlongLane =
+                    PreviousFrameState.DistanceAlongLane;
+                if (ShortPath && !ShortPath->IsDone())
+                {
+                    ShortPath->ProgressDistance += RegressedDistanceCm;
+                }
+            }
+        }
+
+        if constexpr (bUseCentralCertifiedEdgeCirculation)
+        {
+            FEntityRouteState* RouteState =
+                EntityRouteStates.IsValidIndex(EntityIndex)
+                ? &EntityRouteStates[EntityIndex]
+                : nullptr;
+            const FLastValidGroundState* LastValid =
+                LastValidGroundStates.IsValidIndex(EntityIndex)
+                ? &LastValidGroundStates[EntityIndex]
+                : nullptr;
+            const bool bNeedsEdgeLivenessAdvance =
+                bInvestorDeliveryDemoEnabled &&
+                CentralTelemetryStationarySeconds.IsValidIndex(EntityIndex) &&
+                CentralTelemetryStationarySeconds[EntityIndex] >=
+                    CentralMovementLivenessWindowSeconds &&
+                RouteState &&
+                !RouteState->bWaitingForAvailableCell &&
+                RouteState->LanePath.IsValidIndex(
+                    RouteState->CurrentPathIndex) &&
+                RouteState->LanePath[RouteState->CurrentPathIndex] ==
+                    LaneLocation.LaneHandle &&
+                ShortPath && !ShortPath->IsDone() &&
+                LastValid && LastValid->bValid &&
+                !LastValid->bHasRecoveryProbe &&
+                !LastValid->bUnsupported;
+            if (bNeedsEdgeLivenessAdvance)
+            {
+                const bool bFinalRouteLane =
+                    RouteState->CurrentPathIndex ==
+                        RouteState->LanePath.Num() - 1;
+                const float SegmentTargetDistanceCm = bFinalRouteLane
+                    ? RouteState->DestinationDistance
+                    : LaneLocation.LaneLength - CentralRouteEndpointInsetCm;
+                const bool bAtFinalTurnaround =
+                    bFinalRouteLane &&
+                    LaneLocation.DistanceAlongLane >=
+                        SegmentTargetDistanceCm - 0.1f;
+                if (bAtFinalTurnaround)
+                {
+                    const int32 ReverseLaneIndex =
+                        RuntimeCentralReverseLaneIndices.IsValidIndex(
+                            LaneLocation.LaneHandle.Index)
+                        ? RuntimeCentralReverseLaneIndices[
+                            LaneLocation.LaneHandle.Index]
+                        : INDEX_NONE;
+                    float ReverseLaneLength = 0.0f;
+                    FZoneGraphLaneLocation CurrentLocation;
+                    FZoneGraphLaneLocation ReverseLocation;
+                    const float ReverseDistanceCm =
+                        RuntimeLaneHandles.IsValidIndex(ReverseLaneIndex) &&
+                        ZoneGraphSubsystem->GetLaneLength(
+                            RuntimeLaneHandles[ReverseLaneIndex],
+                            ReverseLaneLength)
+                        ? FMath::Clamp(
+                            ReverseLaneLength -
+                                LaneLocation.DistanceAlongLane,
+                            0.0f,
+                            ReverseLaneLength)
+                        : -1.0f;
+                    UMassCrowdSubsystem* CrowdSubsystem =
+                        UWorld::GetSubsystem<UMassCrowdSubsystem>(GetWorld());
+                    if (CrowdSubsystem && ReverseDistanceCm >= 0.0f &&
+                        ZoneGraphSubsystem->CalculateLocationAlongLane(
+                            LaneLocation.LaneHandle,
+                            LaneLocation.DistanceAlongLane,
+                            CurrentLocation) &&
+                        ZoneGraphSubsystem->CalculateLocationAlongLane(
+                            RuntimeLaneHandles[ReverseLaneIndex],
+                            ReverseDistanceCm,
+                            ReverseLocation) &&
+                        FVector::Distance(
+                            CurrentLocation.Position,
+                            ReverseLocation.Position) <= 50.0f)
+                    {
+                        const FZoneGraphLaneHandle PreviousLaneHandle =
+                            LaneLocation.LaneHandle;
+                        FMassCrowdLaneTrackingFragment& LaneTracking =
+                            EntityManager.GetFragmentDataChecked<
+                                FMassCrowdLaneTrackingFragment>(Entity);
+                        CrowdSubsystem->OnEntityLaneChanged(
+                            Entity,
+                            PreviousLaneHandle,
+                            RuntimeLaneHandles[ReverseLaneIndex]);
+                        LaneTracking.TrackedLaneHandle =
+                            RuntimeLaneHandles[ReverseLaneIndex];
+                        LaneLocation.LaneHandle =
+                            RuntimeLaneHandles[ReverseLaneIndex];
+                        LaneLocation.DistanceAlongLane = ReverseDistanceCm;
+                        LaneLocation.LaneLength = ReverseLaneLength;
+                        if (PlanNewDestination(EntityIndex) &&
+                            RequestNextPath(EntityIndex))
+                        {
+                            ++CentralEdgeLivenessAdvanceCount;
+                            continue;
+                        }
+                    }
+                }
+                const float DeltaSeconds = FMath::Clamp(
+                    static_cast<float>(FApp::GetDeltaTime()),
+                    0.0f,
+                    0.1f);
+                float MaximumAdvanceCm = FMath::Min(
+                    GetCentralCruiseSpeedCmPerSecond(EntityIndex) *
+                        DeltaSeconds,
+                    SegmentTargetDistanceCm -
+                        LaneLocation.DistanceAlongLane);
+                for (int32 OtherEntityIndex = 0;
+                     OtherEntityIndex < SpawnedEntities.Num();
+                     ++OtherEntityIndex)
+                {
+                    if (OtherEntityIndex == EntityIndex)
+                    {
+                        continue;
+                    }
+                    const FMassEntityHandle OtherEntity =
+                        SpawnedEntities[OtherEntityIndex];
+                    if (!EntityManager.IsEntityValid(OtherEntity))
+                    {
+                        continue;
+                    }
+                    const FMassZoneGraphLaneLocationFragment* OtherLane =
+                        EntityManager.GetFragmentDataPtr<
+                            FMassZoneGraphLaneLocationFragment>(OtherEntity);
+                    if (!OtherLane ||
+                        OtherLane->LaneHandle != LaneLocation.LaneHandle ||
+                        GetInvestorPresentationBandIndex(OtherEntityIndex) !=
+                            GetInvestorPresentationBandIndex(EntityIndex))
+                    {
+                        continue;
+                    }
+                    const float ProgressDifferenceCm =
+                        OtherLane->DistanceAlongLane -
+                        LaneLocation.DistanceAlongLane;
+                    if (ProgressDifferenceCm > 0.0f)
+                    {
+                        MaximumAdvanceCm = FMath::Min(
+                            MaximumAdvanceCm,
+                            FMath::Max(
+                                0.0f,
+                                ProgressDifferenceCm -
+                                    CentralMinimumCenterClearanceCm));
+                    }
+                }
+                if (MaximumAdvanceCm >= 0.1f)
+                {
+                    LaneLocation.DistanceAlongLane += MaximumAdvanceCm;
+                    ShortPath->ProgressDistance += MaximumAdvanceCm;
+                    ++CentralEdgeLivenessAdvanceCount;
+                    if (Velocity)
+                    {
+                        FZoneGraphLaneLocation RecoveryLocation;
+                        if (ZoneGraphSubsystem->CalculateLocationAlongLane(
+                                LaneLocation.LaneHandle,
+                                LaneLocation.DistanceAlongLane,
+                                RecoveryLocation))
+                        {
+                            Velocity->Value =
+                                RecoveryLocation.Tangent.GetSafeNormal() *
+                                GetCentralCruiseSpeedCmPerSecond(EntityIndex);
+                        }
+                    }
+                }
+            }
+        }
+
         if (!ConstrainCentralEntityTransform(
                 EntityIndex,
                 TransformFragment,
@@ -9244,7 +9541,7 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
                 }
             }
 
-            if (!bMoved &&
+            if (!bMoved && bUseCentralCertifiedEdgeCirculation &&
                 PreviousStationarySeconds <=
                     CentralEdgePathRefreshThresholdSeconds &&
                 CentralTelemetryStationarySeconds[EntityIndex] >
@@ -9370,11 +9667,6 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
     for (const int32 EntityIndex : EdgePathRefreshEntityIndices)
     {
         const bool bRefreshed = RequestNextPath(EntityIndex);
-        if (bRefreshed &&
-            CentralTelemetryStationarySeconds.IsValidIndex(EntityIndex))
-        {
-            CentralTelemetryStationarySeconds[EntityIndex] = 0.0f;
-        }
         UE_LOG(
             LogTemp,
             Verbose,
@@ -9384,13 +9676,19 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
             CentralEdgePathRefreshThresholdSeconds);
     }
 
-    // Edge circulation has no arbitrary junction choice to oscillate between.
-    // If its Mass short-path action has remained stationary across a recovery
-    // boundary, reissue that exact route from the entity's certified current
-    // lane. This neither teleports the pedestrian nor selects a new street; it
-    // only closes the UE short-path hand-off gap seen at lane-pair endpoints.
-    if (!StuckRecoveryCandidates.IsEmpty())
+    // A five-second certified-displacement stall means reissuing the same
+    // short path is no longer useful. Turn the pedestrian around in place by
+    // mapping its progress to the exact reverse certified lane. The live point
+    // must remain within 50 cm, so this cannot teleport to another pavement.
+    // It breaks a cyclic same-band queue while preserving identity and ground
+    // provenance.
+    if (bUseCentralCertifiedEdgeCirculation &&
+        !StuckRecoveryCandidates.IsEmpty())
     {
+        UZoneGraphSubsystem* ZoneGraphSubsystem =
+            UWorld::GetSubsystem<UZoneGraphSubsystem>(GetWorld());
+        UMassCrowdSubsystem* CrowdSubsystem =
+            UWorld::GetSubsystem<UMassCrowdSubsystem>(GetWorld());
         for (const FCentralStuckRecoveryCandidate& RecoveryCandidate :
              StuckRecoveryCandidates)
         {
@@ -9398,30 +9696,104 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
             {
                 continue;
             }
-            const bool bRefreshed = RequestNextPath(
-                RecoveryCandidate.EntityIndex);
-            if (bRefreshed &&
-                CentralTelemetryStationarySeconds.IsValidIndex(
-                    RecoveryCandidate.EntityIndex))
+            bool bTurnedInPlace = false;
+            const int32 EntityIndex = RecoveryCandidate.EntityIndex;
+            if (ZoneGraphSubsystem && CrowdSubsystem &&
+                SpawnedEntities.IsValidIndex(EntityIndex) &&
+                EntityManager.IsEntityValid(SpawnedEntities[EntityIndex]))
             {
-                CentralTelemetryStationarySeconds[
-                    RecoveryCandidate.EntityIndex] = 0.0f;
+                const FMassEntityHandle Entity = SpawnedEntities[EntityIndex];
+                FMassZoneGraphLaneLocationFragment& LaneLocation =
+                    EntityManager.GetFragmentDataChecked<
+                        FMassZoneGraphLaneLocationFragment>(Entity);
+                const int32 ReverseLaneIndex =
+                    RuntimeCentralReverseLaneIndices.IsValidIndex(
+                        LaneLocation.LaneHandle.Index)
+                    ? RuntimeCentralReverseLaneIndices[
+                          LaneLocation.LaneHandle.Index]
+                    : INDEX_NONE;
+                float ReverseLaneLength = 0.0f;
+                FZoneGraphLaneLocation CurrentLocation;
+                FZoneGraphLaneLocation ReverseLocation;
+                const float ReverseDistanceCm =
+                    RuntimeLaneHandles.IsValidIndex(ReverseLaneIndex) &&
+                    ZoneGraphSubsystem->GetLaneLength(
+                        RuntimeLaneHandles[ReverseLaneIndex],
+                        ReverseLaneLength)
+                    ? FMath::Clamp(
+                          ReverseLaneLength -
+                              LaneLocation.DistanceAlongLane,
+                          0.0f,
+                          ReverseLaneLength)
+                    : -1.0f;
+                if (ReverseDistanceCm >= 0.0f &&
+                    ZoneGraphSubsystem->CalculateLocationAlongLane(
+                        LaneLocation.LaneHandle,
+                        LaneLocation.DistanceAlongLane,
+                        CurrentLocation) &&
+                    ZoneGraphSubsystem->CalculateLocationAlongLane(
+                        RuntimeLaneHandles[ReverseLaneIndex],
+                        ReverseDistanceCm,
+                        ReverseLocation) &&
+                    FVector::Distance(
+                        CurrentLocation.Position,
+                        ReverseLocation.Position) <= 50.0f)
+                {
+                    const FZoneGraphLaneHandle PreviousLaneHandle =
+                        LaneLocation.LaneHandle;
+                    FMassCrowdLaneTrackingFragment& LaneTracking =
+                        EntityManager.GetFragmentDataChecked<
+                            FMassCrowdLaneTrackingFragment>(Entity);
+                    CrowdSubsystem->OnEntityLaneChanged(
+                        Entity,
+                        PreviousLaneHandle,
+                        RuntimeLaneHandles[ReverseLaneIndex]);
+                    LaneTracking.TrackedLaneHandle =
+                        RuntimeLaneHandles[ReverseLaneIndex];
+                    LaneLocation.LaneHandle =
+                        RuntimeLaneHandles[ReverseLaneIndex];
+                    LaneLocation.DistanceAlongLane = ReverseDistanceCm;
+                    LaneLocation.LaneLength = ReverseLaneLength;
+                    if (LastValidGroundStates.IsValidIndex(EntityIndex) &&
+                        LastValidGroundStates[EntityIndex].bValid)
+                    {
+                        FLastValidGroundState& LastValid =
+                            LastValidGroundStates[EntityIndex];
+                        LastValid.LaneHandle = LaneLocation.LaneHandle;
+                        LastValid.DistanceAlongLane = ReverseDistanceCm;
+                        LastValid.LaneLength = ReverseLaneLength;
+                    }
+                    bTurnedInPlace = PlanNewDestination(EntityIndex) &&
+                        RequestNextPath(EntityIndex);
+                    if (bTurnedInPlace)
+                    {
+                        ++CentralStallRecoveryReplanCount;
+                        ++CentralEdgeLivenessAdvanceCount;
+                    }
+                }
             }
+            const bool bRefreshed = bTurnedInPlace ||
+                RequestNextPath(EntityIndex);
             UE_LOG(
                 LogTemp,
                 Warning,
-                TEXT("OPEN_MASS_CROWD_CENTRAL_PATH_REFRESH entity=%d lane=%d stationary_s=%.2f refreshed=%s policy=exact_route_no_teleport"),
-                RecoveryCandidate.EntityIndex,
+                TEXT("OPEN_MASS_CROWD_CENTRAL_PATH_REFRESH entity=%d lane=%d stationary_s=%.2f refreshed=%s turned_in_place=%s policy=reverse_certified_point_no_teleport"),
+                EntityIndex,
                 RecoveryCandidate.CurrentLaneIndex,
                 RecoveryCandidate.StationarySeconds,
-                bRefreshed ? TEXT("true") : TEXT("false"));
+                bRefreshed ? TEXT("true") : TEXT("false"),
+                bTurnedInPlace ? TEXT("true") : TEXT("false"));
         }
     }
 
-    // Reservation owners on arbitrary multi-junction routes must still drain
-    // in place. The older destination-replan repair is retained only as
-    // diagnostic code because it oscillated at busy Gate100 junctions.
-    constexpr bool bEnableTelemetryStuckRecoveryReplans = false;
+    // A successful action activation is not proof of progress. Multi-junction
+    // investor routes keep their certified-displacement timer until the Mass
+    // transform actually advances; at each five-second boundary, select one
+    // deterministic member of a blocked queue and route it away from the
+    // contested next lane. Engineering gates retain their established policy.
+    const bool bEnableTelemetryStuckRecoveryReplans =
+        bInvestorDeliveryDemoEnabled &&
+        !bUseCentralCertifiedEdgeCirculation;
     if (bEnableTelemetryStuckRecoveryReplans &&
         !StuckRecoveryCandidates.IsEmpty())
     {
@@ -9539,6 +9911,7 @@ void AOpenMassCrowdSpawner::RecordCentralTelemetry(const bool bForceLog)
             QueueCentralConflictReplan(
                 RecoveryEntityIndex,
                 ForbiddenLaneIndices);
+            ++CentralStallRecoveryReplanCount;
             UE_LOG(
                 LogTemp,
                 Warning,
@@ -9928,6 +10301,9 @@ void AOpenMassCrowdSpawner::ResetCentralSessionTelemetry()
     CentralCorridorDirectionHoldCount = 0;
     CentralLocalConflictHoldCount = 0;
     CentralConflictWaitReplanCount = 0;
+    CentralStallRecoveryReplanCount = 0;
+    CentralInvestorCachedGroundFallbackCount = 0;
+    CentralEdgeLivenessAdvanceCount = 0;
     CentralMaximumConflictWaitSeconds = 0.0f;
     CentralTelemetryObservationCount = 0;
     CentralMinimumObservedEntityCenterDistanceCm = -1.0f;
@@ -10158,6 +10534,31 @@ void AOpenMassCrowdSpawner::CorrectMassGrounding()
         // recovery probe runs.
         if (bCentralMode && LastValid && LastValid->bHasRecoveryProbe)
         {
+            // Investor delivery uses an offline exact-XY certified ground
+            // cache as the authoritative walk surface. A live Cesium trace
+            // can miss transiently while a tile collision payload streams,
+            // even though the already-certified lane remains visible and
+            // valid. Do not convert that streaming miss into a permanent
+            // Stand action or close the whole 150 m route cell.
+            if (bInvestorDeliveryDemoEnabled)
+            {
+                LastValid->bHasRecoveryProbe = false;
+                LastValid->ConsecutiveMisses = 0;
+                LastValid->bUnsupported = false;
+                RecordCentralCellGroundGuard(
+                    CentralCellId,
+                    EntityIndex,
+                    true);
+                if (EntityRouteStates.IsValidIndex(EntityIndex) &&
+                    EntityRouteStates[EntityIndex].bWaitingForAvailableCell)
+                {
+                    PathsToRebuild.Add(EntityIndex);
+                }
+                ++CentralInvestorCachedGroundFallbackCount;
+                ++CorrectedCount;
+                continue;
+            }
+
             ++CentralGroundGuardQueryCount;
             FVector RecoveryGroundPoint;
             if (ProjectToCesiumGround(
@@ -10332,6 +10733,29 @@ void AOpenMassCrowdSpawner::CorrectMassGrounding()
             {
                 PathsToRebuild.Add(EntityIndex);
             }
+            continue;
+        }
+
+        if (bCentralMode && bInvestorDeliveryDemoEnabled && LastValid)
+        {
+            // The runtime transform was clamped earlier in this tick to the
+            // complete collision-certified lane cache. Preserve that exact
+            // cached sample when both optional live probes miss; retry the
+            // rolling monitor later without stopping or replanning the agent.
+            LastValid->Transform = Transform;
+            LastValid->LaneHandle = LaneLocation.LaneHandle;
+            LastValid->DistanceAlongLane = LaneLocation.DistanceAlongLane;
+            LastValid->LaneLength = LaneLocation.LaneLength;
+            LastValid->ConsecutiveMisses = 0;
+            LastValid->bHasRecoveryProbe = false;
+            LastValid->bUnsupported = false;
+            LastValid->bValid = true;
+            RecordCentralCellGroundGuard(
+                CentralCellId,
+                EntityIndex,
+                true);
+            ++CentralInvestorCachedGroundFallbackCount;
+            ++CorrectedCount;
             continue;
         }
 
@@ -11927,6 +12351,13 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
             LargestActiveLanePopulation,
             Entry.Value);
     }
+    float MaximumStationarySeconds = 0.0f;
+    for (const float StationarySeconds : CentralTelemetryStationarySeconds)
+    {
+        MaximumStationarySeconds = FMath::Max(
+            MaximumStationarySeconds,
+            StationarySeconds);
+    }
     const bool bProfileComplete =
         SelectedCentralProfileEntityIndex != INDEX_NONE &&
         CentralProfileViewportWidget.IsValid();
@@ -11934,7 +12365,9 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         bInvestorDeliveryDemoEnabled &&
         InvestorPeople.Num() == 50 &&
         SpawnedEntities.Num() == 50 &&
+        CentralExpectedMovingEntityCount == 50 &&
         CentralMovingEntityCount == 50 &&
+        CentralStuckEntityCount == 0 &&
         ValidStationCount == 2 &&
         ConnectedCount > 0 &&
         InvestorBuildingEntryCount > 0 &&
@@ -11943,7 +12376,7 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         OccupiedPresentationBands.Num() >= 3 &&
         bProfileComplete;
     return FString::Printf(
-        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v2\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true},\"video_required\":false}"),
+        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true},\"video_required\":false}"),
         bInvestorDeliveryDemoEnabled ? TEXT("true") : TEXT("false"),
         bPassed ? TEXT("true") : TEXT("false"),
         InvestorDeliveryPopulation,
@@ -11952,6 +12385,13 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         CentralMovingEntityCount,
         CentralRepresentedEntityCount,
         CentralVATRepresentationCount,
+        CentralExpectedMovingEntityCount,
+        CentralMovingEntityCount,
+        CentralStuckEntityCount,
+        MaximumStationarySeconds,
+        CentralStallRecoveryReplanCount,
+        CentralInvestorCachedGroundFallbackCount,
+        CentralEdgeLivenessAdvanceCount,
         InvestorPresentationBandCount,
         OccupiedPresentationBands.Num(),
         ValidatedOffsetCount,

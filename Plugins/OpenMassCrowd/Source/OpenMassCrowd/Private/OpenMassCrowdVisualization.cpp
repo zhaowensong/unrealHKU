@@ -77,6 +77,7 @@ void UOpenMassCrowdPrePathFollowSpacingProcessor::Execute(
         FMassEntityHandle Entity;
         AOpenMassCrowdSpawner* Spawner = nullptr;
         int32 EntityIndex = INDEX_NONE;
+        int32 PresentationBandIndex = 0;
         int32 LaneIndex = INDEX_NONE;
         int32 PhysicalTrackIndex = INDEX_NONE;
         int32 NextLaneIndex = INDEX_NONE;
@@ -119,8 +120,8 @@ void UOpenMassCrowdPrePathFollowSpacingProcessor::Execute(
                 Context.GetFragmentView<FMassZoneGraphShortPathFragment>();
             const TConstArrayView<FAgentRadiusFragment> RadiusList =
                 Context.GetFragmentView<FAgentRadiusFragment>();
-            const TConstArrayView<FMassMoveTargetFragment> MoveTargetList =
-                Context.GetFragmentView<FMassMoveTargetFragment>();
+            TArrayView<FMassMoveTargetFragment> MoveTargetList =
+                Context.GetMutableFragmentView<FMassMoveTargetFragment>();
             const TConstArrayView<FMassSimulationLODFragment> SimLODList =
                 Context.GetFragmentView<FMassSimulationLODFragment>();
             const TConstArrayView<FMassSimulationVariableTickFragment>
@@ -159,7 +160,7 @@ void UOpenMassCrowdPrePathFollowSpacingProcessor::Execute(
                     LaneList[EntityIt];
                 const FMassZoneGraphShortPathFragment& ShortPath =
                     ShortPathList[EntityIt];
-                const FMassMoveTargetFragment& MoveTarget =
+                FMassMoveTargetFragment& MoveTarget =
                     MoveTargetList[EntityIt];
                 const int32 LaneIndex = Lane.LaneHandle.Index;
                 if (!Spawner->RuntimeLaneHandles.IsValidIndex(LaneIndex) ||
@@ -185,6 +186,8 @@ void UOpenMassCrowdPrePathFollowSpacingProcessor::Execute(
                 Record.Entity = Entity;
                 Record.Spawner = Spawner;
                 Record.EntityIndex = Owner.EntityIndex;
+                Record.PresentationBandIndex =
+                    (FMath::Max(Owner.EntityIndex, 0) * 3) % 7;
                 Record.LaneIndex = LaneIndex;
                 Record.PhysicalTrackIndex =
                     Spawner->RuntimeCentralPhysicalTrackIndices[LaneIndex];
@@ -218,6 +221,21 @@ void UOpenMassCrowdPrePathFollowSpacingProcessor::Execute(
                         EMassMovementAction::Move &&
                     ShortPath.NumPoints >= 2 &&
                     !ShortPath.IsDone();
+
+                // Central deliberately replaces steering's lateral result with
+                // the exact certified lane transform after movement.  The
+                // stock steering processor can therefore report "falling
+                // behind" even though the pedestrian is exactly on the
+                // authoritative ground track.  Leaving that diagnostic bit
+                // set makes PathFollow stop advancing the lane distance; path
+                // refreshes then keep re-activating a valid action at the same
+                // point forever.  Clear only this stale steering diagnostic
+                // before PathFollow.  The 55 cm headway cap and realised
+                // certified rollback below remain the movement authorities.
+                if (Record.bActiveMove && MoveTarget.bSteeringFallingBehind)
+                {
+                    MoveTarget.bSteeringFallingBehind = false;
+                }
 
                 const bool bHasSteering = SimLODList.IsEmpty() ||
                     SimLODList[EntityIt].LOD != EMassLOD::Off;
@@ -411,7 +429,22 @@ void UOpenMassCrowdPrePathFollowSpacingProcessor::Execute(
             CentralHeadwaySafetyGapCm;
         const bool bSameRuntimeLane =
             Follower.LaneIndex == Leader.LaneIndex;
-        const float CurrentCenterDistanceCm = NearestLeaderDistanceCm;
+        const bool bSamePresentationBand =
+            Follower.PresentationBandIndex ==
+                Leader.PresentationBandIndex;
+        // Presentation bands deliberately separate render positions sideways,
+        // but two identities on the same authoritative lane still share one
+        // topological entrance.  Use the smaller of realised 3D clearance and
+        // certified longitudinal progress there, otherwise several banded
+        // pedestrians can arrive at exactly the same lane endpoint and block
+        // the transition together.
+        const float CurrentCenterDistanceCm =
+            bSameRuntimeLane && bSamePresentationBand
+            ? FMath::Min(
+                NearestLeaderDistanceCm,
+                FMath::Abs(
+                    Leader.ProgressCm - Follower.ProgressCm))
+            : NearestLeaderDistanceCm;
         if (CurrentCenterDistanceCm <= RequiredCenterDistanceCm)
         {
             // A pre-existing too-small gap must open; matching the leader here
@@ -2158,9 +2191,18 @@ void UOpenMassCrowdPrePathFollowSpacingProcessor::Execute(
             {
                 continue;
             }
-            const float CandidateDistanceCm = FVector::Distance(
+            const float RealisedDistanceCm = FVector::Distance(
                 Candidate.Position,
                 Follower.Position);
+            const float CandidateDistanceCm =
+                Candidate.LaneIndex == Follower.LaneIndex &&
+                Candidate.PresentationBandIndex ==
+                    Follower.PresentationBandIndex
+                ? FMath::Min(
+                    RealisedDistanceCm,
+                    FMath::Abs(
+                        Candidate.ProgressCm - Follower.ProgressCm))
+                : RealisedDistanceCm;
             if (CandidateDistanceCm >= 0.0f &&
                 CandidateDistanceCm < NearestLeaderDistanceCm)
             {
@@ -2542,6 +2584,38 @@ void UOpenMassCrowdCertifiedTransformProcessor::Execute(
     FMassEntityManager& EntityManager,
     FMassExecutionContext& Context)
 {
+    // Actor Tick precedes the PrePhysics Mass pipeline. A liveness step made
+    // there is overwritten by PathFollow later in the same frame, which was
+    // the reason several apparently healthy pedestrians accumulated stationary
+    // time forever. Gather the active Central spawners first, then perform the
+    // exact-lane constraint and any certified recovery only here, after the
+    // Movement group and before representation consumes the transform.
+    TSet<AOpenMassCrowdSpawner*> ActiveCentralSpawners;
+    EntityQuery.ForEachEntityChunk(
+        Context,
+        [&ActiveCentralSpawners](FMassExecutionContext& Context)
+        {
+            const TConstArrayView<FOpenMassCrowdCentralVisualOwnerFragment>
+                OwnerList = Context.GetFragmentView<
+                    FOpenMassCrowdCentralVisualOwnerFragment>();
+            for (FMassExecutionContext::FEntityIterator EntityIt =
+                     Context.CreateEntityIterator();
+                 EntityIt;
+                 ++EntityIt)
+            {
+                if (AOpenMassCrowdSpawner* Spawner =
+                        OwnerList[EntityIt].Spawner.Get();
+                    IsValid(Spawner))
+                {
+                    ActiveCentralSpawners.Add(Spawner);
+                }
+            }
+        });
+    for (AOpenMassCrowdSpawner* Spawner : ActiveCentralSpawners)
+    {
+        Spawner->ConstrainCentralTransformsToCertifiedLanes();
+    }
+
     struct FCentralCertifiedFrameRecord
     {
         FMassEntityHandle Entity;
@@ -2763,24 +2837,64 @@ void UOpenMassCrowdCertifiedTransformProcessor::Execute(
                 }
                 const FVector FirstPosition = GetResolvedPosition(FirstIndex);
                 const FVector SecondPosition = GetResolvedPosition(SecondIndex);
-                if (FVector::DistSquared(FirstPosition, SecondPosition) >=
+                const float ResolvedDistanceSquared = FVector::DistSquared(
+                    FirstPosition,
+                    SecondPosition);
+                if (ResolvedDistanceSquared >=
                     CentralHardCollisionDistanceSquared)
+                {
+                    continue;
+                }
+
+                // A pair can already be inside the hard gate after a Cesium
+                // presentation band temporarily falls back to the certified
+                // centre line. Requiring either pedestrian to clear the full
+                // 20 cm in one frame makes that overlap an absorbing state:
+                // every small separating step is rolled back forever. Allow
+                // only strictly monotonic separation from such a pre-existing
+                // state. New overlaps and any step that holds or reduces the
+                // distance still take the ordinary rollback/yield path below.
+                const float PreviousPairDistanceSquared =
+                    FVector::DistSquared(
+                        First.PreviousState.Transform.GetLocation(),
+                        Second.PreviousState.Transform.GetLocation());
+                constexpr float CentralSeparationProgressSquaredEpsilon =
+                    0.01f;
+                if (PreviousPairDistanceSquared <
+                        CentralHardCollisionDistanceSquared &&
+                    ResolvedDistanceSquared >
+                        PreviousPairDistanceSquared +
+                            CentralSeparationProgressSquaredEpsilon)
                 {
                     continue;
                 }
 
                 const bool bCanRollbackFirst =
                     ResolutionModes[FirstIndex] == 0 &&
-                    FVector::DistSquared(
-                        First.PreviousState.Transform.GetLocation(),
-                        SecondPosition) >=
-                        CentralHardCollisionDistanceSquared;
+                    (FVector::DistSquared(
+                         First.PreviousState.Transform.GetLocation(),
+                         SecondPosition) >=
+                         CentralHardCollisionDistanceSquared ||
+                     (PreviousPairDistanceSquared <
+                          CentralHardCollisionDistanceSquared &&
+                      FVector::DistSquared(
+                          First.PreviousState.Transform.GetLocation(),
+                          SecondPosition) >
+                          PreviousPairDistanceSquared +
+                              CentralSeparationProgressSquaredEpsilon));
                 const bool bCanRollbackSecond =
                     ResolutionModes[SecondIndex] == 0 &&
-                    FVector::DistSquared(
-                        FirstPosition,
-                        Second.PreviousState.Transform.GetLocation()) >=
-                        CentralHardCollisionDistanceSquared;
+                    (FVector::DistSquared(
+                         FirstPosition,
+                         Second.PreviousState.Transform.GetLocation()) >=
+                         CentralHardCollisionDistanceSquared ||
+                     (PreviousPairDistanceSquared <
+                          CentralHardCollisionDistanceSquared &&
+                      FVector::DistSquared(
+                          FirstPosition,
+                          Second.PreviousState.Transform.GetLocation()) >
+                          PreviousPairDistanceSquared +
+                              CentralSeparationProgressSquaredEpsilon));
                 // Longest-waiting pedestrian owns the next safe movement. The
                 // stable entity id is only a deterministic tie-breaker. Static
                 // id priority starves the same high-index queue forever on a

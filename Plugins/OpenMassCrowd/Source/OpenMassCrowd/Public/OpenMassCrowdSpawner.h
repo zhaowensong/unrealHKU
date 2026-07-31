@@ -486,6 +486,12 @@ public:
         return CentralConflictWaitReplanCount;
     }
 
+    UFUNCTION(BlueprintPure, Category = "Open Mass Crowd|Central|Telemetry")
+    int32 GetCentralStallRecoveryReplanCount() const
+    {
+        return CentralStallRecoveryReplanCount;
+    }
+
     /** Runtime streaming/certification can fail a cell closed or restore it explicitly. */
     UFUNCTION(BlueprintCallable, Category = "Open Mass Crowd|Central|Navigation")
     bool SetCentralCellRuntimeAvailable(FName CellId, bool bAvailable);
@@ -894,6 +900,12 @@ private:
     int32 CentralLocalConflictHoldCount = 0;
     /** Occupancy-aware route changes used to break bounded conflict waits. */
     int32 CentralConflictWaitReplanCount = 0;
+    /** Five-second certified-displacement stalls queued for alternate routes. */
+    int32 CentralStallRecoveryReplanCount = 0;
+    /** Transient live-trace misses safely served by certified cached ground. */
+    int32 CentralInvestorCachedGroundFallbackCount = 0;
+    /** Certified lane advances that close UE short-path Stand boundaries. */
+    int32 CentralEdgeLivenessAdvanceCount = 0;
     float CentralMaximumConflictWaitSeconds = 0.0f;
     int32 CentralHighActorRepresentationCount = 0;
     int32 CentralLowActorRepresentationCount = 0;

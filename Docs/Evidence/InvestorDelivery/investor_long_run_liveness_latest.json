@@ -1,0 +1,3923 @@
+{
+  "captured_at_utc": "2026-07-31T16:05:10.673205+00:00",
+  "checks": {
+    "active_unpaused_pie": true,
+    "no_persistent_stall": true,
+    "no_unsupported_positions": true,
+    "population_remains_admitted": true,
+    "v3_liveness_evidence": true
+  },
+  "duration_s": 60.0,
+  "interval_s": 2.0,
+  "longest_stuck_sample_streak": 0,
+  "map_modified": false,
+  "maximum_stationary_s": 4.032,
+  "maximum_stuck": 0,
+  "minimum_moving": 47,
+  "passed": true,
+  "sample_count": 30,
+  "samples": [
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 1,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 295,
+          "expected_moving": 50,
+          "maximum_stationary_s": 2.019,
+          "moving": 48,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 37.732,
+          "frame_p50_ms": 19.189,
+          "frame_p95_ms": 24.238,
+          "frame_samples": 1068,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 48,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 37,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 11
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 11
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 29.416662603616714
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 1,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 355,
+          "expected_moving": 50,
+          "maximum_stationary_s": 1.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 19.132,
+          "frame_p95_ms": 24.196,
+          "frame_samples": 1172,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 37,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 12
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 12
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 31.443806305527687
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 1,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 449,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 19.003,
+          "frame_p95_ms": 24.166,
+          "frame_samples": 1279,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 3,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 47,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 35,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 13
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 13
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 33.53389920294285
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 1,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 491,
+          "expected_moving": 50,
+          "maximum_stationary_s": 2.016,
+          "moving": 48,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 18.879,
+          "frame_p95_ms": 24.082,
+          "frame_samples": 1388,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 48,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 5,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 37,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 14
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 14
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 35.60540520399809
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 1,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 582,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 18.781,
+          "frame_p95_ms": 24.059,
+          "frame_samples": 1496,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 1,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 6,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 49,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 36,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 15
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 15
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 37.71624270454049
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 1,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 582,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 18.762,
+          "frame_p95_ms": 23.888,
+          "frame_samples": 1602,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 3,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 5,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 47,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 38,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 16
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 16
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 39.84618490189314
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 1,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 582,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 18.71,
+          "frame_p95_ms": 23.807,
+          "frame_samples": 1709,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 36,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 17
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 17
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 41.9300069026649
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 1,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 582,
+          "expected_moving": 50,
+          "maximum_stationary_s": 1.003,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 18.654,
+          "frame_p95_ms": 23.671,
+          "frame_samples": 1816,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 1,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 3,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 49,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 39,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 18
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 18
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 44.02955950424075
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 1,
+          "entry_events": 2,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 49,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 582,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 49,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 18.638,
+          "frame_p95_ms": 23.592,
+          "frame_samples": 1976,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 4,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 3,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 46,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 39,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 19
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 19
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 46.15421560406685
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 1,
+          "outdoor": 49,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 582,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 49,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 18.638,
+          "frame_p95_ms": 23.561,
+          "frame_samples": 2080,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 38,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 20
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 20
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 48.27586320415139
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 1,
+          "exiting": 0,
+          "indoor": 1,
+          "outdoor": 49,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 582,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 49,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 18.607,
+          "frame_p95_ms": 23.503,
+          "frame_samples": 2188,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 1,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 5,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 49,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 39,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 21
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 21
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 50.36349520459771
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 1,
+          "exiting": 1,
+          "indoor": 0,
+          "outdoor": 49,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 1
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 582,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 49,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 38.647,
+          "frame_p50_ms": 18.585,
+          "frame_p95_ms": 23.423,
+          "frame_samples": 2296,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 4,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 6,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 46,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 39,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 22
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 22
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 52.468291603028774
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 582,
+          "expected_moving": 50,
+          "maximum_stationary_s": 1.001,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.593,
+          "frame_p95_ms": 23.392,
+          "frame_samples": 2399,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 5,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 37,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 23
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 23
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 54.51900190487504
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 629,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.578,
+          "frame_p95_ms": 23.279,
+          "frame_samples": 2507,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 1,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 49,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 35,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 24
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 24
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 56.608509104698896
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 682,
+          "expected_moving": 50,
+          "maximum_stationary_s": 2.018,
+          "moving": 48,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.543,
+          "frame_p95_ms": 23.208,
+          "frame_samples": 2614,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 48,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 3,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 37,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 25
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 25
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 58.71423530206084
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 796,
+          "expected_moving": 50,
+          "maximum_stationary_s": 2.01,
+          "moving": 49,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.551,
+          "frame_p95_ms": 23.164,
+          "frame_samples": 2720,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 49,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 3,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 3,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 47,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 39,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 26
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 26
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 60.8219261020422
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 968,
+          "expected_moving": 50,
+          "maximum_stationary_s": 4.032,
+          "moving": 48,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.555,
+          "frame_p95_ms": 23.111,
+          "frame_samples": 2826,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 48,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 4,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 46,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 36,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 27
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 27
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 62.914214704185724
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1077,
+          "expected_moving": 50,
+          "maximum_stationary_s": 2.023,
+          "moving": 49,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.53,
+          "frame_p95_ms": 23.086,
+          "frame_samples": 2935,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 49,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 5,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 36,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 29
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 29
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 64.98964350298047
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1130,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.498,
+          "frame_p95_ms": 23.001,
+          "frame_samples": 3043,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 6,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 34,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 30
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 30
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 67.09416960179806
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1130,
+          "expected_moving": 50,
+          "maximum_stationary_s": 1.014,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.528,
+          "frame_p95_ms": 22.974,
+          "frame_samples": 3145,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 4,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 5,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 46,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 36,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 31
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 31
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 69.19350800290704
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1179,
+          "expected_moving": 50,
+          "maximum_stationary_s": 1.01,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.531,
+          "frame_p95_ms": 22.885,
+          "frame_samples": 3147,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 0,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 50,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 40,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 32
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 32
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 71.26226850226521
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1228,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.53,
+          "frame_p95_ms": 22.792,
+          "frame_samples": 3148,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 3,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 38,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 33
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 33
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 73.31601740419865
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 2,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1241,
+          "expected_moving": 50,
+          "maximum_stationary_s": 2.016,
+          "moving": 49,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.547,
+          "frame_p95_ms": 22.817,
+          "frame_samples": 3144,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 49,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 3,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 3,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 47,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 37,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 34
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 34
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 75.4350061044097
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 1,
+          "entry_events": 3,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 49,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1321,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 49,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.53,
+          "frame_p95_ms": 22.778,
+          "frame_samples": 3147,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 3,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 47,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 35,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 35
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 35
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 77.5320159047842
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 3,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 1,
+          "outdoor": 49,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1342,
+          "expected_moving": 50,
+          "maximum_stationary_s": 2.012,
+          "moving": 49,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 49,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.498,
+          "frame_p95_ms": 22.695,
+          "frame_samples": 3148,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 49,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 5,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 38,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 36
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 36
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 79.66115160286427
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 3,
+          "exit_events": 2,
+          "exiting": 0,
+          "indoor": 1,
+          "outdoor": 49,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1436,
+          "expected_moving": 50,
+          "maximum_stationary_s": 3.012,
+          "moving": 49,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 49,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.478,
+          "frame_p95_ms": 22.662,
+          "frame_samples": 3153,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 49,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 6,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 36,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 37
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 37
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 81.77360310405493
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 3,
+          "exit_events": 2,
+          "exiting": 1,
+          "indoor": 0,
+          "outdoor": 49,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 2
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1557,
+          "expected_moving": 50,
+          "maximum_stationary_s": 2.026,
+          "moving": 48,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 49,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.445,
+          "frame_p95_ms": 22.456,
+          "frame_samples": 3161,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 48,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 2,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 5,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 48,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 36,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 38
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 38
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 83.81919690221548
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 3,
+          "exit_events": 3,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 3
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1585,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.393,
+          "frame_p95_ms": 21.944,
+          "frame_samples": 3178,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 1,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 4,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 49,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 37,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 39
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 39
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 85.88534950464964
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 3,
+          "exit_events": 3,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 3
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1698,
+          "expected_moving": 50,
+          "maximum_stationary_s": 2.028,
+          "moving": 47,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": false,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.344,
+          "frame_p95_ms": 21.476,
+          "frame_samples": 3195,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 47,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 1,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 3,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 49,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 36,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 40
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 40
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 87.95457380264997
+    },
+    {
+      "delivery": {
+        "building": {
+          "entering": 0,
+          "entry_events": 3,
+          "exit_events": 3,
+          "exiting": 0,
+          "indoor": 0,
+          "outdoor": 50,
+          "portal": {
+            "x": -150443.253,
+            "y": 240596.313,
+            "z": 315.329
+          },
+          "portal_grounded": true,
+          "station_reacquisitions": 3
+        },
+        "legacy_signal": {
+          "restorable": true,
+          "suppressed_actor_count": 3060
+        },
+        "liveness": {
+          "cached_ground_fallbacks": 25,
+          "edge_liveness_advances": 1723,
+          "expected_moving": 50,
+          "maximum_stationary_s": 0.0,
+          "moving": 50,
+          "stall_recovery_replans": 0,
+          "stuck": 0
+        },
+        "mode_enabled": true,
+        "network": {
+          "association_visual_budget": 12,
+          "connected": 50,
+          "uncovered": 0
+        },
+        "passed": true,
+        "performance": {
+          "debug_refresh_hz": 10.0,
+          "frame_maximum_ms": 48.723,
+          "frame_p50_ms": 18.325,
+          "frame_p95_ms": 21.223,
+          "frame_samples": 3202,
+          "ground_guards_per_pass": 4,
+          "network_refresh_hz": 3.03,
+          "telemetry_interval_s": 1.0,
+          "validated_roof_refresh_s": 2.0
+        },
+        "population": {
+          "admitted": 50,
+          "configured": 50,
+          "moving": 50,
+          "represented": 50,
+          "spawned": 50,
+          "vat_far_walking": 50
+        },
+        "presentation": {
+          "certified_center_fallback_people": 4,
+          "configured_bands": 7,
+          "high_actor_budget": 6,
+          "high_actors": 0,
+          "largest_active_lane_population": 3,
+          "low_actor_budget": 24,
+          "low_actors": 0,
+          "maximum_lateral_offset_cm": 135.0,
+          "occupied_supported_bands": 7,
+          "offset_supported_people": 46,
+          "skeletal_walk_distance_m": 200.0,
+          "unique_active_lanes": 35,
+          "vat_actors": 50
+        },
+        "profile": {
+          "anchor": "lower_left",
+          "required_fields_present": true,
+          "selected_index": 0,
+          "visible": true
+        },
+        "schema": "telecomtwin-investor-delivery-v3",
+        "stations": {
+          "items": [
+            {
+              "configured_anchor_lod_adjustment_cm": 762.106,
+              "configured_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 12735.574
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 230.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-ROOF-01",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -160000.0,
+                "y": 247000.0,
+                "z": 11973.468
+              },
+              "validation_attempts": 41
+            },
+            {
+              "configured_anchor_lod_adjustment_cm": 4077.832,
+              "configured_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 12382.011
+              },
+              "consecutive_validation_misses": 0,
+              "coverage_radius_m": 205.0,
+              "roof_validated": true,
+              "station_id": "CENTRAL-WEST-ROOF-02",
+              "station_to_live_roof_offset_cm": 4.0,
+              "validated_roof": {
+                "x": -169000.0,
+                "y": 247000.0,
+                "z": 8304.179
+              },
+              "validation_attempts": 41
+            }
+          ],
+          "maximum_roof_error_cm": 4.0,
+          "required": 2,
+          "validated": 2
+        },
+        "video_required": false
+      },
+      "paused": false,
+      "unsupported": 0,
+      "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+      "world_time_s": 90.07824980467558
+    }
+  ],
+  "schema": "telecomtwin-investor-long-run-liveness-v1",
+  "stall_recovery_replans": 0
+}
