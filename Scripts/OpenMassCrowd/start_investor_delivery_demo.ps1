@@ -36,6 +36,24 @@ function Resolve-TelecomTwinUnrealRoot {
         $candidates.Add($env:TELECOMTWIN_UNREAL_ROOT)
     }
 
+    # A currently running editor is the strongest portable hint for custom
+    # source builds that are not registered with Epic Games Launcher.
+    $runningEditorPaths = @(
+        Get-CimInstance Win32_Process -Filter "Name='UnrealEditor.exe'" |
+            Where-Object { $_.ExecutablePath } |
+            Select-Object -ExpandProperty ExecutablePath
+    )
+    foreach ($editorPath in $runningEditorPaths) {
+        $candidate = Split-Path (
+            Split-Path (
+                Split-Path (
+                    Split-Path $editorPath -Parent
+                ) -Parent
+            ) -Parent
+        ) -Parent
+        $candidates.Add($candidate)
+    }
+
     $engineAssociation = "5.7"
     try {
         $engineAssociation = (
@@ -68,8 +86,17 @@ function Resolve-TelecomTwinUnrealRoot {
         }
     }
 
-    $candidates.Add("D:\astrea\UE_5.7")
-    $candidates.Add("C:\Program Files\Epic Games\UE_5.7")
+    foreach ($programFilesRoot in @(
+        $env:ProgramW6432,
+        $env:ProgramFiles,
+        ${env:ProgramFiles(x86)}
+    )) {
+        if (-not [string]::IsNullOrWhiteSpace($programFilesRoot)) {
+            $candidates.Add((
+                Join-Path $programFilesRoot "Epic Games\UE_$engineAssociation"
+            ))
+        }
+    }
     foreach ($candidate in $candidates) {
         if ([string]::IsNullOrWhiteSpace($candidate)) {
             continue
@@ -87,7 +114,7 @@ function Resolve-TelecomTwinUnrealRoot {
     throw @"
 找不到兼容的 Unreal Engine 5.7。
 请安装 UE 5.7，或设置环境变量：
-TELECOMTWIN_UNREAL_ROOT=D:\path\to\UE_5.7
+TELECOMTWIN_UNREAL_ROOT=<UE 5.7 安装目录>
 "@
 }
 
@@ -104,11 +131,31 @@ try {
     Write-Host "[环境] 项目: $projectRoot"
 
     if ([string]::IsNullOrWhiteSpace($CacheRoot)) {
-        if (Test-Path -LiteralPath "D:\") {
-            $CacheRoot = "D:\TelecomTwinDemoCache"
+        if (-not [string]::IsNullOrWhiteSpace(
+            $env:TELECOMTWIN_DEMO_CACHE_ROOT
+        )) {
+            $CacheRoot = $env:TELECOMTWIN_DEMO_CACHE_ROOT
         }
         else {
-            $CacheRoot = Join-Path $env:LOCALAPPDATA "TelecomTwinDemoCache"
+            $projectVolumeRoot = [System.IO.Path]::GetPathRoot($projectRoot)
+            if (-not [string]::IsNullOrWhiteSpace($projectVolumeRoot)) {
+                $volumeCache = Join-Path $projectVolumeRoot "TelecomTwinDemoCache"
+                try {
+                    New-Item -ItemType Directory -Path $volumeCache -Force |
+                        Out-Null
+                    $CacheRoot = $volumeCache
+                }
+                catch {
+                    Write-Verbose "Project volume cache is unavailable: $_"
+                }
+            }
+        }
+        if ([string]::IsNullOrWhiteSpace($CacheRoot)) {
+            $localAppData = [Environment]::GetFolderPath("LocalApplicationData")
+            if ([string]::IsNullOrWhiteSpace($localAppData)) {
+                throw "无法确定可写的演示缓存目录。"
+            }
+            $CacheRoot = Join-Path $localAppData "TelecomTwinDemoCache"
         }
     }
     $cacheRootFull = [System.IO.Path]::GetFullPath($CacheRoot)

@@ -1,95 +1,100 @@
-# TelecomTwin 百度网盘双包交付记录（2026-08-07）
+# TelecomTwin 百度网盘便携双包交付记录（2026-08-07）
 
-## 交付目录
+## 最终交付目录
 
 ```text
 D:\TelecomTwin_Delivery_100People_2026-08-07\发送给对方
 ```
 
-该目录中的文件可以一起上传到百度网盘。接收方把两个 7z 解压到同一个新目录，然后双击 `TelecomTwin/启动TelecomTwin演示.bat`。
+只上传这个目录。旁边名字含“不要发送”的目录是暂存、错误包和全量解压验证副本。
 
-## 为什么不能直接压缩原工程
+## 第一性问题：原工程为什么不能直接压缩
 
-原工程中的 `Content/CitySampleCrowd` 是 Windows Junction，指向：
+### City Sample 是本机 Junction
+
+原工程的 `Content/CitySampleCrowd` 指向发送方 D 盘。直接压缩会让接收方得到失效链接、看不到人物。本次将 1,434 个 City Sample Crowd 文件复制为压缩包中的真实文件；最终解压检查确认 Junction/ReparsePoint 为 0。
+
+### Intermediate 不可移植
+
+初版沿用旧交付方式制作了 `Intermediate` 包。二进制扫描明确发现其中包含发送方的 `C:\Users\15958...`、`D:\astrea...`、编译响应文件、UHT 路径和 Makefile 缓存。它在发送方本机能运行，不代表能在接收方机器安全复用。
+
+最终交付彻底取消 `Intermediate` 包。UE 会在接收方电脑按需生成自己的 `Intermediate`，避免本机绝对编译路径污染。
+
+### UE 与缓存不能绑定发送方盘符
+
+一键启动链已删除固定 UE 路径和固定 D 盘缓存：
+
+- UE 5.7 通过 `TELECOMTWIN_UNREAL_ROOT`、当前运行实例、Unreal 注册信息或系统标准安装目录动态发现。
+- 缓存优先使用“解压项目当前所在盘”的根目录 `TelecomTwinDemoCache`；盘符由项目位置动态决定。
+- 如果该盘根目录不可写，才回退到当前 Windows 用户 `%LOCALAPPDATA%`。
+- 可通过 `TELECOMTWIN_DEMO_CACHE_ROOT` 显式覆盖，但接收方正常演示不需要设置。
+
+曾尝试将缓存放在项目自身 `Saved/DemoCache`。在故意构造的深层验证目录中，UE 弹出 DDC 路径 119 字符过长提示。最终短路径策略解决了这个问题，并且不固定 C/D 盘。
+
+## 最终双包
+
+### 01 项目核心
 
 ```text
-D:\CitySampleCrowds_Staging\Content\CitySampleCrowd
+01_TelecomTwin_Project.7z
 ```
 
-如果直接压缩，接收方只会得到失效的 D 盘链接，看不到人物。本次暂存时使用真实目录复制了 1,434 个 City Sample Crowd 文件，共约 6.06 GB；全量解压后再次确认不存在真实文件系统链接。
+- 原始内容：1,982,123,065 字节
+- 压缩后：946,083,577 字节
+- 文件：8,011
+- SHA-256：`881305A8ED2DFC91FA7128894F785D926D0B079B59D6393B12A4F564DE4B7582`
+- 包含工程、地图、已编译项目插件、一键入口、射线系统、文档和 Cesium 城市请求缓存。
+- 不包含 `Intermediate`、City Sample Crowd、Cesium 项目插件或 VaRest；后三项由第二包合并。
 
-项目原先还依赖 UE 安装目录中的 Cesium for Unreal 与 VaRest。本次把两者作为项目本地插件放入 `TelecomTwin/Plugins`，并保留 Binaries、Source、Content、Config、Shaders 和许可文件；插件自己的 `Intermediate` 未重复打包。
-
-## 双包结构
-
-### 01 项目与内容
+### 02 可移植依赖
 
 ```text
-01_TelecomTwin_Project_and_Content.7z
+02_TelecomTwin_Portable_Dependencies.7z
 ```
 
-- 原始内容：10,300,975,118 字节
-- 压缩后：6,677,343,052 字节
-- 文件：12,638
-- SHA-256：`6D99FB6EA7E1DA79967562B19D71A2DF79555BAE729128DFFA7D15D88141CA07`
-- 包含工程、真实 City Sample Crowd、Cesium/VaRest、Cesium 城市缓存、一键启动入口和交付文档。
-
-### 02 编译中间文件
-
-```text
-02_TelecomTwin_Intermediate.7z
-```
-
-- 原始内容：5,651,532,617 字节
-- 压缩后：762,922,342 字节
-- 文件：244
-- SHA-256：`567BA5C7F41B0CBBEC3103AD895BFBBD09596DC31B57879839C913ECA0497E77`
-- 解压路径固定为 `TelecomTwin/Intermediate`。
+- 原始内容：8,318,857,948 字节
+- 压缩后：5,731,238,795 字节
+- 文件：4,627
+- SHA-256：`AB8D3733EE2A1FECD78E1CAA09BE64A9DDE3FC846A59D76F1630ECDB6E1AF1F5`
+- 包含真实 City Sample Crowd、项目本地 Cesium for Unreal 和项目本地 VaRest。
 
 两个压缩包都通过 `7z t` 完整数据测试。
 
-## 全量解压验证
+## 最终全量解压验证
 
-验证目录：
+两个最终包重新解压到一个路径很深、包含中文的全新目录，以主动覆盖常见路径问题。结果：
 
-```text
-D:\TelecomTwin_Delivery_100People_2026-08-07\verification_extract\TelecomTwin
-```
-
-两个最终压缩包被重新解压到空目录后，检查结果：
-
-- 总文件数：12,882
-- 解压后总大小：14.857 GB
-- City Sample Crowd 文件：1,434
-- Intermediate 文件：244
-- 真实 ReparsePoint/Junction：0
-- 一键启动、地图、人物内容、Cesium、VaRest、OpenMassCrowd、UnrealMCP 和编译文件均存在。
-
-第一次生成第二包时，完整解压检查发现它把 `Intermediate` 放在了交付根目录，而不是 `TelecomTwin` 内。该错误包已经移出“发送给对方”目录；最终第二包重建后再次执行 7-Zip 测试和全量解压，路径已修正。不要发送暂存目录中的旧包。
-
-## 从解压副本实际启动
-
-不是使用原工程，而是在全新解压副本中双击一键入口。验证结果：
-
-| 指标 | 结果 |
+| 检查 | 结果 |
 | --- | ---: |
-| 配置 / 生成 / 准入 / 显示 | 100 / 100 / 100 / 100 |
-| 移动人数 | 100 |
-| 卡住人数 | 0 |
-| unsupported / invalid / overlap | 0 / 0 / 0 |
-| 高 / 低骨骼人物 | 5 / 24 |
-| VAT 人物 | 71 |
-| 活动路径 | 31 |
-| P50 / P95 | 19.100 / 32.054 ms |
-| 性能门槛 | 通过，`performance_verified=true` |
+| 总文件数 | 12,638 |
+| 总字节数 | 10,300,981,013 |
+| City Sample Crowd 文件 | 1,434 |
+| `Intermediate` 是否存在 | 否 |
+| Junction/ReparsePoint | 0 |
+| 一键启动链发送方固定路径 | 0 |
+| Cesium/VaRest 项目插件 | 存在 |
 
-机器可读结果随交付目录保存为 `verification_runtime_status.json`。验证完成后已正常结束 PIE 并关闭 UE。
+## 从最终解压副本实际启动
+
+没有传入 `-UnrealRoot` 或缓存路径，直接双击最终解压副本的 `启动TelecomTwin演示.bat`：
+
+- UE 5.7 由注册信息动态发现。
+- 深层工程路径没有被用作 DDC 路径。
+- 缓存根据项目所在盘动态选择为短路径。
+- 没有再出现路径长度弹窗。
+- 项目进入 Play 并达到 `ready=true`。
+- 配置 / 生成 / 准入 / 显示：100 / 100 / 100 / 100。
+- 移动 99，卡住 0，unsupported / invalid / overlap 为 0 / 0 / 0。
+- 高/低骨骼人物 6 / 10，VAT 84，活动路径 26。
+- Codex 检查窗口抢占焦点时记录 `background_throttle_detected=true`；这是 UE 编辑器失焦 3 FPS 行为。此前同一渲染配置在前台解压副本测试的 P95 为 32.054 ms，通过 33 ms 门槛。
+
+机器可读结果随最终发送目录保存为 `verification_portable_runtime_status.json`。验证完成后已正常结束 PIE 并关闭 UE。
 
 ## 接收方操作
 
-1. 下载“发送给对方”目录里的全部文件。
+1. 下载“发送给对方”目录中的全部文件。
 2. 校验 `SHA256SUMS.txt`。
-3. 把两个 7z 解压到同一个新目录。
+3. 将两个 7z 解压到同一个新的空目录。
 4. 安装 UE 5.7。
 5. 双击 `TelecomTwin/启动TelecomTwin演示.bat`。
 6. 等待绿色 `DEMO READY | 100 PEOPLE`。

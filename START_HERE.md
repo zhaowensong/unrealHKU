@@ -7,10 +7,10 @@
 
 本次交付包含：
 
-1. `01_TelecomTwin_Project_and_Content.7z`
-2. `02_TelecomTwin_Intermediate.7z`
+1. `01_TelecomTwin_Project.7z`
+2. `02_TelecomTwin_Portable_Dependencies.7z`
 
-请将两个压缩包都解压到同一个新的空目录。第二个压缩包会把 `Intermediate` 放入第一个压缩包生成的 `TelecomTwin` 目录中。最终结构应为：
+请将两个压缩包都解压到同一个新的空目录。第二个压缩包会把真实人物内容与项目本地插件合并到第一个压缩包生成的 `TelecomTwin` 目录中。最终结构应为：
 
 ```text
 TelecomTwin/
@@ -18,7 +18,6 @@ TelecomTwin/
 ├─ Config/
 ├─ Content/
 │  └─ CitySampleCrowd/       # 已实体化，不是本机目录链接
-├─ Intermediate/
 ├─ Plugins/
 │  ├─ CesiumForUnreal/
 │  ├─ VaRest/
@@ -44,12 +43,12 @@ TelecomTwin/
 UE 安装在自定义位置且脚本无法发现时，请设置用户环境变量：
 
 ```text
-TELECOMTWIN_UNREAL_ROOT=D:\你的路径\UE_5.7
+TELECOMTWIN_UNREAL_ROOT=<UE 5.7 安装目录>
 ```
 
 ## 三、第一次启动
 
-第一次启动会建立本机纹理、骨骼网格和 VAT 派生缓存，可能比后续启动慢。Windows 暂时显示 UE“未响应”但任务管理器仍有明显 CPU 使用时，请继续等待，不要结束进程或重复双击。后续演示会复用缓存。
+第一次启动会在“解压项目当前所在盘”的根目录动态建立 `TelecomTwinDemoCache`，例如项目位于某个数据盘时，缓存也使用同一个数据盘；盘符不是写死的。如果该位置不可写，才回退到当前 Windows 用户的 `%LOCALAPPDATA%`。这既能避开 C 盘空间压力，也能避免工程解压路径过长时触发 UE 的 DDC 路径限制。Windows 暂时显示 UE“未响应”但任务管理器仍有明显 CPU 使用时，请继续等待，不要结束进程或重复双击。后续演示会复用缓存。
 
 为了获得正确帧率，请在演示期间保持 UE 为前台窗口。UE 编辑器失去焦点时可能主动降到约 3 FPS，这不是人群算法卡住。
 
@@ -60,6 +59,7 @@ TELECOMTWIN_UNREAL_ROOT=D:\你的路径\UE_5.7
 - 点击人物信息面板及相关演示功能。
 - City Sample Crowds 人物内容已经复制为真实文件，不依赖发送方的 D 盘目录链接。
 - Cesium for Unreal 与 VaRest 已放入项目 `Plugins`，不要求接收方再单独寻找相同插件包。
+- 不包含发送方机器生成的 `Intermediate`；该目录会由 UE 在接收方电脑按需生成，避免携带本机绝对编译路径。
 
 ## 五、完整性和许可提醒
 

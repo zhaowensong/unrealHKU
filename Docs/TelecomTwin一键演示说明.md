@@ -14,7 +14,7 @@
 ## 一键脚本实际完成的工作
 
 - 从参数、环境变量、UE 注册表和常见路径中查找 UE 5.7。
-- 若没有 UE 实例，使用固定 8 核、单并发资产/纹理编译和独立缓存目录启动 `shanghai`。
+- 若没有 UE 实例，使用固定 8 核、单并发资产/纹理编译启动 `shanghai`。缓存优先使用项目当前所在盘根目录下动态生成的 `TelecomTwinDemoCache`；盘符不是写死的，位置不可写时才回退到当前用户 `%LOCALAPPDATA%`，同时避免过长解压路径触发 UE 的 DDC 限制。
 - 若已有一个 UE 实例，只在确认它就是当前 TelecomTwin 项目后复用；检测到多个实例则失败，防止重复 UE 抢占内存和显存。
 - 通过项目自带的 UnrealMCP 本地接口自动进入 Play。
 - 在就绪等待期间关闭 UE 的后台 3 FPS 节流，避免进度窗口处于前台时让演示误判为卡顿。
@@ -37,14 +37,14 @@
 
 首次运行会建立本地 DDC/Zen 缓存，通常比后续运行慢。演示前建议至少完整启动一次作为预热。
 
-第一次冷启动时，Windows 可能短暂显示 UE“未响应”。如果任务管理器中 UE 仍在使用 CPU，且 `D:\TelecomTwinDemoCache\User\Saved\Logs\TelecomTwin.log` 持续出现“正在构建纹理/骨骼网格体”，说明它正在建立缓存，不要结束进程或重复双击。后续启动会复用这些缓存。
+第一次冷启动时，Windows 可能短暂显示 UE“未响应”。如果任务管理器中 UE 仍在使用 CPU，且动态缓存目录下的 `User/Saved/Logs/TelecomTwin.log` 持续出现“正在构建纹理/骨骼网格体”，说明它正在建立缓存，不要结束进程或重复双击。后续启动会复用这些缓存。
 
 ## UE 安装在自定义位置
 
 如果脚本不能自动发现 UE 5.7，设置用户环境变量后重新双击：
 
 ```text
-TELECOMTWIN_UNREAL_ROOT=D:\你的路径\UE_5.7
+TELECOMTWIN_UNREAL_ROOT=<UE 5.7 安装目录>
 ```
 
 也可以直接从 PowerShell 调用：
@@ -52,7 +52,7 @@ TELECOMTWIN_UNREAL_ROOT=D:\你的路径\UE_5.7
 ```powershell
 pwsh -ExecutionPolicy Bypass -File `
   .\Scripts\OpenMassCrowd\start_investor_delivery_demo.ps1 `
-  -UnrealRoot "D:\你的路径\UE_5.7"
+  -UnrealRoot "<UE 5.7 安装目录>"
 ```
 
 ## 失败时如何处理
@@ -78,7 +78,7 @@ pwsh -ExecutionPolicy Bypass -File `
 
 ## 本机回归结果（2026-08-06）
 
-- 关闭全部 UE 后从根目录双击：自动发现 `D:\astrea\UE_5.7`，启动唯一 UE 实例，自动进入 Play 并完成首次派生缓存构建。
+- 关闭全部 UE 后从根目录双击：通过环境变量、引擎注册信息或标准安装目录动态发现 UE 5.7，启动唯一 UE 实例，自动进入 Play 并完成首次派生缓存构建。
 - 冷启动最终状态：配置 / 生成 / 准入 / 显示均为 100，移动 100，卡住 0。
 - 复用同一 UE 再次双击：配置 / 生成 / 准入 / 显示均为 100，移动 99，卡住 0，unsupported / invalid / overlap 均为 0。
 - 复用画面 LOD：4 个高精度骨骼人物、16 个低精度骨骼人物、80 个远景 VAT 人物，共 100 人；活动路径 33 条。
