@@ -19,6 +19,14 @@
 
 ## 启动方法
 
+### 给接收方的一键方式（推荐）
+
+双击项目根目录的 `启动TelecomTwin演示.bat`。脚本会自动启动或复用正确的 UE、进入 Play、等待 100 人、定位镜头并验证稳定性能。命令窗口显示“演示已就绪”后即可讲解；不需要 Codex、外部 MCP Server 或手动按 `Alt+P`。
+
+完整说明：[`TelecomTwin一键演示说明.md`](TelecomTwin一键演示说明.md)。
+
+### 开发者手动方式
+
 1. 启动 Unreal MCP Server。
 2. 在项目根目录运行：
 
