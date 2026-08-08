@@ -40,6 +40,8 @@ TelecomTwin/
 
 不需要 Codex，不需要手工启动外部 MCP Server，不需要按 `Alt+P`，也不需要运行生成脚本。
 
+启动脚本同时兼容 Windows 自带的 Windows PowerShell 5.1 和 PowerShell 7；接收方不需要另外安装 PowerShell 7。
+
 UE 安装在自定义位置且脚本无法发现时，请设置用户环境变量：
 
 ```text

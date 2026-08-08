@@ -11,6 +11,8 @@
 
 不需要 Codex，不需要手动启动外部 MCP Server，不需要按 `Alt+P`，也不需要运行任何 setup 或镜头脚本。
 
+批处理会优先使用 PowerShell 7；没有安装时自动使用 Windows 自带的 Windows PowerShell 5.1。两个运行脚本均以带 BOM 的 UTF-8 保存，中文输出不会在 PowerShell 5.1 中破坏脚本语法。
+
 ## 一键脚本实际完成的工作
 
 - 从参数、环境变量、UE 注册表和常见路径中查找 UE 5.7。
@@ -57,6 +59,7 @@ pwsh -ExecutionPolicy Bypass -File `
 
 ## 失败时如何处理
 
+- 红字包含 `ParserError`、`Unexpected token` 或中文乱码：确认使用的是 2026-08-08 之后重新打包的 `01_TelecomTwin_Project.7z`；旧版启动脚本不兼容 Windows PowerShell 5.1 的默认编码检测。
 - “多个 Unreal Editor 实例”：关闭所有 UE 后重新双击。
 - “检测到的是其他 UE 项目”：关闭该 UE 项目后重新双击。
 - “City Sample Crowds is not mounted”：交付包缺少受 Epic UE-Only 许可约束的 City Sample Crowds 内容，必须由接收方自己的 Epic 授权内容补齐。

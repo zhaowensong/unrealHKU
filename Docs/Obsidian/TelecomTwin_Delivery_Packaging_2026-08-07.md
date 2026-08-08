@@ -39,10 +39,10 @@ D:\TelecomTwin_Delivery_100People_2026-08-07\发送给对方
 01_TelecomTwin_Project.7z
 ```
 
-- 原始内容：1,982,123,065 字节
-- 压缩后：946,083,577 字节
+- 原始内容：1,982,123,655 字节
+- 压缩后：945,454,299 字节
 - 文件：8,011
-- SHA-256：`881305A8ED2DFC91FA7128894F785D926D0B079B59D6393B12A4F564DE4B7582`
+- SHA-256：`1C5341EDC05DDF3DD52AEBFCF587206B62506334BF665F66705D5A0056A1BA37`
 - 包含工程、地图、已编译项目插件、一键入口、射线系统、文档和 Cesium 城市请求缓存。
 - 不包含 `Intermediate`、City Sample Crowd、Cesium 项目插件或 VaRest；后三项由第二包合并。
 
@@ -67,7 +67,7 @@ D:\TelecomTwin_Delivery_100People_2026-08-07\发送给对方
 | 检查 | 结果 |
 | --- | ---: |
 | 总文件数 | 12,638 |
-| 总字节数 | 10,300,981,013 |
+| 总字节数 | 10,300,981,603 |
 | City Sample Crowd 文件 | 1,434 |
 | `Intermediate` 是否存在 | 否 |
 | Junction/ReparsePoint | 0 |
@@ -100,3 +100,15 @@ D:\TelecomTwin_Delivery_100People_2026-08-07\发送给对方
 6. 等待绿色 `DEMO READY | 100 PEOPLE`。
 
 本交付包含 Epic UE-Only 内容以及 Cesium/Google Tileset 相关数据，只通过私密百度网盘渠道发送，不公开分发。
+
+## 2026-08-08 接收方 PowerShell 5.1 兼容修复
+
+接收方首次运行时出现中文乱码以及 `ParserError`、`Unexpected token`。根因不是 UE 或工程资源，而是接收方没有 PowerShell 7，批处理自动回退到 Windows PowerShell 5.1；后者会把没有 BOM 的 UTF-8 脚本按本地 ANSI 编码读取，乱码进一步破坏了中文字符串两侧的引号。
+
+修复内容：
+
+- `start_investor_delivery_demo.ps1` 改为带 BOM 的 UTF-8。
+- `launch_telecomtwin_citysample.ps1` 改为带 BOM 的 UTF-8。
+- 保留批处理自动回退逻辑，接收方无需安装 PowerShell 7。
+- 两个脚本分别使用 Windows PowerShell 5.1 与 PowerShell 7 的语法解析器验证，四项结果均为通过。
+- 重新生成 `01_TelecomTwin_Project.7z` 并更新 SHA-256；第二个依赖压缩包内容不变。

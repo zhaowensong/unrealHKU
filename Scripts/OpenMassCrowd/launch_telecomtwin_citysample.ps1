@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$UnrealRoot = "",
     [string]$Map = "/Game/Maps/shanghai",
