@@ -10,8 +10,10 @@
 #include "AnimToTextureInstancePlaybackHelpers.h"
 #include "Avoidance/MassAvoidanceTrait.h"
 #include "Avoidance/MassNavigationObstacleTrait.h"
+#include "Components/HierarchicalInstancedStaticMeshComponent.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/SceneComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "Camera/PlayerCameraManager.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
@@ -174,12 +176,12 @@ constexpr int32 InvestorPresentationPhaseCount = 5;
 constexpr float InvestorPresentationPhaseSpacingCm = 60.0f;
 constexpr int32 InvestorGroundGuardsPerPass = 4;
 constexpr float InvestorNetworkRefreshSeconds = 0.33f;
-constexpr float InvestorDebugRefreshSeconds = 0.1f;
-constexpr float InvestorDebugLifetimeSeconds = 0.12f;
 constexpr float InvestorValidatedRoofRefreshSeconds = 2.0f;
 constexpr float InvestorSkeletalWalkDistanceCm = 20000.0f;
 constexpr int32 InvestorHighActorBudget = 6;
 constexpr int32 InvestorLowActorBudget = 24;
+constexpr int32 InvestorExpectedSignalActorCount = 1950;
+constexpr int32 InvestorExpectedSignalBatchCount = 9;
 
 int32 GetInvestorPresentationBandIndex(const int32 StableEntityIndex)
 {
@@ -11126,12 +11128,17 @@ void AOpenMassCrowdSpawner::EnsureInvestorDemoInitialized()
         InvestorBuildingPortalLocation = CentralSpawnPositionPlan[0];
     }
 
-    SuppressLegacySignalActors();
+    // The persisted SIG_Source_/SIG_Ray_ scene is the collision-certified
+    // rooftop channel presentation. Copy those exact component world
+    // transforms into nine instanced rendering batches for PIE. The former
+    // investor overlay replaced them with elevated debug beacons/person links,
+    // while rendering all 1,950 source actors directly was too expensive next
+    // to the 100-person crowd.
+    BuildInvestorSignalBatches();
     ShowInvestorKPI();
     InvestorNetworkUpdateAccumulator = 0.0f;
     InvestorRoofValidationAccumulator = 0.0f;
     InvestorProfileRefreshAccumulator = 0.0f;
-    InvestorVisualRefreshAccumulator = 0.0f;
     InvestorElapsedSeconds = 0.0f;
     InvestorBuildingEntryCount = 0;
     InvestorBuildingExitCount = 0;
@@ -11142,13 +11149,12 @@ void AOpenMassCrowdSpawner::EnsureInvestorDemoInitialized()
     UE_LOG(
         LogTemp,
         Warning,
-        TEXT("INVESTOR_TELECOM_DEMO_INITIALIZED people=%d stations=%d portal=(%.1f,%.1f,%.1f) legacy_signal_hidden=%d"),
+        TEXT("INVESTOR_TELECOM_DEMO_INITIALIZED people=%d stations=%d portal=(%.1f,%.1f,%.1f) persisted_signal_policy=exact_transform_batches runtime_signal_overlay=false"),
         InvestorPeople.Num(),
         InvestorStations.Num(),
         InvestorBuildingPortalLocation.X,
         InvestorBuildingPortalLocation.Y,
-        InvestorBuildingPortalLocation.Z,
-        InvestorSuppressedSignalActors.Num());
+        InvestorBuildingPortalLocation.Z);
 }
 
 bool AOpenMassCrowdSpawner::ValidateInvestorStationRoof(
@@ -11286,14 +11292,9 @@ void AOpenMassCrowdSpawner::UpdateInvestorDemo(const float DeltaSeconds)
         ShowCentralProfileByStableIndex(StableIndex);
     }
 
-    InvestorVisualRefreshAccumulator += DeltaSeconds;
-    if (InvestorVisualRefreshAccumulator >= InvestorDebugRefreshSeconds)
-    {
-        InvestorVisualRefreshAccumulator = FMath::Fmod(
-            InvestorVisualRefreshAccumulator,
-            InvestorDebugRefreshSeconds);
-        DrawInvestorDemoVisuals();
-    }
+    // Do not draw a second runtime signal system here. The persisted rooftop
+    // channel actors remain the single visual source of truth in both editor
+    // and PIE worlds; people and profile UI are layered on top of them.
 }
 
 void AOpenMassCrowdSpawner::UpdateInvestorPersonStates(const float DeltaSeconds)
@@ -11477,167 +11478,19 @@ void AOpenMassCrowdSpawner::UpdateInvestorPersonStates(const float DeltaSeconds)
     }
 }
 
-void AOpenMassCrowdSpawner::DrawInvestorDemoVisuals() const
+bool AOpenMassCrowdSpawner::BuildInvestorSignalBatches()
 {
-    UWorld* World = GetWorld();
-    if (!World || !bInvestorDemoInitialized)
-    {
-        return;
-    }
-
-    const float Pulse = 0.5f + 0.5f *
-        FMath::Sin(InvestorElapsedSeconds * 2.2f);
-    const float GroundPlaneZ = InvestorBuildingPortalLocation.Z + 20.0f;
-    for (const FInvestorStationRuntime& Station : InvestorStations)
-    {
-        if (!Station.bRoofValidated)
-        {
-            continue;
-        }
-        const FVector Roof = Station.ValidatedRoofPoint + FVector(0.0, 0.0, 4.0);
-        const FVector Node = Roof + FVector(0.0, 0.0, 760.0);
-        const FVector Beacon = Roof + FVector(0.0, 0.0, 3600.0);
-        DrawDebugLine(World, Roof, Node, Station.DisplayColor, false,
-            InvestorDebugLifetimeSeconds, 0, 7.0f);
-        DrawDebugLine(World, Roof + FVector(-180.0, 0.0, 0.0),
-            Node, Station.DisplayColor, false, InvestorDebugLifetimeSeconds, 0, 2.0f);
-        DrawDebugLine(World, Roof + FVector(180.0, 0.0, 0.0),
-            Node, Station.DisplayColor, false, InvestorDebugLifetimeSeconds, 0, 2.0f);
-        DrawDebugSphere(World, Node, 110.0f + 30.0f * Pulse, 18,
-            Station.DisplayColor, false, InvestorDebugLifetimeSeconds, 0, 4.0f);
-        DrawDebugLine(World, Node, Beacon, Station.DisplayColor,
-            false, InvestorDebugLifetimeSeconds, 0, 1.5f);
-        for (int32 RingIndex = 0; RingIndex < 3; ++RingIndex)
-        {
-            const float RingRadius = 320.0f +
-                FMath::Fmod(
-                    InvestorElapsedSeconds * 380.0f + RingIndex * 480.0f,
-                    1440.0f);
-            DrawDebugCircle(World, Roof + FVector(0.0, 0.0, 12.0),
-                RingRadius, 48, Station.DisplayColor, false,
-                InvestorDebugLifetimeSeconds, 0,
-                2.0f, FVector(0.0, 1.0, 0.0), FVector(0.0, 0.0, 1.0), false);
-        }
-        DrawDebugCircle(World,
-            FVector(Station.ValidatedRoofPoint.X,
-                Station.ValidatedRoofPoint.Y, GroundPlaneZ),
-            Station.CoverageRadiusCm,
-            96,
-            Station.DisplayColor,
-            false,
-            InvestorDebugLifetimeSeconds,
-            0,
-            1.25f,
-            FVector(0.0, 1.0, 0.0),
-            FVector(0.0, 0.0, 1.0),
-            false);
-        DrawDebugString(World, Node + FVector(0.0, 0.0, 230.0),
-            FString::Printf(TEXT("%s  |  ROOFTOP ONLINE"),
-                *Station.StationId.ToString()),
-            nullptr, Station.DisplayColor, InvestorDebugLifetimeSeconds,
-            true, 1.15f);
-    }
-
-    const FColor PortalColor = GetInvestorIndoorCount() > 0
-        ? FColor(255, 174, 42)
-        : FColor(65, 240, 165);
-    const FVector PortalBase = InvestorBuildingPortalLocation +
-        FVector(0.0, 0.0, 8.0);
-    DrawDebugLine(World, PortalBase + FVector(-120.0, 0.0, 0.0),
-        PortalBase + FVector(-120.0, 0.0, 240.0), PortalColor,
-        false, InvestorDebugLifetimeSeconds, 0, 4.0f);
-    DrawDebugLine(World, PortalBase + FVector(120.0, 0.0, 0.0),
-        PortalBase + FVector(120.0, 0.0, 240.0), PortalColor,
-        false, InvestorDebugLifetimeSeconds, 0, 4.0f);
-    DrawDebugLine(World, PortalBase + FVector(-120.0, 0.0, 240.0),
-        PortalBase + FVector(120.0, 0.0, 240.0), PortalColor,
-        false, InvestorDebugLifetimeSeconds, 0, 4.0f);
-    DrawDebugCircle(World, PortalBase,
-        170.0f + Pulse * 80.0f, 32, PortalColor,
-        false, InvestorDebugLifetimeSeconds, 0, 2.5f,
-        FVector(0.0, 1.0, 0.0), FVector(0.0, 0.0, 1.0), false);
-    DrawDebugString(World, PortalBase + FVector(0.0, 0.0, 285.0),
-        TEXT("BUILDING BOUNDARY  |  INDOOR TRANSITION"),
-        nullptr, PortalColor, InvestorDebugLifetimeSeconds, true, 1.0f);
-
-    UMassSpawnerSubsystem* SpawnerSubsystem =
-        UWorld::GetSubsystem<UMassSpawnerSubsystem>(World);
-    if (!SpawnerSubsystem)
-    {
-        return;
-    }
-    FMassEntityManager& EntityManager =
-        SpawnerSubsystem->GetEntityManagerChecked();
-    const int32 VisualStride = FMath::Max(
-        1,
-        FMath::CeilToInt(
-            static_cast<float>(InvestorPeople.Num()) /
-            static_cast<float>(FMath::Max(InvestorAssociationVisualBudget, 1))));
-    const int32 VisualPhase = static_cast<int32>(InvestorElapsedSeconds * 0.5f) %
-        VisualStride;
-    for (int32 StableIndex = 0;
-         StableIndex < InvestorPeople.Num();
-         ++StableIndex)
-    {
-        const FInvestorPersonRuntime& Person = InvestorPeople[StableIndex];
-        if (!InvestorStations.IsValidIndex(Person.ServingStationIndex) ||
-            !SpawnedEntities.IsValidIndex(StableIndex))
-        {
-            continue;
-        }
-        const FMassEntityHandle Entity = SpawnedEntities[StableIndex];
-        if (!EntityManager.IsEntityValid(Entity))
-        {
-            continue;
-        }
-        const FTransformFragment* Transform =
-            EntityManager.GetFragmentDataPtr<FTransformFragment>(Entity);
-        if (!Transform)
-        {
-            continue;
-        }
-        const bool bSelected = StableIndex == SelectedCentralProfileEntityIndex;
-        if (!bSelected &&
-            (InvestorAssociationVisualBudget <= 0 ||
-             StableIndex % VisualStride != VisualPhase))
-        {
-            continue;
-        }
-        const FInvestorStationRuntime& Station =
-            InvestorStations[Person.ServingStationIndex];
-        const FVector PersonPoint =
-            Transform->GetTransform().GetLocation() + FVector(0.0, 0.0, 100.0);
-        const FVector StationPoint =
-            Station.ValidatedRoofPoint + FVector(0.0, 0.0, 780.0);
-        const FColor LinkColor = bSelected
-            ? FColor(245, 255, 255)
-            : FColor(
-                Station.DisplayColor.R / 2,
-                Station.DisplayColor.G / 2,
-                Station.DisplayColor.B / 2,
-                150);
-        DrawDebugLine(World, PersonPoint, StationPoint, LinkColor,
-            false, InvestorDebugLifetimeSeconds, 0,
-            bSelected ? 4.5f : 0.75f);
-        if (bSelected)
-        {
-            DrawDebugCircle(World,
-                Transform->GetTransform().GetLocation() + FVector(0.0, 0.0, 5.0),
-                65.0f + Pulse * 24.0f, 28, FColor(245, 255, 255),
-                false, InvestorDebugLifetimeSeconds, 0, 3.0f,
-                FVector(0.0, 1.0, 0.0), FVector(0.0, 0.0, 1.0), false);
-        }
-    }
-}
-
-void AOpenMassCrowdSpawner::SuppressLegacySignalActors()
-{
+    RestoreLegacySignalActors();
     InvestorSuppressedSignalActors.Reset();
     InvestorSuppressedSignalPreviousHidden.Reset();
     if (!GetWorld())
     {
-        return;
+        return false;
     }
+
+    TMap<FString, UHierarchicalInstancedStaticMeshComponent*> Batches;
+    int32 MatchedActorCount = 0;
+    int32 BatchSerial = 0;
     for (TActorIterator<AActor> It(GetWorld()); It; ++It)
     {
         AActor* Actor = *It;
@@ -11646,19 +11499,150 @@ void AOpenMassCrowdSpawner::SuppressLegacySignalActors()
         Identity += TEXT(" ") + Actor->GetActorLabel();
 #endif
         if (!Identity.Contains(TEXT("SIG_Ray_")) &&
-            !Identity.Contains(TEXT("SIG_RaySegment_")) &&
             !Identity.Contains(TEXT("SIG_Source_")))
         {
             continue;
         }
+
+        TArray<UStaticMeshComponent*> StaticMeshComponents;
+        Actor->GetComponents<UStaticMeshComponent>(StaticMeshComponents);
+        if (StaticMeshComponents.Num() != 1 ||
+            !IsValid(StaticMeshComponents[0]) ||
+            !IsValid(StaticMeshComponents[0]->GetStaticMesh()))
+        {
+            UE_LOG(
+                LogTemp,
+                Error,
+                TEXT("INVESTOR_SIGNAL_BATCH_ABORT actor=%s static_mesh_components=%d"),
+                *Identity,
+                StaticMeshComponents.Num());
+            RestoreLegacySignalActors();
+            return false;
+        }
+
+        UStaticMeshComponent* SourceComponent = StaticMeshComponents[0];
+        FString BatchKey = SourceComponent->GetStaticMesh()->GetPathName();
+        for (int32 MaterialIndex = 0;
+             MaterialIndex < SourceComponent->GetNumMaterials();
+             ++MaterialIndex)
+        {
+            BatchKey += TEXT("|") + GetPathNameSafe(
+                SourceComponent->GetMaterial(MaterialIndex));
+        }
+
+        UHierarchicalInstancedStaticMeshComponent*& Batch =
+            Batches.FindOrAdd(BatchKey);
+        if (!Batch)
+        {
+            Batch = NewObject<UHierarchicalInstancedStaticMeshComponent>(
+                this,
+                *FString::Printf(
+                    TEXT("InvestorSignalBatch_%02d"),
+                    BatchSerial++),
+                RF_Transient);
+            AddInstanceComponent(Batch);
+            Batch->SetupAttachment(SceneRoot);
+            Batch->SetMobility(EComponentMobility::Movable);
+            Batch->SetStaticMesh(SourceComponent->GetStaticMesh());
+            for (int32 MaterialIndex = 0;
+                 MaterialIndex < SourceComponent->GetNumMaterials();
+                 ++MaterialIndex)
+            {
+                Batch->SetMaterial(
+                    MaterialIndex,
+                    SourceComponent->GetMaterial(MaterialIndex));
+            }
+            Batch->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+            Batch->SetGenerateOverlapEvents(false);
+            Batch->SetCanEverAffectNavigation(false);
+            Batch->SetCastShadow(false);
+            Batch->bReceivesDecals = false;
+            Batch->SetCullDistances(0, 0);
+            Batch->ComponentTags.AddUnique(TEXT("TelecomTwinSignalBatch"));
+            Batch->RegisterComponent();
+            InvestorSignalBatchComponents.Add(Batch);
+        }
+
+        const FTransform SourceWorldTransform =
+            SourceComponent->GetComponentTransform();
+        const int32 InstanceIndex = Batch->AddInstance(
+            SourceWorldTransform,
+            true);
+        FTransform BatchedWorldTransform;
+        if (InstanceIndex == INDEX_NONE ||
+            !Batch->GetInstanceTransform(
+                InstanceIndex,
+                BatchedWorldTransform,
+                true))
+        {
+            UE_LOG(
+                LogTemp,
+                Error,
+                TEXT("INVESTOR_SIGNAL_BATCH_ABORT actor=%s add_instance_failed=true"),
+                *Identity);
+            RestoreLegacySignalActors();
+            return false;
+        }
+
+        InvestorSignalMaximumLocationDeltaCm = FMath::Max(
+            InvestorSignalMaximumLocationDeltaCm,
+            FVector::Distance(
+                SourceWorldTransform.GetLocation(),
+                BatchedWorldTransform.GetLocation()));
+        InvestorSignalMaximumRotationDeltaDegrees = FMath::Max(
+            InvestorSignalMaximumRotationDeltaDegrees,
+            FMath::RadiansToDegrees(
+                SourceWorldTransform.GetRotation().AngularDistance(
+                    BatchedWorldTransform.GetRotation())));
+        const FVector ScaleDelta = (
+            SourceWorldTransform.GetScale3D() -
+            BatchedWorldTransform.GetScale3D()).GetAbs();
+        InvestorSignalMaximumScaleDelta = FMath::Max(
+            InvestorSignalMaximumScaleDelta,
+            static_cast<float>(ScaleDelta.GetAbsMax()));
+        ++InvestorSignalBatchedInstanceCount;
+        ++MatchedActorCount;
         InvestorSuppressedSignalActors.Add(Actor);
         InvestorSuppressedSignalPreviousHidden.Add(Actor->IsHidden() ? 1 : 0);
         Actor->SetActorHiddenInGame(true);
     }
+
+    bInvestorSignalBatchReady =
+        MatchedActorCount == InvestorExpectedSignalActorCount &&
+        InvestorSignalBatchedInstanceCount == InvestorExpectedSignalActorCount &&
+        InvestorSignalBatchComponents.Num() == InvestorExpectedSignalBatchCount &&
+        InvestorSignalMaximumLocationDeltaCm <= 0.01f &&
+        InvestorSignalMaximumRotationDeltaDegrees <= 0.01f &&
+        InvestorSignalMaximumScaleDelta <= 0.00001f;
+    UE_LOG(
+        LogTemp,
+        Warning,
+        TEXT("INVESTOR_SIGNAL_BATCH_READY ready=%s source_actors=%d instances=%d batches=%d max_location_delta_cm=%.6f max_rotation_delta_deg=%.6f max_scale_delta=%.9f shadows=false"),
+        bInvestorSignalBatchReady ? TEXT("true") : TEXT("false"),
+        MatchedActorCount,
+        InvestorSignalBatchedInstanceCount,
+        InvestorSignalBatchComponents.Num(),
+        InvestorSignalMaximumLocationDeltaCm,
+        InvestorSignalMaximumRotationDeltaDegrees,
+        InvestorSignalMaximumScaleDelta);
+    if (!bInvestorSignalBatchReady)
+    {
+        RestoreLegacySignalActors();
+    }
+    return bInvestorSignalBatchReady;
 }
 
 void AOpenMassCrowdSpawner::RestoreLegacySignalActors()
 {
+    for (UHierarchicalInstancedStaticMeshComponent* Batch :
+         InvestorSignalBatchComponents)
+    {
+        if (IsValid(Batch))
+        {
+            Batch->DestroyComponent();
+        }
+    }
+    InvestorSignalBatchComponents.Reset();
     for (int32 Index = 0;
          Index < InvestorSuppressedSignalActors.Num();
          ++Index)
@@ -11673,6 +11657,11 @@ void AOpenMassCrowdSpawner::RestoreLegacySignalActors()
     }
     InvestorSuppressedSignalActors.Reset();
     InvestorSuppressedSignalPreviousHidden.Reset();
+    InvestorSignalBatchedInstanceCount = 0;
+    InvestorSignalMaximumLocationDeltaCm = 0.0f;
+    InvestorSignalMaximumRotationDeltaDegrees = 0.0f;
+    InvestorSignalMaximumScaleDelta = 0.0f;
+    bInvestorSignalBatchReady = false;
 }
 
 int32 AOpenMassCrowdSpawner::GetInvestorConnectedCount() const
@@ -12494,9 +12483,16 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         InvestorBuildingExitCount > 0 &&
         InvestorStationReacquisitionCount > 0 &&
         OccupiedPresentationBands.Num() >= 3 &&
-        bProfileComplete;
+        bProfileComplete &&
+        bInvestorSignalBatchReady &&
+        InvestorSuppressedSignalActors.Num() ==
+            InvestorExpectedSignalActorCount &&
+        InvestorSignalBatchedInstanceCount ==
+            InvestorExpectedSignalActorCount &&
+        InvestorSignalBatchComponents.Num() ==
+            InvestorExpectedSignalBatchCount;
     return FString::Printf(
-        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true},\"video_required\":false}"),
+        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"signal_rendering\":{\"source\":\"persisted_editor_component_world_transforms\",\"batch_ready\":%s,\"original_actor_count\":%d,\"batch_component_count\":%d,\"batched_instance_count\":%d,\"maximum_location_delta_cm\":%.6f,\"maximum_rotation_delta_deg\":%.6f,\"maximum_scale_delta\":%.9f,\"original_actors_hidden_for_batching\":true,\"runtime_overlay_enabled\":false},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true,\"preserved_visible\":true,\"runtime_overlay_enabled\":false},\"video_required\":false}"),
         bInvestorDeliveryDemoEnabled ? TEXT("true") : TEXT("false"),
         bPassed ? TEXT("true") : TEXT("false"),
         InvestorDeliveryPopulation,
@@ -12528,7 +12524,7 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         CentralVATRepresentationCount,
         InvestorGroundGuardsPerPass,
         CentralTelemetrySampleIntervalSeconds,
-        1.0f / InvestorDebugRefreshSeconds,
+        0.0f,
         InvestorValidatedRoofRefreshSeconds,
         1.0f / InvestorNetworkRefreshSeconds,
         CentralFrameTimeSampleCount,
@@ -12556,6 +12552,13 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         SelectedCentralProfileEntityIndex,
         CentralProfileViewportWidget.IsValid() ? TEXT("true") : TEXT("false"),
         bProfileComplete ? TEXT("true") : TEXT("false"),
+        bInvestorSignalBatchReady ? TEXT("true") : TEXT("false"),
+        InvestorSuppressedSignalActors.Num(),
+        InvestorSignalBatchComponents.Num(),
+        InvestorSignalBatchedInstanceCount,
+        InvestorSignalMaximumLocationDeltaCm,
+        InvestorSignalMaximumRotationDeltaDegrees,
+        InvestorSignalMaximumScaleDelta,
         InvestorSuppressedSignalActors.Num());
 }
 

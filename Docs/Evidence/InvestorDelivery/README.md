@@ -9,5 +9,8 @@
 5. `04_central_100_performance.png`：100 人稳定运行时的当前 PIE 视图；摄影测量近地面破碎几何属于源场景局限。
 6. `investor_delivery_100_runtime_latest.json`：100 人完整机器验收报告，所有检查为 `true`。
 7. `investor_100_long_run_liveness_latest.json`：100 人 60 秒持续运动报告，卡住峰值为 0。
+8. `05_people_and_persisted_signal_overview_2026-08-10.png/.json`：修复后 PIE 中人物与原始四色信道同场总览；JSON 记录 30 + 1920 对象和 9 / 1950 批次。
+9. `06_persisted_rooftop_landing_detail_2026-08-10.png/.json`：修复后屋顶区域近景与相机信息。
+10. `07_signal_alignment_acceptance_2026-08-10.json`：冷重启后一键验收摘要；编辑器态与 PIE 的位置、旋转、缩放最大误差均为 0。
 
 截图用于解释视觉结果；是否完成以 JSON、构建结果和重启验收为准。按用户要求没有最终验收视频。

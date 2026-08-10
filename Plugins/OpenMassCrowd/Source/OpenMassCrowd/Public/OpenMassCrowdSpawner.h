@@ -13,6 +13,7 @@
 #include "OpenMassCrowdSpawner.generated.h"
 
 class AZoneGraphData;
+class UHierarchicalInstancedStaticMeshComponent;
 class UMassEntityTraitBase;
 class UPrimitiveComponent;
 class USceneComponent;
@@ -709,9 +710,8 @@ private:
     void EnsureInvestorDemoInitialized();
     void UpdateInvestorDemo(float DeltaSeconds);
     void UpdateInvestorPersonStates(float DeltaSeconds);
-    void DrawInvestorDemoVisuals() const;
     bool ValidateInvestorStationRoof(FInvestorStationRuntime& Station);
-    void SuppressLegacySignalActors();
+    bool BuildInvestorSignalBatches();
     void RestoreLegacySignalActors();
     void ShowInvestorKPI();
     void HideInvestorKPI();
@@ -940,10 +940,17 @@ private:
     FVector InvestorBuildingPortalLocation = FVector::ZeroVector;
     TArray<TWeakObjectPtr<AActor>> InvestorSuppressedSignalActors;
     TArray<uint8> InvestorSuppressedSignalPreviousHidden;
+    UPROPERTY(Transient)
+    TArray<TObjectPtr<UHierarchicalInstancedStaticMeshComponent>>
+        InvestorSignalBatchComponents;
+    int32 InvestorSignalBatchedInstanceCount = 0;
+    float InvestorSignalMaximumLocationDeltaCm = 0.0f;
+    float InvestorSignalMaximumRotationDeltaDegrees = 0.0f;
+    float InvestorSignalMaximumScaleDelta = 0.0f;
+    bool bInvestorSignalBatchReady = false;
     float InvestorNetworkUpdateAccumulator = 0.0f;
     float InvestorRoofValidationAccumulator = 0.0f;
     float InvestorProfileRefreshAccumulator = 0.0f;
-    float InvestorVisualRefreshAccumulator = 0.0f;
     float InvestorElapsedSeconds = 0.0f;
     int32 InvestorBuildingEntryCount = 0;
     int32 InvestorBuildingExitCount = 0;

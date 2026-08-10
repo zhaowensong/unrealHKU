@@ -1,0 +1,45 @@
+{
+  "schema": "telecomtwin-investor-signal-alignment-evidence-v1",
+  "shot": "overview",
+  "pie_world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+  "persisted_signal_inventory": {
+    "source_actor_count": 30,
+    "ray_actor_count": 1920
+  },
+  "runtime_signal_batch": {
+    "component_count": 9,
+    "instance_count": 1950,
+    "source_policy": "exact persisted component world transforms",
+    "runtime_debug_overlay": false
+  },
+  "crowd_visible_actor_count": 21,
+  "camera": {
+    "location": {
+      "x": -185137.11619423886,
+      "y": 248113.95276556094,
+      "z": 7739.368377574533
+    },
+    "rotation": {
+      "pitch": -9.700239850835455,
+      "yaw": 48.33633670221333,
+      "roll": 6.308919005047962e-08
+    },
+    "target": {
+      "x": -172537.11619423886,
+      "y": 262273.95276556094,
+      "z": 4499.368377574533
+    },
+    "framed_bounds_min": {
+      "x": -176019.73634375527,
+      "y": 261678.20236360934,
+      "z": 281.0563605723489
+    },
+    "framed_bounds_max": {
+      "x": -169054.49604472244,
+      "y": 262869.7031675125,
+      "z": 317.6803945767175
+    },
+    "target_source": null
+  },
+  "image": "Docs\\Evidence\\InvestorDelivery\\05_people_and_persisted_signal_overview_2026-08-10.png"
+}

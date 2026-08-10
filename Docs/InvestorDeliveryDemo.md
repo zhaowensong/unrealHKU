@@ -12,10 +12,10 @@
 - 一名确定性人物循环演示入楼断联、室内应用、出楼和重新驻留。
 - 左下半透明人物卡展示姓名、职业、性别年龄、当前应用、位置、服务基站和信号。
 - 右上 KPI 展示人数、已连接、室内人数和可用屋顶节点。
-- 投资模式运行时隐藏当前已加载的 30 个信源与 1920 个旧射线对象（共 1950 个），结束 PIE 后恢复原状态。
+- 人物模式直接复用关卡中 30 个信源与 1920 个四色信道对象的精确世界变换；运行时只合并成 9 个 HISM 绘制批次，不重算落点、不再画悬空 Debug 射线，结束 PIE 后恢复原 Actor 状态。
 - 按要求没有录制最终验收视频。
 
-![双屋顶基站和人物状态卡](Evidence/InvestorDelivery/02_real_rooftop_stations.png)
+![人物模式复用原始四色信道](Evidence/InvestorDelivery/05_people_and_persisted_signal_overview_2026-08-10.png)
 
 ## 启动方法
 
@@ -38,14 +38,14 @@
 4. 在 UE 中按 `Alt+P` 启动 Play。
 5. 等待约 30–50 秒，让 Cesium 碰撞、100 人准入和屋顶验证完成。
 
-投资模式、100 人和 12 条稀疏关联线都来自 C++ 默认值与
+投资模式和 100 人都来自 C++ 默认值与
 [`Config/InvestorDeliveryDemo.json`](../Config/InvestorDeliveryDemo.json)，重启后不依赖临时注入。
 地图中的 Spawner 已保存为 `Gate100` 与 100 人；启动脚本不会再临时修改地图。
 
 ## 推荐演示顺序
 
-1. 先用城市屋顶镜头介绍“香港中环实时数字孪生”，指出两个屋顶节点和右上 KPI。
-2. 展示青色主节点、橙色辅助节点及其动态脉冲，强调节点只在实时 Cesium 屋面验证通过后显示。
+1. 先用城市屋顶镜头介绍“香港中环实时数字孪生”，展示与无人物版本相同的 Green / Yellow / Orange / Red 四色信道和右上 KPI。
+2. 强调人物模式没有第二套临时射线；运行画面直接使用关卡中已经保存的真实屋顶落点。
 3. 切换到人物卡，讲解一个人同时具有身份、应用、位置、服务节点和信号状态。
 4. 等待人物进入建筑入口：卡片变为 `INDOOR`、服务节点变为 `DISCONNECTED`、信号变为 0%。
 5. 等待人物离开后说明它会立即重新选择覆盖内节点；这构成“人—建筑—网络”的最小业务闭环。
@@ -76,12 +76,15 @@ python .\Scripts\OpenMassCrowd\verify_investor_delivery_demo_runtime.py --transi
 | 屋顶连续验证失败 | 0 / 0 |
 | 室外连接 | 100 / 100 |
 | 入楼/出楼/重新驻留事件 | 已全部观测 |
-| 当前加载旧信号对象隐藏且可恢复 | 1950 |
+| 原信道对象 / PIE 批次实例 | 1950 / 1950 |
+| PIE 绘制批次 | 9 |
+| 编辑器态与 PIE 变换最大误差 | 位置 0 cm、旋转 0°、缩放 0 |
+| 人物模式悬空 Debug 信道 | 已删除 |
 | 最终视频 | 未创建 |
 
 ## 数据与接口
 
-- `GetInvestorDemoEvidenceSnapshot()`：人口、屋顶、网络、建筑、UI 和旧射线状态。
+- `GetInvestorDemoEvidenceSnapshot()`：人口、屋顶、网络、建筑、UI 和原始信道批次/变换误差状态。
 - `GetCentralProfileEvidenceSnapshot()`：选中人物实时档案。
 - `GetCentralVATAnimationEvidenceSnapshot()`：远景 VAT 帧、速度、播放率和距离。
 - `ShowCentralProfileByStableIndex(index)`：按稳定索引选择人物。
@@ -94,11 +97,12 @@ python .\Scripts\OpenMassCrowd\verify_investor_delivery_demo_runtime.py --transi
 - “入楼”采用一个贴地入口和状态机表达；没有制作建筑室内模型。
 - 信号质量是覆盖半径与二维距离生成的演示指标，带 18 m 切换滞回，不是电磁仿真结果。
 - 近地面摄影测量模型在部分位置存在原始破碎几何/低清贴图；演示优先采用城市和屋顶镜头。
-- 旧信道资产没有删除，只在投资模式的 PIE 会话中隐藏，结束会话后恢复。
+- 原信道资产没有删除或改位；PIE 中仅隐藏独立 Actor 的重复绘制，并用其精确组件世界变换生成批次实例，结束会话后恢复。
 
 ## 回滚与 Git
 
 - 本轮开始前回滚点：`checkpoint/investor-50-liveness-2026-08-01`
+- 人物模式信道对齐回档点：`checkpoint/people-rooftop-signal-alignment-2026-08-10`
 - 实施分支：`feature/investor-delivery-demo`
 - 项目远程：`https://github.com/zhaowensong/unrealHKU.git`
 - 地图中的 OpenMassCrowdSpawner 已持久化为 100 人；其他用户已有地图/旧证据改动未纳入本轮提交。

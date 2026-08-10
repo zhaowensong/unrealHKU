@@ -28,6 +28,7 @@ DEFAULT_STATUS = (
 PROJECT_MARKER = "TELECOMTWIN_DEMO_PROJECT="
 WORLD_MARKER = "TELECOMTWIN_DEMO_WORLD="
 SNAPSHOT_MARKER = "TELECOMTWIN_DEMO_SNAPSHOT="
+SIGNAL_MARKER = "TELECOMTWIN_DEMO_SIGNAL_ALIGNMENT="
 
 
 def utc_now() -> str:
@@ -222,6 +223,240 @@ print({SNAPSHOT_MARKER!r} + json.dumps(payload, ensure_ascii=False, sort_keys=Tr
     )
 
 
+def signal_scene_snapshot() -> dict[str, Any]:
+    """Prove PIE uses the exact persisted rooftop signal scene."""
+    return unreal_json(
+        f"""
+import json
+import math
+import re
+import unreal
+
+editor_world = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
+game_world = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_game_world()
+if editor_world is None:
+    # UE 5.7 returns None from UnrealEditorSubsystem.get_editor_world() while
+    # PIE owns the viewport, although the loaded editor world still exists.
+    editor_world = next(
+        (
+            candidate
+            for candidate in unreal.ObjectIterator(unreal.World)
+            if str(candidate.get_path_name()) == "/Game/Maps/shanghai.shanghai"
+        ),
+        None,
+    )
+if editor_world is None or game_world is None:
+    raise RuntimeError("editor and PIE worlds are required for signal alignment")
+
+source_pattern = re.compile(r"^SIG_Source_\\d{{2}}_Direct_Roof$")
+ray_pattern = re.compile(
+    r"^SIG_Ray_\\d{{3}}_(?:Segment|RoofHit)_\\d{{2}}_(Green|Yellow|Orange|Red)$"
+)
+
+def actor_label(actor):
+    try:
+        return str(actor.get_actor_label())
+    except Exception:
+        return str(actor.get_name())
+
+def actor_hidden(actor):
+    try:
+        return bool(actor.is_hidden())
+    except Exception:
+        return bool(actor.get_editor_property("hidden"))
+
+def collect(world):
+    result = {{}}
+    duplicates = []
+    actors = unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Actor)
+    for actor in actors:
+        label = actor_label(actor)
+        if source_pattern.fullmatch(label) is None and ray_pattern.fullmatch(label) is None:
+            continue
+        if label in result:
+            duplicates.append(label)
+        result[label] = actor
+    return result, sorted(duplicates)
+
+def location_delta(first, second):
+    a = first.get_actor_location()
+    b = second.get_actor_location()
+    return math.sqrt(
+        (float(a.x) - float(b.x)) ** 2
+        + (float(a.y) - float(b.y)) ** 2
+        + (float(a.z) - float(b.z)) ** 2
+    )
+
+def angle_delta(first, second):
+    return abs((float(first) - float(second) + 180.0) % 360.0 - 180.0)
+
+def rotation_delta(first, second):
+    a = first.get_actor_rotation()
+    b = second.get_actor_rotation()
+    return max(
+        angle_delta(a.pitch, b.pitch),
+        angle_delta(a.yaw, b.yaw),
+        angle_delta(a.roll, b.roll),
+    )
+
+def scale_delta(first, second):
+    a = first.get_actor_scale3d()
+    b = second.get_actor_scale3d()
+    return max(
+        abs(float(a.x) - float(b.x)),
+        abs(float(a.y) - float(b.y)),
+        abs(float(a.z) - float(b.z)),
+    )
+
+editor_actors, editor_duplicates = collect(editor_world)
+game_actors, game_duplicates = collect(game_world)
+editor_labels = set(editor_actors)
+game_labels = set(game_actors)
+common_labels = sorted(editor_labels & game_labels)
+missing_in_pie = sorted(editor_labels - game_labels)
+extra_in_pie = sorted(game_labels - editor_labels)
+hidden_in_pie = sorted(
+    label for label, actor in game_actors.items() if actor_hidden(actor)
+)
+
+maximum_location_delta_cm = 0.0
+maximum_rotation_delta_deg = 0.0
+maximum_scale_delta = 0.0
+transform_mismatches = []
+for label in common_labels:
+    editor_actor = editor_actors[label]
+    game_actor = game_actors[label]
+    location_error = location_delta(editor_actor, game_actor)
+    rotation_error = rotation_delta(editor_actor, game_actor)
+    scale_error = scale_delta(editor_actor, game_actor)
+    maximum_location_delta_cm = max(maximum_location_delta_cm, location_error)
+    maximum_rotation_delta_deg = max(maximum_rotation_delta_deg, rotation_error)
+    maximum_scale_delta = max(maximum_scale_delta, scale_error)
+    if location_error > 0.01 or rotation_error > 0.01 or scale_error > 0.00001:
+        if len(transform_mismatches) < 20:
+            transform_mismatches.append({{
+                "label": label,
+                "location_delta_cm": location_error,
+                "rotation_delta_deg": rotation_error,
+                "scale_delta": scale_error,
+            }})
+
+ray_labels = sorted(label for label in game_labels if ray_pattern.fullmatch(label))
+source_labels = sorted(label for label in game_labels if source_pattern.fullmatch(label))
+color_counts = {{color: 0 for color in ("Green", "Yellow", "Orange", "Red")}}
+spawners = unreal.GameplayStatics.get_all_actors_of_class(
+    game_world, unreal.OpenMassCrowdSpawner
+)
+if len(spawners) != 1:
+    raise RuntimeError("expected one OpenMassCrowdSpawner for signal batching")
+spawner = spawners[0]
+delivery = json.loads(spawner.get_investor_demo_evidence_snapshot())
+signal_rendering = delivery["signal_rendering"]
+batch_components = []
+for component in spawner.get_components_by_class(
+    unreal.HierarchicalInstancedStaticMeshComponent
+):
+    tags = {{str(tag) for tag in component.get_editor_property("component_tags")}}
+    if "TelecomTwinSignalBatch" in tags:
+        batch_components.append(component)
+
+visible_batch_instance_count = 0
+source_instance_count = 0
+invisible_batch_components = []
+batch_groups = []
+for component in batch_components:
+    instance_count = int(component.get_instance_count())
+    hidden_in_game = bool(component.get_editor_property("hidden_in_game"))
+    visible = component.is_visible() and not hidden_in_game
+    material = component.get_material(0)
+    material_path = str(material.get_path_name()) if material is not None else ""
+    mesh = component.get_editor_property("static_mesh")
+    mesh_path = str(mesh.get_path_name()) if mesh is not None else ""
+    if visible:
+        visible_batch_instance_count += instance_count
+    else:
+        invisible_batch_components.append(str(component.get_name()))
+    matched_color = None
+    for color in color_counts:
+        if "MI_SignalRay_{{}}".format(color) in material_path:
+            color_counts[color] += instance_count
+            matched_color = color
+            break
+    if "MI_SignalRay_Source" in material_path:
+        source_instance_count += instance_count
+        matched_color = "Source"
+    batch_groups.append({{
+        "component": str(component.get_name()),
+        "mesh": mesh_path,
+        "material": material_path,
+        "instances": instance_count,
+        "visible": visible,
+        "kind": matched_color,
+    }})
+
+batch_snapshot_matches = (
+    signal_rendering["source"]
+    == "persisted_editor_component_world_transforms"
+    and bool(signal_rendering["batch_ready"])
+    and int(signal_rendering["original_actor_count"]) == 1950
+    and int(signal_rendering["batch_component_count"]) == 9
+    and int(signal_rendering["batched_instance_count"]) == 1950
+    and float(signal_rendering["maximum_location_delta_cm"]) <= 0.01
+    and float(signal_rendering["maximum_rotation_delta_deg"]) <= 0.01
+    and float(signal_rendering["maximum_scale_delta"]) <= 0.00001
+    and not bool(signal_rendering["runtime_overlay_enabled"])
+)
+
+passed = (
+    len(source_labels) == 30
+    and len(ray_labels) == 1920
+    and len(batch_components) == 9
+    and visible_batch_instance_count == 1950
+    and source_instance_count == 30
+    and all(count == 480 for count in color_counts.values())
+    and not editor_duplicates
+    and not game_duplicates
+    and not missing_in_pie
+    and not extra_in_pie
+    and len(hidden_in_pie) == 1950
+    and not invisible_batch_components
+    and not transform_mismatches
+    and batch_snapshot_matches
+)
+payload = {{
+    "passed": passed,
+    "policy": "persisted_editor_rooftop_component_transforms_batched_for_PIE",
+    "source_actor_count": len(source_labels),
+    "ray_actor_count": len(ray_labels),
+    "batch_component_count": len(batch_components),
+    "visible_batch_instance_count": visible_batch_instance_count,
+    "source_instance_count": source_instance_count,
+    "color_geometry_counts": color_counts,
+    "missing_in_pie_count": len(missing_in_pie),
+    "extra_in_pie_count": len(extra_in_pie),
+    "original_actor_hidden_for_batching_count": len(hidden_in_pie),
+    "transform_mismatch_count": len(transform_mismatches),
+    "maximum_location_delta_cm": maximum_location_delta_cm,
+    "maximum_rotation_delta_deg": maximum_rotation_delta_deg,
+    "maximum_scale_delta": maximum_scale_delta,
+    "batch_snapshot_matches": batch_snapshot_matches,
+    "runtime_overlay_enabled": False,
+    "samples": {{
+        "missing_in_pie": missing_in_pie[:20],
+        "extra_in_pie": extra_in_pie[:20],
+        "hidden_in_pie": hidden_in_pie[:20],
+        "invisible_batch_components": invisible_batch_components[:20],
+        "transform_mismatches": transform_mismatches,
+        "batch_groups": sorted(batch_groups, key=lambda item: item["component"]),
+    }},
+}}
+print({SIGNAL_MARKER!r} + json.dumps(payload, ensure_ascii=False, sort_keys=True))
+""",
+        SIGNAL_MARKER,
+        timeout=60.0,
+    )
+
+
 def configure_demo_runtime() -> None:
     """Keep the Editor at presentation frame rate while the launcher waits."""
     response_output(
@@ -294,7 +529,7 @@ def main() -> int:
             ready=False,
             message="正在等待 TelecomTwin Unreal Editor",
         )
-        print("[1/5] 等待 Unreal Editor 与项目内置 MCP……", flush=True)
+        print("[1/6] 等待 Unreal Editor 与项目内置 MCP……", flush=True)
         project = wait_until(
             "Unreal Editor MCP",
             args.editor_timeout,
@@ -306,7 +541,7 @@ def main() -> int:
                 "检测到的是其他 UE 项目：{}；请关闭它后重试".format(actual_root)
             )
 
-        print("[2/5] 自动进入 Play……", flush=True)
+        print("[2/6] 自动进入 Play……", flush=True)
         start_or_reuse_pie()
         wait_until(
             "shanghai Play 世界",
@@ -329,7 +564,7 @@ def main() -> int:
             ready=False,
             message="正在等待 100 人完成模拟与认证准入",
         )
-        print("[3/5] 等待 {} 人完成生成、准入和地面认证……".format(expected), flush=True)
+        print("[3/6] 等待 {} 人完成生成、准入和地面认证……".format(expected), flush=True)
         last_population_state: tuple[int, ...] | None = None
 
         def population_ready() -> dict[str, Any] | None:
@@ -372,7 +607,7 @@ def main() -> int:
             population_ready,
         )
 
-        print("[4/5] 自动定位人群镜头并加载近景人物……", flush=True)
+        print("[4/6] 自动定位人群镜头并加载近景人物……", flush=True)
         camera_output = response_output(
             execute_python(
                 code_for_local_file(CAMERA_SCRIPT),
@@ -392,7 +627,7 @@ def main() -> int:
             message="正在加载近景人物并等待稳定帧时",
             details=compact_details(population_snapshot),
         )
-        print("[5/5] 等待人物 LOD 与稳定性能（P95 < 33 ms）……", flush=True)
+        print("[5/6] 等待人物 LOD 与稳定性能（P95 < 33 ms）……", flush=True)
         last_presentation_report_time = 0.0
 
         def presentation_ready() -> dict[str, Any] | None:
@@ -460,6 +695,22 @@ def main() -> int:
         details["background_throttle_detected"] = editor_background_throttle_detected(
             details
         )
+        write_status(
+            args.status_output,
+            stage="verifying_signal_alignment",
+            ready=False,
+            message="正在核对 Play 与编辑器中的真实屋顶信道",
+            details=details,
+        )
+        print("[6/6] 核对 30 信源四色信道与编辑器态完全一致……", flush=True)
+        signal_alignment = signal_scene_snapshot()
+        if not signal_alignment.get("passed"):
+            raise RuntimeError(
+                "Play 中信道未保持真实屋顶版本：{}".format(
+                    json.dumps(signal_alignment, ensure_ascii=False, sort_keys=True)
+                )
+            )
+        details["signal_alignment"] = signal_alignment
         write_status(
             args.status_output,
             stage="ready",

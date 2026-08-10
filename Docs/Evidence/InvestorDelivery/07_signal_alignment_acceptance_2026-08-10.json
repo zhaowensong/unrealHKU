@@ -1,0 +1,40 @@
+{
+  "schema": "telecomtwin-signal-alignment-acceptance-v1",
+  "verified_after_clean_editor_restart": true,
+  "population": {
+    "configured": 100,
+    "spawned": 100,
+    "admitted": 100,
+    "represented": 100,
+    "moving_at_acceptance": 99,
+    "stuck": 0
+  },
+  "signal_rendering": {
+    "policy": "persisted_editor_rooftop_component_transforms_batched_for_PIE",
+    "source_actor_count": 30,
+    "ray_actor_count": 1920,
+    "original_actor_count": 1950,
+    "runtime_batch_component_count": 9,
+    "runtime_visible_instance_count": 1950,
+    "color_instance_count": {
+      "Green": 480,
+      "Yellow": 480,
+      "Orange": 480,
+      "Red": 480
+    },
+    "editor_to_pie_maximum_location_delta_cm": 0.0,
+    "editor_to_pie_maximum_rotation_delta_deg": 0.0,
+    "editor_to_pie_maximum_scale_delta": 0.0,
+    "batch_readback_maximum_location_delta_cm": 0.0,
+    "batch_readback_maximum_rotation_delta_deg": 0.000003,
+    "batch_readback_maximum_scale_delta": 0.0,
+    "missing_in_pie_count": 0,
+    "extra_in_pie_count": 0,
+    "transform_mismatch_count": 0,
+    "runtime_debug_overlay_enabled": false,
+    "passed": true
+  },
+  "source_status": "Saved/InvestorDeliveryDemo/one_click_demo_status.json",
+  "build": "TelecomTwinEditor Win64 Development succeeded",
+  "accepted_at_utc": "2026-08-10T13:32:49.640540+00:00"
+}

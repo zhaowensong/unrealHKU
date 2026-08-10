@@ -1,0 +1,45 @@
+{
+  "schema": "telecomtwin-investor-signal-alignment-evidence-v1",
+  "shot": "roof-detail",
+  "pie_world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+  "persisted_signal_inventory": {
+    "source_actor_count": 30,
+    "ray_actor_count": 1920
+  },
+  "runtime_signal_batch": {
+    "component_count": 9,
+    "instance_count": 1950,
+    "source_policy": "exact persisted component world transforms",
+    "runtime_debug_overlay": false
+  },
+  "crowd_visible_actor_count": 15,
+  "camera": {
+    "location": {
+      "x": -195790.14739015323,
+      "y": 256020.74083372005,
+      "z": 25685.653698444366
+    },
+    "rotation": {
+      "pitch": -23.54050342357429,
+      "yaw": 22.0121602935203,
+      "roll": 6.810292739480763e-08
+    },
+    "target": {
+      "x": -181000.0,
+      "y": 262000.0,
+      "z": 18735.653698444366
+    },
+    "framed_bounds_min": {
+      "x": -185500.10240812215,
+      "y": 258604.31123231252,
+      "z": 11323.713351519033
+    },
+    "framed_bounds_max": {
+      "x": -173388.65195836214,
+      "y": 268000.00007266947,
+      "z": 18524.197554299957
+    },
+    "target_source": "SIG_Source_16_Direct_Roof"
+  },
+  "image": "Docs\\Evidence\\InvestorDelivery\\06_persisted_rooftop_landing_detail_2026-08-10.png"
+}
