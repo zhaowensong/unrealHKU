@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -23,7 +24,12 @@ HEIGHT = 1080
 SHOT_FILES = {
     "overview": "05_people_and_persisted_signal_overview_2026-08-10.png",
     "roof-detail": "06_persisted_rooftop_landing_detail_2026-08-10.png",
+    "layer-fixed": "08_legacy_floating_signal_layer_removed_2026-08-11.png",
 }
+SOURCE_PATTERN = re.compile(r"^SIG_Source_\d{2}_Direct_Roof$")
+RAY_PATTERN = re.compile(
+    r"^SIG_Ray_\d{3}_(?:Segment|RoofHit)_\d{2}_(?:Green|Yellow|Orange|Red)$"
+)
 
 
 def actor_label(actor):
@@ -31,6 +37,25 @@ def actor_label(actor):
         return str(actor.get_actor_label())
     except Exception:
         return str(actor.get_name())
+
+
+def actor_hidden(actor):
+    try:
+        return bool(actor.is_hidden())
+    except Exception:
+        return bool(actor.get_editor_property("hidden"))
+
+
+def is_legacy_floating_signal(label):
+    return (
+        label.startswith("SIG_RaySegment_")
+        or label.startswith("SIG_Node_")
+        or label.startswith("SIG_Ray_HISM_")
+        or (
+            label.startswith("SIG_Source_")
+            and SOURCE_PATTERN.fullmatch(label) is None
+        )
+    )
 
 
 def vector_json(value):
@@ -138,12 +163,24 @@ def main():
 
     world = pie_world()
     actors = list(unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Actor))
+    legacy_floating = [
+        actor for actor in actors if is_legacy_floating_signal(actor_label(actor))
+    ]
+    visible_legacy_floating = []
+    for actor in legacy_floating:
+        component_visible = any(
+            component.is_visible()
+            and not bool(component.get_editor_property("hidden_in_game"))
+            for component in actor.get_components_by_class(unreal.PrimitiveComponent)
+        )
+        if not actor_hidden(actor) and component_visible:
+            visible_legacy_floating.append(actor_label(actor))
     sources = sorted(
-        [actor for actor in actors if actor_label(actor).startswith("SIG_Source_")],
+        [actor for actor in actors if SOURCE_PATTERN.fullmatch(actor_label(actor))],
         key=actor_label,
     )
     rays = sorted(
-        [actor for actor in actors if actor_label(actor).startswith("SIG_Ray_")],
+        [actor for actor in actors if RAY_PATTERN.fullmatch(actor_label(actor))],
         key=actor_label,
     )
     crowd_class = getattr(unreal, "OpenMassCrowdCitySampleActor", None)
@@ -159,6 +196,12 @@ def main():
         raise RuntimeError(
             "Persisted signal inventory is {}, expected 30 sources + 1920 rays".format(
                 len(sources) + len(rays)
+            )
+        )
+    if visible_legacy_floating:
+        raise RuntimeError(
+            "Legacy floating signal layer is still visible: {} actors; samples={}".format(
+                len(visible_legacy_floating), visible_legacy_floating[:20]
             )
         )
 
@@ -226,6 +269,11 @@ def main():
             "instance_count": instance_count,
             "source_policy": "exact persisted component world transforms",
             "runtime_debug_overlay": False,
+        },
+        "legacy_floating_signal_layer": {
+            "loaded_actor_count": len(legacy_floating),
+            "visible_actor_count": len(visible_legacy_floating),
+            "passed": not visible_legacy_floating,
         },
         "crowd_visible_actor_count": len(crowd),
         "camera": {

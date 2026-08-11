@@ -195,6 +195,10 @@ def main() -> int:
             and delivery["legacy_signal"]["restorable"]
             and delivery["legacy_signal"]["preserved_visible"]
             and not delivery["legacy_signal"]["runtime_overlay_enabled"]
+            and int(delivery["legacy_signal"]["floating_mock_visible_count"])
+            == 0
+            and float(delivery["legacy_signal"]["late_stream_scan_hz"])
+            >= 4.0
         ),
         "video_excluded": delivery["video_required"] is False,
     }

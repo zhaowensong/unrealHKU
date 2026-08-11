@@ -12,10 +12,11 @@
 - 一名确定性人物循环演示入楼断联、室内应用、出楼和重新驻留。
 - 左下半透明人物卡展示姓名、职业、性别年龄、当前应用、位置、服务基站和信号。
 - 右上 KPI 展示人数、已连接、室内人数和可用屋顶节点。
-- 人物模式直接复用关卡中 30 个信源与 1920 个四色信道对象的精确世界变换；运行时只合并成 9 个 HISM 绘制批次，不重算落点、不再画悬空 Debug 射线，结束 PIE 后恢复原 Actor 状态。
+- 人物模式直接复用关卡中 30 个信源与 1920 个四色信道对象的精确世界变换；运行时只合并成 9 个 HISM 绘制批次，不重算落点、不再画悬空 Debug 射线。
+- World Partition 中残留的旧模拟层 `SIG_RaySegment_* / SIG_Node_* / SIG_Source_Main` 会晚于 BeginPlay 加载；人物模式每秒扫描 4 次并同时关闭 Actor 与组件可见性，禁止它们叠加到屋顶信道上。
 - 按要求没有录制最终验收视频。
 
-![人物模式复用原始四色信道](Evidence/InvestorDelivery/05_people_and_persisted_signal_overview_2026-08-10.png)
+![旧悬浮信道层已移除](Evidence/InvestorDelivery/08_legacy_floating_signal_layer_removed_2026-08-11.png)
 
 ## 启动方法
 
@@ -80,6 +81,8 @@ python .\Scripts\OpenMassCrowd\verify_investor_delivery_demo_runtime.py --transi
 | PIE 绘制批次 | 9 |
 | 编辑器态与 PIE 变换最大误差 | 位置 0 cm、旋转 0°、缩放 0 |
 | 人物模式悬空 Debug 信道 | 已删除 |
+| World Partition 旧模拟信道 | 加载 2796，可见 0 |
+| 前台稳定帧时（2026-08-11 冷启动） | P50 21.264 ms，P95 32.990 ms |
 | 最终视频 | 未创建 |
 
 ## 数据与接口
@@ -97,7 +100,8 @@ python .\Scripts\OpenMassCrowd\verify_investor_delivery_demo_runtime.py --transi
 - “入楼”采用一个贴地入口和状态机表达；没有制作建筑室内模型。
 - 信号质量是覆盖半径与二维距离生成的演示指标，带 18 m 切换滞回，不是电磁仿真结果。
 - 近地面摄影测量模型在部分位置存在原始破碎几何/低清贴图；演示优先采用城市和屋顶镜头。
-- 原信道资产没有删除或改位；PIE 中仅隐藏独立 Actor 的重复绘制，并用其精确组件世界变换生成批次实例，结束会话后恢复。
+- 正确信道资产没有删除或改位；PIE 中仅隐藏独立 Actor 的重复绘制，并用其精确组件世界变换生成批次实例，结束会话后恢复。
+- 旧模拟层没有从地图资产中破坏性删除，而是在人物 PIE 中持续抑制；这既避免双层叠加，也不会改变按 `Esc` 返回后的编辑器关卡。
 
 ## 回滚与 Git
 

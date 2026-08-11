@@ -712,6 +712,7 @@ private:
     void UpdateInvestorPersonStates(float DeltaSeconds);
     bool ValidateInvestorStationRoof(FInvestorStationRuntime& Station);
     bool BuildInvestorSignalBatches();
+    void SuppressLegacyFloatingSignalActors();
     void RestoreLegacySignalActors();
     void ShowInvestorKPI();
     void HideInvestorKPI();
@@ -948,6 +949,9 @@ private:
     float InvestorSignalMaximumRotationDeltaDegrees = 0.0f;
     float InvestorSignalMaximumScaleDelta = 0.0f;
     bool bInvestorSignalBatchReady = false;
+    float InvestorLegacySignalSuppressionAccumulator = 0.0f;
+    int32 InvestorLegacyFloatingSignalLoadedCount = 0;
+    int32 InvestorLegacyFloatingSignalVisibleCount = 0;
     float InvestorNetworkUpdateAccumulator = 0.0f;
     float InvestorRoofValidationAccumulator = 0.0f;
     float InvestorProfileRefreshAccumulator = 0.0f;

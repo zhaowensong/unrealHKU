@@ -1,0 +1,50 @@
+{
+  "schema": "telecomtwin-investor-signal-alignment-evidence-v1",
+  "shot": "layer-fixed",
+  "pie_world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+  "persisted_signal_inventory": {
+    "source_actor_count": 30,
+    "ray_actor_count": 1920
+  },
+  "runtime_signal_batch": {
+    "component_count": 9,
+    "instance_count": 1950,
+    "source_policy": "exact persisted component world transforms",
+    "runtime_debug_overlay": false
+  },
+  "legacy_floating_signal_layer": {
+    "loaded_actor_count": 294,
+    "visible_actor_count": 0,
+    "passed": true
+  },
+  "crowd_visible_actor_count": 0,
+  "camera": {
+    "location": {
+      "x": -201917.06708403272,
+      "y": 269416.4644744863,
+      "z": 36191.010785102844
+    },
+    "rotation": {
+      "pitch": -23.54050342357423,
+      "yaw": -139.23600581551918,
+      "roll": -4.307791636810893e-07
+    },
+    "target": {
+      "x": -214000.0,
+      "y": 259000.0,
+      "z": 29241.010785102844
+    },
+    "framed_bounds_min": {
+      "x": -223000.00142640123,
+      "y": 241137.15718468215,
+      "z": 8435.647479491701
+    },
+    "framed_bounds_max": {
+      "x": -198024.9439189903,
+      "y": 273999.9981759362,
+      "z": 16201.317563522069
+    },
+    "target_source": "SIG_Source_00_Direct_Roof"
+  },
+  "image": "Docs\\Evidence\\InvestorDelivery\\08_legacy_floating_signal_layer_removed_2026-08-11.png"
+}

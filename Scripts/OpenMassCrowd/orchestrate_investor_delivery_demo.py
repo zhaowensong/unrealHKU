@@ -253,6 +253,17 @@ ray_pattern = re.compile(
     r"^SIG_Ray_\\d{{3}}_(?:Segment|RoofHit)_\\d{{2}}_(Green|Yellow|Orange|Red)$"
 )
 
+def is_legacy_floating_signal(label):
+    return (
+        label.startswith("SIG_RaySegment_")
+        or label.startswith("SIG_Node_")
+        or label.startswith("SIG_Ray_HISM_")
+        or (
+            label.startswith("SIG_Source_")
+            and source_pattern.fullmatch(label) is None
+        )
+    )
+
 def actor_label(actor):
     try:
         return str(actor.get_actor_label())
@@ -310,6 +321,26 @@ def scale_delta(first, second):
 
 editor_actors, editor_duplicates = collect(editor_world)
 game_actors, game_duplicates = collect(game_world)
+all_game_actors = unreal.GameplayStatics.get_all_actors_of_class(
+    game_world, unreal.Actor
+)
+legacy_floating_actors = [
+    actor
+    for actor in all_game_actors
+    if is_legacy_floating_signal(actor_label(actor))
+]
+legacy_floating_visible = []
+for actor in legacy_floating_actors:
+    primitive_components = actor.get_components_by_class(
+        unreal.PrimitiveComponent
+    )
+    component_visible = any(
+        component.is_visible()
+        and not bool(component.get_editor_property("hidden_in_game"))
+        for component in primitive_components
+    )
+    if not actor_hidden(actor) and component_visible:
+        legacy_floating_visible.append(actor_label(actor))
 editor_labels = set(editor_actors)
 game_labels = set(game_actors)
 common_labels = sorted(editor_labels & game_labels)
@@ -405,6 +436,8 @@ batch_snapshot_matches = (
     and float(signal_rendering["maximum_rotation_delta_deg"]) <= 0.01
     and float(signal_rendering["maximum_scale_delta"]) <= 0.00001
     and not bool(signal_rendering["runtime_overlay_enabled"])
+    and int(delivery["legacy_signal"]["floating_mock_visible_count"]) == 0
+    and float(delivery["legacy_signal"]["late_stream_scan_hz"]) >= 4.0
 )
 
 passed = (
@@ -421,6 +454,7 @@ passed = (
     and len(hidden_in_pie) == 1950
     and not invisible_batch_components
     and not transform_mismatches
+    and not legacy_floating_visible
     and batch_snapshot_matches
 )
 payload = {{
@@ -441,6 +475,9 @@ payload = {{
     "maximum_scale_delta": maximum_scale_delta,
     "batch_snapshot_matches": batch_snapshot_matches,
     "runtime_overlay_enabled": False,
+    "legacy_floating_actor_loaded_count": len(legacy_floating_actors),
+    "legacy_floating_actor_visible_count": len(legacy_floating_visible),
+    "legacy_floating_actor_suppression": "continuous_world_partition_scan",
     "samples": {{
         "missing_in_pie": missing_in_pie[:20],
         "extra_in_pie": extra_in_pie[:20],
@@ -448,6 +485,7 @@ payload = {{
         "invisible_batch_components": invisible_batch_components[:20],
         "transform_mismatches": transform_mismatches,
         "batch_groups": sorted(batch_groups, key=lambda item: item["component"]),
+        "visible_legacy_floating_signals": sorted(legacy_floating_visible)[:20],
     }},
 }}
 print({SIGNAL_MARKER!r} + json.dumps(payload, ensure_ascii=False, sort_keys=True))
