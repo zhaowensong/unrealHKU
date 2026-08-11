@@ -10,7 +10,6 @@
 #include "AnimToTextureInstancePlaybackHelpers.h"
 #include "Avoidance/MassAvoidanceTrait.h"
 #include "Avoidance/MassNavigationObstacleTrait.h"
-#include "Components/HierarchicalInstancedStaticMeshComponent.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -186,7 +185,8 @@ constexpr float InvestorSkeletalWalkDistanceCm = 20000.0f;
 constexpr int32 InvestorHighActorBudget = 6;
 constexpr int32 InvestorLowActorBudget = 24;
 constexpr int32 InvestorExpectedSignalActorCount = 1950;
-constexpr int32 InvestorExpectedSignalBatchCount = 9;
+constexpr int32 InvestorExpectedSignalSourceCount = 30;
+constexpr int32 InvestorExpectedSignalRayCount = 1920;
 // World Partition streams the obsolete mock signal actors after BeginPlay.
 // A short bounded scan prevents those late arrivals from flashing back on top
 // of the collision-certified rooftop network.
@@ -1019,7 +1019,6 @@ void AOpenMassCrowdSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason)
     GetWorldTimerManager().ClearTimer(CentralAdmissionTimer);
     HideCentralProfile();
     HideInvestorKPI();
-    RestoreLegacySignalActors();
     DestroyRuntimePopulation();
     Super::EndPlay(EndPlayReason);
 }
@@ -1031,7 +1030,6 @@ void AOpenMassCrowdSpawner::Tick(const float DeltaSeconds)
     if (!bInvestorDeliveryDemoEnabled && bInvestorDemoInitialized)
     {
         HideInvestorKPI();
-        RestoreLegacySignalActors();
         bInvestorDemoInitialized = false;
         InvestorPeople.Reset();
         InvestorStations.Reset();
@@ -11181,13 +11179,11 @@ void AOpenMassCrowdSpawner::EnsureInvestorDemoInitialized()
     // suppression while PIE is active.
     SuppressLegacyFloatingSignalActors();
 
-    // The persisted SIG_Source_/SIG_Ray_ scene is the collision-certified
-    // rooftop channel presentation. Copy those exact component world
-    // transforms into nine instanced rendering batches for PIE. The former
-    // investor overlay replaced them with elevated debug beacons/person links,
-    // while rendering all 1,950 source actors directly was too expensive next
-    // to the 100-person crowd.
-    BuildInvestorSignalBatches();
+    // The persisted SIG_Source_/SIG_Ray_ actors are the completed rooftop
+    // channel work and remain the single visual source in both the editor and
+    // PIE worlds. Starting the crowd must not hide, move, rebuild, instance, or
+    // otherwise take ownership of those actors.
+    ValidateInvestorPersistedSignalLayer();
     ShowInvestorKPI();
     InvestorLegacySignalSuppressionAccumulator = 0.0f;
     InvestorNetworkUpdateAccumulator = 0.0f;
@@ -11204,7 +11200,7 @@ void AOpenMassCrowdSpawner::EnsureInvestorDemoInitialized()
     UE_LOG(
         LogTemp,
         Warning,
-        TEXT("INVESTOR_TELECOM_DEMO_INITIALIZED people=%d stations=%d portal=(%.1f,%.1f,%.1f) persisted_signal_policy=exact_transform_batches runtime_signal_overlay=false"),
+        TEXT("INVESTOR_TELECOM_DEMO_INITIALIZED people=%d stations=%d portal=(%.1f,%.1f,%.1f) persisted_signal_policy=unchanged_editor_actors runtime_signal_overlay=false"),
         InvestorPeople.Num(),
         InvestorStations.Num(),
         InvestorBuildingPortalLocation.X,
@@ -11663,19 +11659,19 @@ void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals() const
     }
 }
 
-bool AOpenMassCrowdSpawner::BuildInvestorSignalBatches()
+bool AOpenMassCrowdSpawner::ValidateInvestorPersistedSignalLayer()
 {
-    RestoreLegacySignalActors();
-    InvestorSuppressedSignalActors.Reset();
-    InvestorSuppressedSignalPreviousHidden.Reset();
+    InvestorPersistedSignalActorCount = 0;
+    InvestorPersistedSignalVisibleActorCount = 0;
+    InvestorPersistedSignalSourceCount = 0;
+    InvestorPersistedSignalRayCount = 0;
+    bInvestorPersistedSignalLayerReady = false;
     if (!GetWorld())
     {
         return false;
     }
 
-    TMap<FString, UHierarchicalInstancedStaticMeshComponent*> Batches;
-    int32 MatchedActorCount = 0;
-    int32 BatchSerial = 0;
+    bool bComponentsValid = true;
     for (TActorIterator<AActor> It(GetWorld()); It; ++It)
     {
         AActor* Actor = *It;
@@ -11685,132 +11681,54 @@ bool AOpenMassCrowdSpawner::BuildInvestorSignalBatches()
             continue;
         }
 
+        ++InvestorPersistedSignalActorCount;
+        InvestorPersistedSignalSourceCount +=
+            Identity.StartsWith(TEXT("SIG_Source_")) ? 1 : 0;
+        InvestorPersistedSignalRayCount +=
+            Identity.StartsWith(TEXT("SIG_Ray_")) ? 1 : 0;
+
         TArray<UStaticMeshComponent*> StaticMeshComponents;
         Actor->GetComponents<UStaticMeshComponent>(StaticMeshComponents);
         if (StaticMeshComponents.Num() != 1 ||
             !IsValid(StaticMeshComponents[0]) ||
             !IsValid(StaticMeshComponents[0]->GetStaticMesh()))
         {
+            bComponentsValid = false;
             UE_LOG(
                 LogTemp,
                 Error,
-                TEXT("INVESTOR_SIGNAL_BATCH_ABORT actor=%s static_mesh_components=%d"),
+                TEXT("INVESTOR_PERSISTED_SIGNAL_INVALID actor=%s static_mesh_components=%d"),
                 *Identity,
                 StaticMeshComponents.Num());
-            RestoreLegacySignalActors();
-            return false;
+            continue;
         }
 
-        UStaticMeshComponent* SourceComponent = StaticMeshComponents[0];
-        FString BatchKey = SourceComponent->GetStaticMesh()->GetPathName();
-        for (int32 MaterialIndex = 0;
-             MaterialIndex < SourceComponent->GetNumMaterials();
-             ++MaterialIndex)
-        {
-            BatchKey += TEXT("|") + GetPathNameSafe(
-                SourceComponent->GetMaterial(MaterialIndex));
-        }
-
-        UHierarchicalInstancedStaticMeshComponent*& Batch =
-            Batches.FindOrAdd(BatchKey);
-        if (!Batch)
-        {
-            Batch = NewObject<UHierarchicalInstancedStaticMeshComponent>(
-                this,
-                *FString::Printf(
-                    TEXT("InvestorSignalBatch_%02d"),
-                    BatchSerial++),
-                RF_Transient);
-            AddInstanceComponent(Batch);
-            Batch->SetupAttachment(SceneRoot);
-            Batch->SetMobility(EComponentMobility::Movable);
-            Batch->SetStaticMesh(SourceComponent->GetStaticMesh());
-            for (int32 MaterialIndex = 0;
-                 MaterialIndex < SourceComponent->GetNumMaterials();
-                 ++MaterialIndex)
-            {
-                Batch->SetMaterial(
-                    MaterialIndex,
-                    SourceComponent->GetMaterial(MaterialIndex));
-            }
-            Batch->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-            Batch->SetGenerateOverlapEvents(false);
-            Batch->SetCanEverAffectNavigation(false);
-            Batch->SetCastShadow(false);
-            Batch->bReceivesDecals = false;
-            Batch->SetCullDistances(0, 0);
-            Batch->ComponentTags.AddUnique(TEXT("TelecomTwinSignalBatch"));
-            Batch->RegisterComponent();
-            InvestorSignalBatchComponents.Add(Batch);
-        }
-
-        const FTransform SourceWorldTransform =
-            SourceComponent->GetComponentTransform();
-        const int32 InstanceIndex = Batch->AddInstance(
-            SourceWorldTransform,
-            true);
-        FTransform BatchedWorldTransform;
-        if (InstanceIndex == INDEX_NONE ||
-            !Batch->GetInstanceTransform(
-                InstanceIndex,
-                BatchedWorldTransform,
-                true))
-        {
-            UE_LOG(
-                LogTemp,
-                Error,
-                TEXT("INVESTOR_SIGNAL_BATCH_ABORT actor=%s add_instance_failed=true"),
-                *Identity);
-            RestoreLegacySignalActors();
-            return false;
-        }
-
-        InvestorSignalMaximumLocationDeltaCm = FMath::Max(
-            InvestorSignalMaximumLocationDeltaCm,
-            FVector::Distance(
-                SourceWorldTransform.GetLocation(),
-                BatchedWorldTransform.GetLocation()));
-        InvestorSignalMaximumRotationDeltaDegrees = FMath::Max(
-            InvestorSignalMaximumRotationDeltaDegrees,
-            FMath::RadiansToDegrees(
-                SourceWorldTransform.GetRotation().AngularDistance(
-                    BatchedWorldTransform.GetRotation())));
-        const FVector ScaleDelta = (
-            SourceWorldTransform.GetScale3D() -
-            BatchedWorldTransform.GetScale3D()).GetAbs();
-        InvestorSignalMaximumScaleDelta = FMath::Max(
-            InvestorSignalMaximumScaleDelta,
-            static_cast<float>(ScaleDelta.GetAbsMax()));
-        ++InvestorSignalBatchedInstanceCount;
-        ++MatchedActorCount;
-        InvestorSuppressedSignalActors.Add(Actor);
-        InvestorSuppressedSignalPreviousHidden.Add(Actor->IsHidden() ? 1 : 0);
-        Actor->SetActorHiddenInGame(true);
+        UStaticMeshComponent* Component = StaticMeshComponents[0];
+        const bool bVisible =
+            !Actor->IsHidden() &&
+            Component->IsVisible() &&
+            !Component->bHiddenInGame;
+        InvestorPersistedSignalVisibleActorCount += bVisible ? 1 : 0;
     }
 
-    bInvestorSignalBatchReady =
-        MatchedActorCount == InvestorExpectedSignalActorCount &&
-        InvestorSignalBatchedInstanceCount == InvestorExpectedSignalActorCount &&
-        InvestorSignalBatchComponents.Num() == InvestorExpectedSignalBatchCount &&
-        InvestorSignalMaximumLocationDeltaCm <= 0.01f &&
-        InvestorSignalMaximumRotationDeltaDegrees <= 0.01f &&
-        InvestorSignalMaximumScaleDelta <= 0.00001f;
+    bInvestorPersistedSignalLayerReady =
+        bComponentsValid &&
+        InvestorPersistedSignalActorCount == InvestorExpectedSignalActorCount &&
+        InvestorPersistedSignalVisibleActorCount ==
+            InvestorExpectedSignalActorCount &&
+        InvestorPersistedSignalSourceCount ==
+            InvestorExpectedSignalSourceCount &&
+        InvestorPersistedSignalRayCount == InvestorExpectedSignalRayCount;
     UE_LOG(
         LogTemp,
         Warning,
-        TEXT("INVESTOR_SIGNAL_BATCH_READY ready=%s source_actors=%d instances=%d batches=%d max_location_delta_cm=%.6f max_rotation_delta_deg=%.6f max_scale_delta=%.9f shadows=false"),
-        bInvestorSignalBatchReady ? TEXT("true") : TEXT("false"),
-        MatchedActorCount,
-        InvestorSignalBatchedInstanceCount,
-        InvestorSignalBatchComponents.Num(),
-        InvestorSignalMaximumLocationDeltaCm,
-        InvestorSignalMaximumRotationDeltaDegrees,
-        InvestorSignalMaximumScaleDelta);
-    if (!bInvestorSignalBatchReady)
-    {
-        RestoreLegacySignalActors();
-    }
-    return bInvestorSignalBatchReady;
+        TEXT("INVESTOR_PERSISTED_SIGNAL_READY ready=%s actors=%d visible=%d sources=%d rays=%d modified=false runtime_rebuild=false"),
+        bInvestorPersistedSignalLayerReady ? TEXT("true") : TEXT("false"),
+        InvestorPersistedSignalActorCount,
+        InvestorPersistedSignalVisibleActorCount,
+        InvestorPersistedSignalSourceCount,
+        InvestorPersistedSignalRayCount);
+    return bInvestorPersistedSignalLayerReady;
 }
 
 void AOpenMassCrowdSpawner::SuppressLegacyFloatingSignalActors()
@@ -11882,38 +11800,6 @@ void AOpenMassCrowdSpawner::SuppressLegacyFloatingSignalActors()
             NewlySuppressedCount,
             VisibleAfterCount);
     }
-}
-
-void AOpenMassCrowdSpawner::RestoreLegacySignalActors()
-{
-    for (UHierarchicalInstancedStaticMeshComponent* Batch :
-         InvestorSignalBatchComponents)
-    {
-        if (IsValid(Batch))
-        {
-            Batch->DestroyComponent();
-        }
-    }
-    InvestorSignalBatchComponents.Reset();
-    for (int32 Index = 0;
-         Index < InvestorSuppressedSignalActors.Num();
-         ++Index)
-    {
-        if (AActor* Actor = InvestorSuppressedSignalActors[Index].Get())
-        {
-            const bool bWasHidden =
-                InvestorSuppressedSignalPreviousHidden.IsValidIndex(Index) &&
-                InvestorSuppressedSignalPreviousHidden[Index] != 0;
-            Actor->SetActorHiddenInGame(bWasHidden);
-        }
-    }
-    InvestorSuppressedSignalActors.Reset();
-    InvestorSuppressedSignalPreviousHidden.Reset();
-    InvestorSignalBatchedInstanceCount = 0;
-    InvestorSignalMaximumLocationDeltaCm = 0.0f;
-    InvestorSignalMaximumRotationDeltaDegrees = 0.0f;
-    InvestorSignalMaximumScaleDelta = 0.0f;
-    bInvestorSignalBatchReady = false;
 }
 
 int32 AOpenMassCrowdSpawner::GetInvestorConnectedCount() const
@@ -12736,16 +12622,17 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         InvestorStationReacquisitionCount > 0 &&
         OccupiedPresentationBands.Num() >= 3 &&
         bProfileComplete &&
-        bInvestorSignalBatchReady &&
-        InvestorSuppressedSignalActors.Num() ==
+        bInvestorPersistedSignalLayerReady &&
+        InvestorPersistedSignalActorCount ==
             InvestorExpectedSignalActorCount &&
-        InvestorSignalBatchedInstanceCount ==
+        InvestorPersistedSignalVisibleActorCount ==
             InvestorExpectedSignalActorCount &&
-        InvestorSignalBatchComponents.Num() ==
-            InvestorExpectedSignalBatchCount &&
+        InvestorPersistedSignalSourceCount ==
+            InvestorExpectedSignalSourceCount &&
+        InvestorPersistedSignalRayCount == InvestorExpectedSignalRayCount &&
         InvestorLegacyFloatingSignalVisibleCount == 0;
     return FString::Printf(
-        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d,\"association_visual_enabled\":true,\"selected_link_style\":\"solid_blue\",\"other_link_style\":\"dashed_gray\",\"station_endpoint_offset_cm\":4.0},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"signal_rendering\":{\"source\":\"persisted_editor_component_world_transforms\",\"batch_ready\":%s,\"original_actor_count\":%d,\"batch_component_count\":%d,\"batched_instance_count\":%d,\"maximum_location_delta_cm\":%.6f,\"maximum_rotation_delta_deg\":%.6f,\"maximum_scale_delta\":%.9f,\"original_actors_hidden_for_batching\":true,\"runtime_overlay_enabled\":false},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true,\"preserved_visible\":true,\"runtime_overlay_enabled\":false,\"floating_mock_loaded_count\":%d,\"floating_mock_visible_count\":%d,\"late_stream_scan_hz\":%.1f},\"video_required\":false}"),
+        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d,\"association_visual_enabled\":true,\"selected_link_style\":\"solid_blue\",\"other_link_style\":\"dashed_gray\",\"station_endpoint_offset_cm\":4.0},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"signal_rendering\":{\"source\":\"persisted_editor_actor_components\",\"parity_ready\":%s,\"original_actor_count\":%d,\"original_visible_actor_count\":%d,\"source_actor_count\":%d,\"ray_actor_count\":%d,\"transforms_modified\":false,\"actor_visibility_modified\":false,\"runtime_rebuild_enabled\":false,\"runtime_overlay_enabled\":false},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":false,\"preserved_visible\":true,\"runtime_overlay_enabled\":false,\"floating_mock_loaded_count\":%d,\"floating_mock_visible_count\":%d,\"late_stream_scan_hz\":%.1f},\"video_required\":false}"),
         bInvestorDeliveryDemoEnabled ? TEXT("true") : TEXT("false"),
         bPassed ? TEXT("true") : TEXT("false"),
         InvestorDeliveryPopulation,
@@ -12805,14 +12692,12 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         SelectedCentralProfileEntityIndex,
         CentralProfileViewportWidget.IsValid() ? TEXT("true") : TEXT("false"),
         bProfileComplete ? TEXT("true") : TEXT("false"),
-        bInvestorSignalBatchReady ? TEXT("true") : TEXT("false"),
-        InvestorSuppressedSignalActors.Num(),
-        InvestorSignalBatchComponents.Num(),
-        InvestorSignalBatchedInstanceCount,
-        InvestorSignalMaximumLocationDeltaCm,
-        InvestorSignalMaximumRotationDeltaDegrees,
-        InvestorSignalMaximumScaleDelta,
-        InvestorSuppressedSignalActors.Num(),
+        bInvestorPersistedSignalLayerReady ? TEXT("true") : TEXT("false"),
+        InvestorPersistedSignalActorCount,
+        InvestorPersistedSignalVisibleActorCount,
+        InvestorPersistedSignalSourceCount,
+        InvestorPersistedSignalRayCount,
+        InvestorLegacyFloatingSignalLoadedCount,
         InvestorLegacyFloatingSignalLoadedCount,
         InvestorLegacyFloatingSignalVisibleCount,
         1.0f / InvestorLegacySignalSuppressionSeconds);
@@ -13122,7 +13007,6 @@ void AOpenMassCrowdSpawner::DestroyRuntimePopulation()
     GetWorldTimerManager().ClearTimer(CentralAdmissionTimer);
     HideCentralProfile();
     HideInvestorKPI();
-    RestoreLegacySignalActors();
     InvestorStations.Reset();
     InvestorPeople.Reset();
     bInvestorDemoInitialized = false;

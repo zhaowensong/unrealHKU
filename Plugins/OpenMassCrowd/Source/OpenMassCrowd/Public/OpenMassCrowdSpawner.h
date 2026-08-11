@@ -13,7 +13,6 @@
 #include "OpenMassCrowdSpawner.generated.h"
 
 class AZoneGraphData;
-class UHierarchicalInstancedStaticMeshComponent;
 class UMassEntityTraitBase;
 class UPrimitiveComponent;
 class USceneComponent;
@@ -712,9 +711,8 @@ private:
     void UpdateInvestorPersonStates(float DeltaSeconds);
     void DrawInvestorAssociationVisuals() const;
     bool ValidateInvestorStationRoof(FInvestorStationRuntime& Station);
-    bool BuildInvestorSignalBatches();
+    bool ValidateInvestorPersistedSignalLayer();
     void SuppressLegacyFloatingSignalActors();
-    void RestoreLegacySignalActors();
     void ShowInvestorKPI();
     void HideInvestorKPI();
     FString GetInvestorPersonLocationLabel(int32 StableEntityIndex) const;
@@ -940,16 +938,11 @@ private:
     TArray<FInvestorStationRuntime> InvestorStations;
     TArray<FInvestorPersonRuntime> InvestorPeople;
     FVector InvestorBuildingPortalLocation = FVector::ZeroVector;
-    TArray<TWeakObjectPtr<AActor>> InvestorSuppressedSignalActors;
-    TArray<uint8> InvestorSuppressedSignalPreviousHidden;
-    UPROPERTY(Transient)
-    TArray<TObjectPtr<UHierarchicalInstancedStaticMeshComponent>>
-        InvestorSignalBatchComponents;
-    int32 InvestorSignalBatchedInstanceCount = 0;
-    float InvestorSignalMaximumLocationDeltaCm = 0.0f;
-    float InvestorSignalMaximumRotationDeltaDegrees = 0.0f;
-    float InvestorSignalMaximumScaleDelta = 0.0f;
-    bool bInvestorSignalBatchReady = false;
+    int32 InvestorPersistedSignalActorCount = 0;
+    int32 InvestorPersistedSignalVisibleActorCount = 0;
+    int32 InvestorPersistedSignalSourceCount = 0;
+    int32 InvestorPersistedSignalRayCount = 0;
+    bool bInvestorPersistedSignalLayerReady = false;
     float InvestorLegacySignalSuppressionAccumulator = 0.0f;
     int32 InvestorLegacyFloatingSignalLoadedCount = 0;
     int32 InvestorLegacyFloatingSignalVisibleCount = 0;

@@ -184,20 +184,18 @@ def main() -> int:
         "no_severe_overlap": (
             ground["overlap_pairs"] == 0 and ground["overlap_agents"] == 0
         ),
-        "persisted_rooftop_signal_exactly_batched_without_runtime_overlay": (
+        "persisted_rooftop_signal_untouched_during_pie": (
             signal_rendering["source"]
-            == "persisted_editor_component_world_transforms"
-            and signal_rendering["batch_ready"]
+            == "persisted_editor_actor_components"
+            and signal_rendering["parity_ready"]
             and int(signal_rendering["original_actor_count"]) == 1950
-            and int(signal_rendering["batch_component_count"]) == 9
-            and int(signal_rendering["batched_instance_count"]) == 1950
-            and float(signal_rendering["maximum_location_delta_cm"]) <= 0.01
-            and float(signal_rendering["maximum_rotation_delta_deg"]) <= 0.01
-            and float(signal_rendering["maximum_scale_delta"]) <= 0.00001
-            and signal_rendering["original_actors_hidden_for_batching"]
+            and int(signal_rendering["original_visible_actor_count"]) == 1950
+            and int(signal_rendering["source_actor_count"]) == 30
+            and int(signal_rendering["ray_actor_count"]) == 1920
+            and not signal_rendering["transforms_modified"]
+            and not signal_rendering["actor_visibility_modified"]
+            and not signal_rendering["runtime_rebuild_enabled"]
             and not signal_rendering["runtime_overlay_enabled"]
-            and delivery["legacy_signal"]["suppressed_actor_count"] == 1950
-            and delivery["legacy_signal"]["restorable"]
             and delivery["legacy_signal"]["preserved_visible"]
             and not delivery["legacy_signal"]["runtime_overlay_enabled"]
             and int(delivery["legacy_signal"]["floating_mock_visible_count"])

@@ -319,6 +319,40 @@ def scale_delta(first, second):
         abs(float(a.z) - float(b.z)),
     )
 
+def signal_component(actor):
+    components = actor.get_components_by_class(unreal.StaticMeshComponent)
+    if len(components) != 1:
+        return None
+    return components[0]
+
+def vector_distance(first, second):
+    return math.sqrt(
+        (float(first.x) - float(second.x)) ** 2
+        + (float(first.y) - float(second.y)) ** 2
+        + (float(first.z) - float(second.z)) ** 2
+    )
+
+def component_signature(component):
+    mesh = component.get_editor_property("static_mesh")
+    materials = [
+        str(component.get_material(index).get_path_name())
+        if component.get_material(index) is not None else ""
+        for index in range(int(component.get_num_materials()))
+    ]
+    return (
+        str(mesh.get_path_name()) if mesh is not None else "",
+        materials,
+    )
+
+def signal_actor_visible(actor):
+    component = signal_component(actor)
+    return bool(
+        component is not None
+        and not actor_hidden(actor)
+        and component.is_visible()
+        and not bool(component.get_editor_property("hidden_in_game"))
+    )
+
 editor_actors, editor_duplicates = collect(editor_world)
 game_actors, game_duplicates = collect(game_world)
 all_game_actors = unreal.GameplayStatics.get_all_actors_of_class(
@@ -347,13 +381,14 @@ common_labels = sorted(editor_labels & game_labels)
 missing_in_pie = sorted(editor_labels - game_labels)
 extra_in_pie = sorted(game_labels - editor_labels)
 hidden_in_pie = sorted(
-    label for label, actor in game_actors.items() if actor_hidden(actor)
+    label for label, actor in game_actors.items() if not signal_actor_visible(actor)
 )
 
 maximum_location_delta_cm = 0.0
 maximum_rotation_delta_deg = 0.0
 maximum_scale_delta = 0.0
 transform_mismatches = []
+component_mismatches = []
 for label in common_labels:
     editor_actor = editor_actors[label]
     game_actor = game_actors[label]
@@ -372,14 +407,57 @@ for label in common_labels:
                 "scale_delta": scale_error,
             }})
 
+    editor_component = signal_component(editor_actor)
+    game_component = signal_component(game_actor)
+    component_error = None
+    if editor_component is None or game_component is None:
+        component_error = "expected_one_static_mesh_component"
+    elif component_signature(editor_component) != component_signature(game_component):
+        component_error = "mesh_or_material_mismatch"
+    else:
+        component_location_error = vector_distance(
+            editor_component.get_world_location(),
+            game_component.get_world_location(),
+        )
+        component_rotation_error = max(
+            angle_delta(
+                editor_component.get_world_rotation().pitch,
+                game_component.get_world_rotation().pitch,
+            ),
+            angle_delta(
+                editor_component.get_world_rotation().yaw,
+                game_component.get_world_rotation().yaw,
+            ),
+            angle_delta(
+                editor_component.get_world_rotation().roll,
+                game_component.get_world_rotation().roll,
+            ),
+        )
+        component_scale_error = vector_distance(
+            editor_component.get_world_scale(),
+            game_component.get_world_scale(),
+        )
+        if (
+            component_location_error > 0.01
+            or component_rotation_error > 0.01
+            or component_scale_error > 0.00001
+        ):
+            component_error = "component_world_transform_mismatch"
+    if component_error and len(component_mismatches) < 20:
+        component_mismatches.append({{"label": label, "reason": component_error}})
+
 ray_labels = sorted(label for label in game_labels if ray_pattern.fullmatch(label))
 source_labels = sorted(label for label in game_labels if source_pattern.fullmatch(label))
 color_counts = {{color: 0 for color in ("Green", "Yellow", "Orange", "Red")}}
+for label in ray_labels:
+    match = ray_pattern.fullmatch(label)
+    if match:
+        color_counts[match.group(1)] += 1
 spawners = unreal.GameplayStatics.get_all_actors_of_class(
     game_world, unreal.OpenMassCrowdSpawner
 )
 if len(spawners) != 1:
-    raise RuntimeError("expected one OpenMassCrowdSpawner for signal batching")
+    raise RuntimeError("expected one OpenMassCrowdSpawner for signal parity")
 spawner = spawners[0]
 delivery = json.loads(spawner.get_investor_demo_evidence_snapshot())
 signal_rendering = delivery["signal_rendering"]
@@ -391,50 +469,20 @@ for component in spawner.get_components_by_class(
     if "TelecomTwinSignalBatch" in tags:
         batch_components.append(component)
 
-visible_batch_instance_count = 0
-source_instance_count = 0
-invisible_batch_components = []
-batch_groups = []
-for component in batch_components:
-    instance_count = int(component.get_instance_count())
-    hidden_in_game = bool(component.get_editor_property("hidden_in_game"))
-    visible = component.is_visible() and not hidden_in_game
-    material = component.get_material(0)
-    material_path = str(material.get_path_name()) if material is not None else ""
-    mesh = component.get_editor_property("static_mesh")
-    mesh_path = str(mesh.get_path_name()) if mesh is not None else ""
-    if visible:
-        visible_batch_instance_count += instance_count
-    else:
-        invisible_batch_components.append(str(component.get_name()))
-    matched_color = None
-    for color in color_counts:
-        if "MI_SignalRay_{{}}".format(color) in material_path:
-            color_counts[color] += instance_count
-            matched_color = color
-            break
-    if "MI_SignalRay_Source" in material_path:
-        source_instance_count += instance_count
-        matched_color = "Source"
-    batch_groups.append({{
-        "component": str(component.get_name()),
-        "mesh": mesh_path,
-        "material": material_path,
-        "instances": instance_count,
-        "visible": visible,
-        "kind": matched_color,
-    }})
-
-batch_snapshot_matches = (
+visible_original_actor_count = sum(
+    1 for actor in game_actors.values() if signal_actor_visible(actor)
+)
+persisted_snapshot_matches = (
     signal_rendering["source"]
-    == "persisted_editor_component_world_transforms"
-    and bool(signal_rendering["batch_ready"])
+    == "persisted_editor_actor_components"
+    and bool(signal_rendering["parity_ready"])
     and int(signal_rendering["original_actor_count"]) == 1950
-    and int(signal_rendering["batch_component_count"]) == 9
-    and int(signal_rendering["batched_instance_count"]) == 1950
-    and float(signal_rendering["maximum_location_delta_cm"]) <= 0.01
-    and float(signal_rendering["maximum_rotation_delta_deg"]) <= 0.01
-    and float(signal_rendering["maximum_scale_delta"]) <= 0.00001
+    and int(signal_rendering["original_visible_actor_count"]) == 1950
+    and int(signal_rendering["source_actor_count"]) == 30
+    and int(signal_rendering["ray_actor_count"]) == 1920
+    and not bool(signal_rendering["transforms_modified"])
+    and not bool(signal_rendering["actor_visibility_modified"])
+    and not bool(signal_rendering["runtime_rebuild_enabled"])
     and not bool(signal_rendering["runtime_overlay_enabled"])
     and int(delivery["legacy_signal"]["floating_mock_visible_count"]) == 0
     and float(delivery["legacy_signal"]["late_stream_scan_hz"]) >= 4.0
@@ -443,37 +491,38 @@ batch_snapshot_matches = (
 passed = (
     len(source_labels) == 30
     and len(ray_labels) == 1920
-    and len(batch_components) == 9
-    and visible_batch_instance_count == 1950
-    and source_instance_count == 30
+    and len(batch_components) == 0
+    and visible_original_actor_count == 1950
     and all(count == 480 for count in color_counts.values())
     and not editor_duplicates
     and not game_duplicates
     and not missing_in_pie
     and not extra_in_pie
-    and len(hidden_in_pie) == 1950
-    and not invisible_batch_components
+    and not hidden_in_pie
     and not transform_mismatches
+    and not component_mismatches
     and not legacy_floating_visible
-    and batch_snapshot_matches
+    and persisted_snapshot_matches
 )
 payload = {{
     "passed": passed,
-    "policy": "persisted_editor_rooftop_component_transforms_batched_for_PIE",
+    "policy": "same_persisted_editor_actors_visible_before_and_during_PIE",
     "source_actor_count": len(source_labels),
     "ray_actor_count": len(ray_labels),
     "batch_component_count": len(batch_components),
-    "visible_batch_instance_count": visible_batch_instance_count,
-    "source_instance_count": source_instance_count,
+    "visible_original_actor_count": visible_original_actor_count,
     "color_geometry_counts": color_counts,
     "missing_in_pie_count": len(missing_in_pie),
     "extra_in_pie_count": len(extra_in_pie),
-    "original_actor_hidden_for_batching_count": len(hidden_in_pie),
+    "hidden_original_actor_count": len(hidden_in_pie),
     "transform_mismatch_count": len(transform_mismatches),
+    "component_mismatch_count": len(component_mismatches),
     "maximum_location_delta_cm": maximum_location_delta_cm,
     "maximum_rotation_delta_deg": maximum_rotation_delta_deg,
     "maximum_scale_delta": maximum_scale_delta,
-    "batch_snapshot_matches": batch_snapshot_matches,
+    "persisted_snapshot_matches": persisted_snapshot_matches,
+    "actor_visibility_modified": False,
+    "runtime_rebuild_enabled": False,
     "runtime_overlay_enabled": False,
     "legacy_floating_actor_loaded_count": len(legacy_floating_actors),
     "legacy_floating_actor_visible_count": len(legacy_floating_visible),
@@ -482,9 +531,8 @@ payload = {{
         "missing_in_pie": missing_in_pie[:20],
         "extra_in_pie": extra_in_pie[:20],
         "hidden_in_pie": hidden_in_pie[:20],
-        "invisible_batch_components": invisible_batch_components[:20],
         "transform_mismatches": transform_mismatches,
-        "batch_groups": sorted(batch_groups, key=lambda item: item["component"]),
+        "component_mismatches": component_mismatches,
         "visible_legacy_floating_signals": sorted(legacy_floating_visible)[:20],
     }},
 }}

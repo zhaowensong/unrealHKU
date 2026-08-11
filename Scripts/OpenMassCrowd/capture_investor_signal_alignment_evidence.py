@@ -216,6 +216,21 @@ def main():
                 len(sources) + len(rays)
             )
         )
+    visible_persisted = []
+    for actor in sources + rays:
+        component_visible = any(
+            component.is_visible()
+            and not bool(component.get_editor_property("hidden_in_game"))
+            for component in actor.get_components_by_class(unreal.PrimitiveComponent)
+        )
+        if not actor_hidden(actor) and component_visible:
+            visible_persisted.append(actor_label(actor))
+    if len(visible_persisted) != 1950:
+        raise RuntimeError(
+            "Only {} of 1950 persisted signal actors are visible in PIE".format(
+                len(visible_persisted)
+            )
+        )
     if visible_legacy_floating:
         raise RuntimeError(
             "Legacy floating signal layer is still visible: {} actors; samples={}".format(
@@ -254,9 +269,9 @@ def main():
         if component.get_name().startswith("InvestorSignalBatch_")
     ]
     instance_count = sum(int(component.get_instance_count()) for component in batches)
-    if len(batches) != 9 or instance_count != 1950:
+    if batches or instance_count:
         raise RuntimeError(
-            "Runtime signal batches are {} / {}, expected 9 / 1950".format(
+            "Crowd startup rebuilt the persisted signal layer: {} / {}".format(
                 len(batches), instance_count
             )
         )
@@ -310,10 +325,13 @@ def main():
             "source_actor_count": len(sources),
             "ray_actor_count": len(rays),
         },
-        "runtime_signal_batch": {
-            "component_count": len(batches),
-            "instance_count": instance_count,
-            "source_policy": "exact persisted component world transforms",
+        "runtime_signal_layer": {
+            "visible_original_actor_count": len(visible_persisted),
+            "runtime_batch_component_count": len(batches),
+            "runtime_batch_instance_count": instance_count,
+            "source_policy": "same persisted actors before and during PIE",
+            "actor_visibility_modified": False,
+            "runtime_rebuild_enabled": False,
             "runtime_debug_overlay": False,
         },
         "legacy_floating_signal_layer": {

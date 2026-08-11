@@ -1,7 +1,7 @@
 # TelecomTwin 人物模式信道悬空修复（2026-08-10）
 
 > [!warning] 此次验收已被 2026-08-11 的双层信道修复取代
-> 本文只证明 1950 个正确对象在编辑器态与 PIE 中变换一致，遗漏了 World Partition 后加载的旧 `SIG_RaySegment_* / SIG_Node_* / SIG_Source_Main` 层。最终结论见 [[TelecomTwin_PIE_双层信道修复_2026-08-11]]。
+> 本文只证明 1950 个正确对象在编辑器态与 PIE 中变换一致，遗漏了 World Partition 后加载的旧 `SIG_RaySegment_* / SIG_Node_* / SIG_Source_Main` 层。2026-08-12 又取消了运行时 HISM 替换，最终结论见 [[TelecomTwin_启动前后建筑信道完全一致_2026-08-12]]。
 
 ## 结论
 
