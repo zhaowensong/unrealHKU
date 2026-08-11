@@ -26,6 +26,7 @@ SHOT_FILES = {
     "roof-detail": "06_persisted_rooftop_landing_detail_2026-08-10.png",
     "layer-fixed": "08_legacy_floating_signal_layer_removed_2026-08-11.png",
     "association": "09_person_station_association_links_2026-08-11.png",
+    "association-subtle": "10_person_station_association_subtle_2026-08-12.png",
 }
 SOURCE_PATTERN = re.compile(r"^SIG_Source_\d{2}_Direct_Roof$")
 RAY_PATTERN = re.compile(
@@ -231,7 +232,7 @@ def main():
     if len(spawners) != 1:
         raise RuntimeError("Expected one investor crowd spawner, found {}".format(len(spawners)))
     delivery = json.loads(spawners[0].get_investor_demo_evidence_snapshot())
-    if args.shot == "association":
+    if args.shot.startswith("association"):
         # Stable person zero periodically enters the building and correctly
         # disconnects. Select person one for deterministic blue-link evidence.
         spawners[0].show_central_profile_by_stable_index(1)
@@ -264,7 +265,7 @@ def main():
         location, target, minimum, maximum, target_source = camera_for_overview(
             crowd_points, signal_points
         )
-    elif args.shot == "association":
+    elif args.shot.startswith("association"):
         portal = delivery["building"]["portal"]
         association_crowd_points = crowd_points or [
             unreal.Vector(

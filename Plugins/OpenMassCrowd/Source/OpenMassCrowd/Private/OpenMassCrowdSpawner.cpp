@@ -11626,20 +11626,11 @@ void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals() const
                 World,
                 PersonPoint,
                 StationPoint,
-                FColor(0, 55, 145),
+                FColor(55, 125, 165, 135),
                 false,
                 InvestorAssociationVisualLifetimeSeconds,
                 1,
-                10.0f);
-            DrawDebugLine(
-                World,
-                PersonPoint,
-                StationPoint,
-                FColor(35, 205, 255),
-                false,
-                InvestorAssociationVisualLifetimeSeconds,
-                1,
-                5.0f);
+                2.25f);
             continue;
         }
 
@@ -11663,11 +11654,11 @@ void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals() const
                 World,
                 PersonPoint + LinkDirection * DashStart,
                 PersonPoint + LinkDirection * DashEnd,
-                FColor(210, 218, 226),
+                FColor(95, 102, 110, 80),
                 false,
                 InvestorAssociationVisualLifetimeSeconds,
                 1,
-                3.25f);
+                1.0f);
         }
     }
 }
