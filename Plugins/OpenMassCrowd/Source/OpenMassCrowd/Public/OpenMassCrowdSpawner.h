@@ -710,6 +710,7 @@ private:
     void EnsureInvestorDemoInitialized();
     void UpdateInvestorDemo(float DeltaSeconds);
     void UpdateInvestorPersonStates(float DeltaSeconds);
+    void DrawInvestorAssociationVisuals() const;
     bool ValidateInvestorStationRoof(FInvestorStationRuntime& Station);
     bool BuildInvestorSignalBatches();
     void SuppressLegacyFloatingSignalActors();
@@ -954,6 +955,7 @@ private:
     int32 InvestorLegacyFloatingSignalVisibleCount = 0;
     float InvestorNetworkUpdateAccumulator = 0.0f;
     float InvestorRoofValidationAccumulator = 0.0f;
+    float InvestorAssociationVisualRefreshAccumulator = 0.0f;
     float InvestorProfileRefreshAccumulator = 0.0f;
     float InvestorElapsedSeconds = 0.0f;
     int32 InvestorBuildingEntryCount = 0;

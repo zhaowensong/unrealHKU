@@ -1,91 +1,101 @@
 {
   "acceptance_video_created": false,
   "baseline_frame_p50_ms": 333.3336,
-  "captured_at_utc": "2026-07-31T16:05:35.708568+00:00",
+  "captured_at_utc": "2026-08-11T14:36:55.596613+00:00",
   "checks": {
     "bounded_distant_skeletal_walk": true,
     "bounded_investor_runtime_work": true,
     "building_disconnect_and_reacquire": true,
     "crowd_spread_across_supported_bands": true,
-    "exact_50_ground_route_people": true,
     "far_walk_animation_active": true,
+    "healthy_100_ground_route_people": true,
     "investor_profile_complete": true,
-    "legacy_signal_preserved_but_suppressed": true,
     "live_person_station_association": true,
     "no_severe_overlap": true,
+    "persisted_rooftop_signal_exactly_batched_without_runtime_overlay": true,
     "two_real_rooftop_stations": true,
     "video_excluded": true
   },
+  "expected_population": 100,
   "first": {
     "delivery": {
       "building": {
         "entering": 0,
-        "entry_events": 3,
-        "exit_events": 3,
+        "entry_events": 2,
+        "exit_events": 2,
         "exiting": 0,
         "indoor": 0,
-        "outdoor": 50,
+        "outdoor": 100,
         "portal": {
-          "x": -150443.253,
-          "y": 240596.313,
-          "z": 315.329
+          "x": -170301.227,
+          "y": 262667.221,
+          "z": 295.211
         },
         "portal_grounded": true,
-        "station_reacquisitions": 3
+        "station_reacquisitions": 2
       },
       "legacy_signal": {
+        "floating_mock_loaded_count": 2796,
+        "floating_mock_visible_count": 0,
+        "late_stream_scan_hz": 4.0,
+        "preserved_visible": true,
         "restorable": true,
-        "suppressed_actor_count": 3060
+        "runtime_overlay_enabled": false,
+        "suppressed_actor_count": 1950
       },
       "liveness": {
-        "cached_ground_fallbacks": 25,
-        "edge_liveness_advances": 2162,
-        "expected_moving": 50,
-        "maximum_stationary_s": 1.013,
-        "moving": 50,
-        "stall_recovery_replans": 1,
+        "cached_ground_fallbacks": 0,
+        "edge_liveness_advances": 165,
+        "expected_moving": 100,
+        "maximum_stationary_s": 0.0,
+        "moving": 100,
+        "stall_recovery_replans": 17,
         "stuck": 0
       },
       "mode_enabled": true,
       "network": {
         "association_visual_budget": 12,
-        "connected": 50,
+        "association_visual_enabled": true,
+        "connected": 100,
+        "other_link_style": "dashed_gray",
+        "selected_link_style": "solid_blue",
+        "station_endpoint_offset_cm": 4.0,
         "uncovered": 0
       },
       "passed": true,
       "performance": {
         "debug_refresh_hz": 10.0,
-        "frame_maximum_ms": 48.723,
-        "frame_p50_ms": 18.451,
-        "frame_p95_ms": 21.383,
-        "frame_samples": 3182,
+        "frame_maximum_ms": 182.702,
+        "frame_p50_ms": 22.031,
+        "frame_p95_ms": 29.844,
+        "frame_samples": 2446,
         "ground_guards_per_pass": 4,
         "network_refresh_hz": 3.03,
         "telemetry_interval_s": 1.0,
         "validated_roof_refresh_s": 2.0
       },
       "population": {
-        "admitted": 50,
-        "configured": 50,
-        "moving": 50,
-        "represented": 50,
-        "spawned": 50,
-        "vat_far_walking": 50
+        "admitted": 100,
+        "configured": 100,
+        "moving": 100,
+        "represented": 100,
+        "spawned": 100,
+        "vat_far_walking": 77
       },
       "presentation": {
-        "certified_center_fallback_people": 0,
+        "certified_center_fallback_people": 4,
         "configured_bands": 7,
         "high_actor_budget": 6,
-        "high_actors": 0,
-        "largest_active_lane_population": 4,
+        "high_actors": 6,
+        "largest_active_lane_population": 5,
         "low_actor_budget": 24,
-        "low_actors": 0,
+        "low_actors": 17,
         "maximum_lateral_offset_cm": 135.0,
         "occupied_supported_bands": 7,
-        "offset_supported_people": 50,
+        "offset_supported_people": 96,
         "skeletal_walk_distance_m": 200.0,
-        "unique_active_lanes": 36,
-        "vat_actors": 50
+        "unique_active_lanes": 33,
+        "vat_actors": 77
       },
       "profile": {
         "anchor": "lower_left",
@@ -94,6 +104,18 @@
         "visible": true
       },
       "schema": "telecomtwin-investor-delivery-v3",
+      "signal_rendering": {
+        "batch_component_count": 9,
+        "batch_ready": true,
+        "batched_instance_count": 1950,
+        "maximum_location_delta_cm": 0.0,
+        "maximum_rotation_delta_deg": 3e-06,
+        "maximum_scale_delta": 0.0,
+        "original_actor_count": 1950,
+        "original_actors_hidden_for_batching": true,
+        "runtime_overlay_enabled": false,
+        "source": "persisted_editor_component_world_transforms"
+      },
       "stations": {
         "items": [
           {
@@ -113,7 +135,7 @@
               "y": 247000.0,
               "z": 11973.468
             },
-            "validation_attempts": 46
+            "validation_attempts": 41
           },
           {
             "configured_anchor_lod_adjustment_cm": 4077.832,
@@ -132,7 +154,7 @@
               "y": 247000.0,
               "z": 8304.179
             },
-            "validation_attempts": 46
+            "validation_attempts": 41
           }
         ],
         "maximum_roof_error_cm": 4.0,
@@ -150,7 +172,7 @@
     "profile": {
       "age": 29,
       "completed_round_trips": 0,
-      "current_app": "WhatsApp",
+      "current_app": "WeChat",
       "district": "district-central-r0-c0",
       "favorite_software": "Python",
       "gender": "女  ♀",
@@ -162,30 +184,30 @@
       "person_id": "HK-C-001",
       "round_trip_m": 0.0,
       "route_leg": "outbound",
-      "serving_station": "CENTRAL-ROOF-01",
-      "signal_quality": "51% · GOOD",
+      "serving_station": "CENTRAL-WEST-ROOF-02",
+      "signal_quality": "29% · EDGE",
       "stable_index": 0,
       "valid": true
     },
     "vat": {
       "animation_active": true,
-      "current_frame": 27.266113,
-      "distance_m": 880.421,
+      "current_frame": 85.765381,
+      "distance_m": 297.241,
       "end_frame": 98.0,
       "location": {
-        "x": -176921.953,
-        "y": 261154.121,
-        "z": 323.922
+        "x": -150139.805,
+        "y": 239180.905,
+        "z": 287.806
       },
-      "person_id": "HK-C-032",
+      "person_id": "HK-C-095",
       "play_rate": 1.35,
       "representation": "VAT",
-      "speed_cm_s": 81.46,
-      "stable_index": 31,
+      "speed_cm_s": 27.079,
+      "stable_index": 94,
       "start_frame": 0.0,
-      "time_offset": 2.331264,
+      "time_offset": 2.13969,
       "valid": true,
-      "world_time_seconds": 101.008648
+      "world_time_seconds": 85.533534
     },
     "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
   },
@@ -196,72 +218,81 @@
     "delivery": {
       "building": {
         "entering": 0,
-        "entry_events": 4,
-        "exit_events": 3,
-        "exiting": 1,
+        "entry_events": 2,
+        "exit_events": 2,
+        "exiting": 0,
         "indoor": 0,
-        "outdoor": 49,
+        "outdoor": 100,
         "portal": {
-          "x": -150443.253,
-          "y": 240596.313,
-          "z": 315.329
+          "x": -170301.227,
+          "y": 262667.221,
+          "z": 295.211
         },
         "portal_grounded": true,
-        "station_reacquisitions": 3
+        "station_reacquisitions": 2
       },
       "legacy_signal": {
+        "floating_mock_loaded_count": 2796,
+        "floating_mock_visible_count": 0,
+        "late_stream_scan_hz": 4.0,
+        "preserved_visible": true,
         "restorable": true,
-        "suppressed_actor_count": 3060
+        "runtime_overlay_enabled": false,
+        "suppressed_actor_count": 1950
       },
       "liveness": {
-        "cached_ground_fallbacks": 25,
-        "edge_liveness_advances": 2573,
-        "expected_moving": 50,
+        "cached_ground_fallbacks": 0,
+        "edge_liveness_advances": 165,
+        "expected_moving": 100,
         "maximum_stationary_s": 0.0,
-        "moving": 50,
-        "stall_recovery_replans": 2,
+        "moving": 100,
+        "stall_recovery_replans": 17,
         "stuck": 0
       },
       "mode_enabled": true,
       "network": {
         "association_visual_budget": 12,
-        "connected": 49,
+        "association_visual_enabled": true,
+        "connected": 100,
+        "other_link_style": "dashed_gray",
+        "selected_link_style": "solid_blue",
+        "station_endpoint_offset_cm": 4.0,
         "uncovered": 0
       },
       "passed": true,
       "performance": {
         "debug_refresh_hz": 10.0,
-        "frame_maximum_ms": 35.001,
-        "frame_p50_ms": 18.465,
-        "frame_p95_ms": 21.27,
-        "frame_samples": 3187,
+        "frame_maximum_ms": 182.702,
+        "frame_p50_ms": 22.139,
+        "frame_p95_ms": 29.399,
+        "frame_samples": 2432,
         "ground_guards_per_pass": 4,
         "network_refresh_hz": 3.03,
         "telemetry_interval_s": 1.0,
         "validated_roof_refresh_s": 2.0
       },
       "population": {
-        "admitted": 50,
-        "configured": 50,
-        "moving": 50,
-        "represented": 50,
-        "spawned": 50,
-        "vat_far_walking": 50
+        "admitted": 100,
+        "configured": 100,
+        "moving": 100,
+        "represented": 100,
+        "spawned": 100,
+        "vat_far_walking": 77
       },
       "presentation": {
-        "certified_center_fallback_people": 2,
+        "certified_center_fallback_people": 4,
         "configured_bands": 7,
         "high_actor_budget": 6,
-        "high_actors": 0,
-        "largest_active_lane_population": 4,
+        "high_actors": 5,
+        "largest_active_lane_population": 6,
         "low_actor_budget": 24,
-        "low_actors": 0,
+        "low_actors": 18,
         "maximum_lateral_offset_cm": 135.0,
         "occupied_supported_bands": 7,
-        "offset_supported_people": 48,
+        "offset_supported_people": 96,
         "skeletal_walk_distance_m": 200.0,
-        "unique_active_lanes": 36,
-        "vat_actors": 50
+        "unique_active_lanes": 33,
+        "vat_actors": 77
       },
       "profile": {
         "anchor": "lower_left",
@@ -270,6 +301,18 @@
         "visible": true
       },
       "schema": "telecomtwin-investor-delivery-v3",
+      "signal_rendering": {
+        "batch_component_count": 9,
+        "batch_ready": true,
+        "batched_instance_count": 1950,
+        "maximum_location_delta_cm": 0.0,
+        "maximum_rotation_delta_deg": 3e-06,
+        "maximum_scale_delta": 0.0,
+        "original_actor_count": 1950,
+        "original_actors_hidden_for_batching": true,
+        "runtime_overlay_enabled": false,
+        "source": "persisted_editor_component_world_transforms"
+      },
       "stations": {
         "items": [
           {
@@ -289,7 +332,7 @@
               "y": 247000.0,
               "z": 11973.468
             },
-            "validation_attempts": 53
+            "validation_attempts": 48
           },
           {
             "configured_anchor_lod_adjustment_cm": 4077.832,
@@ -308,7 +351,7 @@
               "y": 247000.0,
               "z": 8304.179
             },
-            "validation_attempts": 53
+            "validation_attempts": 48
           }
         ],
         "maximum_roof_error_cm": 4.0,
@@ -326,42 +369,42 @@
     "profile": {
       "age": 29,
       "completed_round_trips": 0,
-      "current_app": "WhatsApp",
+      "current_app": "WeChat",
       "district": "district-central-r0-c0",
       "favorite_software": "Python",
       "gender": "女  ♀",
       "glass_panel_visible": true,
-      "location_state": "EXITING BUILDING · 正在离开",
+      "location_state": "OUTDOOR · CENTRAL STREET",
       "name": "陈嘉怡",
       "occupation": "数字孪生研究员",
       "panel_anchor": "lower_left",
       "person_id": "HK-C-001",
       "round_trip_m": 0.0,
       "route_leg": "outbound",
-      "serving_station": "DISCONNECTED",
-      "signal_quality": "0% · NO EXTERNAL SIGNAL",
+      "serving_station": "CENTRAL-WEST-ROOF-02",
+      "signal_quality": "28% · EDGE",
       "stable_index": 0,
       "valid": true
     },
     "vat": {
       "animation_active": true,
-      "current_frame": 54.98877,
-      "distance_m": 880.454,
-      "end_frame": 97.0,
+      "current_frame": 4.709961,
+      "distance_m": 295.224,
+      "end_frame": 98.0,
       "location": {
-        "x": -176919.714,
-        "y": 261165.695,
-        "z": 331.945
+        "x": -150209.584,
+        "y": 239388.316,
+        "z": 288.184
       },
-      "person_id": "HK-C-011",
+      "person_id": "HK-C-091",
       "play_rate": 1.35,
       "representation": "VAT",
-      "speed_cm_s": 139.287,
-      "stable_index": 10,
+      "speed_cm_s": 118.914,
+      "stable_index": 90,
       "start_frame": 0.0,
-      "time_offset": 2.395123,
+      "time_offset": 0.723278,
       "valid": true,
-      "world_time_seconds": 115.110765
+      "world_time_seconds": 99.615232
     },
     "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
   }

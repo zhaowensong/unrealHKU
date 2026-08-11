@@ -156,6 +156,11 @@ def main() -> int:
         "live_person_station_association": (
             delivery["network"]["connected"] > 0
             and delivery["network"]["association_visual_budget"] == 12
+            and delivery["network"]["association_visual_enabled"]
+            and delivery["network"]["selected_link_style"] == "solid_blue"
+            and delivery["network"]["other_link_style"] == "dashed_gray"
+            and float(delivery["network"]["station_endpoint_offset_cm"])
+            <= 4.01
         ),
         "building_disconnect_and_reacquire": (
             building["portal_grounded"]

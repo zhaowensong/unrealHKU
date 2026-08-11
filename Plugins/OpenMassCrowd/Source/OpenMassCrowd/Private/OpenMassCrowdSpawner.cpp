@@ -177,6 +177,11 @@ constexpr float InvestorPresentationPhaseSpacingCm = 60.0f;
 constexpr int32 InvestorGroundGuardsPerPass = 4;
 constexpr float InvestorNetworkRefreshSeconds = 0.33f;
 constexpr float InvestorValidatedRoofRefreshSeconds = 2.0f;
+constexpr float InvestorAssociationVisualRefreshSeconds = 0.1f;
+constexpr float InvestorAssociationVisualLifetimeSeconds = 0.12f;
+constexpr float InvestorAssociationRoofOffsetCm = 4.0f;
+constexpr float InvestorAssociationDashLengthCm = 520.0f;
+constexpr float InvestorAssociationDashGapCm = 300.0f;
 constexpr float InvestorSkeletalWalkDistanceCm = 20000.0f;
 constexpr int32 InvestorHighActorBudget = 6;
 constexpr int32 InvestorLowActorBudget = 24;
@@ -11187,6 +11192,7 @@ void AOpenMassCrowdSpawner::EnsureInvestorDemoInitialized()
     InvestorLegacySignalSuppressionAccumulator = 0.0f;
     InvestorNetworkUpdateAccumulator = 0.0f;
     InvestorRoofValidationAccumulator = 0.0f;
+    InvestorAssociationVisualRefreshAccumulator = 0.0f;
     InvestorProfileRefreshAccumulator = 0.0f;
     InvestorElapsedSeconds = 0.0f;
     InvestorBuildingEntryCount = 0;
@@ -11350,9 +11356,19 @@ void AOpenMassCrowdSpawner::UpdateInvestorDemo(const float DeltaSeconds)
         ShowCentralProfileByStableIndex(StableIndex);
     }
 
-    // Do not draw a second runtime signal system here. The persisted rooftop
-    // channel actors remain the single visual source of truth in both editor
-    // and PIE worlds; people and profile UI are layered on top of them.
+    // This is a separate person-association layer, not another propagation
+    // system. The persisted rooftop channel actors remain the single signal
+    // source of truth; these transient links only show which live person is
+    // served by which collision-validated rooftop point.
+    InvestorAssociationVisualRefreshAccumulator += DeltaSeconds;
+    if (InvestorAssociationVisualRefreshAccumulator >=
+        InvestorAssociationVisualRefreshSeconds)
+    {
+        InvestorAssociationVisualRefreshAccumulator = FMath::Fmod(
+            InvestorAssociationVisualRefreshAccumulator,
+            InvestorAssociationVisualRefreshSeconds);
+        DrawInvestorAssociationVisuals();
+    }
 }
 
 void AOpenMassCrowdSpawner::UpdateInvestorPersonStates(const float DeltaSeconds)
@@ -11533,6 +11549,126 @@ void AOpenMassCrowdSpawner::UpdateInvestorPersonStates(const float DeltaSeconds)
         const float VisibleScale = FMath::Max(Person.VisibilityAlpha, 0.001f);
         VisibleTransform.SetScale3D(FVector(VisibleScale));
         Transform->SetTransform(VisibleTransform);
+    }
+}
+
+void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals() const
+{
+    UWorld* World = GetWorld();
+    if (!World || !bInvestorDemoInitialized || InvestorPeople.IsEmpty())
+    {
+        return;
+    }
+
+    UMassSpawnerSubsystem* SpawnerSubsystem =
+        UWorld::GetSubsystem<UMassSpawnerSubsystem>(World);
+    if (!SpawnerSubsystem)
+    {
+        return;
+    }
+    FMassEntityManager& EntityManager =
+        SpawnerSubsystem->GetEntityManagerChecked();
+    const int32 VisualStride = FMath::Max(
+        1,
+        FMath::CeilToInt(
+            static_cast<float>(InvestorPeople.Num()) /
+            static_cast<float>(FMath::Max(InvestorAssociationVisualBudget, 1))));
+    const int32 VisualPhase =
+        static_cast<int32>(InvestorElapsedSeconds * 0.5f) % VisualStride;
+
+    for (int32 StableIndex = 0;
+         StableIndex < InvestorPeople.Num();
+         ++StableIndex)
+    {
+        const FInvestorPersonRuntime& Person = InvestorPeople[StableIndex];
+        if (!InvestorStations.IsValidIndex(Person.ServingStationIndex) ||
+            !SpawnedEntities.IsValidIndex(StableIndex))
+        {
+            continue;
+        }
+        const FInvestorStationRuntime& Station =
+            InvestorStations[Person.ServingStationIndex];
+        if (!Station.bRoofValidated)
+        {
+            continue;
+        }
+
+        const bool bSelected =
+            StableIndex == SelectedCentralProfileEntityIndex;
+        if (!bSelected &&
+            (InvestorAssociationVisualBudget <= 0 ||
+             StableIndex % VisualStride != VisualPhase))
+        {
+            continue;
+        }
+
+        const FMassEntityHandle Entity = SpawnedEntities[StableIndex];
+        if (!EntityManager.IsEntityValid(Entity))
+        {
+            continue;
+        }
+        const FTransformFragment* Transform =
+            EntityManager.GetFragmentDataPtr<FTransformFragment>(Entity);
+        if (!Transform)
+        {
+            continue;
+        }
+
+        const FVector PersonPoint =
+            Transform->GetTransform().GetLocation() + FVector(0.0, 0.0, 100.0);
+        const FVector StationPoint =
+            Station.ValidatedRoofPoint +
+            FVector(0.0, 0.0, InvestorAssociationRoofOffsetCm);
+
+        if (bSelected)
+        {
+            DrawDebugLine(
+                World,
+                PersonPoint,
+                StationPoint,
+                FColor(0, 55, 145),
+                false,
+                InvestorAssociationVisualLifetimeSeconds,
+                1,
+                10.0f);
+            DrawDebugLine(
+                World,
+                PersonPoint,
+                StationPoint,
+                FColor(35, 205, 255),
+                false,
+                InvestorAssociationVisualLifetimeSeconds,
+                1,
+                5.0f);
+            continue;
+        }
+
+        const FVector LinkVector = StationPoint - PersonPoint;
+        const float LinkLength = LinkVector.Size();
+        if (LinkLength <= UE_SMALL_NUMBER)
+        {
+            continue;
+        }
+        const FVector LinkDirection = LinkVector / LinkLength;
+        const float DashStep =
+            InvestorAssociationDashLengthCm + InvestorAssociationDashGapCm;
+        for (float DashStart = 0.0f;
+             DashStart < LinkLength;
+             DashStart += DashStep)
+        {
+            const float DashEnd = FMath::Min(
+                DashStart + InvestorAssociationDashLengthCm,
+                LinkLength);
+            DrawDebugLine(
+                World,
+                PersonPoint + LinkDirection * DashStart,
+                PersonPoint + LinkDirection * DashEnd,
+                FColor(210, 218, 226),
+                false,
+                InvestorAssociationVisualLifetimeSeconds,
+                1,
+                3.25f);
+        }
     }
 }
 
@@ -12618,7 +12754,7 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
             InvestorExpectedSignalBatchCount &&
         InvestorLegacyFloatingSignalVisibleCount == 0;
     return FString::Printf(
-        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"signal_rendering\":{\"source\":\"persisted_editor_component_world_transforms\",\"batch_ready\":%s,\"original_actor_count\":%d,\"batch_component_count\":%d,\"batched_instance_count\":%d,\"maximum_location_delta_cm\":%.6f,\"maximum_rotation_delta_deg\":%.6f,\"maximum_scale_delta\":%.9f,\"original_actors_hidden_for_batching\":true,\"runtime_overlay_enabled\":false},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true,\"preserved_visible\":true,\"runtime_overlay_enabled\":false,\"floating_mock_loaded_count\":%d,\"floating_mock_visible_count\":%d,\"late_stream_scan_hz\":%.1f},\"video_required\":false}"),
+        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d,\"association_visual_enabled\":true,\"selected_link_style\":\"solid_blue\",\"other_link_style\":\"dashed_gray\",\"station_endpoint_offset_cm\":4.0},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"signal_rendering\":{\"source\":\"persisted_editor_component_world_transforms\",\"batch_ready\":%s,\"original_actor_count\":%d,\"batch_component_count\":%d,\"batched_instance_count\":%d,\"maximum_location_delta_cm\":%.6f,\"maximum_rotation_delta_deg\":%.6f,\"maximum_scale_delta\":%.9f,\"original_actors_hidden_for_batching\":true,\"runtime_overlay_enabled\":false},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":true,\"preserved_visible\":true,\"runtime_overlay_enabled\":false,\"floating_mock_loaded_count\":%d,\"floating_mock_visible_count\":%d,\"late_stream_scan_hz\":%.1f},\"video_required\":false}"),
         bInvestorDeliveryDemoEnabled ? TEXT("true") : TEXT("false"),
         bPassed ? TEXT("true") : TEXT("false"),
         InvestorDeliveryPopulation,
@@ -12650,7 +12786,7 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         CentralVATRepresentationCount,
         InvestorGroundGuardsPerPass,
         CentralTelemetrySampleIntervalSeconds,
-        0.0f,
+        1.0f / InvestorAssociationVisualRefreshSeconds,
         InvestorValidatedRoofRefreshSeconds,
         1.0f / InvestorNetworkRefreshSeconds,
         CentralFrameTimeSampleCount,

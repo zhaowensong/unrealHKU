@@ -25,6 +25,7 @@ SHOT_FILES = {
     "overview": "05_people_and_persisted_signal_overview_2026-08-10.png",
     "roof-detail": "06_persisted_rooftop_landing_detail_2026-08-10.png",
     "layer-fixed": "08_legacy_floating_signal_layer_removed_2026-08-11.png",
+    "association": "09_person_station_association_links_2026-08-11.png",
 }
 SOURCE_PATTERN = re.compile(r"^SIG_Source_\d{2}_Direct_Roof$")
 RAY_PATTERN = re.compile(
@@ -156,6 +157,22 @@ def camera_for_roof_detail(sources, rays, crowd_points):
     return location, target, minimum, maximum, actor_label(source)
 
 
+def camera_for_association(crowd_points, station_points):
+    points = list(crowd_points) + list(station_points)
+    _center, _extent, minimum, maximum = bounds_center(points)
+    crowd_center = bounds_center(crowd_points)[0]
+    target_station = min(
+        station_points,
+        key=lambda point: squared_xy(point, crowd_center),
+    )
+    # Stand just behind the street population and look toward its nearest live
+    # rooftop endpoint. The association fan then reads clearly from person end
+    # to roof end instead of being lost inside the city-wide propagation rays.
+    location = crowd_center + unreal.Vector(-3500.0, 6500.0, 1800.0)
+    target = target_station + unreal.Vector(0.0, 0.0, 250.0)
+    return location, target, minimum, maximum, None
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--shot", choices=tuple(SHOT_FILES), required=True)
@@ -213,6 +230,22 @@ def main():
     )
     if len(spawners) != 1:
         raise RuntimeError("Expected one investor crowd spawner, found {}".format(len(spawners)))
+    delivery = json.loads(spawners[0].get_investor_demo_evidence_snapshot())
+    if args.shot == "association":
+        # Stable person zero periodically enters the building and correctly
+        # disconnects. Select person one for deterministic blue-link evidence.
+        spawners[0].show_central_profile_by_stable_index(1)
+    station_points = [
+        unreal.Vector(
+            float(item["validated_roof"]["x"]),
+            float(item["validated_roof"]["y"]),
+            float(item["validated_roof"]["z"]) + 4.0,
+        )
+        for item in delivery["stations"]["items"]
+        if item["roof_validated"]
+    ]
+    if len(station_points) != 2:
+        raise RuntimeError("Expected two live rooftop association endpoints")
     hism_class = unreal.HierarchicalInstancedStaticMeshComponent
     batches = [
         component
@@ -230,6 +263,18 @@ def main():
     if args.shot == "overview":
         location, target, minimum, maximum, target_source = camera_for_overview(
             crowd_points, signal_points
+        )
+    elif args.shot == "association":
+        portal = delivery["building"]["portal"]
+        association_crowd_points = crowd_points or [
+            unreal.Vector(
+                float(portal["x"]),
+                float(portal["y"]),
+                float(portal["z"]),
+            )
+        ]
+        location, target, minimum, maximum, target_source = camera_for_association(
+            association_crowd_points, station_points
         )
     else:
         location, target, minimum, maximum, target_source = camera_for_roof_detail(
@@ -276,6 +321,16 @@ def main():
             "passed": not visible_legacy_floating,
         },
         "crowd_visible_actor_count": len(crowd),
+        "person_station_association": {
+            "enabled": bool(delivery["network"]["association_visual_enabled"]),
+            "connected_people": int(delivery["network"]["connected"]),
+            "selected_link_style": delivery["network"]["selected_link_style"],
+            "other_link_style": delivery["network"]["other_link_style"],
+            "validated_rooftop_endpoints": len(station_points),
+            "station_endpoint_offset_cm": float(
+                delivery["network"]["station_endpoint_offset_cm"]
+            ),
+        },
         "camera": {
             "location": vector_json(location),
             "rotation": rotator_json(rotation),
