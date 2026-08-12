@@ -1,0 +1,453 @@
+{
+  "acceptance_video_created": false,
+  "baseline_frame_p50_ms": 333.3336,
+  "captured_at_utc": "2026-08-12T01:37:25.393376+00:00",
+  "checks": {
+    "bounded_distant_skeletal_walk": true,
+    "bounded_investor_runtime_work": true,
+    "building_disconnect_and_reacquire": true,
+    "crowd_spread_across_supported_bands": true,
+    "far_walk_animation_active": true,
+    "healthy_100_ground_route_people": true,
+    "investor_profile_complete": true,
+    "live_person_station_association": true,
+    "no_severe_overlap": true,
+    "persisted_rooftop_signal_untouched_during_pie": true,
+    "two_real_rooftop_stations": true,
+    "video_excluded": true
+  },
+  "expected_population": 100,
+  "first": {
+    "delivery": {
+      "building": {
+        "entering": 0,
+        "entry_events": 8,
+        "exit_events": 7,
+        "exiting": 0,
+        "indoor": 1,
+        "outdoor": 99,
+        "portal": {
+          "x": -171140.18,
+          "y": 262108.243,
+          "z": 292.01
+        },
+        "portal_grounded": true,
+        "station_reacquisitions": 7
+      },
+      "legacy_signal": {
+        "actor_spawn_guard": true,
+        "floating_mock_loaded_count": 2796,
+        "floating_mock_visible_count": 0,
+        "late_stream_scan_hz": 4.0,
+        "level_stream_guard": true,
+        "preserved_visible": true,
+        "restorable": false,
+        "runtime_overlay_enabled": false,
+        "suppressed_actor_count": 2796
+      },
+      "liveness": {
+        "cached_ground_fallbacks": 1,
+        "edge_liveness_advances": 71,
+        "expected_moving": 100,
+        "maximum_stationary_s": 0.0,
+        "moving": 100,
+        "stall_recovery_replans": 4,
+        "stuck": 0
+      },
+      "mode_enabled": true,
+      "network": {
+        "association_full_coverage": true,
+        "association_rendered_dashed_links": 98,
+        "association_rendered_links": 99,
+        "association_rendered_segments": 2179,
+        "association_source_connected": 99,
+        "association_visual_budget": 100,
+        "association_visual_enabled": true,
+        "association_visual_policy": "all_connected_people_persistent_batch",
+        "association_visual_revision": 1360,
+        "connected": 99,
+        "other_link_style": "dashed_gray",
+        "persistent_batch_component": true,
+        "persistent_batch_component_tick": false,
+        "rotating_sampling": false,
+        "selected_link_srgb": {
+          "a": 170,
+          "b": 138,
+          "g": 82,
+          "r": 24
+        },
+        "selected_link_style": "solid_blue",
+        "short_lifetime_debug_lines": false,
+        "single_batch_refresh": true,
+        "station_endpoint_offset_cm": 4.0,
+        "uncovered": 0
+      },
+      "passed": true,
+      "performance": {
+        "debug_refresh_hz": 10.0,
+        "frame_maximum_ms": 30.509,
+        "frame_p50_ms": 16.667,
+        "frame_p95_ms": 16.707,
+        "frame_samples": 3589,
+        "ground_guards_per_pass": 4,
+        "network_refresh_hz": 3.03,
+        "telemetry_interval_s": 1.0,
+        "validated_roof_refresh_s": 2.0
+      },
+      "population": {
+        "admitted": 100,
+        "configured": 100,
+        "moving": 100,
+        "represented": 100,
+        "spawned": 100,
+        "vat_far_walking": 100
+      },
+      "presentation": {
+        "certified_center_fallback_people": 4,
+        "configured_bands": 7,
+        "high_actor_budget": 6,
+        "high_actors": 0,
+        "largest_active_lane_population": 6,
+        "low_actor_budget": 48,
+        "low_actors": 0,
+        "maximum_lateral_offset_cm": 135.0,
+        "occupied_supported_bands": 7,
+        "offset_supported_people": 96,
+        "skeletal_walk_distance_m": 350.0,
+        "unique_active_lanes": 32,
+        "vat_actors": 100,
+        "vat_visible_distance_m": 3000.0
+      },
+      "profile": {
+        "anchor": "lower_left",
+        "required_fields_present": true,
+        "selected_index": 0,
+        "visible": true
+      },
+      "schema": "telecomtwin-investor-delivery-v3",
+      "signal_rendering": {
+        "actor_visibility_modified": false,
+        "original_actor_count": 1950,
+        "original_visible_actor_count": 1950,
+        "parity_ready": true,
+        "ray_actor_count": 1920,
+        "runtime_overlay_enabled": false,
+        "runtime_rebuild_enabled": false,
+        "source": "persisted_editor_actor_components",
+        "source_actor_count": 30,
+        "transforms_modified": false
+      },
+      "stations": {
+        "items": [
+          {
+            "configured_anchor_lod_adjustment_cm": 3.714,
+            "configured_roof": {
+              "x": -160000.0,
+              "y": 247000.0,
+              "z": 12735.574
+            },
+            "consecutive_validation_misses": 0,
+            "coverage_radius_m": 230.0,
+            "roof_validated": true,
+            "station_id": "CENTRAL-ROOF-01",
+            "station_to_live_roof_offset_cm": 4.0,
+            "validated_roof": {
+              "x": -160000.0,
+              "y": 247000.0,
+              "z": 12739.288
+            },
+            "validation_attempts": 139
+          },
+          {
+            "configured_anchor_lod_adjustment_cm": 16.615,
+            "configured_roof": {
+              "x": -169000.0,
+              "y": 247000.0,
+              "z": 12382.011
+            },
+            "consecutive_validation_misses": 0,
+            "coverage_radius_m": 205.0,
+            "roof_validated": true,
+            "station_id": "CENTRAL-WEST-ROOF-02",
+            "station_to_live_roof_offset_cm": 4.0,
+            "validated_roof": {
+              "x": -169000.0,
+              "y": 247000.0,
+              "z": 12365.396
+            },
+            "validation_attempts": 139
+          }
+        ],
+        "maximum_roof_error_cm": 4.0,
+        "required": 2,
+        "validated": 2
+      },
+      "video_required": false
+    },
+    "ground": {
+      "invalid_positions": 0,
+      "overlap_agents": 0,
+      "overlap_pairs": 0,
+      "unsupported": 0
+    },
+    "profile": {
+      "age": 29,
+      "completed_round_trips": 0,
+      "current_app": "Microsoft Teams · INDOOR",
+      "district": "district-central-r0-c0",
+      "favorite_software": "Python",
+      "gender": "女  ♀",
+      "glass_panel_visible": true,
+      "location_state": "INDOOR · 室内（外部基站已断开）",
+      "name": "陈嘉怡",
+      "occupation": "数字孪生研究员",
+      "panel_anchor": "lower_left",
+      "person_id": "HK-C-001",
+      "round_trip_m": 0.0,
+      "route_leg": "outbound",
+      "serving_station": "DISCONNECTED",
+      "signal_quality": "0% · NO EXTERNAL SIGNAL",
+      "stable_index": 0,
+      "valid": true
+    },
+    "vat": {
+      "animation_active": true,
+      "current_frame": 32.174805,
+      "distance_m": 411.044,
+      "end_frame": 97.0,
+      "location": {
+        "x": -150069.255,
+        "y": 239186.781,
+        "z": 287.751
+      },
+      "person_id": "HK-C-081",
+      "play_rate": 1.35,
+      "representation": "VAT",
+      "speed_cm_s": 43.728,
+      "stable_index": 80,
+      "start_frame": 0.0,
+      "time_offset": 0.182259,
+      "valid": true,
+      "world_time_seconds": 300.66155
+    },
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
+  },
+  "map_modified": false,
+  "passed": true,
+  "schema": "telecomtwin-investor-delivery-acceptance-v3",
+  "second": {
+    "delivery": {
+      "building": {
+        "entering": 0,
+        "entry_events": 8,
+        "exit_events": 8,
+        "exiting": 0,
+        "indoor": 0,
+        "outdoor": 100,
+        "portal": {
+          "x": -171140.18,
+          "y": 262108.243,
+          "z": 292.01
+        },
+        "portal_grounded": true,
+        "station_reacquisitions": 8
+      },
+      "legacy_signal": {
+        "actor_spawn_guard": true,
+        "floating_mock_loaded_count": 2796,
+        "floating_mock_visible_count": 0,
+        "late_stream_scan_hz": 4.0,
+        "level_stream_guard": true,
+        "preserved_visible": true,
+        "restorable": false,
+        "runtime_overlay_enabled": false,
+        "suppressed_actor_count": 2796
+      },
+      "liveness": {
+        "cached_ground_fallbacks": 1,
+        "edge_liveness_advances": 71,
+        "expected_moving": 100,
+        "maximum_stationary_s": 0.0,
+        "moving": 100,
+        "stall_recovery_replans": 4,
+        "stuck": 0
+      },
+      "mode_enabled": true,
+      "network": {
+        "association_full_coverage": true,
+        "association_rendered_dashed_links": 99,
+        "association_rendered_links": 100,
+        "association_rendered_segments": 2200,
+        "association_source_connected": 100,
+        "association_visual_budget": 100,
+        "association_visual_enabled": true,
+        "association_visual_policy": "all_connected_people_persistent_batch",
+        "association_visual_revision": 1501,
+        "connected": 100,
+        "other_link_style": "dashed_gray",
+        "persistent_batch_component": true,
+        "persistent_batch_component_tick": false,
+        "rotating_sampling": false,
+        "selected_link_srgb": {
+          "a": 170,
+          "b": 138,
+          "g": 82,
+          "r": 24
+        },
+        "selected_link_style": "solid_blue",
+        "short_lifetime_debug_lines": false,
+        "single_batch_refresh": true,
+        "station_endpoint_offset_cm": 4.0,
+        "uncovered": 0
+      },
+      "passed": true,
+      "performance": {
+        "debug_refresh_hz": 10.0,
+        "frame_maximum_ms": 30.509,
+        "frame_p50_ms": 16.667,
+        "frame_p95_ms": 16.846,
+        "frame_samples": 3587,
+        "ground_guards_per_pass": 4,
+        "network_refresh_hz": 3.03,
+        "telemetry_interval_s": 1.0,
+        "validated_roof_refresh_s": 2.0
+      },
+      "population": {
+        "admitted": 100,
+        "configured": 100,
+        "moving": 100,
+        "represented": 100,
+        "spawned": 100,
+        "vat_far_walking": 100
+      },
+      "presentation": {
+        "certified_center_fallback_people": 3,
+        "configured_bands": 7,
+        "high_actor_budget": 6,
+        "high_actors": 0,
+        "largest_active_lane_population": 6,
+        "low_actor_budget": 48,
+        "low_actors": 0,
+        "maximum_lateral_offset_cm": 135.0,
+        "occupied_supported_bands": 7,
+        "offset_supported_people": 97,
+        "skeletal_walk_distance_m": 350.0,
+        "unique_active_lanes": 32,
+        "vat_actors": 100,
+        "vat_visible_distance_m": 3000.0
+      },
+      "profile": {
+        "anchor": "lower_left",
+        "required_fields_present": true,
+        "selected_index": 0,
+        "visible": true
+      },
+      "schema": "telecomtwin-investor-delivery-v3",
+      "signal_rendering": {
+        "actor_visibility_modified": false,
+        "original_actor_count": 1950,
+        "original_visible_actor_count": 1950,
+        "parity_ready": true,
+        "ray_actor_count": 1920,
+        "runtime_overlay_enabled": false,
+        "runtime_rebuild_enabled": false,
+        "source": "persisted_editor_actor_components",
+        "source_actor_count": 30,
+        "transforms_modified": false
+      },
+      "stations": {
+        "items": [
+          {
+            "configured_anchor_lod_adjustment_cm": 3.714,
+            "configured_roof": {
+              "x": -160000.0,
+              "y": 247000.0,
+              "z": 12735.574
+            },
+            "consecutive_validation_misses": 0,
+            "coverage_radius_m": 230.0,
+            "roof_validated": true,
+            "station_id": "CENTRAL-ROOF-01",
+            "station_to_live_roof_offset_cm": 4.0,
+            "validated_roof": {
+              "x": -160000.0,
+              "y": 247000.0,
+              "z": 12739.288
+            },
+            "validation_attempts": 146
+          },
+          {
+            "configured_anchor_lod_adjustment_cm": 16.615,
+            "configured_roof": {
+              "x": -169000.0,
+              "y": 247000.0,
+              "z": 12382.011
+            },
+            "consecutive_validation_misses": 0,
+            "coverage_radius_m": 205.0,
+            "roof_validated": true,
+            "station_id": "CENTRAL-WEST-ROOF-02",
+            "station_to_live_roof_offset_cm": 4.0,
+            "validated_roof": {
+              "x": -169000.0,
+              "y": 247000.0,
+              "z": 12365.396
+            },
+            "validation_attempts": 146
+          }
+        ],
+        "maximum_roof_error_cm": 4.0,
+        "required": 2,
+        "validated": 2
+      },
+      "video_required": false
+    },
+    "ground": {
+      "invalid_positions": 0,
+      "overlap_agents": 0,
+      "overlap_pairs": 0,
+      "unsupported": 0
+    },
+    "profile": {
+      "age": 29,
+      "completed_round_trips": 0,
+      "current_app": "WeChat",
+      "district": "district-central-r0-c0",
+      "favorite_software": "Python",
+      "gender": "女  ♀",
+      "glass_panel_visible": true,
+      "location_state": "OUTDOOR · CENTRAL STREET",
+      "name": "陈嘉怡",
+      "occupation": "数字孪生研究员",
+      "panel_anchor": "lower_left",
+      "person_id": "HK-C-001",
+      "round_trip_m": 0.0,
+      "route_leg": "outbound",
+      "serving_station": "CENTRAL-WEST-ROOF-02",
+      "signal_quality": "30% · EDGE",
+      "stable_index": 0,
+      "valid": true
+    },
+    "vat": {
+      "animation_active": true,
+      "current_frame": 74.889648,
+      "distance_m": 409.891,
+      "end_frame": 98.0,
+      "location": {
+        "x": -150064.509,
+        "y": 239448.279,
+        "z": 305.388
+      },
+      "person_id": "HK-C-089",
+      "play_rate": 1.35,
+      "representation": "VAT",
+      "speed_cm_s": 101.417,
+      "stable_index": 88,
+      "start_frame": 0.0,
+      "time_offset": 0.015083,
+      "valid": true,
+      "world_time_seconds": 314.722945
+    },
+    "world": "/Game/Maps/UEDPIE_0_shanghai.shanghai"
+  }
+}

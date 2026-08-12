@@ -420,6 +420,7 @@ def main():
                 delivery["network"]["single_batch_refresh"]
             ),
             "selected_link_style": delivery["network"]["selected_link_style"],
+            "selected_link_srgb": delivery["network"]["selected_link_srgb"],
             "other_link_style": delivery["network"]["other_link_style"],
             "validated_rooftop_endpoints": len(station_points),
             "station_endpoint_offset_cm": float(

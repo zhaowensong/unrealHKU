@@ -170,6 +170,8 @@ def main() -> int:
             and not delivery["network"]["persistent_batch_component_tick"]
             and delivery["network"]["single_batch_refresh"]
             and delivery["network"]["selected_link_style"] == "solid_blue"
+            and delivery["network"]["selected_link_srgb"]
+            == {"r": 24, "g": 82, "b": 138, "a": 170}
             and delivery["network"]["other_link_style"] == "dashed_gray"
             and float(delivery["network"]["station_endpoint_offset_cm"])
             <= 4.01

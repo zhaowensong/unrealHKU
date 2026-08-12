@@ -16,12 +16,12 @@
     "runtime_debug_overlay": false
   },
   "legacy_floating_signal_layer": {
-    "loaded_actor_count": 1122,
+    "loaded_actor_count": 2790,
     "visible_actor_count": 0,
     "passed": true
   },
-  "crowd_visible_actor_count": 24,
-  "crowd_runtime_position_count": 76,
+  "crowd_visible_actor_count": 30,
+  "crowd_runtime_position_count": 70,
   "person_station_association": {
     "enabled": true,
     "connected_people": 100,
@@ -29,41 +29,47 @@
     "source_connected": 100,
     "rendered_links": 100,
     "rendered_dashed_links": 99,
-    "rendered_segments": 2069,
+    "rendered_segments": 2073,
     "full_coverage": true,
     "rotating_sampling": false,
     "persistent_batch_component": true,
     "persistent_batch_component_tick": false,
     "single_batch_refresh": true,
     "selected_link_style": "solid_blue",
+    "selected_link_srgb": {
+      "r": 24,
+      "g": 82,
+      "b": 138,
+      "a": 170
+    },
     "other_link_style": "dashed_gray",
     "validated_rooftop_endpoints": 2,
     "station_endpoint_offset_cm": 4.0
   },
   "camera": {
     "location": {
-      "x": -164595.82848,
-      "y": 251276.05568000002,
+      "x": -167050.95312000002,
+      "y": 255455.79192,
       "z": 34000.0
     },
     "rotation": {
-      "pitch": -86.58321893747402,
-      "yaw": 33.69006752597933,
-      "roll": 2.6051171512740966e-07
+      "pitch": -87.26359231753904,
+      "yaw": 33.69006752598007,
+      "roll": 2.606780454150315e-07
     },
     "target": {
-      "x": -162906.79499999998,
-      "y": 252402.078,
+      "x": -165698.8275,
+      "y": 256357.209,
       "z": 0.0
     },
     "framed_bounds_min": {
-      "x": -176982.074,
-      "y": 239194.527,
-      "z": 177.126
+      "x": -176966.541,
+      "y": 247000.0,
+      "z": 178.015
     },
     "framed_bounds_max": {
-      "x": -148831.516,
-      "y": 265609.629,
+      "x": -154431.114,
+      "y": 265714.418,
       "z": 11977.468
     },
     "target_source": null
