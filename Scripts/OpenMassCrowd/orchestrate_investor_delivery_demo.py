@@ -567,8 +567,10 @@ def compact_details(snapshot: dict[str, Any]) -> dict[str, Any]:
     liveness = delivery["liveness"]
     presentation = delivery["presentation"]
     performance = delivery["performance"]
+    network = delivery["network"]
     return {
         "population": population,
+        "network": network,
         "moving": int(liveness["moving"]),
         "stuck": int(liveness["stuck"]),
         "maximum_stationary_s": float(liveness["maximum_stationary_s"]),
@@ -743,6 +745,15 @@ def main() -> int:
                 and details["invalid_positions"] == 0
                 and details["overlap_pairs"] == 0
                 and actor_count > 0
+                and details["network"]["association_full_coverage"]
+                and details["network"]["association_source_connected"]
+                == details["network"]["connected"]
+                and details["network"]["association_rendered_links"]
+                == details["network"]["connected"]
+                and not details["network"]["rotating_sampling"]
+                and details["network"]["persistent_batch_component"]
+                and not details["network"]["persistent_batch_component_tick"]
+                and details["network"]["single_batch_refresh"]
                 and (performance_verified or background_throttle_detected)
             )
             now = time.monotonic()

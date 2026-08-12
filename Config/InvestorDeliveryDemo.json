@@ -3,7 +3,9 @@
   "mode": "CentralInvestorDelivery",
   "enabled": true,
   "population": 100,
-  "association_visual_budget": 12,
+  "association_visual_policy": "all_connected_people_persistent_batch",
+  "association_visual_refresh_hz": 10.0,
+  "association_links_scope": "all_current_connected_outdoor_people",
   "stations": [
     {
       "station_id": "CENTRAL-ROOF-01",

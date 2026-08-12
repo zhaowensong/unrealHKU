@@ -10,6 +10,7 @@
 #include "AnimToTextureInstancePlaybackHelpers.h"
 #include "Avoidance/MassAvoidanceTrait.h"
 #include "Avoidance/MassNavigationObstacleTrait.h"
+#include "Components/LineBatchComponent.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -177,7 +178,6 @@ constexpr int32 InvestorGroundGuardsPerPass = 4;
 constexpr float InvestorNetworkRefreshSeconds = 0.33f;
 constexpr float InvestorValidatedRoofRefreshSeconds = 2.0f;
 constexpr float InvestorAssociationVisualRefreshSeconds = 0.1f;
-constexpr float InvestorAssociationVisualLifetimeSeconds = 0.12f;
 constexpr float InvestorAssociationRoofOffsetCm = 4.0f;
 constexpr float InvestorAssociationDashLengthCm = 520.0f;
 constexpr float InvestorAssociationDashGapCm = 300.0f;
@@ -228,6 +228,52 @@ bool IsLegacyFloatingSignalActorLabel(const FString& Label)
         Label.StartsWith(TEXT("SIG_Node_")) ||
         Label.StartsWith(TEXT("SIG_Ray_HISM_")) ||
         Label.StartsWith(TEXT("SIG_Source_"));
+}
+
+bool HideLegacyFloatingSignalActor(AActor* Actor)
+{
+    if (!IsValid(Actor))
+    {
+        return false;
+    }
+
+    bool bHadVisiblePrimitive = false;
+    TArray<UPrimitiveComponent*> PrimitiveComponents;
+    Actor->GetComponents<UPrimitiveComponent>(PrimitiveComponents);
+    for (UPrimitiveComponent* Component : PrimitiveComponents)
+    {
+        if (!IsValid(Component))
+        {
+            continue;
+        }
+        bHadVisiblePrimitive = bHadVisiblePrimitive ||
+            (Component->IsVisible() && !Component->bHiddenInGame);
+        Component->SetVisibility(false, true);
+        Component->SetHiddenInGame(true, true);
+        Component->MarkRenderStateDirty();
+    }
+    const bool bWasVisible = !Actor->IsHidden() && bHadVisiblePrimitive;
+    Actor->SetActorHiddenInGame(true);
+    return bWasVisible;
+}
+
+bool IsLegacyFloatingSignalActorVisible(const AActor* Actor)
+{
+    if (!IsValid(Actor) || Actor->IsHidden())
+    {
+        return false;
+    }
+    TArray<UPrimitiveComponent*> PrimitiveComponents;
+    Actor->GetComponents<UPrimitiveComponent>(PrimitiveComponents);
+    for (const UPrimitiveComponent* Component : PrimitiveComponents)
+    {
+        if (IsValid(Component) &&
+            Component->IsVisible() && !Component->bHiddenInGame)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 int32 GetInvestorPresentationBandIndex(const int32 StableEntityIndex)
@@ -937,6 +983,29 @@ AOpenMassCrowdSpawner::AOpenMassCrowdSpawner()
     SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
     SetRootComponent(SceneRoot);
 
+    // A dedicated batch keeps every current person/station association alive
+    // between refreshes. Unlike short-lived DrawDebugLine calls, this layer
+    // cannot flicker when the editor or GPU misses a 100 ms refresh window.
+    InvestorAssociationLineBatch =
+        CreateDefaultSubobject<ULineBatchComponent>(
+            TEXT("InvestorAssociationLineBatch"));
+    InvestorAssociationLineBatch->SetupAttachment(SceneRoot);
+    InvestorAssociationLineBatch->SetCollisionEnabled(
+        ECollisionEnabled::NoCollision);
+    InvestorAssociationLineBatch->SetGenerateOverlapEvents(false);
+    InvestorAssociationLineBatch->SetCanEverAffectNavigation(false);
+    InvestorAssociationLineBatch->SetCastShadow(false);
+    InvestorAssociationLineBatch->bReceivesDecals = false;
+    InvestorAssociationLineBatch->bCalculateAccurateBounds = true;
+    // All association lines use infinite lifetime and are explicitly replaced
+    // as one batch. The component does not need to scan ~2,000 line segments
+    // every frame for lifetime expiry.
+    InvestorAssociationLineBatch->PrimaryComponentTick.bCanEverTick = false;
+    InvestorAssociationLineBatch->SetComponentTickEnabled(false);
+    InvestorAssociationLineBatch->ComponentTags.AddUnique(
+        TEXT("TelecomTwinAssociationLines"));
+    InvestorAssociationLineBatch->SetVisibility(false);
+
     FOpenMassCrowdVisualConfig MannequinVisual;
     MannequinVisual.VariantName = TEXT("UE57_AnimToTexture_Mannequin_Temporary");
     MannequinVisual.StaticMesh = TSoftObjectPtr<UStaticMesh>(FSoftObjectPath(
@@ -994,6 +1063,11 @@ void AOpenMassCrowdSpawner::BeginPlay()
 {
     Super::BeginPlay();
 
+    if (bInvestorDeliveryDemoEnabled)
+    {
+        RegisterInvestorLegacySignalGuards();
+    }
+
     if (NetworkMode == EOpenMassCrowdNetworkMode::CentralCertifiedCache)
     {
         // Only a new world/PIE session may clear lifetime collision evidence.
@@ -1019,6 +1093,7 @@ void AOpenMassCrowdSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason)
     GetWorldTimerManager().ClearTimer(CentralAdmissionTimer);
     HideCentralProfile();
     HideInvestorKPI();
+    UnregisterInvestorLegacySignalGuards();
     DestroyRuntimePopulation();
     Super::EndPlay(EndPlayReason);
 }
@@ -1027,12 +1102,17 @@ void AOpenMassCrowdSpawner::Tick(const float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
 
-    if (!bInvestorDeliveryDemoEnabled && bInvestorDemoInitialized)
+    if (!bInvestorDeliveryDemoEnabled)
     {
-        HideInvestorKPI();
-        bInvestorDemoInitialized = false;
-        InvestorPeople.Reset();
-        InvestorStations.Reset();
+        if (bInvestorDemoInitialized)
+        {
+            HideInvestorKPI();
+            ClearInvestorAssociationVisuals();
+            bInvestorDemoInitialized = false;
+            InvestorPeople.Reset();
+            InvestorStations.Reset();
+        }
+        UnregisterInvestorLegacySignalGuards();
     }
 
     if (SpawnedEntities.IsEmpty())
@@ -11148,6 +11228,8 @@ void AOpenMassCrowdSpawner::EnsureInvestorDemoInitialized()
         return;
     }
 
+    RegisterInvestorLegacySignalGuards();
+
     InvestorStations.Reset();
     FInvestorStationRuntime& Hero = InvestorStations.AddDefaulted_GetRef();
     Hero.StationId = TEXT("CENTRAL-ROOF-01");
@@ -11184,6 +11266,11 @@ void AOpenMassCrowdSpawner::EnsureInvestorDemoInitialized()
     // PIE worlds. Starting the crowd must not hide, move, rebuild, instance, or
     // otherwise take ownership of those actors.
     ValidateInvestorPersistedSignalLayer();
+    ClearInvestorAssociationVisuals();
+    if (IsValid(InvestorAssociationLineBatch))
+    {
+        InvestorAssociationLineBatch->SetVisibility(true, true);
+    }
     ShowInvestorKPI();
     InvestorLegacySignalSuppressionAccumulator = 0.0f;
     InvestorNetworkUpdateAccumulator = 0.0f;
@@ -11548,11 +11635,13 @@ void AOpenMassCrowdSpawner::UpdateInvestorPersonStates(const float DeltaSeconds)
     }
 }
 
-void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals() const
+void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals()
 {
     UWorld* World = GetWorld();
-    if (!World || !bInvestorDemoInitialized || InvestorPeople.IsEmpty())
+    if (!World || !bInvestorDemoInitialized || InvestorPeople.IsEmpty() ||
+        !IsValid(InvestorAssociationLineBatch))
     {
+        ClearInvestorAssociationVisuals();
         return;
     }
 
@@ -11560,17 +11649,24 @@ void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals() const
         UWorld::GetSubsystem<UMassSpawnerSubsystem>(World);
     if (!SpawnerSubsystem)
     {
+        ClearInvestorAssociationVisuals();
         return;
     }
     FMassEntityManager& EntityManager =
         SpawnerSubsystem->GetEntityManagerChecked();
-    const int32 VisualStride = FMath::Max(
-        1,
-        FMath::CeilToInt(
-            static_cast<float>(InvestorPeople.Num()) /
-            static_cast<float>(FMath::Max(InvestorAssociationVisualBudget, 1))));
-    const int32 VisualPhase =
-        static_cast<int32>(InvestorElapsedSeconds * 0.5f) % VisualStride;
+
+    // Build the complete connected snapshot in one component update. Every
+    // eligible outdoor person is represented on every refresh; there is no
+    // rotating phase or short lifetime that can make a valid link blink out.
+    TArray<FBatchedLine> Lines;
+    Lines.Reserve(InvestorPeople.Num() * 32);
+    int32 SourceConnectedCount = 0;
+    int32 RenderedLinkCount = 0;
+    int32 RenderedDashedLinkCount = 0;
+    const FLinearColor SelectedColor = FLinearColor::FromSRGBColor(
+        FColor(55, 125, 165, 135));
+    const FLinearColor OtherColor = FLinearColor::FromSRGBColor(
+        FColor(95, 102, 110, 80));
 
     for (int32 StableIndex = 0;
          StableIndex < InvestorPeople.Num();
@@ -11591,13 +11687,6 @@ void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals() const
 
         const bool bSelected =
             StableIndex == SelectedCentralProfileEntityIndex;
-        if (!bSelected &&
-            (InvestorAssociationVisualBudget <= 0 ||
-             StableIndex % VisualStride != VisualPhase))
-        {
-            continue;
-        }
-
         const FMassEntityHandle Entity = SpawnedEntities[StableIndex];
         if (!EntityManager.IsEntityValid(Entity))
         {
@@ -11615,18 +11704,19 @@ void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals() const
         const FVector StationPoint =
             Station.ValidatedRoofPoint +
             FVector(0.0, 0.0, InvestorAssociationRoofOffsetCm);
+        ++SourceConnectedCount;
 
         if (bSelected)
         {
-            DrawDebugLine(
-                World,
+            Lines.Emplace(
                 PersonPoint,
                 StationPoint,
-                FColor(55, 125, 165, 135),
-                false,
-                InvestorAssociationVisualLifetimeSeconds,
+                SelectedColor,
+                0.0f,
+                2.25f,
                 1,
-                2.25f);
+                static_cast<uint32>(StableIndex + 1));
+            ++RenderedLinkCount;
             continue;
         }
 
@@ -11646,17 +11736,43 @@ void AOpenMassCrowdSpawner::DrawInvestorAssociationVisuals() const
             const float DashEnd = FMath::Min(
                 DashStart + InvestorAssociationDashLengthCm,
                 LinkLength);
-            DrawDebugLine(
-                World,
+            Lines.Emplace(
                 PersonPoint + LinkDirection * DashStart,
                 PersonPoint + LinkDirection * DashEnd,
-                FColor(95, 102, 110, 80),
-                false,
-                InvestorAssociationVisualLifetimeSeconds,
+                OtherColor,
+                0.0f,
+                1.0f,
                 1,
-                1.0f);
+                static_cast<uint32>(StableIndex + 1));
         }
+        ++RenderedLinkCount;
+        ++RenderedDashedLinkCount;
     }
+
+    InvestorAssociationLineBatch->Flush();
+    InvestorAssociationLineBatch->SetVisibility(true, true);
+    if (!Lines.IsEmpty())
+    {
+        InvestorAssociationLineBatch->DrawLines(MakeArrayView(Lines));
+    }
+    InvestorAssociationSourceConnectedCount = SourceConnectedCount;
+    InvestorAssociationRenderedLinkCount = RenderedLinkCount;
+    InvestorAssociationRenderedDashedLinkCount = RenderedDashedLinkCount;
+    InvestorAssociationRenderedSegmentCount = Lines.Num();
+    ++InvestorAssociationVisualRevision;
+}
+
+void AOpenMassCrowdSpawner::ClearInvestorAssociationVisuals()
+{
+    if (IsValid(InvestorAssociationLineBatch))
+    {
+        InvestorAssociationLineBatch->Flush();
+        InvestorAssociationLineBatch->SetVisibility(false, true);
+    }
+    InvestorAssociationSourceConnectedCount = 0;
+    InvestorAssociationRenderedLinkCount = 0;
+    InvestorAssociationRenderedDashedLinkCount = 0;
+    InvestorAssociationRenderedSegmentCount = 0;
 }
 
 bool AOpenMassCrowdSpawner::ValidateInvestorPersistedSignalLayer()
@@ -11731,6 +11847,71 @@ bool AOpenMassCrowdSpawner::ValidateInvestorPersistedSignalLayer()
     return bInvestorPersistedSignalLayerReady;
 }
 
+void AOpenMassCrowdSpawner::RegisterInvestorLegacySignalGuards()
+{
+    UWorld* World = GetWorld();
+    if (!World || !World->IsGameWorld())
+    {
+        return;
+    }
+    if (!InvestorActorSpawnedDelegateHandle.IsValid())
+    {
+        InvestorActorSpawnedDelegateHandle = World->AddOnActorSpawnedHandler(
+            FOnActorSpawned::FDelegate::CreateUObject(
+                this,
+                &AOpenMassCrowdSpawner::HandleInvestorActorSpawned));
+    }
+    if (!InvestorLevelAddedDelegateHandle.IsValid())
+    {
+        InvestorLevelAddedDelegateHandle =
+            FWorldDelegates::LevelAddedToWorld.AddUObject(
+                this,
+                &AOpenMassCrowdSpawner::HandleInvestorLevelAdded);
+    }
+}
+
+void AOpenMassCrowdSpawner::UnregisterInvestorLegacySignalGuards()
+{
+    if (UWorld* World = GetWorld();
+        World && InvestorActorSpawnedDelegateHandle.IsValid())
+    {
+        World->RemoveOnActorSpawnedHandler(
+            InvestorActorSpawnedDelegateHandle);
+    }
+    InvestorActorSpawnedDelegateHandle.Reset();
+    if (InvestorLevelAddedDelegateHandle.IsValid())
+    {
+        FWorldDelegates::LevelAddedToWorld.Remove(
+            InvestorLevelAddedDelegateHandle);
+        InvestorLevelAddedDelegateHandle.Reset();
+    }
+}
+
+void AOpenMassCrowdSpawner::HandleInvestorActorSpawned(AActor* Actor)
+{
+    if (!bInvestorDeliveryDemoEnabled || !IsValid(Actor) ||
+        Actor->GetWorld() != GetWorld() ||
+        !IsLegacyFloatingSignalActorLabel(GetSignalActorLabel(Actor)))
+    {
+        return;
+    }
+    HideLegacyFloatingSignalActor(Actor);
+}
+
+void AOpenMassCrowdSpawner::HandleInvestorLevelAdded(
+    ULevel* Level,
+    UWorld* World)
+{
+    if (bInvestorDeliveryDemoEnabled && IsValid(Level) &&
+        World == GetWorld())
+    {
+        // World Partition has finished constructing/registering this cell's
+        // components, so close the small interval in which a legacy channel
+        // could otherwise become renderable before the periodic guard runs.
+        SuppressLegacyFloatingSignalActors();
+    }
+}
+
 void AOpenMassCrowdSpawner::SuppressLegacyFloatingSignalActors()
 {
     UWorld* World = GetWorld();
@@ -11754,38 +11935,13 @@ void AOpenMassCrowdSpawner::SuppressLegacyFloatingSignalActors()
         }
 
         ++LoadedCount;
-        bool bWasVisible = !Actor->IsHidden();
-        TArray<UPrimitiveComponent*> PrimitiveComponents;
-        Actor->GetComponents<UPrimitiveComponent>(PrimitiveComponents);
-        for (UPrimitiveComponent* Component : PrimitiveComponents)
-        {
-            if (!IsValid(Component))
-            {
-                continue;
-            }
-            bWasVisible = bWasVisible &&
-                Component->IsVisible() && !Component->bHiddenInGame;
-            Component->SetVisibility(false, true);
-            Component->SetHiddenInGame(true, true);
-            Component->MarkRenderStateDirty();
-        }
-        Actor->SetActorHiddenInGame(true);
+        const bool bWasVisible = HideLegacyFloatingSignalActor(Actor);
         if (bWasVisible)
         {
             ++NewlySuppressedCount;
         }
-
-        bool bStillVisible = !Actor->IsHidden();
-        for (UPrimitiveComponent* Component : PrimitiveComponents)
-        {
-            if (IsValid(Component) &&
-                Component->IsVisible() && !Component->bHiddenInGame)
-            {
-                bStillVisible = true;
-                break;
-            }
-        }
-        VisibleAfterCount += bStillVisible ? 1 : 0;
+        VisibleAfterCount +=
+            IsLegacyFloatingSignalActorVisible(Actor) ? 1 : 0;
     }
 
     InvestorLegacyFloatingSignalLoadedCount = LoadedCount;
@@ -12606,6 +12762,14 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
     const int32 ExpectedInvestorPopulation = GetRequestedCentralPopulation();
     const int32 MinimumHealthyMovingPopulation = FMath::CeilToInt(
         static_cast<float>(ExpectedInvestorPopulation) * 0.95f);
+    const bool bAssociationVisualEnabled =
+        IsValid(InvestorAssociationLineBatch) &&
+        InvestorAssociationLineBatch->IsVisible();
+    const bool bAssociationFullCoverage =
+        bAssociationVisualEnabled &&
+        InvestorAssociationVisualRevision > 0 &&
+        InvestorAssociationSourceConnectedCount == ConnectedCount &&
+        InvestorAssociationRenderedLinkCount == ConnectedCount;
     const bool bPassed =
         bInvestorDeliveryDemoEnabled &&
         InvestorPeople.Num() == ExpectedInvestorPopulation &&
@@ -12630,9 +12794,10 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         InvestorPersistedSignalSourceCount ==
             InvestorExpectedSignalSourceCount &&
         InvestorPersistedSignalRayCount == InvestorExpectedSignalRayCount &&
+        bAssociationFullCoverage &&
         InvestorLegacyFloatingSignalVisibleCount == 0;
     return FString::Printf(
-        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d,\"association_visual_enabled\":true,\"selected_link_style\":\"solid_blue\",\"other_link_style\":\"dashed_gray\",\"station_endpoint_offset_cm\":4.0},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"signal_rendering\":{\"source\":\"persisted_editor_actor_components\",\"parity_ready\":%s,\"original_actor_count\":%d,\"original_visible_actor_count\":%d,\"source_actor_count\":%d,\"ray_actor_count\":%d,\"transforms_modified\":false,\"actor_visibility_modified\":false,\"runtime_rebuild_enabled\":false,\"runtime_overlay_enabled\":false},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":false,\"preserved_visible\":true,\"runtime_overlay_enabled\":false,\"floating_mock_loaded_count\":%d,\"floating_mock_visible_count\":%d,\"late_stream_scan_hz\":%.1f},\"video_required\":false}"),
+        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d,\"association_visual_enabled\":%s,\"association_visual_policy\":\"all_connected_people_persistent_batch\",\"association_source_connected\":%d,\"association_rendered_links\":%d,\"association_rendered_dashed_links\":%d,\"association_rendered_segments\":%d,\"association_visual_revision\":%d,\"association_full_coverage\":%s,\"rotating_sampling\":false,\"short_lifetime_debug_lines\":false,\"persistent_batch_component\":true,\"persistent_batch_component_tick\":false,\"single_batch_refresh\":true,\"selected_link_style\":\"solid_blue\",\"other_link_style\":\"dashed_gray\",\"station_endpoint_offset_cm\":4.0},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"signal_rendering\":{\"source\":\"persisted_editor_actor_components\",\"parity_ready\":%s,\"original_actor_count\":%d,\"original_visible_actor_count\":%d,\"source_actor_count\":%d,\"ray_actor_count\":%d,\"transforms_modified\":false,\"actor_visibility_modified\":false,\"runtime_rebuild_enabled\":false,\"runtime_overlay_enabled\":false},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":false,\"preserved_visible\":true,\"runtime_overlay_enabled\":false,\"floating_mock_loaded_count\":%d,\"floating_mock_visible_count\":%d,\"actor_spawn_guard\":true,\"level_stream_guard\":true,\"late_stream_scan_hz\":%.1f},\"video_required\":false}"),
         bInvestorDeliveryDemoEnabled ? TEXT("true") : TEXT("false"),
         bPassed ? TEXT("true") : TEXT("false"),
         InvestorDeliveryPopulation,
@@ -12677,7 +12842,14 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         ConnectedCount,
         FMath::Max(InvestorPeople.Num() - ConnectedCount -
             EnteringCount - IndoorCount - ExitingCount, 0),
-        InvestorAssociationVisualBudget,
+        InvestorPeople.Num(),
+        bAssociationVisualEnabled ? TEXT("true") : TEXT("false"),
+        InvestorAssociationSourceConnectedCount,
+        InvestorAssociationRenderedLinkCount,
+        InvestorAssociationRenderedDashedLinkCount,
+        InvestorAssociationRenderedSegmentCount,
+        InvestorAssociationVisualRevision,
+        bAssociationFullCoverage ? TEXT("true") : TEXT("false"),
         !InvestorBuildingPortalLocation.IsNearlyZero() ? TEXT("true") : TEXT("false"),
         InvestorBuildingPortalLocation.X,
         InvestorBuildingPortalLocation.Y,
@@ -13007,6 +13179,7 @@ void AOpenMassCrowdSpawner::DestroyRuntimePopulation()
     GetWorldTimerManager().ClearTimer(CentralAdmissionTimer);
     HideCentralProfile();
     HideInvestorKPI();
+    ClearInvestorAssociationVisuals();
     InvestorStations.Reset();
     InvestorPeople.Reset();
     bInvestorDemoInitialized = false;

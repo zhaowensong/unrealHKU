@@ -1,0 +1,72 @@
+{
+  "schema": "telecomtwin-investor-signal-alignment-evidence-v1",
+  "shot": "association-persistent",
+  "pie_world": "/Game/Maps/UEDPIE_0_shanghai.shanghai",
+  "persisted_signal_inventory": {
+    "source_actor_count": 30,
+    "ray_actor_count": 1920
+  },
+  "runtime_signal_layer": {
+    "visible_original_actor_count": 1950,
+    "runtime_batch_component_count": 0,
+    "runtime_batch_instance_count": 0,
+    "source_policy": "same persisted actors before and during PIE",
+    "actor_visibility_modified": false,
+    "runtime_rebuild_enabled": false,
+    "runtime_debug_overlay": false
+  },
+  "legacy_floating_signal_layer": {
+    "loaded_actor_count": 1122,
+    "visible_actor_count": 0,
+    "passed": true
+  },
+  "crowd_visible_actor_count": 24,
+  "crowd_runtime_position_count": 76,
+  "person_station_association": {
+    "enabled": true,
+    "connected_people": 100,
+    "policy": "all_connected_people_persistent_batch",
+    "source_connected": 100,
+    "rendered_links": 100,
+    "rendered_dashed_links": 99,
+    "rendered_segments": 2069,
+    "full_coverage": true,
+    "rotating_sampling": false,
+    "persistent_batch_component": true,
+    "persistent_batch_component_tick": false,
+    "single_batch_refresh": true,
+    "selected_link_style": "solid_blue",
+    "other_link_style": "dashed_gray",
+    "validated_rooftop_endpoints": 2,
+    "station_endpoint_offset_cm": 4.0
+  },
+  "camera": {
+    "location": {
+      "x": -164595.82848,
+      "y": 251276.05568000002,
+      "z": 34000.0
+    },
+    "rotation": {
+      "pitch": -86.58321893747402,
+      "yaw": 33.69006752597933,
+      "roll": 2.6051171512740966e-07
+    },
+    "target": {
+      "x": -162906.79499999998,
+      "y": 252402.078,
+      "z": 0.0
+    },
+    "framed_bounds_min": {
+      "x": -176982.074,
+      "y": 239194.527,
+      "z": 177.126
+    },
+    "framed_bounds_max": {
+      "x": -148831.516,
+      "y": 265609.629,
+      "z": 11977.468
+    },
+    "target_source": null
+  },
+  "image": "Docs\\Evidence\\InvestorDelivery\\17_person_station_association_persistent_2026-08-12.png"
+}

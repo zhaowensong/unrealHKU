@@ -13,6 +13,8 @@
 #include "OpenMassCrowdSpawner.generated.h"
 
 class AZoneGraphData;
+class ULevel;
+class ULineBatchComponent;
 class UMassEntityTraitBase;
 class UPrimitiveComponent;
 class USceneComponent;
@@ -84,14 +86,6 @@ public:
         Category = "Open Mass Crowd|Investor Demo",
         meta = (ClampMin = "1", ClampMax = "100"))
     int32 InvestorDeliveryPopulation = 100;
-
-    /** Maximum number of faint aggregate links; selected-person link is additional. */
-    UPROPERTY(
-        EditAnywhere,
-        BlueprintReadWrite,
-        Category = "Open Mass Crowd|Investor Demo|Visual",
-        meta = (ClampMin = "0", ClampMax = "30"))
-    int32 InvestorAssociationVisualBudget = 12;
 
     /** Maximum number of Central Mass entities created in one admission batch. */
     UPROPERTY(
@@ -709,9 +703,14 @@ private:
     void EnsureInvestorDemoInitialized();
     void UpdateInvestorDemo(float DeltaSeconds);
     void UpdateInvestorPersonStates(float DeltaSeconds);
-    void DrawInvestorAssociationVisuals() const;
+    void DrawInvestorAssociationVisuals();
+    void ClearInvestorAssociationVisuals();
     bool ValidateInvestorStationRoof(FInvestorStationRuntime& Station);
     bool ValidateInvestorPersistedSignalLayer();
+    void RegisterInvestorLegacySignalGuards();
+    void UnregisterInvestorLegacySignalGuards();
+    void HandleInvestorActorSpawned(AActor* Actor);
+    void HandleInvestorLevelAdded(ULevel* Level, UWorld* World);
     void SuppressLegacyFloatingSignalActors();
     void ShowInvestorKPI();
     void HideInvestorKPI();
@@ -935,6 +934,8 @@ private:
     FRotator CentralProfilePreviousControlRotation = FRotator::ZeroRotator;
     TSharedPtr<SWidget> CentralProfileViewportWidget;
     TSharedPtr<SWidget> InvestorKPIViewportWidget;
+    UPROPERTY(VisibleAnywhere, Transient)
+    TObjectPtr<ULineBatchComponent> InvestorAssociationLineBatch;
     TArray<FInvestorStationRuntime> InvestorStations;
     TArray<FInvestorPersonRuntime> InvestorPeople;
     FVector InvestorBuildingPortalLocation = FVector::ZeroVector;
@@ -943,12 +944,19 @@ private:
     int32 InvestorPersistedSignalSourceCount = 0;
     int32 InvestorPersistedSignalRayCount = 0;
     bool bInvestorPersistedSignalLayerReady = false;
+    FDelegateHandle InvestorActorSpawnedDelegateHandle;
+    FDelegateHandle InvestorLevelAddedDelegateHandle;
     float InvestorLegacySignalSuppressionAccumulator = 0.0f;
     int32 InvestorLegacyFloatingSignalLoadedCount = 0;
     int32 InvestorLegacyFloatingSignalVisibleCount = 0;
     float InvestorNetworkUpdateAccumulator = 0.0f;
     float InvestorRoofValidationAccumulator = 0.0f;
     float InvestorAssociationVisualRefreshAccumulator = 0.0f;
+    int32 InvestorAssociationSourceConnectedCount = 0;
+    int32 InvestorAssociationRenderedLinkCount = 0;
+    int32 InvestorAssociationRenderedDashedLinkCount = 0;
+    int32 InvestorAssociationRenderedSegmentCount = 0;
+    int32 InvestorAssociationVisualRevision = 0;
     float InvestorProfileRefreshAccumulator = 0.0f;
     float InvestorElapsedSeconds = 0.0f;
     int32 InvestorBuildingEntryCount = 0;

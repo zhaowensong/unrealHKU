@@ -155,8 +155,19 @@ def main() -> int:
         ),
         "live_person_station_association": (
             delivery["network"]["connected"] > 0
-            and delivery["network"]["association_visual_budget"] == 12
             and delivery["network"]["association_visual_enabled"]
+            and delivery["network"]["association_visual_policy"]
+            == "all_connected_people_persistent_batch"
+            and delivery["network"]["association_source_connected"]
+            == delivery["network"]["connected"]
+            and delivery["network"]["association_rendered_links"]
+            == delivery["network"]["connected"]
+            and delivery["network"]["association_full_coverage"]
+            and not delivery["network"]["rotating_sampling"]
+            and not delivery["network"]["short_lifetime_debug_lines"]
+            and delivery["network"]["persistent_batch_component"]
+            and not delivery["network"]["persistent_batch_component_tick"]
+            and delivery["network"]["single_batch_refresh"]
             and delivery["network"]["selected_link_style"] == "solid_blue"
             and delivery["network"]["other_link_style"] == "dashed_gray"
             and float(delivery["network"]["station_endpoint_offset_cm"])

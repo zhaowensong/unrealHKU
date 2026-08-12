@@ -16,7 +16,6 @@ import unreal
 
 
 EXPECTED_POPULATION = 100
-EXPECTED_LINK_BUDGET = 12
 
 
 def project_root() -> Path:
@@ -61,9 +60,6 @@ def main() -> None:
     spawner.set_editor_property("investor_delivery_demo_enabled", True)
     spawner.set_editor_property("investor_delivery_population", EXPECTED_POPULATION)
     spawner.set_editor_property(
-        "investor_association_visual_budget", EXPECTED_LINK_BUDGET
-    )
-    spawner.set_editor_property(
         "network_mode", unreal.OpenMassCrowdNetworkMode.CENTRAL_CERTIFIED_CACHE
     )
     try:
@@ -85,9 +81,7 @@ def main() -> None:
         "population": int(
             spawner.get_editor_property("investor_delivery_population")
         ),
-        "association_visual_budget": int(
-            spawner.get_editor_property("investor_association_visual_budget")
-        ),
+        "association_visual_policy": "all_connected_people_persistent_batch",
         "mode_enabled": bool(
             spawner.get_editor_property("investor_delivery_demo_enabled")
         ),

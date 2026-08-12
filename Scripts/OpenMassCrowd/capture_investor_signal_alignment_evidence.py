@@ -27,6 +27,7 @@ SHOT_FILES = {
     "layer-fixed": "08_legacy_floating_signal_layer_removed_2026-08-11.png",
     "association": "09_person_station_association_links_2026-08-11.png",
     "association-subtle": "10_person_station_association_subtle_2026-08-12.png",
+    "association-persistent": "17_person_station_association_persistent_2026-08-12.png",
 }
 SOURCE_PATTERN = re.compile(r"^SIG_Source_\d{2}_Direct_Roof$")
 RAY_PATTERN = re.compile(
@@ -160,17 +161,21 @@ def camera_for_roof_detail(sources, rays, crowd_points):
 
 def camera_for_association(crowd_points, station_points):
     points = list(crowd_points) + list(station_points)
-    _center, _extent, minimum, maximum = bounds_center(points)
+    center, extent, minimum, maximum = bounds_center(points)
     crowd_center = bounds_center(crowd_points)[0]
     target_station = min(
         station_points,
         key=lambda point: squared_xy(point, crowd_center),
     )
-    # Stand just behind the street population and look toward its nearest live
-    # rooftop endpoint. The association fan then reads clearly from person end
-    # to roof end instead of being lost inside the city-wide propagation rays.
-    location = crowd_center + unreal.Vector(-3500.0, 6500.0, 1800.0)
-    target = target_station + unreal.Vector(0.0, 0.0, 250.0)
+    # A near-plan view avoids placing the camera inside Central's dense tower
+    # geometry and makes the complete person-to-rooftop fan readable in one
+    # frame. The height scales with the current runtime crowd bounds.
+    target = unreal.Vector(float(center.x), float(center.y), 0.0)
+    location = target + unreal.Vector(
+        -0.12 * extent,
+        -0.08 * extent,
+        max(34000.0, extent * 1.45),
+    )
     return location, target, minimum, maximum, None
 
 
@@ -247,10 +252,52 @@ def main():
     if len(spawners) != 1:
         raise RuntimeError("Expected one investor crowd spawner, found {}".format(len(spawners)))
     delivery = json.loads(spawners[0].get_investor_demo_evidence_snapshot())
+    association = delivery["network"]
+    if not (
+        association["association_visual_policy"]
+        == "all_connected_people_persistent_batch"
+        and association["association_full_coverage"]
+        and association["association_source_connected"]
+        == association["connected"]
+        and association["association_rendered_links"]
+        == association["connected"]
+        and not association["rotating_sampling"]
+        and association["persistent_batch_component"]
+        and not association["persistent_batch_component_tick"]
+        and association["single_batch_refresh"]
+    ):
+        raise RuntimeError(
+            "Person/station associations are not persistently complete: {}".format(
+                json.dumps(association, ensure_ascii=False, sort_keys=True)
+            )
+        )
     if args.shot.startswith("association"):
         # Stable person zero periodically enters the building and correctly
         # disconnects. Select person one for deterministic blue-link evidence.
         spawners[0].show_central_profile_by_stable_index(1)
+        # Mass entities and VAT instances are not guaranteed to exist as one
+        # Actor per person. Read their reflected runtime snapshots so the
+        # evidence camera is based on the real current crowd, not a portal
+        # fallback that can completely miss the association layer.
+        mass_crowd_points = []
+        for stable_index in range(int(spawners[0].get_spawned_entity_count())):
+            snapshot = json.loads(
+                spawners[0].get_central_vat_animation_evidence_snapshot_for_stable_index(
+                    stable_index
+                )
+            )
+            if not snapshot.get("valid"):
+                continue
+            point = snapshot["location"]
+            mass_crowd_points.append(
+                unreal.Vector(
+                    float(point["x"]),
+                    float(point["y"]),
+                    float(point["z"]),
+                )
+            )
+        if mass_crowd_points:
+            crowd_points = mass_crowd_points
     station_points = [
         unreal.Vector(
             float(item["validated_roof"]["x"]),
@@ -340,9 +387,38 @@ def main():
             "passed": not visible_legacy_floating,
         },
         "crowd_visible_actor_count": len(crowd),
+        "crowd_runtime_position_count": len(crowd_points),
         "person_station_association": {
             "enabled": bool(delivery["network"]["association_visual_enabled"]),
             "connected_people": int(delivery["network"]["connected"]),
+            "policy": delivery["network"]["association_visual_policy"],
+            "source_connected": int(
+                delivery["network"]["association_source_connected"]
+            ),
+            "rendered_links": int(
+                delivery["network"]["association_rendered_links"]
+            ),
+            "rendered_dashed_links": int(
+                delivery["network"]["association_rendered_dashed_links"]
+            ),
+            "rendered_segments": int(
+                delivery["network"]["association_rendered_segments"]
+            ),
+            "full_coverage": bool(
+                delivery["network"]["association_full_coverage"]
+            ),
+            "rotating_sampling": bool(
+                delivery["network"]["rotating_sampling"]
+            ),
+            "persistent_batch_component": bool(
+                delivery["network"]["persistent_batch_component"]
+            ),
+            "persistent_batch_component_tick": bool(
+                delivery["network"]["persistent_batch_component_tick"]
+            ),
+            "single_batch_refresh": bool(
+                delivery["network"]["single_batch_refresh"]
+            ),
             "selected_link_style": delivery["network"]["selected_link_style"],
             "other_link_style": delivery["network"]["other_link_style"],
             "validated_rooftop_endpoints": len(station_points),
