@@ -1,0 +1,252 @@
+{
+  "schema": "telecomtwin-investor-far-gait-runtime-v1",
+  "captured_at_utc": "2026-08-12T01:20:08.752181+00:00",
+  "requested_distance_m": 1500.0,
+  "vat_component_limits": {
+    "component_count": 24,
+    "items": [
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 13,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Torso_VAT.SM_CitySample_FTN_Torso_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 13,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Legs_VAT.SM_CitySample_FTN_Legs_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 13,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Shoes_VAT.SM_CitySample_FTN_Shoes_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 13,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTN/SM_CitySample_FTN_Head_VAT.SM_CitySample_FTN_Head_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 13,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Torso_VAT.SM_CitySample_FTO_Torso_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 13,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Legs_VAT.SM_CitySample_FTO_Legs_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 13,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Shoes_VAT.SM_CitySample_FTO_Shoes_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 13,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTO/SM_CitySample_FTO_Head_VAT.SM_CitySample_FTO_Head_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 12,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Torso_VAT.SM_CitySample_FTU_Torso_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 12,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Legs_VAT.SM_CitySample_FTU_Legs_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 12,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Shoes_VAT.SM_CitySample_FTU_Shoes_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 12,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/FTU/SM_CitySample_FTU_Head_VAT.SM_CitySample_FTU_Head_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 11,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Torso_VAT.SM_CitySample_MTN_Torso_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 11,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Legs_VAT.SM_CitySample_MTN_Legs_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 11,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Shoes_VAT.SM_CitySample_MTN_Shoes_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 11,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTN/SM_CitySample_MTN_Head_VAT.SM_CitySample_MTN_Head_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 10,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Torso_VAT.SM_CitySample_MTO_Torso_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 10,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Legs_VAT.SM_CitySample_MTO_Legs_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 10,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Shoes_VAT.SM_CitySample_MTO_Shoes_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 10,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTO/SM_CitySample_MTO_Head_VAT.SM_CitySample_MTO_Head_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 11,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Torso_VAT.SM_CitySample_MTU_Torso_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 11,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Legs_VAT.SM_CitySample_MTU_Legs_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 11,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Shoes_VAT.SM_CitySample_MTU_Shoes_VAT",
+        "wpo_disable_distance_cm": 0
+      },
+      {
+        "cached_max_draw_distance_cm": 0.0,
+        "instance_end_cull_distance_cm": 1000000,
+        "instances": 11,
+        "mesh": "/Game/OpenMassCrowd/CitySampleVAT/MTU/SM_CitySample_MTU_Head_VAT.SM_CitySample_MTU_Head_VAT",
+        "wpo_disable_distance_cm": 0
+      }
+    ],
+    "maximum_cached_draw_distance_cm": 0.0,
+    "maximum_wpo_disable_distance_cm": 0,
+    "minimum_end_cull_distance_cm": 1000000,
+    "total_instances": 280
+  },
+  "positioned": {
+    "person_id": "HK-C-084",
+    "requested_distance_m": 1500.0,
+    "stable_index": 83
+  },
+  "first": {
+    "high_actors": 0,
+    "low_actors": 0,
+    "spawned": 100,
+    "target": {
+      "animation_active": true,
+      "current_frame": 82.425781,
+      "distance_m": 1504.948,
+      "end_frame": 98.0,
+      "location": {
+        "x": -158034.8,
+        "y": 254216.593,
+        "z": 219.924
+      },
+      "person_id": "HK-C-084",
+      "play_rate": 1.35,
+      "representation": "VAT",
+      "speed_cm_s": 151.027,
+      "stable_index": 83,
+      "start_frame": 0.0,
+      "time_offset": 2.744568,
+      "valid": true,
+      "world_time_seconds": 891.512857
+    },
+    "vat_actors": 70
+  },
+  "second": {
+    "high_actors": 0,
+    "low_actors": 0,
+    "spawned": 100,
+    "target": {
+      "animation_active": true,
+      "current_frame": 31.933594,
+      "distance_m": 1506.86,
+      "end_frame": 98.0,
+      "location": {
+        "x": -158227.365,
+        "y": 254170.211,
+        "z": 228.924
+      },
+      "person_id": "HK-C-084",
+      "play_rate": 1.35,
+      "representation": "VAT",
+      "speed_cm_s": 151.921,
+      "stable_index": 83,
+      "start_frame": 0.0,
+      "time_offset": 2.744568,
+      "valid": true,
+      "world_time_seconds": 892.71056
+    },
+    "vat_actors": 100
+  },
+  "frame_advance": 47.507813,
+  "checks": {
+    "same_person": true,
+    "beyond_old_one_km_cutoff": true,
+    "vat_representation_retained": true,
+    "animation_active": true,
+    "animation_frame_advanced": true,
+    "population_still_represented": true,
+    "vat_wpo_never_distance_disabled": true,
+    "vat_instances_not_culled_before_three_km": true
+  },
+  "passed": true,
+  "camera_restored": true
+}

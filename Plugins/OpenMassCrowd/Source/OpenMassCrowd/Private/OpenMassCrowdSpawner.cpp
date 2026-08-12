@@ -181,9 +181,10 @@ constexpr float InvestorAssociationVisualRefreshSeconds = 0.1f;
 constexpr float InvestorAssociationRoofOffsetCm = 4.0f;
 constexpr float InvestorAssociationDashLengthCm = 520.0f;
 constexpr float InvestorAssociationDashGapCm = 300.0f;
-constexpr float InvestorSkeletalWalkDistanceCm = 20000.0f;
+constexpr float InvestorSkeletalWalkDistanceCm = 35000.0f;
+constexpr float InvestorVATVisibleDistanceCm = 300000.0f;
 constexpr int32 InvestorHighActorBudget = 6;
-constexpr int32 InvestorLowActorBudget = 24;
+constexpr int32 InvestorLowActorBudget = 48;
 constexpr int32 InvestorExpectedSignalActorCount = 1950;
 constexpr int32 InvestorExpectedSignalSourceCount = 30;
 constexpr int32 InvestorExpectedSignalRayCount = 1920;
@@ -4952,6 +4953,9 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
             ? InvestorLowActorBudget
             : (bCentralAdmission ? 72 : 500);
         const int32 LowBudget = bCentralAdmission ? RequestedPopulation : 500;
+        const float OffDistance = bInvestorPresentation
+            ? InvestorVATVisibleDistanceCm
+            : 100000.0f;
         VisualizationTrait->LODParams.LODMaxCount[EMassLOD::High] =
             HighBudget;
         VisualizationTrait->LODParams.LODMaxCount[EMassLOD::Medium] =
@@ -4966,12 +4970,14 @@ bool AOpenMassCrowdSpawner::SpawnEntitiesOnLanes()
         VisualizationTrait->LODParams.BaseLODDistance[EMassLOD::Medium] = 1200.0f;
         VisualizationTrait->LODParams.BaseLODDistance[EMassLOD::Low] =
             bInvestorPresentation ? InvestorSkeletalWalkDistanceCm : 3500.0f;
-        VisualizationTrait->LODParams.BaseLODDistance[EMassLOD::Off] = 100000.0f;
+        VisualizationTrait->LODParams.BaseLODDistance[EMassLOD::Off] =
+            OffDistance;
         VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::High] = 0.0f;
         VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::Medium] = 1200.0f;
         VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::Low] =
             bInvestorPresentation ? InvestorSkeletalWalkDistanceCm : 3500.0f;
-        VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::Off] = 100000.0f;
+        VisualizationTrait->LODParams.VisibleLODDistance[EMassLOD::Off] =
+            OffDistance;
 
         if (Resolved.bHasVAT)
         {
@@ -12797,7 +12803,7 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         bAssociationFullCoverage &&
         InvestorLegacyFloatingSignalVisibleCount == 0;
     return FString::Printf(
-        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d,\"association_visual_enabled\":%s,\"association_visual_policy\":\"all_connected_people_persistent_batch\",\"association_source_connected\":%d,\"association_rendered_links\":%d,\"association_rendered_dashed_links\":%d,\"association_rendered_segments\":%d,\"association_visual_revision\":%d,\"association_full_coverage\":%s,\"rotating_sampling\":false,\"short_lifetime_debug_lines\":false,\"persistent_batch_component\":true,\"persistent_batch_component_tick\":false,\"single_batch_refresh\":true,\"selected_link_style\":\"solid_blue\",\"other_link_style\":\"dashed_gray\",\"station_endpoint_offset_cm\":4.0},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"signal_rendering\":{\"source\":\"persisted_editor_actor_components\",\"parity_ready\":%s,\"original_actor_count\":%d,\"original_visible_actor_count\":%d,\"source_actor_count\":%d,\"ray_actor_count\":%d,\"transforms_modified\":false,\"actor_visibility_modified\":false,\"runtime_rebuild_enabled\":false,\"runtime_overlay_enabled\":false},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":false,\"preserved_visible\":true,\"runtime_overlay_enabled\":false,\"floating_mock_loaded_count\":%d,\"floating_mock_visible_count\":%d,\"actor_spawn_guard\":true,\"level_stream_guard\":true,\"late_stream_scan_hz\":%.1f},\"video_required\":false}"),
+        TEXT("{\"schema\":\"telecomtwin-investor-delivery-v3\",\"mode_enabled\":%s,\"passed\":%s,\"population\":{\"configured\":%d,\"spawned\":%d,\"admitted\":%d,\"moving\":%d,\"represented\":%d,\"vat_far_walking\":%d},\"liveness\":{\"expected_moving\":%d,\"moving\":%d,\"stuck\":%d,\"maximum_stationary_s\":%.3f,\"stall_recovery_replans\":%d,\"cached_ground_fallbacks\":%d,\"edge_liveness_advances\":%d},\"presentation\":{\"configured_bands\":%d,\"occupied_supported_bands\":%d,\"offset_supported_people\":%d,\"certified_center_fallback_people\":%d,\"maximum_lateral_offset_cm\":%.1f,\"unique_active_lanes\":%d,\"largest_active_lane_population\":%d,\"skeletal_walk_distance_m\":%.1f,\"vat_visible_distance_m\":%.1f,\"high_actor_budget\":%d,\"low_actor_budget\":%d,\"high_actors\":%d,\"low_actors\":%d,\"vat_actors\":%d},\"performance\":{\"ground_guards_per_pass\":%d,\"telemetry_interval_s\":%.2f,\"debug_refresh_hz\":%.1f,\"validated_roof_refresh_s\":%.2f,\"network_refresh_hz\":%.2f,\"frame_samples\":%d,\"frame_p50_ms\":%.3f,\"frame_p95_ms\":%.3f,\"frame_maximum_ms\":%.3f},\"stations\":{\"required\":2,\"validated\":%d,\"maximum_roof_error_cm\":%.3f,\"items\":[%s]},\"network\":{\"connected\":%d,\"uncovered\":%d,\"association_visual_budget\":%d,\"association_visual_enabled\":%s,\"association_visual_policy\":\"all_connected_people_persistent_batch\",\"association_source_connected\":%d,\"association_rendered_links\":%d,\"association_rendered_dashed_links\":%d,\"association_rendered_segments\":%d,\"association_visual_revision\":%d,\"association_full_coverage\":%s,\"rotating_sampling\":false,\"short_lifetime_debug_lines\":false,\"persistent_batch_component\":true,\"persistent_batch_component_tick\":false,\"single_batch_refresh\":true,\"selected_link_style\":\"solid_blue\",\"other_link_style\":\"dashed_gray\",\"station_endpoint_offset_cm\":4.0},\"building\":{\"portal_grounded\":%s,\"portal\":{\"x\":%.3f,\"y\":%.3f,\"z\":%.3f},\"outdoor\":%d,\"entering\":%d,\"indoor\":%d,\"exiting\":%d,\"entry_events\":%d,\"exit_events\":%d,\"station_reacquisitions\":%d},\"profile\":{\"selected_index\":%d,\"visible\":%s,\"anchor\":\"lower_left\",\"required_fields_present\":%s},\"signal_rendering\":{\"source\":\"persisted_editor_actor_components\",\"parity_ready\":%s,\"original_actor_count\":%d,\"original_visible_actor_count\":%d,\"source_actor_count\":%d,\"ray_actor_count\":%d,\"transforms_modified\":false,\"actor_visibility_modified\":false,\"runtime_rebuild_enabled\":false,\"runtime_overlay_enabled\":false},\"legacy_signal\":{\"suppressed_actor_count\":%d,\"restorable\":false,\"preserved_visible\":true,\"runtime_overlay_enabled\":false,\"floating_mock_loaded_count\":%d,\"floating_mock_visible_count\":%d,\"actor_spawn_guard\":true,\"level_stream_guard\":true,\"late_stream_scan_hz\":%.1f},\"video_required\":false}"),
         bInvestorDeliveryDemoEnabled ? TEXT("true") : TEXT("false"),
         bPassed ? TEXT("true") : TEXT("false"),
         InvestorDeliveryPopulation,
@@ -12822,6 +12828,7 @@ FString AOpenMassCrowdSpawner::GetInvestorDemoEvidenceSnapshot() const
         ActiveLanePopulations.Num(),
         LargestActiveLanePopulation,
         InvestorSkeletalWalkDistanceCm / 100.0f,
+        InvestorVATVisibleDistanceCm / 100.0f,
         InvestorHighActorBudget,
         InvestorLowActorBudget,
         CentralHighActorRepresentationCount,

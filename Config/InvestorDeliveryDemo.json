@@ -6,6 +6,13 @@
   "association_visual_policy": "all_connected_people_persistent_batch",
   "association_visual_refresh_hz": 10.0,
   "association_links_scope": "all_current_connected_outdoor_people",
+  "pedestrian_lod": {
+    "high_actor_budget": 6,
+    "low_actor_budget": 48,
+    "skeletal_walk_distance_m": 350.0,
+    "vat_visible_distance_m": 3000.0,
+    "vat_animation_play_rate": 1.35
+  },
   "stations": [
     {
       "station_id": "CENTRAL-ROOF-01",

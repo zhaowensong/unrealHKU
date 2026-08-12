@@ -124,9 +124,10 @@ def main() -> int:
             and int(presentation["unique_active_lanes"]) >= 3
         ),
         "bounded_distant_skeletal_walk": (
-            float(presentation["skeletal_walk_distance_m"]) >= 200.0
+            float(presentation["skeletal_walk_distance_m"]) >= 350.0
+            and float(presentation["vat_visible_distance_m"]) >= 3000.0
             and int(presentation["high_actor_budget"]) == 6
-            and int(presentation["low_actor_budget"]) == 24
+            and int(presentation["low_actor_budget"]) == 48
             and int(presentation["high_actors"])
             <= int(presentation["high_actor_budget"])
             and int(presentation["low_actors"])
