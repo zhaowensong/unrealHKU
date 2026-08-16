@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -23,6 +24,30 @@ DEFAULT_OUTPUT = (
     / "investor_delivery_runtime_latest.json"
 )
 MARKER = "INVESTOR_DELIVERY_RUNTIME="
+CJK_PATTERN = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]")
+PROFILE_DISPLAY_FIELDS = (
+    "name",
+    "occupation",
+    "gender",
+    "favorite_software",
+    "current_app",
+    "location_state",
+    "serving_station",
+    "signal_quality",
+)
+
+
+def profile_is_english_only(profile: dict[str, Any]) -> bool:
+    return (
+        profile.get("ui_language") == "en"
+        and profile.get("display_text_english_only") is True
+        and all(
+            isinstance(profile.get(field), str)
+            and bool(profile[field].strip())
+            and CJK_PATTERN.search(profile[field]) is None
+            for field in PROFILE_DISPLAY_FIELDS
+        )
+    )
 
 
 def snapshot(profile_index: int = 0) -> dict[str, Any]:
@@ -195,6 +220,7 @@ def main() -> int:
             and bool(profile.get("serving_station"))
             and bool(profile.get("signal_quality"))
         ),
+        "investor_profile_english_only": profile_is_english_only(profile),
         "no_severe_overlap": (
             ground["overlap_pairs"] == 0 and ground["overlap_agents"] == 0
         ),

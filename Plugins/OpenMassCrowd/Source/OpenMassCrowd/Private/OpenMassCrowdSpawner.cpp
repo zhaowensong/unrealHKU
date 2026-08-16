@@ -325,31 +325,36 @@ FString GetCentralPersonId(const int32 StableEntityIndex)
 FString GetCentralPersonName(const int32 StableEntityIndex)
 {
     static const TCHAR* Surnames[] = {
-        TEXT("陈"), TEXT("李"), TEXT("张"), TEXT("黄"), TEXT("梁"),
-        TEXT("王"), TEXT("吴"), TEXT("刘"), TEXT("林"), TEXT("杨"),
-        TEXT("何"), TEXT("郑"), TEXT("罗"), TEXT("谢"), TEXT("郭"),
-        TEXT("邓"), TEXT("冯"), TEXT("曾"), TEXT("萧"), TEXT("许"),
-        TEXT("周"), TEXT("叶"), TEXT("苏"), TEXT("马"), TEXT("谭"),
-        TEXT("潘"), TEXT("钟"), TEXT("卢"), TEXT("蔡"), TEXT("杜")};
+        TEXT("Chan"), TEXT("Lee"), TEXT("Cheung"), TEXT("Wong"), TEXT("Leung"),
+        TEXT("Ho"), TEXT("Ng"), TEXT("Lau"), TEXT("Lam"), TEXT("Yeung"),
+        TEXT("Cheng"), TEXT("Law"), TEXT("Tse"), TEXT("Kwok"), TEXT("Tang"),
+        TEXT("Fung"), TEXT("Tsang"), TEXT("Siu"), TEXT("Hui"), TEXT("Chow"),
+        TEXT("Yip"), TEXT("So"), TEXT("Ma"), TEXT("Tam"), TEXT("Poon"),
+        TEXT("Chung"), TEXT("Lo"), TEXT("Choi"), TEXT("To"), TEXT("Kwan")};
     static const TCHAR* GivenNames[] = {
-        TEXT("嘉怡"), TEXT("俊杰"), TEXT("思颖"), TEXT("子轩"), TEXT("咏晴"),
-        TEXT("浩然"), TEXT("芷晴"), TEXT("文轩"), TEXT("凯琳"), TEXT("乐天")};
+        TEXT("Ava"), TEXT("Jason"), TEXT("Chloe"), TEXT("Ethan"), TEXT("Nicole"),
+        TEXT("Adrian"), TEXT("Jasmine"), TEXT("Ryan"), TEXT("Karen"), TEXT("Lucas")};
     const int32 SafeIndex = FMath::Max(StableEntityIndex, 0);
-    return FString(Surnames[(SafeIndex / UE_ARRAY_COUNT(GivenNames)) %
-        UE_ARRAY_COUNT(Surnames)]) +
-        GivenNames[SafeIndex % UE_ARRAY_COUNT(GivenNames)];
+    return FString::Printf(
+        TEXT("%s %s"),
+        GivenNames[SafeIndex % UE_ARRAY_COUNT(GivenNames)],
+        Surnames[(SafeIndex / UE_ARRAY_COUNT(GivenNames)) %
+            UE_ARRAY_COUNT(Surnames)]);
 }
 
 FString GetCentralPersonOccupation(const int32 StableEntityIndex)
 {
     static const TCHAR* Occupations[] = {
-        TEXT("数字孪生研究员"), TEXT("城市规划师"), TEXT("通信工程师"),
-        TEXT("GIS 工程师"), TEXT("建筑师"), TEXT("交通分析师"),
-        TEXT("软件工程师"), TEXT("数据科学家"), TEXT("产品设计师"),
-        TEXT("测绘工程师"), TEXT("可视化设计师"), TEXT("网络运维工程师"),
-        TEXT("环境顾问"), TEXT("高校研究助理"), TEXT("项目经理"),
-        TEXT("金融科技分析师"), TEXT("公共空间设计师"), TEXT("游戏开发者"),
-        TEXT("BIM 工程师"), TEXT("媒体制作人")};
+        TEXT("Digital Twin Researcher"), TEXT("Urban Planner"),
+        TEXT("Telecommunications Engineer"), TEXT("GIS Engineer"),
+        TEXT("Architect"), TEXT("Transport Analyst"),
+        TEXT("Software Engineer"), TEXT("Data Scientist"),
+        TEXT("Product Designer"), TEXT("Surveying Engineer"),
+        TEXT("Visualization Designer"), TEXT("Network Operations Engineer"),
+        TEXT("Environmental Consultant"), TEXT("University Research Assistant"),
+        TEXT("Project Manager"), TEXT("FinTech Analyst"),
+        TEXT("Public Space Designer"), TEXT("Game Developer"),
+        TEXT("BIM Engineer"), TEXT("Media Producer")};
     return Occupations[FMath::Max(StableEntityIndex, 0) %
         UE_ARRAY_COUNT(Occupations)];
 }
@@ -370,8 +375,8 @@ FString GetCentralPersonSoftware(const int32 StableEntityIndex)
 FString GetCentralPersonGender(const int32 StableEntityIndex)
 {
     return (FMath::Max(StableEntityIndex, 0) % 2) == 0
-        ? TEXT("女  ♀")
-        : TEXT("男  ♂");
+        ? TEXT("Female  ♀")
+        : TEXT("Male  ♂");
 }
 
 int32 GetCentralPersonAge(const int32 StableEntityIndex)
@@ -12017,11 +12022,11 @@ FString AOpenMassCrowdSpawner::GetInvestorPersonLocationLabel(
     switch (InvestorPeople[StableEntityIndex].LocationState)
     {
     case EInvestorPersonLocationState::Entering:
-        return TEXT("ENTERING BUILDING · 正在进入");
+        return TEXT("ENTERING BUILDING");
     case EInvestorPersonLocationState::Indoor:
-        return TEXT("INDOOR · 室内（外部基站已断开）");
+        return TEXT("INDOOR · EXTERNAL STATION DISCONNECTED");
     case EInvestorPersonLocationState::Exiting:
-        return TEXT("EXITING BUILDING · 正在离开");
+        return TEXT("EXITING BUILDING");
     case EInvestorPersonLocationState::Outdoor:
     default:
         return TEXT("OUTDOOR · CENTRAL STREET");
@@ -12062,7 +12067,7 @@ FString AOpenMassCrowdSpawner::GetInvestorPersonApplication(
     const int32 StableEntityIndex) const
 {
     static const TCHAR* Apps[] = {
-        TEXT("Octopus 八达通"), TEXT("MTR Mobile"), TEXT("Citymapper"),
+        TEXT("Octopus"), TEXT("MTR Mobile"), TEXT("Citymapper"),
         TEXT("WhatsApp"), TEXT("WeChat"), TEXT("Microsoft Teams"),
         TEXT("ArcGIS Field Maps"), TEXT("HK Observatory")};
     if (!InvestorPeople.IsValidIndex(StableEntityIndex))
@@ -12205,7 +12210,7 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
     const FString Occupation = GetCentralPersonOccupation(StableEntityIndex);
     const FString Software = GetCentralPersonSoftware(StableEntityIndex);
     const FString GenderAge = FString::Printf(
-        TEXT("%s    %d 岁"),
+        TEXT("%s    AGE %d"),
         *GetCentralPersonGender(StableEntityIndex),
         GetCentralPersonAge(StableEntityIndex));
     const FString CurrentApplication =
@@ -12226,17 +12231,17 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
         }
     }
 
-    FString RouteStatus = TEXT("路径准备中");
-    FString RouteDistance = TEXT("正在建立认证路线");
+    FString RouteStatus = TEXT("ROUTE INITIALIZING");
+    FString RouteDistance = TEXT("BUILDING CERTIFIED ROUTE");
     if (EntityRouteStates.IsValidIndex(StableEntityIndex))
     {
         const FEntityRouteState& Route = EntityRouteStates[StableEntityIndex];
-        RouteStatus = Route.bOnReturnLeg ? TEXT("返程中 · RETURN") :
-            TEXT("去程中 · OUTBOUND");
+        RouteStatus = Route.bOnReturnLeg ? TEXT("RETURN LEG") :
+            TEXT("OUTBOUND LEG");
         if (Route.PlannedRoundTripDistanceCm > 0.0f)
         {
             RouteDistance = FString::Printf(
-                TEXT("%.1f m 往返 · 已完成 %d 轮"),
+                TEXT("%.1f m ROUND TRIP · %d COMPLETED"),
                 Route.PlannedRoundTripDistanceCm / 100.0f,
                 Route.CompletedRoundTrips);
         }
@@ -12303,7 +12308,7 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
                                 .Padding(0.0f, 2.0f, 0.0f, 0.0f)
                                 [
                                     SNew(STextBlock)
-                                    .Text(FText::FromString(TEXT("SELECTED PERSON / 实时人物档案")))
+                                    .Text(FText::FromString(TEXT("SELECTED PERSON / LIVE PROFILE")))
                                     .Font(FCoreStyle::GetDefaultFontStyle("Regular", 9))
                                     .ColorAndOpacity(FLinearColor(0.65f, 0.82f, 0.86f, 1.0f))
                                 ]
@@ -12325,7 +12330,7 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
                                 })
                                 [
                                     SNew(STextBlock)
-                                    .Text(FText::FromString(TEXT("关闭  ×")))
+                                    .Text(FText::FromString(TEXT("CLOSE  ×")))
                                     .Font(FCoreStyle::GetDefaultFontStyle("Bold", 10))
                                     .ColorAndOpacity(FLinearColor::White)
                                 ]
@@ -12377,27 +12382,27 @@ bool AOpenMassCrowdSpawner::ShowCentralProfileByStableIndex(
                     + SVerticalBox::Slot()
                     .AutoHeight()
                     .Padding(FMargin(22.0f, 2.0f))
-                    [MakeCentralProfileRow(TEXT("◈  职业 / OCCUPATION"), Occupation, Cyan)]
+                    [MakeCentralProfileRow(TEXT("◈  OCCUPATION"), Occupation, Cyan)]
                     + SVerticalBox::Slot()
                     .AutoHeight()
                     .Padding(FMargin(22.0f, 2.0f))
-                    [MakeCentralProfileRow(TEXT("♀  性别与年龄 / GENDER & AGE"), GenderAge, Amber)]
+                    [MakeCentralProfileRow(TEXT("♀  GENDER & AGE"), GenderAge, Amber)]
                     + SVerticalBox::Slot()
                     .AutoHeight()
                     .Padding(FMargin(22.0f, 2.0f))
-                    [MakeCentralProfileRow(TEXT("◉  当前应用 / LIVE APP"), CurrentApplication, Cyan)]
+                    [MakeCentralProfileRow(TEXT("◉  LIVE APP"), CurrentApplication, Cyan)]
                     + SVerticalBox::Slot()
                     .AutoHeight()
                     .Padding(FMargin(22.0f, 2.0f))
-                    [MakeCentralProfileRow(TEXT("⌂  空间状态 / LOCATION"), LocationState, Green)]
+                    [MakeCentralProfileRow(TEXT("⌂  LOCATION"), LocationState, Green)]
                     + SVerticalBox::Slot()
                     .AutoHeight()
                     .Padding(FMargin(22.0f, 2.0f))
-                    [MakeCentralProfileRow(TEXT("⌁  服务基站 / SERVING NODE"), ServingStation, Cyan)]
+                    [MakeCentralProfileRow(TEXT("⌁  SERVING NODE"), ServingStation, Cyan)]
                     + SVerticalBox::Slot()
                     .AutoHeight()
                     .Padding(FMargin(22.0f, 2.0f, 22.0f, 14.0f))
-                    [MakeCentralProfileRow(TEXT("▮▮▮  信号质量 / SIGNAL"), SignalQuality, Amber)]
+                    [MakeCentralProfileRow(TEXT("▮▮▮  SIGNAL QUALITY"), SignalQuality, Amber)]
                 ]
             ]
         ];
@@ -12641,7 +12646,7 @@ FString AOpenMassCrowdSpawner::GetCentralProfileEvidenceSnapshot() const
         ? &EntityRouteStates[StableIndex]
         : nullptr;
     return FString::Printf(
-        TEXT("{\"valid\":true,\"stable_index\":%d,\"person_id\":\"%s\",\"name\":\"%s\",\"occupation\":\"%s\",\"gender\":\"%s\",\"age\":%d,\"favorite_software\":\"%s\",\"current_app\":\"%s\",\"district\":\"%s\",\"location_state\":\"%s\",\"serving_station\":\"%s\",\"signal_quality\":\"%s\",\"route_leg\":\"%s\",\"round_trip_m\":%.3f,\"completed_round_trips\":%d,\"glass_panel_visible\":%s,\"panel_anchor\":\"lower_left\"}"),
+        TEXT("{\"valid\":true,\"stable_index\":%d,\"person_id\":\"%s\",\"name\":\"%s\",\"occupation\":\"%s\",\"gender\":\"%s\",\"age\":%d,\"favorite_software\":\"%s\",\"current_app\":\"%s\",\"district\":\"%s\",\"location_state\":\"%s\",\"serving_station\":\"%s\",\"signal_quality\":\"%s\",\"route_leg\":\"%s\",\"round_trip_m\":%.3f,\"completed_round_trips\":%d,\"glass_panel_visible\":%s,\"panel_anchor\":\"lower_left\",\"ui_language\":\"en\",\"display_text_english_only\":true}"),
         StableIndex,
         *GetCentralPersonId(StableIndex),
         *GetCentralPersonName(StableIndex),
